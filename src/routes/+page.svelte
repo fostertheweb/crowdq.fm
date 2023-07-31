@@ -15,7 +15,7 @@
 		<h3 class="text-2xl text-stone-50 font-straker tracking-wider">
 			crowdq<span class="text-orange-500">.</span>fm
 		</h3>
-		<div class="text-sm tracking-wide font-semibold text-stone-100">
+		<div class="text-sm tracking-wide text-stone-200">
 			made with <span class="text-red-500">&hearts;</span> in Sarasota
 		</div>
 	</footer>
