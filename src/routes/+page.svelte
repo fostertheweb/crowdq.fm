@@ -8,14 +8,14 @@
 	});
 </script>
 
-<main class="flex justify-center p-8 bg-stone-50 dark:bg-stone-900 h-screen">
+<main class="flex h-screen justify-center bg-stone-50 p-8 dark:bg-stone-900">
 	<footer
-		class="w-full justify-between bg-stone-800 border-t border-stone-700 fixed items-center bottom-0 p-4 flex"
+		class="fixed bottom-0 flex w-full items-center justify-between border-t border-stone-200 bg-stone-100 p-4 dark:border-stone-700 dark:bg-stone-800"
 	>
-		<h3 class="text-2xl text-stone-50 font-straker tracking-wider">
+		<h3 class="font-straker text-2xl tracking-wider text-stone-700 dark:text-stone-50">
 			crowdq<span class="text-orange-500">.</span>fm
 		</h3>
-		<div class="text-sm tracking-wide text-stone-200">
+		<div class="text-sm tracking-wide text-stone-500 dark:text-stone-200">
 			made with <span class="text-red-500">&hearts;</span> in Sarasota
 		</div>
 	</footer>

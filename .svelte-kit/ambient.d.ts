@@ -95,11 +95,13 @@ declare module '$env/static/private' {
 	export const HOME: string;
 	export const SHLVL: string;
 	export const npm_package_type: string;
+	export const npm_package_dependencies_extract_colors: string;
 	export const HOMEBREW_PREFIX: string;
 	export const FIG_SET_PARENT: string;
 	export const LOGNAME: string;
 	export const npm_package_scripts_format: string;
 	export const npm_lifecycle_script: string;
+	export const npm_package_devDependencies_prettier_plugin_tailwindcss: string;
 	export const SSH_SOCKET_DIR: string;
 	export const npm_config_user_agent: string;
 	export const HOMEBREW_CELLAR: string;
@@ -107,6 +109,7 @@ declare module '$env/static/private' {
 	export const CONDA_CHANGEPS1: string;
 	export const npm_package_scripts_check: string;
 	export const COLORTERM: string;
+	export const npm_package_dependencies_short_unique_id: string;
 	export const npm_node_execpath: string;
 	export const NODE_ENV: string;
 }
@@ -207,11 +210,13 @@ declare module '$env/dynamic/private' {
 		HOME: string;
 		SHLVL: string;
 		npm_package_type: string;
+		npm_package_dependencies_extract_colors: string;
 		HOMEBREW_PREFIX: string;
 		FIG_SET_PARENT: string;
 		LOGNAME: string;
 		npm_package_scripts_format: string;
 		npm_lifecycle_script: string;
+		npm_package_devDependencies_prettier_plugin_tailwindcss: string;
 		SSH_SOCKET_DIR: string;
 		npm_config_user_agent: string;
 		HOMEBREW_CELLAR: string;
@@ -219,6 +224,7 @@ declare module '$env/dynamic/private' {
 		CONDA_CHANGEPS1: string;
 		npm_package_scripts_check: string;
 		COLORTERM: string;
+		npm_package_dependencies_short_unique_id: string;
 		npm_node_execpath: string;
 		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;

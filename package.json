@@ -23,6 +23,7 @@
 		"postcss": "^8.4.26",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
+		"prettier-plugin-tailwindcss": "^0.4.1",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
 		"tailwindcss": "^3.3.3",
@@ -34,7 +35,9 @@
 	"dependencies": {
 		"@liveblocks/client": "^1.1.6",
 		"dexie": "4.0.1-alpha.25",
+		"extract-colors": "^3.0.0",
 		"flowbite": "^1.8.0",
-		"flowbite-svelte": "^0.40.2"
+		"flowbite-svelte": "^0.40.2",
+		"short-unique-id": "^4.4.4"
 	}
 }
