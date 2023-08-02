@@ -26,6 +26,11 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const MONGO_DATA_API_KEY: string;
+	export const MONGO_DATA_API_URL: string;
+	export const FONTAWESOME_NPM_AUTH_TOKEN: string;
+	export const SPOTIFY_CLIENT_ID: string;
+	export const SPOTIFY_CLIENT_SECRET: string;
 	export const FIG_PID: string;
 	export const LC_FIG_SET_PARENT: string;
 	export const CAML_LD_LIBRARY_PATH: string;
@@ -106,6 +111,7 @@ declare module '$env/static/private' {
 	export const npm_config_user_agent: string;
 	export const HOMEBREW_CELLAR: string;
 	export const INFOPATH: string;
+	export const npm_package_devDependencies__types_node: string;
 	export const CONDA_CHANGEPS1: string;
 	export const npm_package_scripts_check: string;
 	export const COLORTERM: string;
@@ -141,6 +147,11 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		MONGO_DATA_API_KEY: string;
+		MONGO_DATA_API_URL: string;
+		FONTAWESOME_NPM_AUTH_TOKEN: string;
+		SPOTIFY_CLIENT_ID: string;
+		SPOTIFY_CLIENT_SECRET: string;
 		FIG_PID: string;
 		LC_FIG_SET_PARENT: string;
 		CAML_LD_LIBRARY_PATH: string;
@@ -221,6 +232,7 @@ declare module '$env/dynamic/private' {
 		npm_config_user_agent: string;
 		HOMEBREW_CELLAR: string;
 		INFOPATH: string;
+		npm_package_devDependencies__types_node: string;
 		CONDA_CHANGEPS1: string;
 		npm_package_scripts_check: string;
 		COLORTERM: string;

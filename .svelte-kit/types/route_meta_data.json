@@ -1,3 +1,9 @@
 {
-	"/": []
+	"/": [],
+	"/auth/callback": [
+		"src/routes/auth/callback/+server.ts"
+	],
+	"/auth/refresh": [
+		"src/routes/auth/refresh/+server.ts"
+	]
 }
