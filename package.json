@@ -35,6 +35,7 @@
 	"type": "module",
 	"dependencies": {
 		"@liveblocks/client": "^1.1.6",
+		"@vercel/kv": "^0.2.2",
 		"dexie": "4.0.1-alpha.25",
 		"extract-colors": "^3.0.0",
 		"flowbite": "^1.8.0",

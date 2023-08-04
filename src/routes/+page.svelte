@@ -8,12 +8,18 @@
 		if (main) {
 			main.addEventListener('dragenter', (e) => {
 				e.preventDefault();
+				// show a toast "Drop anywhere on the screen to add to queue."
 			});
 			main.addEventListener('dragover', (e) => {
 				e.preventDefault();
 			});
+			main.addEventListener('dragleave', (e) => {
+				e.preventDefault();
+				// hide toast
+			});
 			main.addEventListener('drop', (e) => {
 				e.preventDefault();
+				// hide toast
 				const data = e.dataTransfer?.getData('text');
 
 				if (data) {

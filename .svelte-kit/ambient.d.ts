@@ -56,6 +56,7 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies__sveltejs_kit: string;
 	export const npm_config_registry: string;
 	export const FIG_SET_PARENT_CHECK: string;
+	export const PNPM_HOME: string;
 	export const OCAML_TOPLEVEL_PATH: string;
 	export const USER: string;
 	export const npm_package_scripts_check_watch: string;
@@ -81,6 +82,7 @@ declare module '$env/static/private' {
 	export const npm_package_devDependencies_tailwindcss: string;
 	export const npm_command: string;
 	export const npm_package_scripts_preview: string;
+	export const npm_package_dependencies__vercel_kv: string;
 	export const npm_lifecycle_event: string;
 	export const LANG: string;
 	export const npm_package_name: string;
@@ -177,6 +179,7 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies__sveltejs_kit: string;
 		npm_config_registry: string;
 		FIG_SET_PARENT_CHECK: string;
+		PNPM_HOME: string;
 		OCAML_TOPLEVEL_PATH: string;
 		USER: string;
 		npm_package_scripts_check_watch: string;
@@ -202,6 +205,7 @@ declare module '$env/dynamic/private' {
 		npm_package_devDependencies_tailwindcss: string;
 		npm_command: string;
 		npm_package_scripts_preview: string;
+		npm_package_dependencies__vercel_kv: string;
 		npm_lifecycle_event: string;
 		LANG: string;
 		npm_package_name: string;

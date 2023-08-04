@@ -1,3 +1,5 @@
+import { redirect } from '@sveltejs/kit';
+
 const { SPOTIFY_CLIENT_ID: clientId, SPOTIFY_CLIENT_SECRET: clientSecret } = process.env;
 
 const url = 'https://accounts.spotify.com/api/token';
@@ -29,7 +31,7 @@ export async function GET({ request }) {
 	const { access_token, refresh_token } = await result.json();
 	const cookie = `cq-spotify-refresh=${refresh_token};Path=/;HttpOnly=true;SameSite=Lax;`;
 
-	return Response.redirect(new URL('/rooms/new', request.referrer), {
+	return redirect(new URL('/rooms/new', request.referrer), {
 		headers: {
 			Authorization: `Bearer ${access_token}`,
 			'Set-Cookie': cookie
