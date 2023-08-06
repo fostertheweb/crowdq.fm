@@ -1,3 +1,6 @@
+import { get } from 'svelte/store';
+import { token } from '../stores/session';
+
 type TrackId = string;
 type PlaylistId = string;
 
@@ -31,22 +34,23 @@ export function getTracksFromLink(url: string) {
 	throw new Error('Invalid Spotify Link');
 }
 
-function get(path: string) {
-	const token = '';
+async function fetchSpotify(path: string) {
 	const baseUrl = 'https://api.spotify.com/v1';
 	const headers = new Headers();
 	headers.append('Content-Type', 'application/json');
-	headers.append('Authorization', `Bearer ${token}`);
+	headers.append('Authorization', `Bearer ${get(token)}`);
 
-	return fetch(baseUrl + path, {
+	const response = await fetch(baseUrl + path, {
 		headers
 	});
+
+	return await response.json();
 }
 
 export function getPlaylistTracks(playlistId: PlaylistId) {
-	return get(`/playlists/${playlistId}/tracks`);
+	return fetchSpotify(`/playlists/${playlistId}/tracks`);
 }
 
 export function getTrack(trackId: TrackId) {
-	return get(`/tracks/${trackId}`);
+	return fetchSpotify(`/tracks/${trackId}`);
 }

@@ -1,12 +1,7 @@
 <script lang="ts">
-	import { token } from '../../stores/session';
-
 	export let data;
 
-	// set
 	console.log(data);
-
-	// check for re-join
 </script>
 
 <main />
