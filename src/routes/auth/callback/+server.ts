@@ -1,17 +1,17 @@
+import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
+import { SPOTIFY_CLIENT_SECRET as clientSecret } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
 
-const { SPOTIFY_CLIENT_ID: clientId, SPOTIFY_CLIENT_SECRET: clientSecret } = process.env;
+const endpoint = 'https://accounts.spotify.com/api/token';
 
-const url = 'https://accounts.spotify.com/api/token';
-
-export async function GET({ request }) {
+export async function GET({ cookies, url }) {
 	const authStringBase64 = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
-	const { searchParams } = new URL(request.url);
+	const { searchParams } = new URL(url);
 	const code = searchParams.get('code');
-	const redirect_uri = `${request.referrer}/auth/spotify/callback`;
+	const redirect_uri = `${url.origin}/auth/callback`;
 
 	if (!code) {
-		return Response.redirect(new URL('/auth/login', request.referrer));
+		throw redirect(304, new URL('/auth/login', url.origin).toString());
 	}
 
 	const body = new URLSearchParams();
@@ -19,7 +19,7 @@ export async function GET({ request }) {
 	body.append('code', code);
 	body.append('redirect_uri', redirect_uri);
 
-	const result = await fetch(url, {
+	const result = await fetch(endpoint, {
 		method: 'POST',
 		headers: {
 			Authorization: `Basic ${authStringBase64}`,
@@ -29,12 +29,18 @@ export async function GET({ request }) {
 	});
 
 	const { access_token, refresh_token } = await result.json();
-	const cookie = `cq-spotify-refresh=${refresh_token};Path=/;HttpOnly=true;SameSite=Lax;`;
 
-	return redirect(new URL('/rooms/new', request.referrer), {
-		headers: {
-			Authorization: `Bearer ${access_token}`,
-			'Set-Cookie': cookie
-		}
+	cookies.set('cq-session', JSON.stringify({ access_token, refresh_token }), {
+		httpOnly: true,
+		path: '/',
+		sameSite: 'lax'
 	});
+
+	const room = cookies.get('cq-room');
+
+	if (room) {
+		throw redirect(307, new URL(`/rooms/${room}`, url.origin).toString());
+	}
+
+	throw redirect(307, new URL('/lobby', url.origin).toString());
 }

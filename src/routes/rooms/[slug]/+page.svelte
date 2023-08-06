@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getTracksFromLink } from '$lib/spotify';
 	import { onMount } from 'svelte';
+	import { Avatar } from 'flowbite-svelte';
 
 	onMount(() => {
 		const main = document.getElementById('main');
@@ -43,9 +44,19 @@
 </script>
 
 <main id="main" class="flex h-screen justify-center bg-stone-50 p-8 dark:bg-stone-900">
-	<div id="overlay" class="fixed hidden h-screen w-screen bg-stone-900 bg-opacity-20">
-		<div class="z-10 h-1/2 w-1/2 rounded-lg border-2 border-dashed border-stone-50" />
-	</div>
+	<header>
+		<div class="flex items-center space-x-4">
+			<Avatar
+				src="https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4"
+				rounded
+				size="xs"
+			/>
+			<div class="space-y-1 font-medium dark:text-white">
+				<div>chipwheel</div>
+				<div class="text-sm text-gray-500 dark:text-gray-400">Hosting this shit</div>
+			</div>
+		</div>
+	</header>
 
 	<footer
 		class="fixed bottom-0 flex w-full items-center justify-between border-t border-stone-200 bg-stone-100 p-4 dark:border-stone-700 dark:bg-stone-800"

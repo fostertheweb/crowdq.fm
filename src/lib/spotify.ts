@@ -32,8 +32,7 @@ export function getTracksFromLink(url: string) {
 }
 
 function get(path: string) {
-	const token =
-		'BQCydDwWHFShCzPeISv0le2WclW574VKJjVAms0BU2FlfFStosYOmoss9BA75fZzg9IFoaRQd5fXZAw6JRKQa2wQlyuAOjWuUU-scrTMuHVdUs9DVzU';
+	const token = '';
 	const baseUrl = 'https://api.spotify.com/v1';
 	const headers = new Headers();
 	headers.append('Content-Type', 'application/json');
