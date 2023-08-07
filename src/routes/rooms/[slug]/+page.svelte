@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getTracksFromLink } from '$lib/spotify';
 	import { onMount } from 'svelte';
-	import { Avatar, Progressbar } from 'flowbite-svelte';
+	import { Avatar, DarkMode, Progressbar } from 'flowbite-svelte';
 	import { token } from '../../../stores/session.js';
 
 	export let data;
@@ -54,6 +54,11 @@
 			<h3 class="font-straker text-2xl tracking-wider text-stone-700 dark:text-stone-50">
 				crowdq<span class="text-orange-500">.</span>fm
 			</h3>
+
+			<button
+				class="rounded-full bg-stone-200 px-6 py-1 font-general font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
+				>Join</button
+			>
 		</header>
 
 		<div class="flex items-center space-x-4">
@@ -63,25 +68,43 @@
 				class="w-20 rounded"
 			/>
 			<div class="space-y-1">
-				<div>Find My Way</div>
+				<div class="dark:text-white">Find My Way</div>
 				<div class="text-sm text-stone-500 dark:text-stone-400">Tentendo, Annalisa Fernandez</div>
 			</div>
 		</div>
 
 		<Progressbar progress="50" color="yellow" size="h-1.5" />
 
-		<div class="flex items-center space-x-4">
-			<Avatar src="https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4" size="md" />
-			<div class="space-y-1 font-medium dark:text-white">
-				<div>chipwheel</div>
-				<div class="text-sm text-stone-500 dark:text-stone-400">Hosting this shit</div>
+		<div class="flex items-center justify-between">
+			<div class="flex items-center space-x-4">
+				<Avatar src="https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4" size="md" />
+				<div class="space-y-px font-medium dark:text-white">
+					<div class="text-sm text-stone-500 dark:text-stone-400">Hosted by</div>
+					<div>chipwheel</div>
+				</div>
+			</div>
+			<div class="flex">
+				<Avatar
+					src="https://userstock.io/data/wp-content/uploads/2020/06/kimson-doan-HD8KlyWRYYM-4-300x300.jpg"
+					stacked
+				/>
+				<Avatar
+					src="https://userstock.io/data/wp-content/uploads/2017/09/yingchou-han-241463-300x300.jpg"
+					stacked
+				/>
+				<Avatar
+					src="https://userstock.io/data/wp-content/uploads/2017/07/kelly-searle-209751-300x300.jpg"
+					stacked
+				/>
+				<Avatar stacked href="/" class="bg-gray-700 text-sm text-white hover:bg-gray-600">+5</Avatar
+				>
 			</div>
 		</div>
-
 		<div>
 			<h2 class="font-general text-2xl font-semibold tracking-wide text-stone-600">Queue</h2>
 			<div />
 		</div>
+		<DarkMode />
 	</div>
 </main>
 
