@@ -4,7 +4,16 @@ import { token } from '../stores/session';
 type TrackId = string;
 type PlaylistId = string;
 
+export function isPlaylistLink(url: string) {
+	return url.includes('playlist');
+}
+
+export function isTrackLink(url: string) {
+	return url.includes('track');
+}
+
 export function getTracksFromLink(url: string) {
+	console.log(url);
 	// Example Spotify Track link
 	// https://open.spotify.com/track/5L3ecxQnQ9qTBmnLQiwf0C?si=73095fc596a24d2b
 
@@ -19,16 +28,12 @@ export function getTracksFromLink(url: string) {
 	const tail = parts[parts.length - 1];
 	const params = tail.split('?');
 
-	if (parts.includes('track')) {
-		const trackId = params[0];
-
-		return getTrack(trackId);
+	if (isPlaylistLink(url)) {
+		return getPlaylistTracks(params[0]);
 	}
 
-	if (parts.includes('playlist')) {
-		const playlistId = params[0];
-
-		return getPlaylistTracks(playlistId);
+	if (isTrackLink(url)) {
+		return getTrack(params[0]);
 	}
 
 	throw new Error('Invalid Spotify Link');
@@ -44,7 +49,11 @@ async function fetchSpotify(path: string) {
 		headers
 	});
 
-	return await response.json();
+	const data = await response.json();
+
+	console.log(data);
+
+	return data;
 }
 
 export function getPlaylistTracks(playlistId: PlaylistId) {

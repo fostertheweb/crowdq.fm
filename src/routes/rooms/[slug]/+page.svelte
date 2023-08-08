@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { getTracksFromLink } from '$lib/spotify';
+	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
 	import { onMount } from 'svelte';
-	import { Avatar, DarkMode, Progressbar } from 'flowbite-svelte';
+	import { Avatar, DarkMode } from 'flowbite-svelte';
 	import { token } from '../../../stores/session.js';
+	import { playQueue } from '../../../stores/queue.js';
+	import TrackCard from '../../../components/TrackCard.svelte';
 
 	export let data;
 
@@ -31,7 +33,13 @@
 				if (dropData) {
 					const tracks = await getTracksFromLink(dropData);
 
-					console.log(tracks);
+					if (isPlaylistLink(dropData)) {
+						$playQueue = [...$playQueue, ...tracks];
+					}
+
+					if (isTrackLink(dropData)) {
+						$playQueue = [...$playQueue, tracks];
+					}
 				}
 			});
 		}
@@ -42,7 +50,13 @@
 			if (clipboardData) {
 				const tracks = await getTracksFromLink(clipboardData);
 
-				console.log(tracks);
+				if (isPlaylistLink(clipboardData)) {
+					$playQueue = [...$playQueue, ...tracks];
+				}
+
+				if (isTrackLink(clipboardData)) {
+					$playQueue = [...$playQueue, tracks];
+				}
 			}
 		});
 	});
@@ -56,16 +70,63 @@
 			</h3>
 
 			<button
-				class="rounded-full bg-stone-200 px-6 py-1 font-general font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
-				>Join</button
+				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-general font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
+			>
+				<i class="fa-solid fa-right-to-bracket" />
+				Join</button
 			>
 		</header>
+
+		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
+
+		<div class="flex items-center justify-between">
+			<div class="flex items-center space-x-4">
+				<Avatar src="https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4" size="md" />
+				<div class="space-y-px font-medium tracking-wide dark:text-white">
+					<div class="text-sm text-stone-500 dark:text-stone-400">Hosted by</div>
+					<div>chipwheel</div>
+				</div>
+			</div>
+			<div class="flex items-center gap-1">
+				<Avatar
+					class="dark:border-stone-800"
+					src="https://userstock.io/data/wp-content/uploads/2017/07/alex-lambley-205711-300x300.jpg"
+					size="sm"
+					stacked
+				/>
+				<Avatar
+					class="dark:border-stone-800"
+					src="https://userstock.io/data/wp-content/uploads/2020/05/imansyah-muhamad-putera-n4KewLKFOZw-300x300.jpg"
+					size="sm"
+					stacked
+				/>
+				<Avatar
+					class="dark:border-stone-800"
+					src="https://userstock.io/data/wp-content/uploads/2017/09/yingchou-han-241463-300x300.jpg"
+					size="sm"
+					stacked
+				/>
+				<Avatar
+					class="dark:border-stone-800"
+					src="https://userstock.io/data/wp-content/uploads/2017/07/kelly-searle-209751-300x300.jpg"
+					size="sm"
+					stacked
+				/>
+				<button
+					class="-ml-4 flex h-8 items-center rounded-full bg-stone-700 px-2 text-xs text-stone-300 hover:bg-stone-600"
+				>
+					+5 Listeners
+				</button>
+			</div>
+		</div>
+
+		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
 		<div class="flex items-center space-x-4">
 			<img
 				src="https://i.scdn.co/image/ab67616d0000b2731628026676e2fdff0c0ca2ec"
 				alt=""
-				class="w-20 rounded"
+				class="w-28 rounded"
 			/>
 			<div class="space-y-1">
 				<div class="dark:text-white">Find My Way</div>
@@ -73,38 +134,45 @@
 			</div>
 		</div>
 
-		<Progressbar progress="50" color="yellow" size="h-1.5" />
+		<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
+			<div class="h-1.5 rounded-full bg-[#db82f1]" style="width: 45%" />
+		</div>
 
 		<div class="flex items-center justify-between">
-			<div class="flex items-center space-x-4">
-				<Avatar src="https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4" size="md" />
-				<div class="space-y-px font-medium dark:text-white">
-					<div class="text-sm text-stone-500 dark:text-stone-400">Hosted by</div>
-					<div>chipwheel</div>
-				</div>
-			</div>
-			<div class="flex">
-				<Avatar
-					src="https://userstock.io/data/wp-content/uploads/2020/06/kimson-doan-HD8KlyWRYYM-4-300x300.jpg"
-					stacked
-				/>
-				<Avatar
-					src="https://userstock.io/data/wp-content/uploads/2017/09/yingchou-han-241463-300x300.jpg"
-					stacked
-				/>
-				<Avatar
-					src="https://userstock.io/data/wp-content/uploads/2017/07/kelly-searle-209751-300x300.jpg"
-					stacked
-				/>
-				<Avatar stacked href="/" class="bg-gray-700 text-sm text-white hover:bg-gray-600">+5</Avatar
+			<div class="space-x-2">
+				<button class="rounded-full bg-stone-200 px-2 py-1 dark:bg-stone-700 dark:text-stone-300"
+					><i class="fa-regular fa-heart" /></button
+				>
+				<button class="rounded-full bg-stone-200 px-2 py-1 dark:bg-stone-700 dark:text-stone-300"
+					><i class="fa-regular fa-thumbs-down" /></button
 				>
 			</div>
+			<div class="flex items-center space-x-2 rounded-full bg-stone-200 px-1 dark:bg-stone-700">
+				<button class="px-2 py-1 text-stone-400"><i class="fa-regular fa-minus" /></button>
+				<div class="h-1 w-20 rounded-full bg-stone-300 dark:bg-stone-800" />
+				<button class="px-2 py-1 text-stone-400"><i class="fa-regular fa-plus" /></button>
+			</div>
 		</div>
-		<div>
-			<h2 class="font-general text-2xl font-semibold tracking-wide text-stone-600">Queue</h2>
-			<div />
+
+		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
+
+		<div class="flex items-center justify-between">
+			<h2
+				class="font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300"
+			>
+				Queue
+			</h2>
+			<button
+				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-general font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
+				><i class="fa-solid fa-list-music" />Add
+			</button>
 		</div>
-		<DarkMode />
+
+		<div class="space-y-2 pb-8">
+			{#each $playQueue as item}
+				<TrackCard {item} />
+			{/each}
+		</div>
 	</div>
 </main>
 
