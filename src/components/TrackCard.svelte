@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-2 text-left text-sm transition ease-in-out dark:hover:bg-stone-800"
+	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-3 text-left text-sm transition ease-in-out dark:hover:bg-stone-800"
 >
 	<div class="relative shrink-0">
 		<div
@@ -23,14 +23,14 @@
 		{#if imageUrl}
 			<img
 				src={imageUrl}
-				class="h-12 w-12 rounded-sm bg-stone-200 shadow-sm filter group-hover:brightness-75 dark:group-hover:brightness-50"
+				class="h-14 w-14 rounded bg-stone-200 shadow filter group-hover:brightness-75 dark:group-hover:brightness-50"
 				alt=""
 			/>
 		{:else}
 			<div>Loading...</div>
 		{/if}
 	</div>
-	<div class="cq-track-details flex flex-col gap-1">
+	<div class="cq-track-details flex flex-col gap-2">
 		<div class="flex items-center gap-2 truncate text-base text-stone-700 dark:text-stone-200">
 			<span>{item.name}</span>
 			{#if item.explicit}
@@ -41,7 +41,7 @@
 				</div>
 			{/if}
 		</div>
-		<div class="truncate text-sm text-stone-500 dark:text-stone-300">
+		<div class="truncate text-sm text-stone-500 dark:text-stone-400">
 			{item.artists.map((artist) => artist.name).join(', ')}
 		</div>
 	</div>

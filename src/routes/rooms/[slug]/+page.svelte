@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
 	import { onMount } from 'svelte';
-	import { Avatar, DarkMode } from 'flowbite-svelte';
+	import { Avatar, Button, DarkMode, Input, Label, Modal } from 'flowbite-svelte';
 	import { token } from '../../../stores/session.js';
 	import { playQueue } from '../../../stores/queue.js';
 	import TrackCard from '../../../components/TrackCard.svelte';
@@ -9,6 +9,8 @@
 	export let data;
 
 	token.set(data.access_token);
+
+	let addTrackModal = false;
 
 	onMount(() => {
 		const main = document.getElementById('main');
@@ -163,9 +165,37 @@
 				Queue
 			</h2>
 			<button
-				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-general font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
+				on:click={() => (addTrackModal = true)}
+				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-general font-semibold tracking-wide text-stone-600 hover:bg-stone-600 dark:bg-stone-700 dark:text-stone-300"
 				><i class="fa-solid fa-list-music" />Add
 			</button>
+			<Modal size="xs" bind:open={addTrackModal} outsideclose>
+				<div
+					class="flex items-center gap-2 font-general text-xl font-semibold tracking-wide dark:text-stone-50"
+				>
+					<i class="fa-regular fa-list-music" /> Add to Queue
+				</div>
+				<form class="flex flex-col gap-4">
+					<div class="space-x-2 text-sm dark:text-stone-400">
+						<i class="fa-regular fa-info-circle" /><span
+							>You can drag and drop songs and playlist from Spotify anywhere into the window or
+							paste link when crowdq.fm is focused.</span
+						>
+					</div>
+					<Label class="space-y-4">
+						<span>YouTube URL, Spotify Track or Playlist Link</span>
+						<Input
+							type="text"
+							name="link"
+							placeholder="https://open.spotify.com/track/5MZ46M8kBTyY6BMYFKDVpo?si=2778fff4c44647e3"
+						/>
+					</Label>
+					<div class="flex w-full gap-4">
+						<Button class="grow">Cancel</Button>
+						<Button color="green" type="submit" class="grow">Add</Button>
+					</div>
+				</form>
+			</Modal>
 		</div>
 
 		<div class="space-y-2 pb-8">
