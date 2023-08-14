@@ -28,8 +28,29 @@
 		>
 	</div>
 	<div class="flex items-center space-x-2 rounded-full bg-stone-200 px-1 dark:bg-stone-700">
-		<button class="px-2 py-1 text-stone-400"><i class="fa-regular fa-minus" /></button>
-		<Range id="volume" value={25} />
-		<button class="px-2 py-1 text-stone-400"><i class="fa-regular fa-plus" /></button>
+		<button class="px-2 py-1 text-stone-400 hover:text-stone-200"
+			><i class="fa-solid fa-minus" /></button
+		>
+		<input
+			id="small-range"
+			type="range"
+			value="50"
+			class="cq-slider range-sm h-1 w-24 cursor-pointer appearance-none rounded-lg bg-stone-200 dark:bg-stone-500"
+		/>
+
+		<button class="px-2 py-1 text-stone-400 hover:text-stone-200"
+			><i class="fa-solid fa-plus" /></button
+		>
 	</div>
 </div>
+
+<style lang="postcss">
+	.cq-slider::-webkit-slider-thumb {
+		@apply h-8 w-8 rounded-full bg-stone-400 shadow hover:bg-stone-300;
+		appearance: none;
+	}
+
+	.dark .cq-slider::-webkit-slider-thumb {
+		@apply bg-stone-600;
+	}
+</style>
