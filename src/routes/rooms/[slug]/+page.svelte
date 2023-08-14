@@ -5,6 +5,7 @@
 	import { token } from '../../../stores/session.js';
 	import { playQueue } from '../../../stores/queue.js';
 	import TrackCard from '../../../components/TrackCard.svelte';
+	import Player from '../../../components/Player.svelte';
 
 	export let data;
 
@@ -64,7 +65,7 @@
 	});
 </script>
 
-<main id="main" class="flex h-screen justify-center bg-stone-50 p-8 dark:bg-stone-900">
+<main id="main" class="flex h-screen justify-center bg-stone-50 p-8 pb-0 dark:bg-stone-900">
 	<div class="cq-container flex w-full flex-col gap-6">
 		<header class="flex justify-between">
 			<h3 class="font-straker text-2xl tracking-wider text-stone-700 dark:text-stone-50">
@@ -124,37 +125,7 @@
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
-		<div class="flex items-center space-x-4">
-			<img
-				src="https://i.scdn.co/image/ab67616d0000b2731628026676e2fdff0c0ca2ec"
-				alt=""
-				class="w-28 rounded"
-			/>
-			<div class="space-y-1">
-				<div class="dark:text-white">Find My Way</div>
-				<div class="text-sm text-stone-500 dark:text-stone-400">Tentendo, Annalisa Fernandez</div>
-			</div>
-		</div>
-
-		<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
-			<div class="h-1.5 rounded-full bg-[#db82f1]" style="width: 45%" />
-		</div>
-
-		<div class="flex items-center justify-between">
-			<div class="space-x-2">
-				<button class="rounded-full bg-stone-200 px-2 py-1 dark:bg-stone-700 dark:text-stone-300"
-					><i class="fa-regular fa-heart" /></button
-				>
-				<button class="rounded-full bg-stone-200 px-2 py-1 dark:bg-stone-700 dark:text-stone-300"
-					><i class="fa-regular fa-thumbs-down" /></button
-				>
-			</div>
-			<div class="flex items-center space-x-2 rounded-full bg-stone-200 px-1 dark:bg-stone-700">
-				<button class="px-2 py-1 text-stone-400"><i class="fa-regular fa-minus" /></button>
-				<div class="h-1 w-20 rounded-full bg-stone-300 dark:bg-stone-800" />
-				<button class="px-2 py-1 text-stone-400"><i class="fa-regular fa-plus" /></button>
-			</div>
-		</div>
+		<Player />
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
@@ -169,7 +140,7 @@
 				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-general font-semibold tracking-wide text-stone-600 hover:bg-stone-600 dark:bg-stone-700 dark:text-stone-300"
 				><i class="fa-solid fa-list-music" />Add
 			</button>
-			<Modal size="xs" bind:open={addTrackModal} outsideclose>
+			<Modal class="dark:bg-stone-800" size="xs" bind:open={addTrackModal} outsideclose>
 				<div
 					class="flex items-center gap-2 font-general text-xl font-semibold tracking-wide dark:text-stone-50"
 				>
@@ -188,6 +159,7 @@
 							type="text"
 							name="link"
 							placeholder="https://open.spotify.com/track/5MZ46M8kBTyY6BMYFKDVpo?si=2778fff4c44647e3"
+							class="dark:border-stone-700 dark:bg-stone-900"
 						/>
 					</Label>
 					<div class="flex w-full gap-4">
@@ -198,7 +170,7 @@
 			</Modal>
 		</div>
 
-		<div class="space-y-2 pb-8">
+		<div class="space-y-2 overflow-y-scroll pb-8">
 			{#each $playQueue as item}
 				<TrackCard {item} />
 			{/each}

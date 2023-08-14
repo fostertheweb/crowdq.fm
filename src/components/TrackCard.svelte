@@ -14,18 +14,8 @@
 	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-3 text-left text-sm transition ease-in-out dark:hover:bg-stone-800"
 >
 	<div class="relative shrink-0">
-		<div
-			class="absolute bottom-0 left-0 z-10 flex h-12 w-12 items-center justify-center text-center opacity-0 transition ease-in-out group-hover:opacity-100"
-		>
-			<i class="fa-regular fa-plus text-white" />
-		</div>
-
 		{#if imageUrl}
-			<img
-				src={imageUrl}
-				class="h-14 w-14 rounded bg-stone-200 shadow filter group-hover:brightness-75 dark:group-hover:brightness-50"
-				alt=""
-			/>
+			<img src={imageUrl} class="h-14 w-14 rounded bg-stone-200 shadow" alt="" />
 		{:else}
 			<div>Loading...</div>
 		{/if}
