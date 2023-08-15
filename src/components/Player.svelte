@@ -1,5 +1,51 @@
 <script lang="ts">
-	import { Range } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
+	import { userToken } from '../stores/session';
+	import { get } from 'svelte/store';
+
+	let player;
+
+	onMount(() => {
+		const script = document.createElement('script');
+
+		script.src = 'https://sdk.scdn.co/spotify-player.js';
+
+		document.body.appendChild(script);
+
+		window.onSpotifyWebPlaybackSDKReady = () => {
+			const token = get(userToken);
+			player = new window.Spotify.Player({
+				name: 'Web Playback SDK Quick Start Player',
+				getOAuthToken: (callback: Function) => {
+					callback(token);
+				},
+				volume: 0.5
+			});
+			player.addListener('ready', ({ device_id }) => {
+				console.log('Ready with Device ID', device_id);
+			});
+
+			// Not Ready
+			player.addListener('not_ready', ({ device_id }) => {
+				console.log('Device ID has gone offline', device_id);
+			});
+
+			player.addListener('initialization_error', ({ message }) => {
+				console.error(message);
+			});
+
+			player.addListener('authentication_error', ({ message }) => {
+				console.error(message);
+			});
+
+			player.addListener('account_error', ({ message }) => {
+				console.error(message);
+			});
+
+			player.activateElement();
+			player.connect();
+		};
+	});
 </script>
 
 <div class="flex items-center space-x-4">
@@ -34,8 +80,10 @@
 		<input
 			id="small-range"
 			type="range"
+			min="0"
+			max="100"
 			value="50"
-			class="cq-slider range-sm h-1 w-24 cursor-pointer appearance-none rounded-lg bg-stone-200 dark:bg-stone-500"
+			class="cq-slider range-sm h-1 w-24 cursor-pointer appearance-none rounded-lg bg-stone-300 dark:bg-stone-500"
 		/>
 
 		<button class="px-2 py-1 text-stone-400 hover:text-stone-200"
@@ -46,11 +94,7 @@
 
 <style lang="postcss">
 	.cq-slider::-webkit-slider-thumb {
-		@apply h-8 w-8 rounded-full bg-stone-400 shadow hover:bg-stone-300;
+		@apply h-8 w-8 rounded-full bg-stone-400 shadow hover:bg-stone-500;
 		appearance: none;
-	}
-
-	.dark .cq-slider::-webkit-slider-thumb {
-		@apply bg-stone-600;
 	}
 </style>

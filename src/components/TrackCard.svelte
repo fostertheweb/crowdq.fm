@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-3 text-left text-sm transition ease-in-out dark:hover:bg-stone-800"
+	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-3 text-left text-sm transition ease-in-out hover:bg-stone-100 dark:hover:bg-stone-800"
 >
 	<div class="relative shrink-0">
 		{#if imageUrl}

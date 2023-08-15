@@ -11,7 +11,7 @@
 >
 	<div class="cq-card flex flex-col gap-8 rounded bg-white p-8 shadow dark:bg-stone-700">
 		<div class="flex flex-col gap-4 px-2">
-			<button>Create Room</button>
+			<a href="/rooms/chipwheel">Create Room</a>
 			<!-- <HeaderWithUser name={me.display_name} image={me.images[0].url} /> -->
 			<!-- <CreateRoomForm /> -->
 		</div>

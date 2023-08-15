@@ -3,7 +3,7 @@ import { SPOTIFY_CLIENT_SECRET as clientSecret } from '$env/static/private';
 
 const endpoint = 'https://accounts.spotify.com/api/token';
 
-export async function load() {
+export async function load({ cookies }) {
 	const authStringBase64 = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 	const body = new URLSearchParams();
 	body.append('grant_type', 'client_credentials');
@@ -18,5 +18,8 @@ export async function load() {
 	});
 	const credentials = await result.json();
 
-	return credentials;
+	return {
+		client: credentials,
+		user: JSON.parse(cookies.get('cq-session'))
+	};
 }

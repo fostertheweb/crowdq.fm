@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
 	import { onMount } from 'svelte';
-	import { Avatar, Button, DarkMode, Input, Label, Modal } from 'flowbite-svelte';
-	import { token } from '../../../stores/session.js';
+	import { Avatar, Button, Input, Label, Modal } from 'flowbite-svelte';
+	import { clientToken, userToken } from '../../../stores/session.js';
 	import { playQueue } from '../../../stores/queue.js';
 	import TrackCard from '../../../components/TrackCard.svelte';
 	import Player from '../../../components/Player.svelte';
 
 	export let data;
 
-	token.set(data.access_token);
+	clientToken.set(data.client.access_token);
+	userToken.set(data.user.access_token);
 
 	let addTrackModal = false;
 
