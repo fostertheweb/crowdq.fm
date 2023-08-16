@@ -1,18 +1,24 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Avatar, Button, Input, Label, Modal } from 'flowbite-svelte';
+	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
 	import { clientToken, userToken } from '$lib/stores/session.js';
 	import { playQueue } from '$lib/stores/queue.js';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
+	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
+	import ListenerStack from '$lib/components/ListenerStack.svelte';
+	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 
 	export let data;
 
 	clientToken.set(data.client.access_token);
 	userToken.set(data.user.access_token);
 
-	let addTrackModal = false;
+	const {
+		elements: { trigger, overlay, content, title, description, close, portalled },
+		states: { open }
+	} = createDialog();
 
 	onMount(() => {
 		const main = document.getElementById('main');
@@ -85,43 +91,16 @@
 
 		<div class="flex items-center justify-between">
 			<div class="flex items-center space-x-4">
-				<Avatar src="https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4" size="md" />
+				<ListenerAvatar
+					listener={{ avatar: 'https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4' }}
+					size="md"
+				/>
 				<div class="space-y-px font-medium tracking-wide dark:text-white">
 					<div class="text-sm text-stone-500 dark:text-stone-400">Hosted by</div>
 					<div>chipwheel</div>
 				</div>
 			</div>
-			<div class="flex items-center gap-1">
-				<Avatar
-					class="dark:border-stone-800"
-					src="https://userstock.io/data/wp-content/uploads/2017/07/alex-lambley-205711-300x300.jpg"
-					size="sm"
-					stacked
-				/>
-				<Avatar
-					class="dark:border-stone-800"
-					src="https://userstock.io/data/wp-content/uploads/2020/05/imansyah-muhamad-putera-n4KewLKFOZw-300x300.jpg"
-					size="sm"
-					stacked
-				/>
-				<Avatar
-					class="dark:border-stone-800"
-					src="https://userstock.io/data/wp-content/uploads/2017/09/yingchou-han-241463-300x300.jpg"
-					size="sm"
-					stacked
-				/>
-				<Avatar
-					class="dark:border-stone-800"
-					src="https://userstock.io/data/wp-content/uploads/2017/07/kelly-searle-209751-300x300.jpg"
-					size="sm"
-					stacked
-				/>
-				<button
-					class="-ml-4 flex h-8 items-center rounded-full bg-stone-700 px-2 text-xs text-stone-300 hover:bg-stone-600"
-				>
-					+5 Listeners
-				</button>
-			</div>
+			<ListenerStack />
 		</div>
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
@@ -137,38 +116,15 @@
 				Queue
 			</h2>
 			<button
-				on:click={() => (addTrackModal = true)}
-				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 hover:bg-stone-600 dark:bg-stone-700 dark:text-stone-300"
+				use:melt={$trigger}
+				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 				><i class="fa-solid fa-list-music" />Add
 			</button>
-			<Modal class="dark:bg-stone-800" size="xs" bind:open={addTrackModal} outsideclose>
-				<div
-					class="flex items-center gap-2 font-general text-xl font-semibold tracking-wide dark:text-stone-50"
-				>
-					<i class="fa-regular fa-list-music" /> Add to Queue
-				</div>
-				<form class="flex flex-col gap-4">
-					<div class="space-x-2 text-sm dark:text-stone-400">
-						<i class="fa-regular fa-info-circle" /><span
-							>You can drag and drop songs and playlist from Spotify anywhere into the window or
-							paste link when crowdq.fm is focused.</span
-						>
-					</div>
-					<Label class="space-y-4">
-						<span>YouTube URL, Spotify Track or Playlist Link</span>
-						<Input
-							type="text"
-							name="link"
-							placeholder="https://open.spotify.com/track/5MZ46M8kBTyY6BMYFKDVpo?si=2778fff4c44647e3"
-							class="dark:border-stone-700 dark:bg-stone-900"
-						/>
-					</Label>
-					<div class="flex w-full gap-4">
-						<Button class="grow">Cancel</Button>
-						<Button color="green" type="submit" class="grow">Add</Button>
-					</div>
-				</form>
-			</Modal>
+			<div use:melt={$portalled}>
+				{#if $open}
+					<AddTrackDialog {title} {content} {description} {overlay} {close} />
+				{/if}
+			</div>
 		</div>
 
 		<div class="space-y-2 overflow-y-scroll pb-8">
