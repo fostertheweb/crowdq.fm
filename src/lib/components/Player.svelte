@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { userToken } from '../stores/session';
+	import { userToken } from '$lib/stores/session';
 	import { get } from 'svelte/store';
 
 	let player;
@@ -15,8 +15,8 @@
 		window.onSpotifyWebPlaybackSDKReady = () => {
 			const token = get(userToken);
 			player = new window.Spotify.Player({
-				name: 'Web Playback SDK Quick Start Player',
-				getOAuthToken: (callback: Function) => {
+				name: 'crowdq.fm',
+				getOAuthToken(callback: Function) {
 					callback(token);
 				},
 				volume: 0.5

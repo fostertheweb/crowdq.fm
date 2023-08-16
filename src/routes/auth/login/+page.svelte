@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LoginButton from '../../../components/LoginButton.svelte';
+	import LoginButton from '$lib/components/LoginButton.svelte';
 </script>
 
 <div

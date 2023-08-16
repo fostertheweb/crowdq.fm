@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
 	import { onMount } from 'svelte';
 	import { Avatar, Button, Input, Label, Modal } from 'flowbite-svelte';
-	import { clientToken, userToken } from '../../../stores/session.js';
-	import { playQueue } from '../../../stores/queue.js';
-	import TrackCard from '../../../components/TrackCard.svelte';
-	import Player from '../../../components/Player.svelte';
+	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
+	import { clientToken, userToken } from '$lib/stores/session.js';
+	import { playQueue } from '$lib/stores/queue.js';
+	import TrackCard from '$lib/components/TrackCard.svelte';
+	import Player from '$lib/components/Player.svelte';
 
 	export let data;
 
@@ -74,7 +74,7 @@
 			</h3>
 
 			<button
-				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-general font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
+				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
 			>
 				<i class="fa-solid fa-right-to-bracket" />
 				Join</button
@@ -138,7 +138,7 @@
 			</h2>
 			<button
 				on:click={() => (addTrackModal = true)}
-				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-general font-semibold tracking-wide text-stone-600 hover:bg-stone-600 dark:bg-stone-700 dark:text-stone-300"
+				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 hover:bg-stone-600 dark:bg-stone-700 dark:text-stone-300"
 				><i class="fa-solid fa-list-music" />Add
 			</button>
 			<Modal class="dark:bg-stone-800" size="xs" bind:open={addTrackModal} outsideclose>

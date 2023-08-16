@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { clientToken } from '../stores/session';
+import { clientToken } from '$lib/stores/session';
 
 type TrackId = string;
 type PlaylistId = string;
