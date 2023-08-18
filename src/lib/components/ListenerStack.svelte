@@ -27,5 +27,5 @@
 			<ListenerAvatar {listener} />
 		{/each}
 	</div>
-	<span class="text-xs dark:text-stone-400">+7 Listeners</span>
+	<span class="text-xs text-stone-500 dark:text-stone-400">+7 Listeners</span>
 </div>

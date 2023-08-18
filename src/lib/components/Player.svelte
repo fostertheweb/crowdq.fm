@@ -4,6 +4,7 @@
 	import { get } from 'svelte/store';
 	import { spotifyDevice } from '$lib/stores/spotify';
 	import { playQueue } from '$lib/stores/queue';
+	import VolumeControl from './VolumeControl.svelte';
 
 	let player;
 	let currentPlayback = null;
@@ -76,40 +77,18 @@
 <div class="flex items-center justify-between">
 	<div class="space-x-2">
 		<button
-			class="h-8 w-8 rounded-full bg-orange-200 text-orange-800 hover:bg-stone-300 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
+			class="h-8 w-8 rounded-full bg-orange-200 text-orange-800 hover:bg-orange-300 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
 			><i class="fa-solid fa-pause" /></button
 		>
 		<button
-			class="h-8 w-8 rounded-full bg-stone-200 text-stone-800 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
+			class="h-8 w-8 rounded-full bg-stone-200 text-stone-600 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 			><i class="fa-regular fa-heart" /></button
 		>
 		<button
-			class="h-8 w-8 rounded-full bg-stone-200 text-stone-800 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
+			class="h-8 w-8 rounded-full bg-stone-200 text-stone-600 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 			><i class="fa-regular fa-thumbs-down" /></button
 		>
 	</div>
-	<div class="flex items-center space-x-2 rounded-full bg-stone-200 px-1 dark:bg-stone-700">
-		<button class="px-2 py-1 text-stone-400 hover:text-stone-500"
-			><i class="fa-solid fa-minus" /></button
-		>
-		<input
-			id="small-range"
-			type="range"
-			min="0"
-			max="100"
-			value="50"
-			class="cq-slider range-sm h-1 w-24 cursor-pointer appearance-none rounded-lg bg-stone-300 dark:bg-stone-500"
-		/>
 
-		<button class="px-2 py-1 text-stone-400 hover:text-stone-500"
-			><i class="fa-solid fa-plus" /></button
-		>
-	</div>
+	<VolumeControl />
 </div>
-
-<style lang="postcss">
-	.cq-slider::-webkit-slider-thumb {
-		@apply h-4 w-4 rounded-full bg-stone-400 shadow hover:bg-stone-500;
-		appearance: none;
-	}
-</style>
