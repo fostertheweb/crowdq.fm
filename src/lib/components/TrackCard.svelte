@@ -15,12 +15,12 @@
 >
 	<div class="relative shrink-0">
 		{#if imageUrl}
-			<img src={imageUrl} class="h-14 w-14 rounded bg-stone-200 shadow" alt="" />
+			<img src={imageUrl} class="h-12 w-12 rounded-sm bg-stone-200 shadow" alt="" />
 		{:else}
 			<div>Loading...</div>
 		{/if}
 	</div>
-	<div class="cq-track-details flex flex-col gap-2">
+	<div class="cq-track-details flex flex-col gap-1">
 		<div class="flex items-center gap-2 truncate text-base text-stone-700 dark:text-stone-200">
 			<span>{item.name}</span>
 			{#if item.explicit}
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	<div
-		class="absolute right-2 rounded bg-stone-200 p-1 text-stone-400 opacity-0 transition ease-in-out group-hover:opacity-100 dark:bg-stone-900"
+		class="absolute right-2 rounded bg-stone-200 px-2 py-1 text-sm text-stone-400 opacity-0 transition ease-in-out group-hover:opacity-100 dark:bg-stone-900"
 	>
 		{millisToMinutesAndSeconds(item.duration_ms)}
 	</div>
