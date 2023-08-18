@@ -40,3 +40,58 @@ export type Listener = {
 	isHost: boolean;
 	room: string | null;
 };
+
+export type PlayerStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'error';
+
+export interface CurrentPlayback {
+	status: PlayerStatus;
+	position: number;
+	item?: QueueItem;
+}
+
+// Spotify
+
+export interface Playback {
+	progress_ms: number | null;
+	is_playing: boolean;
+	item: Track | null;
+}
+
+export interface PlayerState {
+	duration: number;
+	position: number;
+	paused: boolean;
+	loading: boolean;
+	track_window: TrackWindow | null;
+}
+
+export interface TrackWindow {
+	current_track: Track | null;
+	previous_tracks: Track[] | null;
+}
+
+type Image = {
+	url: string;
+	height: number;
+	width: number;
+};
+
+type Album = {
+	name: string;
+	images: Image[];
+};
+
+type Artist = {
+	name: string;
+	images: Image[];
+};
+
+export type Track = {
+	id: string;
+	name: string;
+	album: Album;
+	artists: Artist[];
+	duration_ms: number;
+	explicit: boolean;
+	uri: string;
+};

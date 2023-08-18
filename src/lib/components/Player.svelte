@@ -1,13 +1,27 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { userToken } from '$lib/stores/session';
+	import { currentPlayback, transformSpotifyState } from '$lib/stores/player';
 	import { get } from 'svelte/store';
 	import { spotifyDevice } from '$lib/stores/spotify';
-	import { playQueue } from '$lib/stores/queue';
 	import VolumeControl from './VolumeControl.svelte';
+	import type { PlayerState } from '$lib/types';
+	import { play } from '$lib/spotify';
+	import { playQueue } from '$lib/stores/queue';
 
 	let player;
-	let currentPlayback = null;
+
+	$: console.log($currentPlayback);
+	$: console.log($playQueue);
+
+	async function playNextTrack() {
+		const nextItem = $playQueue[$playQueue.indexOf($currentPlayback?.item) + 1];
+
+		$currentPlayback = { ...$currentPlayback, item: nextItem };
+		console.log(nextItem);
+
+		await play({ item: nextItem });
+	}
 
 	onMount(() => {
 		const script = document.createElement('script');
@@ -18,6 +32,7 @@
 
 		window.onSpotifyWebPlaybackSDKReady = () => {
 			const token = get(userToken);
+
 			player = new window.Spotify.Player({
 				name: 'crowdq.fm',
 				getOAuthToken(callback: Function) {
@@ -25,6 +40,16 @@
 				},
 				volume: 0.5
 			});
+
+			player.addListener('player_state_changed', (state: PlayerState) => {
+				currentPlayback.set(transformSpotifyState(state));
+
+				// Track finished playing
+				if (state.paused && state.track_window?.previous_tracks?.length > 0) {
+					console.log('Play Next Track');
+				}
+			});
+
 			player.addListener('ready', ({ device_id }) => {
 				spotifyDevice.set(device_id);
 			});
@@ -53,20 +78,24 @@
 </script>
 
 <div class="flex items-center space-x-4">
-	{#if currentPlayback}
-		<img
-			src="https://i.scdn.co/image/ab67616d0000b2731628026676e2fdff0c0ca2ec"
-			alt=""
-			class="w-28 rounded"
-		/>
+	{#if $currentPlayback}
+		<img src={$currentPlayback.item.artwork} alt="" class="h-28 w-28 rounded" />
 	{:else}
 		<div class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
 			<i class="fa-solid fa-music text-5xl text-stone-50 drop-shadow dark:text-stone-400" />
 		</div>
 	{/if}
 	<div class="space-y-1">
-		<div class="text-lg dark:text-white">Find My Way</div>
-		<div class="text-base text-stone-500 dark:text-stone-400">Tentendo, Annalisa Fernandez</div>
+		{#if $currentPlayback}
+			<div class="text-lg dark:text-white">{$currentPlayback.item.name}</div>
+		{:else}
+			<div class="text-lg dark:text-white">--</div>
+		{/if}
+		{#if $currentPlayback}
+			<div class="text-base text-stone-500 dark:text-stone-400">
+				{$currentPlayback.item.artists}
+			</div>
+		{/if}
 	</div>
 </div>
 
@@ -77,8 +106,9 @@
 <div class="flex items-center justify-between">
 	<div class="space-x-2">
 		<button
+			on:click={playNextTrack}
 			class="h-8 w-8 rounded-full bg-orange-200 text-orange-800 hover:bg-orange-300 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
-			><i class="fa-solid fa-pause" /></button
+			><i class="fa-solid fa-play" /></button
 		>
 		<button
 			class="h-8 w-8 rounded-full bg-stone-200 text-stone-600 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"

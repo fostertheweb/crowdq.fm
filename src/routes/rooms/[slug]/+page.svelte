@@ -20,6 +20,23 @@
 		states: { open }
 	} = createDialog();
 
+	function createQueueItems(tracks: any | any[]) {
+		if (!Array.isArray(tracks)) {
+			tracks = [tracks];
+		}
+
+		return tracks.map((track) => ({
+			name: track.name,
+			album: track.album.name,
+			artists: track.artists.map((artist) => artist.name).join(', '),
+			artwork: track.album.images[0].url,
+			duration: track.duration_ms,
+			explicit: track.explicit,
+			provider: 'spotify',
+			provider_id: track.id
+		}));
+	}
+
 	onMount(() => {
 		const main = document.getElementById('main');
 
@@ -42,13 +59,14 @@
 
 				if (dropData) {
 					const tracks = await getTracksFromLink(dropData);
+					const items = createQueueItems(tracks);
 
 					if (isPlaylistLink(dropData)) {
-						$playQueue = [...$playQueue, ...tracks];
+						$playQueue = [...$playQueue, ...items];
 					}
 
 					if (isTrackLink(dropData)) {
-						$playQueue = [...$playQueue, tracks];
+						$playQueue = [...$playQueue, ...items];
 					}
 				}
 			});
@@ -59,13 +77,14 @@
 
 			if (clipboardData) {
 				const tracks = await getTracksFromLink(clipboardData);
+				const items = createQueueItems(tracks);
 
 				if (isPlaylistLink(clipboardData)) {
-					$playQueue = [...$playQueue, ...tracks];
+					$playQueue = [...$playQueue, ...items];
 				}
 
 				if (isTrackLink(clipboardData)) {
-					$playQueue = [...$playQueue, tracks];
+					$playQueue = [...$playQueue, ...items];
 				}
 			}
 		});
