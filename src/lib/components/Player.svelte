@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { userToken } from '$lib/stores/session';
 	import { get } from 'svelte/store';
+	import { spotifyDevice } from '$lib/stores/spotify';
+	import { playQueue } from '$lib/stores/queue';
 
 	let player;
 	let currentPlayback = null;
@@ -23,7 +25,7 @@
 				volume: 0.5
 			});
 			player.addListener('ready', ({ device_id }) => {
-				console.log('Ready with Device ID', device_id);
+				spotifyDevice.set(device_id);
 			});
 
 			// Not Ready
@@ -74,11 +76,15 @@
 <div class="flex items-center justify-between">
 	<div class="space-x-2">
 		<button
-			class="rounded-full bg-stone-200 px-2 py-1 text-stone-800 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300"
+			class="h-8 w-8 rounded-full bg-orange-200 text-orange-800 hover:bg-stone-300 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
+			><i class="fa-solid fa-pause" /></button
+		>
+		<button
+			class="h-8 w-8 rounded-full bg-stone-200 text-stone-800 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 			><i class="fa-regular fa-heart" /></button
 		>
 		<button
-			class="rounded-full bg-stone-200 px-2 py-1 text-stone-800 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300"
+			class="h-8 w-8 rounded-full bg-stone-200 text-stone-800 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 			><i class="fa-regular fa-thumbs-down" /></button
 		>
 	</div>

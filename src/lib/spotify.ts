@@ -1,5 +1,6 @@
 import { get } from 'svelte/store';
-import { clientToken } from '$lib/stores/session';
+import { clientToken, userToken } from '$lib/stores/session';
+import { spotifyDevice } from '$lib/stores/spotify';
 
 type TrackId = string;
 type PlaylistId = string;
@@ -51,8 +52,6 @@ async function fetchSpotify(path: string) {
 
 	const data = await response.json();
 
-	console.log(data);
-
 	return data;
 }
 
@@ -62,4 +61,32 @@ export function getPlaylistTracks(playlistId: PlaylistId) {
 
 export function getTrack(trackId: TrackId) {
 	return fetchSpotify(`/tracks/${trackId}`);
+}
+
+async function putSpotify(path: string, body: any) {
+	const baseUrl = 'https://api.spotify.com/v1';
+	const headers = new Headers();
+	headers.append('Content-Type', 'application/json');
+	headers.append('Authorization', `Bearer ${get(userToken)}`);
+
+	const response = await fetch(baseUrl + path, {
+		method: 'PUT',
+		headers,
+		body: JSON.stringify(body)
+	});
+
+	const data = await response.json();
+
+	return data;
+}
+
+export async function play(playback: any) {
+	const device = get(spotifyDevice);
+	const payload = playback
+		? {
+				uris: [`spotify:track:${playback?.item.provider_id}`],
+				position_ms: playback?.position || 0
+		  }
+		: null;
+	await putSpotify(`/me/player/play?device_id=${device}`, payload);
 }
