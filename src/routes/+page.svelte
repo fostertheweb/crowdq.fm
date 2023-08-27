@@ -8,21 +8,6 @@
 					crowdq<span class="text-orange-500">.</span>fm
 				</h3>
 			</div>
-
-			<div class="flex items-center gap-8 font-general tracking-wide">
-				<a
-					href="#features"
-					class="hidden rounded px-2 py-1 text-sm text-white hover:bg-black hover:bg-opacity-10"
-				>
-					Features
-				</a>
-				<a
-					href="#features"
-					class="hidden rounded px-2 py-1 text-sm text-white hover:bg-black hover:bg-opacity-10"
-				>
-					Pricing
-				</a>
-			</div>
 		</div>
 	</nav>
 	<div
@@ -45,7 +30,7 @@
 
 		<div class="mt-8 flex items-center gap-8 tracking-wide">
 			<a
-				href="/rooms/new"
+				href="/lobby"
 				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold text-white hover:brightness-125"
 			>
 				Create Room

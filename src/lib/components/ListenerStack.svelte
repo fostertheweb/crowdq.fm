@@ -11,12 +11,6 @@
 		},
 		{
 			avatar: 'https://userstock.io/data/wp-content/uploads/2017/09/yingchou-han-241463-300x300.jpg'
-		},
-		{
-			avatar: 'https://userstock.io/data/wp-content/uploads/2017/07/kelly-searle-209751-300x300.jpg'
-		},
-		{
-			avatar: 'https://pbs.twimg.com/profile_images/1605762947686375425/lsoGWWty_400x400.jpg'
 		}
 	];
 </script>
@@ -26,6 +20,6 @@
 		{#each listeners as listener}
 			<ListenerAvatar {listener} />
 		{/each}
+		<div class="bg-stone-200/60 dark:bg-stone-700 text-stone-500 dark:text-stone-400 flex pl-3 rounded-l-none pr-2 items-center justify-center text-xs h-8 rounded">+3 Listeners</div>
 	</div>
-	<span class="text-xs text-stone-500 dark:text-stone-400">+7 Listeners</span>
 </div>

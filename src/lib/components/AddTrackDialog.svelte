@@ -11,8 +11,10 @@
             p-6 shadow-lg"
 	use:melt={$content}
 >
-	<h2 use:melt={$title} class="m-0 text-lg font-medium text-black">Add Track to Queue</h2>
-	<p use:melt={$description} class="mb-5 mt-2 leading-normal text-stone-600">
+	<h2 use:melt={$title} class="m-0 text-lg font-medium text-black">
+		<i class="fa-regular fa-list-music"></i>
+		Add Track to Queue</h2>
+	<p use:melt={$description} class="rounded py-2 px-4 text-sm bg-stone-100 mb-5 mt-2 leading-normal text-stone-600">
 		You can copy/paste or drag and drop anywhere in the window.
 	</p>
 

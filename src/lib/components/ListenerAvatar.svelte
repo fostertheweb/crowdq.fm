@@ -14,7 +14,7 @@
 </script>
 
 <div
-	class="flex {sizeClass} items-center justify-center rounded-full border border-stone-50 bg-stone-100 dark:border-stone-600 dark:bg-stone-500"
+	class="flex {sizeClass} z-20 items-center justify-center rounded-full border border-stone-50 bg-stone-100 dark:border-stone-600 dark:bg-stone-500"
 >
 	<img use:melt={$image} alt="Avatar" class="h-full w-full rounded-[inherit]" />
 	<span use:melt={$fallback} class="font-medium text-stone-700">RH</span>

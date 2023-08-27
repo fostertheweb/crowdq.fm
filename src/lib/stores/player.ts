@@ -1,7 +1,7 @@
 import type { CurrentPlayback, PlayerState } from '$lib/types';
 import { writable } from 'svelte/store';
 
-export const currentPlayback = writable(null);
+export const currentPlayback = writable<CurrentPlayback | null>(null);
 
 export function transformSpotifyState(playerState: PlayerState): CurrentPlayback {
 	if (!playerState) {

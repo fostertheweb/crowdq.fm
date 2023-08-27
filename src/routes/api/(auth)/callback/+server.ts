@@ -2,9 +2,11 @@ import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
 import { SPOTIFY_CLIENT_SECRET as clientSecret } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
 
+import type { RequestHandler } from '../../../../.svelte-kit/types/src/routes';
+
 const endpoint = 'https://accounts.spotify.com/api/token';
 
-export async function GET({ cookies, url }) {
+export const GET: RequestHandler = async ({ cookies, url, locals }) => {
 	const authStringBase64 = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 	const { searchParams } = new URL(url);
 	const code = searchParams.get('code');
@@ -33,7 +35,7 @@ export async function GET({ cookies, url }) {
 	cookies.set('cq-session', JSON.stringify({ access_token, refresh_token }), {
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax'
+		sameSite: 'lax',
 	});
 
 	const room = cookies.get('cq-room');

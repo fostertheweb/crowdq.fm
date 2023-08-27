@@ -24,56 +24,58 @@
 	}
 
 	onMount(() => {
-		const script = document.createElement('script');
+		if (userToken) {
+			const script = document.createElement('script');
 
-		script.src = 'https://sdk.scdn.co/spotify-player.js';
+			script.src = 'https://sdk.scdn.co/spotify-player.js';
 
-		document.body.appendChild(script);
+			document.body.appendChild(script);
 
-		window.onSpotifyWebPlaybackSDKReady = () => {
-			const token = get(userToken);
+			window.onSpotifyWebPlaybackSDKReady = () => {
+				const token = get(userToken);
 
-			player = new window.Spotify.Player({
-				name: 'crowdq.fm',
-				getOAuthToken(callback: Function) {
-					callback(token);
-				},
-				volume: 0.5
-			});
+				player = new window.Spotify.Player({
+					name: 'crowdq.fm',
+					getOAuthToken(callback: Function) {
+						callback(token);
+					},
+					volume: 0.5
+				});
 
-			player.addListener('player_state_changed', (state: PlayerState) => {
-				currentPlayback.set(transformSpotifyState(state));
+				player.addListener('player_state_changed', (state: PlayerState) => {
+					currentPlayback.set(transformSpotifyState(state));
 
-				// Track finished playing
-				if (state.paused && state.track_window?.previous_tracks?.length > 0) {
-					console.log('Play Next Track');
-				}
-			});
+					// Track finished playing
+					if (state.paused && state.track_window?.previous_tracks?.length > 0) {
+						console.log('Play Next Track');
+					}
+				});
 
-			player.addListener('ready', ({ device_id }) => {
-				spotifyDevice.set(device_id);
-			});
+				player.addListener('ready', ({ device_id }) => {
+					spotifyDevice.set(device_id);
+				});
 
-			// Not Ready
-			player.addListener('not_ready', ({ device_id }) => {
-				console.log('Device ID has gone offline', device_id);
-			});
+				// Not Ready
+				player.addListener('not_ready', ({ device_id }) => {
+					console.log('Device ID has gone offline', device_id);
+				});
 
-			player.addListener('initialization_error', ({ message }) => {
-				console.error(message);
-			});
+				player.addListener('initialization_error', ({ message }) => {
+					console.error(message);
+				});
 
-			player.addListener('authentication_error', ({ message }) => {
-				console.error(message);
-			});
+				player.addListener('authentication_error', ({ message }) => {
+					console.error(message);
+				});
 
-			player.addListener('account_error', ({ message }) => {
-				console.error(message);
-			});
+				player.addListener('account_error', ({ message }) => {
+					console.error(message);
+				});
 
-			player.activateElement();
-			player.connect();
-		};
+				player.activateElement();
+				player.connect();
+			};
+		}
 	});
 </script>
 
@@ -95,6 +97,8 @@
 			<div class="text-base text-stone-500 dark:text-stone-400">
 				{$currentPlayback.item.artists}
 			</div>
+		{:else}
+			<div class="text-base text-stone-500 dark:text-stone-400">--</div>
 		{/if}
 	</div>
 </div>
