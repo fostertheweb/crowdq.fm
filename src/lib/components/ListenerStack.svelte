@@ -16,10 +16,14 @@
 </script>
 
 <div class="flex flex-col items-end gap-1">
-	<div class="relative flex items-center gap-1 -space-x-3">
+	<div class="relative flex items-center gap-1 -space-x-4">
 		{#each listeners as listener}
 			<ListenerAvatar {listener} />
 		{/each}
-		<div class="bg-stone-200/60 dark:bg-stone-700 text-stone-500 dark:text-stone-400 flex pl-3 rounded-l-none pr-2 items-center justify-center text-xs h-8 rounded">+3 Listeners</div>
+		<div
+			class="flex h-8 items-center justify-center rounded-r bg-stone-100 pl-5 pr-2 text-xs text-stone-500 dark:bg-stone-700 dark:text-stone-400"
+		>
+			+3 Listeners
+		</div>
 	</div>
 </div>

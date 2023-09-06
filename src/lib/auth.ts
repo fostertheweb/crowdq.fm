@@ -124,6 +124,8 @@ export async function getSession(id: string) {
 
 	const user = await getSpotifyUser(credentials.access_token);
 
+	console.log({ user });
+
 	return {
 		id,
 		...credentials,

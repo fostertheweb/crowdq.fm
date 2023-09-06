@@ -1,4 +1,4 @@
-import { getSession } from '$lib/auth';
+import { getSession, refreshSession, validateSession } from '$lib/auth';
 
 import type { PageServerLoad } from './$types';
 
@@ -9,10 +9,14 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		return null;
 	}
 
-	const session = await getSession(sessionId);
+	let session = await getSession(sessionId);
 
 	if (!session) {
 		return null;
+	}
+
+	if (!validateSession(session)) {
+		session = await refreshSession(session?.refresh_token);
 	}
 
 	return session;
