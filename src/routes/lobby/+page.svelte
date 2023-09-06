@@ -4,8 +4,6 @@
 	console.log(data);
 </script>
 
-<main />
-
 <main
 	class="flex h-screen flex-col items-center justify-start gap-8 bg-stone-100 p-8 dark:bg-stone-800"
 >

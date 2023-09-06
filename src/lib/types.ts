@@ -3,7 +3,7 @@ export type Room = {
 	slug: string;
 	imageUrl: string | null;
 	hostedBy: string | null;
-	options: RoomOptions | null;
+	options?: RoomOptions | null;
 };
 
 export enum RoomOption {
@@ -33,8 +33,6 @@ export type QueueItem = {
 export type Listener = {
 	id: string;
 	displayName: string | null;
-	provider: string;
-	providerId: string;
 	avatar: string | null;
 	disconnectedAt?: Date | null;
 	isHost: boolean;

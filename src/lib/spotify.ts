@@ -63,6 +63,15 @@ export function getTrack(trackId: TrackId) {
 	return fetchSpotify(`/tracks/${trackId}`);
 }
 
+
+export function buildSpotifyHeaders(accessToken: string) {
+	const headers = new Headers();
+	headers.append('Content-Type', 'application/json');
+	headers.append('Authorization', `Bearer ${accessToken}`);
+
+	return headers;
+}
+
 async function putSpotify(path: string, body: any) {
 	const baseUrl = 'https://api.spotify.com/v1';
 	const headers = new Headers();

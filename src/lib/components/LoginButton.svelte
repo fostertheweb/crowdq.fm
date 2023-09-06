@@ -23,7 +23,7 @@
 		params.append('response_type', 'code');
 		params.append('client_id', PUBLIC_SPOTIFY_CLIENT_ID || '');
 		params.append('scope', scope);
-		params.append('redirect_uri', `${origin}/auth/callback`);
+		params.append('redirect_uri', `${origin}/api/auth/callback`);
 
 		loginUrl = `https://accounts.spotify.com/authorize?${params.toString()}`;
 	});

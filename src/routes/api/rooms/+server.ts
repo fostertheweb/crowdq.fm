@@ -2,9 +2,11 @@ import ShortUniqueId from "short-unique-id";
 import type { Listener, Room } from '$lib/types';
 import { json } from '@sveltejs/kit';
 
-export async function POST({ request }) {
-    const user = {}
-    const { roomType } = await request.json();
+import type { RequestHandler } from './$types';
+import type { PrivateUser } from 'spotify-types'
+
+export const POST: RequestHandler = async ({ request, locals}) => {
+    const user: PrivateUser = locals.session.user;
 
     if (!user) {
         return new Response(null, { status: 401 });
@@ -20,10 +22,9 @@ export async function POST({ request }) {
     };
 
     const host: Listener = {
+        id: user.id,
         isHost: true,
         room: slug,
-        provider: "spotify",
-        providerId: user.id,
         avatar: user.images[0].url,
         displayName: user.display_name,
     };

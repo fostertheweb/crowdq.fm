@@ -24,7 +24,8 @@
 	}
 
 	onMount(() => {
-		if (userToken) {
+		console.log({ userToken: get(userToken) });
+		if (get(userToken)) {
 			const script = document.createElement('script');
 
 			script.src = 'https://sdk.scdn.co/spotify-player.js';
@@ -36,7 +37,7 @@
 
 				player = new window.Spotify.Player({
 					name: 'crowdq.fm',
-					getOAuthToken(callback: Function) {
+					getOAuthToken(callback: (token: string | null) => void) {
 						callback(token);
 					},
 					volume: 0.5

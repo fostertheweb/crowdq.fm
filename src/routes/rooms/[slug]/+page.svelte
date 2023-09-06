@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
-	import { clientToken, userToken } from '$lib/stores/session.js';
+	import { userToken } from '$lib/stores/session.js';
 	import { playQueue } from '$lib/stores/queue.js';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
@@ -10,10 +10,14 @@
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 
-	export let data;
+	import type { Session } from '$lib/auth';
+	import CurrentUser from '$lib/components/CurrentUser.svelte';
 
-	clientToken.set(data.client.access_token);
-	userToken.set(data.user.access_token);
+	export let data: Session;
+
+	$: console.log({ data });
+
+	userToken.set(data.access_token);
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -98,12 +102,16 @@
 				crowdq<span class="text-orange-500">.</span>fm
 			</h3>
 
-			<button
-				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
-			>
-				<i class="fa-solid fa-right-to-bracket" />
-				Join</button
-			>
+			{#if data}
+				<CurrentUser user={data.user} />
+			{:else}
+				<button
+					class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
+				>
+					<i class="fa-solid fa-right-to-bracket" />
+					Join</button
+				>
+			{/if}
 		</header>
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
