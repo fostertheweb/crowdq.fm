@@ -9,6 +9,7 @@ import {
 
 import type { PrivateUser as SpotifyUser } from 'spotify-types';
 
+// workaround for sveltekit local dev: https://github.com/vercel/storage/issues/107
 const kv = createClient({
 	url: KV_REST_API_URL,
 	token: KV_REST_API_TOKEN

@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { clientToken, userToken } from '$lib/stores/session';
+import { userToken } from '$lib/stores/session';
 import { spotifyDevice } from '$lib/stores/spotify';
 
 type TrackId = string;
@@ -44,7 +44,7 @@ async function fetchSpotify(path: string) {
 	const baseUrl = 'https://api.spotify.com/v1';
 	const headers = new Headers();
 	headers.append('Content-Type', 'application/json');
-	headers.append('Authorization', `Bearer ${get(clientToken)}`);
+	headers.append('Authorization', `Bearer ${get(userToken)}`);
 
 	const response = await fetch(baseUrl + path, {
 		headers
@@ -62,7 +62,6 @@ export function getPlaylistTracks(playlistId: PlaylistId) {
 export function getTrack(trackId: TrackId) {
 	return fetchSpotify(`/tracks/${trackId}`);
 }
-
 
 export function buildSpotifyHeaders(accessToken: string) {
 	const headers = new Headers();

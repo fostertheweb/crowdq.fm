@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	}
 
 	if (!validateSession(session)) {
-		session = await refreshSession(session?.refresh_token);
+		session = await refreshSession(session.refresh_token);
 	}
 
 	return session;
