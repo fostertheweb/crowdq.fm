@@ -16,7 +16,8 @@ export function transformSpotifyState(playerState: PlayerState): CurrentPlayback
 	}
 
 	if (playerState.paused === true) {
-		if (playerState.track_window?.previous_tracks?.length > 0) {
+		const prevTracks = playerState.track_window?.previous_tracks;
+		if (prevTracks && prevTracks.length > 0) {
 			// might have to compare against current_item, not sure if
 			// current functionality is spotify player bug
 			return {

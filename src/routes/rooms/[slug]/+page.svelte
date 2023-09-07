@@ -2,22 +2,21 @@
 	import { onMount } from 'svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
-	import { userToken } from '$lib/stores/session.js';
-	import { playQueue } from '$lib/stores/queue.js';
+	import { userToken } from '$lib/stores/session';
+	import { playQueue } from '$lib/stores/queue';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
 	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
-
-	import type { Session } from '$lib/auth';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
+	import type { Track } from '$lib/types.js';
 
-	export let data: Session;
+	export let data;
 
-	$: console.log({ data });
-
-	userToken.set(data.access_token);
+	if (data.session?.access_token) {
+		userToken.set(data.session.access_token);
+	}
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -29,7 +28,7 @@
 			tracks = [tracks];
 		}
 
-		return tracks.map((track) => ({
+		return tracks.map((track: Track) => ({
 			name: track.name,
 			album: track.album.name,
 			artists: track.artists.map((artist) => artist.name).join(', '),
@@ -102,8 +101,8 @@
 				crowdq<span class="text-orange-500">.</span>fm
 			</h3>
 
-			{#if data}
-				<CurrentUser user={data.user} />
+			{#if data.session}
+				<CurrentUser user={data.session.user} />
 			{:else}
 				<button
 					class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
@@ -144,8 +143,8 @@
 			</h2>
 			<button
 				use:melt={$trigger}
-				class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-				><i class="fa-solid fa-list-music" />Add
+				class="h-8 w-8 rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
+				><i class="fa-regular fa-plus-circle fa-lg" />
 			</button>
 			<div use:melt={$portalled}>
 				{#if $open}

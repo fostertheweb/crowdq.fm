@@ -1,23 +1,18 @@
 import { getSession, refreshSession, validateSession } from '$lib/auth';
 
-import type { PageServerLoad } from './$types';
-
-export const load: PageServerLoad = async ({ cookies }) => {
+export async function load({ cookies }) {
+	let session = null;
 	const sessionId = cookies.get('cq-session');
 
-	if (!sessionId) {
-		return null;
+	if (sessionId) {
+		session = await getSession(sessionId);
 	}
 
-	let session = await getSession(sessionId);
-
-	if (!session) {
-		return null;
+	if (session) {
+		if (!validateSession(session)) {
+			session = await refreshSession(session.refresh_token);
+		}
 	}
 
-	if (!validateSession(session)) {
-		session = await refreshSession(session.refresh_token);
-	}
-
-	return session;
-};
+	return { isAuthenticated: session !== null, session };
+}

@@ -1,9 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { getSession } from '$lib/auth';
 
-import type { PageServerLoad } from './$types';
-
-export const load: PageServerLoad = async ({ cookies }) => {
+export async function load({ cookies }) {
 	const sessionId = cookies.get('cq-session');
 
 	if (!sessionId) {
@@ -17,4 +15,4 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	}
 
 	return session;
-};
+}
