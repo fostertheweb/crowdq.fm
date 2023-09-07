@@ -113,7 +113,7 @@
 		<button
 			on:click={playNextTrack}
 			class="h-10 w-10 rounded-full bg-orange-200 text-orange-800 hover:bg-orange-300 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
-			><i class="fa-solid fa-play fa-lg" /></button
+			><i class="fa-solid fa-play fa-lg -mr-0.5" /></button
 		>
 		<button
 			class="h-8 w-8 rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"

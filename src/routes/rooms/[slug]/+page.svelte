@@ -116,7 +116,7 @@
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
 		<div class="flex items-center justify-between">
-			<div class="flex items-center space-x-4">
+			<div class="flex items-center space-x-2">
 				<ListenerAvatar
 					listener={{ avatar: 'https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4' }}
 					size="md"

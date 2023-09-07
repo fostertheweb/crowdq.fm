@@ -21,11 +21,11 @@ dependencies:
     specifier: ^3.0.0
     version: 3.0.0
   partykit:
-    specifier: 0.0.0-fa8d73a
-    version: 0.0.0-fa8d73a(react-dom@18.2.0)
+    specifier: 0.0.7
+    version: 0.0.7(react-dom@18.2.0)
   partysocket:
-    specifier: 0.0.0-fa8d73a
-    version: 0.0.0-fa8d73a
+    specifier: 0.0.3
+    version: 0.0.3
   short-unique-id:
     specifier: ^4.4.4
     version: 4.4.4
@@ -1371,6 +1371,11 @@ packages:
     dependencies:
       dequal: 2.0.3
 
+  /arr-rotate@1.0.0:
+    resolution: {integrity: sha512-yOzOZcR9Tn7enTF66bqKorGGH0F36vcPaSWg8fO0c0UYb3LX3VMXj5ZxEqQLNOecAhlRJ7wYZja5i4jTlnbIfQ==}
+    engines: {node: '>=4'}
+    dev: false
+
   /array-union@2.1.0:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
@@ -2052,6 +2057,11 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
+  /escape-string-regexp@5.0.0:
+    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
+    engines: {node: '>=12'}
+    dev: false
+
   /eslint-config-prettier@8.10.0(eslint@8.48.0):
     resolution: {integrity: sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==}
     hasBin: true
@@ -2301,6 +2311,14 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
+
+  /figures@5.0.0:
+    resolution: {integrity: sha512-ej8ksPF4x6e5wvK9yevct0UCXh8TTFlWGVLlgjZuoBH1HwjIfKE/IdL5mq89sFA7zELi1VhKpmtDnrs7zWyeyg==}
+    engines: {node: '>=14'}
+    dependencies:
+      escape-string-regexp: 5.0.0
+      is-unicode-supported: 1.3.0
+    dev: false
 
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -2656,6 +2674,20 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /ink-select-input@5.0.0(ink@4.3.1)(react@18.2.0):
+    resolution: {integrity: sha512-VkLEogN3KTgAc0W/u9xK3+44x8JyKfmBvPQyvniJ/Hj0ftg9vWa/YecvZirevNv2SAvgoA2GIlTLCQouzgPKDg==}
+    engines: {node: '>=14.16'}
+    peerDependencies:
+      ink: ^4.0.0
+      react: ^18.0.0
+    dependencies:
+      arr-rotate: 1.0.0
+      figures: 5.0.0
+      ink: 4.3.1(react@18.2.0)
+      lodash.isequal: 4.5.0
+      react: 18.2.0
+    dev: false
+
   /ink@4.3.1(react@18.2.0):
     resolution: {integrity: sha512-XlH5AiZRLIC4cF+eMgZLsB/feHCDT7lUtHXK4pe8ULGrC6mNosrYidzJr8CRY0P+hK7UmZ1rLO+ufdox53+NQg==}
     engines: {node: '>=14.16'}
@@ -2813,6 +2845,11 @@ packages:
     resolution: {integrity: sha512-cyA56iCMHAh5CdzjJIa4aohJyeO1YbwLi3Jc35MmRU6poroFjIGZzUzupGiRPOjgHg9TLu43xbpwXk523fMxKA==}
     dev: false
 
+  /is-unicode-supported@1.3.0:
+    resolution: {integrity: sha512-43r2mRvz+8JRIKnWJ+3j8JtjRKZ6GmjzfaE/qiBJnikNnYv/6bagRJ1kUhNk8R5EX/GkobD+r+sfxCPJsiKBLQ==}
+    engines: {node: '>=12'}
+    dev: false
+
   /is-upper-case@2.0.2:
     resolution: {integrity: sha512-44pxmxAvnnAOwBg4tHPnkfvgjPwbc5QIsSstNU+YcJ1ovxVzCWpSGosPJOZh/a1tdl81fbgnLc9LLv+x2ywbPQ==}
     dependencies:
@@ -2947,6 +2984,10 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       p-locate: 6.0.0
+    dev: false
+
+  /lodash.isequal@4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
     dev: false
 
   /lodash.merge@4.6.2:
@@ -3320,8 +3361,8 @@ packages:
       lines-and-columns: 1.2.4
     dev: false
 
-  /partykit@0.0.0-fa8d73a(react-dom@18.2.0):
-    resolution: {integrity: sha512-8Yur00nbEdO44seEtlqj2zFaEKQDPa5ej0ygB2gJYukEaOoA8czLp47S79zcGLgcb0MCN7dx5cquphhI2EyGIw==}
+  /partykit@0.0.7(react-dom@18.2.0):
+    resolution: {integrity: sha512-OWqN7XSZgPAnKwIzaQE+4QkPlbxtcsrWn3CaJv26awl5GaU9vW1emhYCdjKE581j9gqAhNF0UAiVBmb0eTsXVg==}
     hasBin: true
     dependencies:
       '@clerk/clerk-js': 4.55.0(react-dom@18.2.0)(react@18.2.0)
@@ -3338,6 +3379,7 @@ packages:
       gradient-string: 2.0.2
       http-terminator: 3.2.0
       ink: 4.3.1(react@18.2.0)
+      ink-select-input: 5.0.0(ink@4.3.1)(react@18.2.0)
       json5: 2.2.3
       mime: 3.0.0
       miniflare: 3.20230821.0
@@ -3350,6 +3392,7 @@ packages:
       source-map: 0.7.4
       undici: 5.23.0
       update-notifier: 6.0.2
+      which-pm-runs: 1.1.0
       ws: 8.13.0
       zod: 3.22.2
     transitivePeerDependencies:
@@ -3362,8 +3405,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /partysocket@0.0.0-fa8d73a:
-    resolution: {integrity: sha512-EIKWb1FgWRk6lyiRtGYD+IESSxxW1u7BJXcrynREACVwvtJ+vA1BqjT/VPptMWPgHDnhJ8Oxn5k0UMW5DCvsOw==}
+  /partysocket@0.0.3:
+    resolution: {integrity: sha512-QeazsxuPHxTWqiKGSNxAB4PJLKdwgB+3rl+/kUVu/2Cc4N9e1CfrK8dmvuFYzr/iumesfd24h/AhCPO0kqLydA==}
     dependencies:
       react: 18.2.0
     dev: false
@@ -4612,6 +4655,11 @@ packages:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
+    dev: false
+
+  /which-pm-runs@1.1.0:
+    resolution: {integrity: sha512-n1brCuqClxfFfq/Rb0ICg9giSZqCS+pLtccdag6C2HyufBrh3fBOiy9nb6ggRMvWOVH5GrdJskj5iGTZNxd7SA==}
+    engines: {node: '>=4'}
     dev: false
 
   /which@2.0.2:
