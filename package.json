@@ -42,7 +42,7 @@
     "@melt-ui/svelte": "^0.34.6",
     "@vercel/kv": "^0.2.2",
     "dexie": "4.0.1-alpha.25",
-    "extract-colors": "^3.0.0",
+    "extract-colors": "^4.0.2",
     "partykit": "0.0.7",
     "partysocket": "0.0.3",
     "short-unique-id": "^4.4.4"

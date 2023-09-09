@@ -18,8 +18,8 @@ dependencies:
     specifier: 4.0.1-alpha.25
     version: 4.0.1-alpha.25
   extract-colors:
-    specifier: ^3.0.0
-    version: 3.0.0
+    specifier: ^4.0.2
+    version: 4.0.2
   partykit:
     specifier: 0.0.7
     version: 0.0.7(react-dom@18.2.0)
@@ -2253,8 +2253,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /extract-colors@3.0.0:
-    resolution: {integrity: sha512-foK1lbVagBAfiq+GPzRF6jsyGc2xWg6aWoAicWyi2lYw+I14q/hbkZfZ/9FwU2dzbXYzhxgrZTzzJIbDiOelYg==}
+  /extract-colors@4.0.2:
+    resolution: {integrity: sha512-G7v2C3LJqW38U+yRUPD6nJCjBRfdLD7y8efEHn+1qONt1mhj+OZBpzFmiaS+dZiHU/k0dvgK2kgIkbAllHVbRw==}
     dev: false
 
   /fast-deep-equal@3.1.3:

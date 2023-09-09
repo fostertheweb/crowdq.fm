@@ -1,30 +1,37 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { userToken } from '$lib/stores/session';
-	import { currentPlayback, transformSpotifyState } from '$lib/stores/player';
+	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
 	import { get } from 'svelte/store';
 	import { spotifyDevice } from '$lib/stores/spotify';
 	import VolumeControl from './VolumeControl.svelte';
-	import type { PlayerState } from '$lib/types';
-	import { play } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
+	import PlayerControl from './PlayerControl.svelte';
+
+	import type { PlayerState } from '$lib/types';
 
 	let player;
+	let progressInterval: string | number | NodeJS.Timeout | undefined;
 
-	$: console.log($currentPlayback);
+	$: console.log($currentQueueItem);
+	$: console.log($playerStatus);
+	$: console.log($playerPosition);
 	$: console.log($playQueue);
 
-	async function playNextTrack() {
-		const nextItem = $playQueue[$playQueue.indexOf($currentPlayback?.item) + 1];
+	$: progress = $playerPosition;
+	$: duration = $currentQueueItem?.duration || 0;
 
-		$currentPlayback = { ...$currentPlayback, item: nextItem };
-		console.log(nextItem);
-
-		await play({ item: nextItem });
+	$: if ($playerStatus === 'playing') {
+		if (!progressInterval) {
+			progressInterval = setInterval(() => {
+				progress += 1000;
+			}, 1000);
+		}
+	} else {
+		clearInterval(progressInterval);
 	}
 
 	onMount(() => {
-		console.log({ userToken: get(userToken) });
 		if (get(userToken)) {
 			const script = document.createElement('script');
 
@@ -32,6 +39,7 @@
 
 			document.body.appendChild(script);
 
+			// TODO: define types for Spotify SDK
 			window.onSpotifyWebPlaybackSDKReady = () => {
 				const token = get(userToken);
 
@@ -44,11 +52,29 @@
 				});
 
 				player.addListener('player_state_changed', (state: PlayerState) => {
-					currentPlayback.set(transformSpotifyState(state));
+					if (!state) {
+						playerStatus.set('idle');
+						playerPosition.set(0);
+					} else {
+						if (state.loading) {
+							playerStatus.set('loading');
+							playerPosition.set(state.position);
+						}
 
-					// Track finished playing
-					if (state.paused && state.track_window?.previous_tracks?.length > 0) {
-						console.log('Play Next Track');
+						if (state.paused) {
+							playerPosition.set(state.position);
+
+							// Track finished playing
+							const previousTracks = state.track_window?.previous_tracks;
+							if (previousTracks && previousTracks.length > 0) {
+								console.log('Play Next Track');
+							} else {
+								playerStatus.set('paused');
+							}
+						} else {
+							playerStatus.set('playing');
+							playerPosition.set(state.position);
+						}
 					}
 				});
 
@@ -81,22 +107,22 @@
 </script>
 
 <div class="flex items-center space-x-4">
-	{#if $currentPlayback}
-		<img src={$currentPlayback.item.artwork} alt="" class="h-28 w-28 rounded" />
+	{#if $currentQueueItem}
+		<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded" />
 	{:else}
 		<div class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
 			<i class="fa-solid fa-music text-5xl text-stone-50 drop-shadow dark:text-stone-400" />
 		</div>
 	{/if}
 	<div class="space-y-1">
-		{#if $currentPlayback}
-			<div class="text-lg dark:text-white">{$currentPlayback.item.name}</div>
+		{#if $currentQueueItem}
+			<div class="text-lg dark:text-white">{$currentQueueItem.name}</div>
 		{:else}
 			<div class="text-lg dark:text-white">--</div>
 		{/if}
-		{#if $currentPlayback}
+		{#if $currentQueueItem}
 			<div class="text-base text-stone-500 dark:text-stone-400">
-				{$currentPlayback.item.artists}
+				{$currentQueueItem.artists}
 			</div>
 		{:else}
 			<div class="text-base text-stone-500 dark:text-stone-400">--</div>
@@ -105,16 +131,16 @@
 </div>
 
 <div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
-	<div class="h-1.5 rounded-full bg-[#db82f1]" style="width: 45%" />
+	<div
+		class="cq-progress-bar h-1.5 rounded-full bg-[#db82f1]"
+		style="width: {duration > 0 ? (progress / duration) * 100 : 0}%"
+	/>
 </div>
 
 <div class="flex items-center justify-between">
 	<div class="space-x-2">
-		<button
-			on:click={playNextTrack}
-			class="h-10 w-10 rounded-full bg-orange-200 text-orange-800 hover:bg-orange-300 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
-			><i class="fa-solid fa-play fa-lg -mr-0.5" /></button
-		>
+		<PlayerControl />
+
 		<button
 			class="h-8 w-8 rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 			><i class="fa-regular fa-heart fa-lg" /></button
@@ -127,3 +153,9 @@
 
 	<VolumeControl />
 </div>
+
+<style>
+	.cq-progress-bar {
+		transition: width 1s linear;
+	}
+</style>

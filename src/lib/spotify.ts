@@ -77,15 +77,11 @@ async function putSpotify(path: string, body: any) {
 	headers.append('Content-Type', 'application/json');
 	headers.append('Authorization', `Bearer ${get(userToken)}`);
 
-	const response = await fetch(baseUrl + path, {
+	await fetch(baseUrl + path, {
 		method: 'PUT',
 		headers,
 		body: JSON.stringify(body)
 	});
-
-	const data = await response.json();
-
-	return data;
 }
 
 export async function play(playback: any) {
