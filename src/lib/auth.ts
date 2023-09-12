@@ -7,7 +7,7 @@ import {
 	SPOTIFY_CLIENT_SECRET as clientSecret
 } from '$env/static/private';
 
-import type { PrivateUser as SpotifyUser } from 'spotify-types';
+type SpotifyUser = {};
 
 // workaround for sveltekit local dev: https://github.com/vercel/storage/issues/107
 const kv = createClient({

@@ -11,6 +11,9 @@ dependencies:
   '@melt-ui/svelte':
     specifier: ^0.34.6
     version: 0.34.6(svelte@4.2.0)
+  '@spotify/web-api-ts-sdk':
+    specifier: ^1.1.2
+    version: 1.1.2
   '@vercel/kv':
     specifier: ^0.2.2
     version: 0.2.2
@@ -43,6 +46,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.5.9
     version: 20.5.9
+  '@types/spotify-web-playback-sdk':
+    specifier: ^0.1.16
+    version: 0.1.16
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.45.0
     version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@5.2.2)
@@ -73,9 +79,6 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.4.1
     version: 0.4.1(prettier-plugin-svelte@2.10.1)(prettier@2.8.8)
-  spotify-types:
-    specifier: ^1.0.7
-    version: 1.0.7
   svelte:
     specifier: ^4.2.0
     version: 4.2.0
@@ -977,6 +980,10 @@ packages:
     engines: {node: '>=14.16'}
     dev: false
 
+  /@spotify/web-api-ts-sdk@1.1.2:
+    resolution: {integrity: sha512-WxmaKUGZH2xtoVDZuy6PXbrAIiEux9pL1IDaDm6iRI25nT8be6huCNpNtYe0MBtq+rejbJqjg9JI2MVlfEMyUQ==}
+    dev: false
+
   /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.24.1):
     resolution: {integrity: sha512-o2pZCfATFtA/Gw/BB0Xm7k4EYaekXxaPGER3xGSY3FvzFJGTlJlZjBseaXwYSM94lZ0HniOjTokN3cWaLX6fow==}
     peerDependencies:
@@ -1086,6 +1093,10 @@ packages:
 
   /@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
+    dev: true
+
+  /@types/spotify-web-playback-sdk@0.1.16:
+    resolution: {integrity: sha512-5U/Lx9ZIZPw3i4gMJQSwwe/981GzQhFXETrqjbaZOHuw8d/I6JFQ2WHCqdqpftdSQX+9DQpStd41obI4vIu1cw==}
     dev: true
 
   /@types/tinycolor2@1.4.3:
@@ -4083,10 +4094,6 @@ packages:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
     dev: false
-
-  /spotify-types@1.0.7:
-    resolution: {integrity: sha512-X2n0MYNUpgakGDU7h/vzTvqVJh2f8kAWE9SG5TkJtf3lJcorndK24/8/6+D7Uww8tqUD1VPHg5Lqv4usdVJUvg==}
-    dev: true
 
   /stack-utils@2.0.6:
     resolution: {integrity: sha512-XlkWvfIm6RmsWtNJx+uqtKLS8eqFbxUg0ZzLXqY0caEy9l7hruX8IpiDnjsLavoBgqCCR71TqWO8MaXYheJ3RQ==}

@@ -4,14 +4,11 @@ import type { QueueItem } from './types';
 // constructor will take roomId param
 // db will be created when in a Room
 export class CrowdQDatabase extends Dexie {
-	tracks!: Table<QueueItem>;
+	items!: Table<QueueItem>;
 
-	constructor() {
-		super('venue');
+	constructor(slug: string) {
+		super(slug);
 
 		this.version(1).stores({});
 	}
 }
-
-// TODO: do not export
-export const db = new CrowdQDatabase();

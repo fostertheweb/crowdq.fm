@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 
-	import type { PrivateUser } from 'spotify-types';
+	type PrivateUser = {};
 
 	export let user: PrivateUser;
 </script>

@@ -1,6 +1,26 @@
 import { get } from 'svelte/store';
 import { userToken } from '$lib/stores/session';
 import { spotifyDevice } from '$lib/stores/spotify';
+import { SpotifyApi } from '@spotify/web-api-ts-sdk';
+import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
+
+const scopes = [
+	'user-library-modify',
+	'user-read-email',
+	'user-read-private',
+	'playlist-modify-public',
+	'user-read-currently-playing',
+	'user-modify-playback-state',
+	'user-read-playback-state',
+	'app-remote-control',
+	'streaming'
+];
+
+export const Spotify = SpotifyApi.withUserAuthorization(
+	clientId,
+	'http://localhost:5173/callback',
+	scopes
+);
 
 type TrackId = string;
 type PlaylistId = string;
