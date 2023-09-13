@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { userToken } from '$lib/stores/session';
 	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
-	import { get } from 'svelte/store';
 	import { spotifyDevice } from '$lib/stores/spotify';
 	import VolumeControl from './VolumeControl.svelte';
 	import { playQueue } from '$lib/stores/queue';
 	import PlayerControl from './PlayerControl.svelte';
 
-	import type { PlayerState } from '$lib/types';
+	import { Spotify } from '$lib/spotify';
 
 	let player;
 	let progressInterval: string | number | NodeJS.Timeout | undefined;
@@ -31,27 +29,25 @@
 		clearInterval(progressInterval);
 	}
 
-	onMount(() => {
-		if (get(userToken)) {
+	onMount(async () => {
+		const credentials = await Spotify.getAccessToken();
+
+		if (credentials?.access_token) {
 			const script = document.createElement('script');
-
 			script.src = 'https://sdk.scdn.co/spotify-player.js';
-
 			document.body.appendChild(script);
 
 			// TODO: define types for Spotify SDK
 			window.onSpotifyWebPlaybackSDKReady = () => {
-				const token = get(userToken);
-
 				player = new window.Spotify.Player({
 					name: 'crowdq.fm',
-					getOAuthToken(callback: (token: string | null) => void) {
-						callback(token);
+					getOAuthToken(callback) {
+						callback(credentials.access_token);
 					},
 					volume: 0.5
 				});
 
-				player.addListener('player_state_changed', (state: PlayerState) => {
+				player.addListener('player_state_changed', (state) => {
 					if (!state) {
 						playerStatus.set('idle');
 						playerPosition.set(0);
@@ -79,7 +75,9 @@
 				});
 
 				player.addListener('ready', ({ device_id }) => {
-					spotifyDevice.set(device_id);
+					if (device_id) {
+						spotifyDevice.set(device_id);
+					}
 				});
 
 				// Not Ready

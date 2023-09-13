@@ -1,9 +1,8 @@
 <script lang="ts">
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
+	import type { UserProfile } from '@spotify/web-api-ts-sdk';
 
-	type PrivateUser = {};
-
-	export let user: PrivateUser;
+	export let user: UserProfile;
 </script>
 
 <div class="flex items-center">

@@ -1,22 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
-	import { userToken } from '$lib/stores/session';
+	import { Spotify, getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
 	import TrackCard from '$lib/components/TrackCard.svelte';
-	import Player from '$lib/components/Player.svelte';
+	// import Player from '$lib/components/Player.svelte';
 	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
-	import type { Track } from '$lib/types.js';
+	import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
 
-	export let data;
-
-	if (data.session?.access_token) {
-		userToken.set(data.session.access_token);
-	}
+	let user: UserProfile;
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -40,7 +35,9 @@
 		}));
 	}
 
-	onMount(() => {
+	onMount(async () => {
+		user = await Spotify.currentUser.profile();
+
 		const main = document.getElementById('main');
 
 		if (main) {
@@ -101,8 +98,8 @@
 				crowdq<span class="text-orange-500">.</span>fm
 			</h3>
 
-			{#if data.session}
-				<CurrentUser user={data.session.user} />
+			{#if user}
+				<CurrentUser {user} />
 			{:else}
 				<button
 					class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
@@ -131,7 +128,7 @@
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
-		<Player />
+		<!-- <Player /> -->
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
