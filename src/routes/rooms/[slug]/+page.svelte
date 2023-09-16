@@ -94,6 +94,7 @@
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
 		<div class="flex items-center justify-between">
+			<!-- TODO: show host controls instead if host == true -->
 			<div class="flex items-center space-x-2">
 				<ListenerAvatar
 					listener={{ avatar: 'https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4' }}

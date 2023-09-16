@@ -3,10 +3,10 @@
 	import { Spotify } from '$lib/spotify';
 	import { onMount } from 'svelte';
 	import ContinueButton from './ContinueButton.svelte';
-	import type { AccessToken } from '@spotify/web-api-ts-sdk';
+	import type { AccessToken, UserProfile } from '@spotify/web-api-ts-sdk';
 
 	let credentials: AccessToken | null = null;
-	let user;
+	let user: UserProfile;
 
 	// onMount(async () => {
 	// 	const credentials = await Spotify.getAccessToken();
