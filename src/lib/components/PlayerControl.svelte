@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { play } from '$lib/spotify';
+	import { Spotify } from '$lib/spotify';
 	import { currentQueueItem, playerStatus } from '$lib/stores/player';
 	import { playQueue } from '$lib/stores/queue';
+	import { spotifyDevice } from '$lib/stores/spotify';
 
 	async function playNextTrack() {
 		let nextIndex = 0;
@@ -11,7 +12,12 @@
 		const nextItem = $playQueue[nextIndex];
 		console.log(nextItem);
 		$currentQueueItem = nextItem;
-		await play({ item: nextItem });
+
+		if ($spotifyDevice) {
+			await Spotify.player.startResumePlayback($spotifyDevice, undefined, [
+				'spotify:track:' + nextItem.providerId
+			]);
+		}
 	}
 </script>
 

@@ -24,9 +24,8 @@ export type QueueItem = {
 	duration: number;
 	provider: string;
 	providerId: string;
-	addedAt: Date;
+	addedAt: number;
 	position: number;
-	room: string | null;
 	listenerId: number | null;
 };
 

@@ -1,4 +1,4 @@
-import { SpotifyApi } from '@spotify/web-api-ts-sdk';
+import { SpotifyApi, type AccessToken } from '@spotify/web-api-ts-sdk';
 import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
 
 const scopes = [
@@ -13,11 +13,19 @@ const scopes = [
 	'streaming'
 ];
 
-export const Spotify = SpotifyApi.withUserAuthorization(
-	clientId,
-	'http://localhost:5173/lobby',
-	scopes
-);
+const redirectUri = 'http://localhost:5173/lobby';
+
+export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes);
+
+export async function authorize(credentials: AccessToken) {
+	await fetch('/api/authorize', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(credentials)
+	});
+}
 
 export function isPlaylistLink(url: string) {
 	return url.includes('playlist');
@@ -27,13 +35,32 @@ export function isTrackLink(url: string) {
 	return url.includes('track');
 }
 
-export function getTracksFromLink(url: string) {
-	console.log(url);
+export async function getTracksFromLink(input: string) {
+	console.log({ input });
+
 	// Example Spotify Track link
 	// https://open.spotify.com/track/5L3ecxQnQ9qTBmnLQiwf0C?si=73095fc596a24d2b
 
 	// Example Spotify Playlist link
 	// https://open.spotify.com/playlist/37i9dQZEVXbnsvaMRlw1Tf?si=73806faca56442f1
+
+	if (isPlaylistLink(input)) {
+		throw new Error('Playlists not supported, drag and drop multiple tracks instead.');
+	}
+
+	let ids;
+
+	if (input.includes('\n')) {
+		const urls = input.split('\n');
+		ids = urls.map((url) => extractIdFromUrl(url));
+	} else {
+		ids = [extractIdFromUrl(input)];
+	}
+
+	return await Spotify.tracks.get(ids);
+}
+
+function extractIdFromUrl(url: string) {
 	const parts = url.split('/');
 
 	if (!parts.includes('open.spotify.com')) {
@@ -43,13 +70,5 @@ export function getTracksFromLink(url: string) {
 	const tail = parts[parts.length - 1];
 	const params = tail.split('?');
 
-	if (isPlaylistLink(url)) {
-		return console.log(params[0]);
-	}
-
-	if (isTrackLink(url)) {
-		return console.log(params[0]);
-	}
-
-	throw new Error('Invalid Spotify Link');
+	return params[0];
 }

@@ -72,8 +72,9 @@
 			<h3 class="font-straker text-xl font-medium tracking-wide text-stone-700 dark:text-stone-200">
 				crowdq<span class="text-orange-500">.</span>fm
 			</h3>
-			<span>by</span>
-			<span>fostertheweb</span>
+			<span>from</span>
+			<span>☀️</span>
+			<span class="font-general font-semibold tracking-wide">Suncoast Software Co.</span>
 		</div>
 
 		<div class="flex items-center gap-3 font-semibold text-stone-600 dark:text-stone-400">

@@ -26,27 +26,15 @@
 			</div>
 		</div>
 
-		{#await data.isAuthenticated}
-			<div>LOADING</div>
-		{:then isAuthenticated}
-			{#if isAuthenticated}
-				<div class="flex w-full flex-col gap-2">
-					<ContinueButton />
-					<div class="flex items-center justify-center gap-2 p-2 text-sm text-stone-400">
-						<i class="fa-regular fa-exclamation-circle" />
-						<span>Spotify Premium required.</span>
-					</div>
+		{#if data.user}
+			<div class="flex w-full flex-col gap-2">
+				<ContinueButton />
+				<div class="flex items-center justify-center gap-2 p-2 text-sm text-stone-400">
+					<i class="fa-regular fa-exclamation-circle" />
+					<span>Spotify Premium required.</span>
 				</div>
-			{:else}
-				<div class="flex w-full flex-col gap-2">
-					<LoginButton />
-					<div class="flex items-center justify-center gap-2 p-2 text-sm text-stone-400">
-						<i class="fa-regular fa-exclamation-circle" />
-						<span>Spotify Premium required.</span>
-					</div>
-				</div>
-			{/if}
-		{:catch}
+			</div>
+		{:else}
 			<div class="flex w-full flex-col gap-2">
 				<LoginButton />
 				<div class="flex items-center justify-center gap-2 p-2 text-sm text-stone-400">
@@ -54,7 +42,7 @@
 					<span>Spotify Premium required.</span>
 				</div>
 			</div>
-		{/await}
+		{/if}
 	</div>
 </div>
 

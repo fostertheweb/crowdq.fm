@@ -1,28 +1,24 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { Spotify, getTracksFromLink, isPlaylistLink, isTrackLink } from '$lib/spotify';
+	import { getTracksFromLink, isTrackLink } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
 	import TrackCard from '$lib/components/TrackCard.svelte';
-	// import Player from '$lib/components/Player.svelte';
+	import Player from '$lib/components/Player.svelte';
 	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
-	import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
+	import type { Track } from '@spotify/web-api-ts-sdk';
 
-	let user: UserProfile;
+	export let data;
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
 		states: { open }
 	} = createDialog();
 
-	function createQueueItems(tracks: any | any[]) {
-		if (!Array.isArray(tracks)) {
-			tracks = [tracks];
-		}
-
+	function createQueueItems(tracks: Track[]) {
 		return tracks.map((track: Track) => ({
 			name: track.name,
 			album: track.album.name,
@@ -31,13 +27,12 @@
 			duration: track.duration_ms,
 			explicit: track.explicit,
 			provider: 'spotify',
-			provider_id: track.id
+			providerId: track.id,
+			addedAt: Date.now()
 		}));
 	}
 
 	onMount(async () => {
-		user = await Spotify.currentUser.profile();
-
 		const main = document.getElementById('main');
 
 		if (main) {
@@ -55,19 +50,12 @@
 			main.addEventListener('drop', async (e) => {
 				e.preventDefault();
 				// hide toast
-				const dropData = e.dataTransfer?.getData('text');
+				const dropData = e.dataTransfer?.getData('text/plain');
 
 				if (dropData) {
 					const tracks = await getTracksFromLink(dropData);
 					const items = createQueueItems(tracks);
-
-					if (isPlaylistLink(dropData)) {
-						$playQueue = [...$playQueue, ...items];
-					}
-
-					if (isTrackLink(dropData)) {
-						$playQueue = [...$playQueue, ...items];
-					}
+					$playQueue = [...$playQueue, ...items];
 				}
 			});
 		}
@@ -78,14 +66,7 @@
 			if (clipboardData) {
 				const tracks = await getTracksFromLink(clipboardData);
 				const items = createQueueItems(tracks);
-
-				if (isPlaylistLink(clipboardData)) {
-					$playQueue = [...$playQueue, ...items];
-				}
-
-				if (isTrackLink(clipboardData)) {
-					$playQueue = [...$playQueue, ...items];
-				}
+				$playQueue = [...$playQueue, ...items];
 			}
 		});
 	});
@@ -98,8 +79,8 @@
 				crowdq<span class="text-orange-500">.</span>fm
 			</h3>
 
-			{#if user}
-				<CurrentUser {user} />
+			{#if data.user}
+				<CurrentUser user={data.user} />
 			{:else}
 				<button
 					class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
@@ -128,7 +109,7 @@
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 
-		<!-- <Player /> -->
+		<Player />
 
 		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
 

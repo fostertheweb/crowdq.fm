@@ -1,13 +1,13 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 
-import type { Session } from '$lib/auth';
+import type { UserProfile } from '@spotify/web-api-ts-sdk';
 
 declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			session: Session;
+			user: UserProfile;
 		}
 		// interface PageData {}
 		// interface Platform {}
