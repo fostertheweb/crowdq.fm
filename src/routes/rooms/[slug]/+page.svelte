@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { getTracksFromLink, isTrackLink } from '$lib/spotify';
+	import { getTracksFromLink } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';

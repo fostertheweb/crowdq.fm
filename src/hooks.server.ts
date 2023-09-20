@@ -1,5 +1,6 @@
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
+import { redirect } from '@sveltejs/kit';
 
 export async function handle({ event, resolve }) {
 	let Spotify = null;
@@ -16,6 +17,14 @@ export async function handle({ event, resolve }) {
 			}
 
 			Spotify = SpotifyApi.withAccessToken(clientId, credentials);
+		} else {
+			if (event.url.pathname.startsWith('/lobby')) {
+				throw redirect(302, '/login');
+			}
+		}
+	} else {
+		if (event.url.pathname.startsWith('/lobby')) {
+			throw redirect(302, '/login');
 		}
 	}
 

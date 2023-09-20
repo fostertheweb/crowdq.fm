@@ -1,4 +1,4 @@
-import { SpotifyApi, type AccessToken } from '@spotify/web-api-ts-sdk';
+import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
 
 const scopes = [
@@ -15,17 +15,9 @@ const scopes = [
 
 const redirectUri = 'http://localhost:5173/lobby';
 
-export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes);
-
-export async function authorize(credentials: AccessToken) {
-	await fetch('/api/authorize', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(credentials)
-	});
-}
+export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes, {
+	onAuthorizationOrUrl: '/api/authorize'
+});
 
 export function isPlaylistLink(url: string) {
 	return url.includes('playlist');

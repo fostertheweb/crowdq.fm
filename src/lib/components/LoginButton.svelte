@@ -1,23 +1,14 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { Spotify } from '$lib/spotify';
-	import { onMount } from 'svelte';
 	import ContinueButton from './ContinueButton.svelte';
-	import type { AccessToken, UserProfile } from '@spotify/web-api-ts-sdk';
+	import type { UserProfile } from '@spotify/web-api-ts-sdk';
 
-	let credentials: AccessToken | null = null;
 	let user: UserProfile;
 
-	// onMount(async () => {
-	// 	const credentials = await Spotify.getAccessToken();
-	// 	user = await Spotify.currentUser.profile();
-	// 	console.log({ credentials, user });
-	// });
-
-	async function handleClick() {
+	function handleClick() {
 		if (browser) {
-			const response = await Spotify.authenticate();
-			console.log({ response });
+			Spotify.authenticate();
 		}
 	}
 </script>

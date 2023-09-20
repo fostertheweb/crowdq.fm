@@ -1,20 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Spotify, authorize } from '$lib/spotify';
+	import { Spotify } from '$lib/spotify';
 	import HeaderWithUser from '$lib/components/HeaderWithUser.svelte';
 	import type { UserProfile } from '@spotify/web-api-ts-sdk';
 
 	export let data;
 	let user: UserProfile | null = data.user;
 
-	onMount(async () => {
-		const credentials = await Spotify.getAccessToken();
+	console.log(data);
 
+	onMount(async () => {
 		if (!data.user) {
-			if (credentials) {
-				await authorize(credentials);
-				user = await Spotify.currentUser.profile();
-			}
+			user = await Spotify.currentUser.profile();
 		}
 	});
 </script>
