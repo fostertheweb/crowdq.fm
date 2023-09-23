@@ -15,9 +15,11 @@ const scopes = [
 
 const redirectUri = 'http://localhost:5173/lobby';
 
-export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes, {
-	onAuthorizationOrUrl: '/api/authorize'
-});
+export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes);
+
+export function authenticate() {
+	return SpotifyApi.performUserAuthorization(clientId, redirectUri, scopes, '/api/authorize');
+}
 
 export function isPlaylistLink(url: string) {
 	return url.includes('playlist');

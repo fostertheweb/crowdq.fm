@@ -12,20 +12,20 @@ export async function handle({ event, resolve }) {
 
 		if (credentials) {
 			if (Date.now() >= credentials.expires) {
-				event.cookies.delete('cq-session');
+				console.log('hooks.server.ts: handle: expired token');
+				event.cookies.delete('cq-session', { path: '/' });
+
 				return await resolve(event);
 			}
 
 			Spotify = SpotifyApi.withAccessToken(clientId, credentials);
-		} else {
-			if (event.url.pathname.startsWith('/lobby')) {
-				throw redirect(302, '/login');
-			}
 		}
 	} else {
-		if (event.url.pathname.startsWith('/lobby')) {
+		if (event.url.pathname.startsWith('/lobby') && !event.url.search.includes('code')) {
 			throw redirect(302, '/login');
 		}
+
+		return await resolve(event);
 	}
 
 	if (Spotify) {

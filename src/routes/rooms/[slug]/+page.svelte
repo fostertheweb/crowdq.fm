@@ -7,8 +7,10 @@
 	import Player from '$lib/components/Player.svelte';
 	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
-	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
+	import Divider from '$lib/components/Divider.svelte';
+	import HostDetails from '$lib/components/HostDetails.svelte';
+
 	import type { Track } from '@spotify/web-api-ts-sdk';
 
 	export let data;
@@ -91,28 +93,19 @@
 			{/if}
 		</header>
 
-		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
+		<Divider />
 
 		<div class="flex items-center justify-between">
 			<!-- TODO: show host controls instead if host == true -->
-			<div class="flex items-center space-x-2">
-				<ListenerAvatar
-					listener={{ avatar: 'https://i.scdn.co/image/ab67757000003b82a7e271fc2b2fba63ea9df2b4' }}
-					size="md"
-				/>
-				<div class="space-y-px font-general font-medium tracking-wide dark:text-stone-50">
-					<div class="text-sm text-stone-500 dark:text-stone-400">Hosted by</div>
-					<div>chipwheel</div>
-				</div>
-			</div>
+			<HostDetails />
 			<ListenerStack />
 		</div>
 
-		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
+		<Divider />
 
 		<Player />
 
-		<div class="h-px w-full bg-stone-200 bg-opacity-80 dark:bg-stone-800" />
+		<Divider />
 
 		<div class="flex items-center justify-between">
 			<h2
