@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { getTracksFromLink } from '$lib/spotify';
+	import { Spotify, getTracksFromLink } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
@@ -11,9 +11,10 @@
 	import Divider from '$lib/components/Divider.svelte';
 	import HostDetails from '$lib/components/HostDetails.svelte';
 
-	import type { Track } from '@spotify/web-api-ts-sdk';
+	import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
 
 	export let data;
+	let user: UserProfile | null = data.user;
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -35,6 +36,10 @@
 	}
 
 	onMount(async () => {
+		if (!user) {
+			user = await Spotify.currentUser.profile();
+		}
+
 		const main = document.getElementById('main');
 
 		if (main) {
@@ -81,8 +86,8 @@
 				crowdq<span class="text-orange-500">.</span>fm
 			</h3>
 
-			{#if data.user}
-				<CurrentUser user={data.user} />
+			{#if user}
+				<CurrentUser {user} />
 			{:else}
 				<button
 					class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"

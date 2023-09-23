@@ -46,6 +46,7 @@
     "extract-colors": "^4.0.2",
     "partykit": "0.0.7",
     "partysocket": "0.0.3",
+    "polished": "^4.2.2",
     "short-unique-id": "^4.4.4"
   }
 }

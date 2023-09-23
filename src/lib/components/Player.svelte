@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
+	import { extractColors } from 'extract-colors';
+	import { accentColor, currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
 	import { spotifyDevice } from '$lib/stores/spotify';
 	import VolumeControl from './VolumeControl.svelte';
 	import { playQueue } from '$lib/stores/queue';
@@ -10,6 +11,7 @@
 
 	let player;
 	let progressInterval: string | number | NodeJS.Timeout | undefined;
+	let testColors: Array<string> = [];
 
 	$: console.log($currentQueueItem);
 	$: console.log($playerStatus);
@@ -27,6 +29,19 @@
 		}
 	} else {
 		clearInterval(progressInterval);
+	}
+
+	$: if ($currentQueueItem?.artwork) {
+		extractColors($currentQueueItem.artwork, {
+			crossOrigin: 'anonymous'
+		}).then((colors) => {
+			console.log(colors);
+
+			if (colors) {
+				$accentColor = colors[0].hex;
+				testColors = colors.map((c) => c.hex);
+			}
+		});
 	}
 
 	onMount(async () => {
@@ -104,7 +119,12 @@
 	});
 </script>
 
-<div class="flex items-center space-x-4">
+<div class="relative flex items-center gap-4">
+	<div class="absolute right-0 top-0 flex items-center space-x-2">
+		{#each testColors as color}
+			<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
+		{/each}
+	</div>
 	{#if $currentQueueItem}
 		<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded" />
 	{:else}
@@ -130,8 +150,9 @@
 
 <div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
 	<div
-		class="cq-progress-bar h-1.5 rounded-full bg-[#db82f1]"
-		style="width: {duration > 0 ? (progress / duration) * 100 : 0}%"
+		class="cq-progress-bar h-1.5 rounded-full bg-orange-200"
+		style:background={$accentColor}
+		style:width={(duration > 0 ? (progress / duration) * 100 : 0) + '%'}
 	/>
 </div>
 
