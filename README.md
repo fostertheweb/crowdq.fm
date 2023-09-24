@@ -1,2 +1,3 @@
 # crowdq-fm-offline
- Offline-first collaborative Spotify/YouTube play queue
+
+Offline-first collaborative Spotify/YouTube play queue
