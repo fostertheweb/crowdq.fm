@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { authenticate } from '$lib/spotify';
+	import { postAccessToken } from '$lib/spotify';
 
 	function handleClick() {
 		if (browser) {
-			authenticate();
+			postAccessToken();
 		}
 	}
 </script>

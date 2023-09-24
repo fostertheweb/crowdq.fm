@@ -17,7 +17,7 @@ const redirectUri = 'http://localhost:5173/lobby';
 
 export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes);
 
-export function authenticate() {
+export function postAccessToken() {
 	return SpotifyApi.performUserAuthorization(clientId, redirectUri, scopes, '/api/authorize');
 }
 
@@ -30,8 +30,6 @@ export function isTrackLink(url: string) {
 }
 
 export async function getTracksFromLink(input: string) {
-	console.log({ input });
-
 	// Example Spotify Track link
 	// https://open.spotify.com/track/5L3ecxQnQ9qTBmnLQiwf0C?si=73095fc596a24d2b
 

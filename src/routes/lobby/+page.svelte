@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { authenticate, Spotify } from '$lib/spotify';
+	import { postAccessToken, Spotify } from '$lib/spotify';
 	import HeaderWithUser from '$lib/components/HeaderWithUser.svelte';
 	import type { UserProfile } from '@spotify/web-api-ts-sdk';
 
@@ -9,7 +9,7 @@
 	let user: UserProfile | null = data.user;
 
 	onMount(async () => {
-		const { authenticated } = await authenticate();
+		const { authenticated } = await postAccessToken();
 
 		if (authenticated) {
 			if (!user) {
