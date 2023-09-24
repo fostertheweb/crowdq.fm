@@ -32,7 +32,7 @@
 {:else}
 	<button
 		on:click={playNextTrack}
-		class="h-10 w-10 rounded-full bg-orange-200 text-orange-800 hover:bg-orange-300 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
+		class="h-10 w-10 rounded-full bg-orange-200 text-orange-800 hover:brightness-90 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
 		><i class="fa-solid fa-play fa-lg -mr-0.5" /></button
 	>
 {/if}
