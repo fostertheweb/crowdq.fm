@@ -6,8 +6,10 @@
 	import VolumeControl from './VolumeControl.svelte';
 	import { playQueue } from '$lib/stores/queue';
 	import PlayerControl from './PlayerControl.svelte';
-
 	import { Spotify } from '$lib/spotify';
+	import type PartySocket from 'partysocket';
+
+	export let party: PartySocket;
 
 	let player;
 	let progressInterval: string | number | NodeJS.Timeout | undefined;
@@ -78,7 +80,7 @@
 							// Track finished playing
 							const previousTracks = state.track_window?.previous_tracks;
 							if (previousTracks && previousTracks.length > 0) {
-								console.log('Play Next Track');
+								party.send('play_next');
 							} else {
 								playerStatus.set('paused');
 							}

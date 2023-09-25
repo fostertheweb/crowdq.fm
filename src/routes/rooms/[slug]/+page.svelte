@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { Spotify, getTracksFromLink } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
@@ -12,9 +13,12 @@
 	import HostDetails from '$lib/components/HostDetails.svelte';
 
 	import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
+	import type PartySocket from 'partysocket';
+	import { createPartySocket } from '$lib/party.js';
 
 	export let data;
 	let user: UserProfile | null = data.user;
+	let party: PartySocket;
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -36,6 +40,8 @@
 	}
 
 	onMount(async () => {
+		party = createPartySocket($page.params.slug);
+
 		if (!user) {
 			user = await Spotify.currentUser.profile();
 		}
@@ -108,7 +114,7 @@
 
 		<Divider />
 
-		<Player />
+		<Player {party} />
 
 		<Divider />
 
