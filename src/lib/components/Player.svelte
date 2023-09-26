@@ -7,13 +7,11 @@
 	import { playQueue } from '$lib/stores/queue';
 	import PlayerControl from './PlayerControl.svelte';
 	import { Spotify } from '$lib/spotify';
-	import type PartySocket from 'partysocket';
-
-	export let party: PartySocket;
 
 	let player;
-	let progressInterval: string | number | NodeJS.Timeout | undefined;
+	let progressInterval: ReturnType<typeof setInterval>;
 	let testColors: Array<string> = [];
+	let playNextIntervalId: number;
 
 	$: console.log($currentQueueItem);
 	$: console.log($playerStatus);
@@ -80,7 +78,10 @@
 							// Track finished playing
 							const previousTracks = state.track_window?.previous_tracks;
 							if (previousTracks && previousTracks.length > 0) {
-								party.send('play_next');
+								playNextIntervalId = window.setInterval(() => {
+									console.log('play_next');
+									window.clearInterval(playNextIntervalId);
+								}, 500);
 							} else {
 								playerStatus.set('paused');
 							}

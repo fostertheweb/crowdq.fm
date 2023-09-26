@@ -3,20 +3,25 @@
 	import { page } from '$app/stores';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { Spotify, getTracksFromLink } from '$lib/spotify';
-	import { playQueue } from '$lib/stores/queue';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
 	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
 	import Divider from '$lib/components/Divider.svelte';
+	import JoinButton from '$lib/components/JoinButton.svelte';
 	import HostDetails from '$lib/components/HostDetails.svelte';
+	import { createDatabase, createQueueItem, store } from '$lib/db';
+	import { createPartySocket } from '$lib/party';
 
-	import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
+	import type { UserProfile } from '@spotify/web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
-	import { createPartySocket } from '$lib/party.js';
 
 	export let data;
+
+	let items = Object.entries(store.getTable('items')).map(([key, value]) => {
+		return { id: key, ...value };
+	});
 	let user: UserProfile | null = data.user;
 	let party: PartySocket;
 
@@ -25,22 +30,9 @@
 		states: { open }
 	} = createDialog();
 
-	function createQueueItems(tracks: Track[]) {
-		return tracks.map((track: Track) => ({
-			name: track.name,
-			album: track.album.name,
-			artists: track.artists.map((artist) => artist.name).join(', '),
-			artwork: track.album.images[0].url,
-			duration: track.duration_ms,
-			explicit: track.explicit,
-			provider: 'spotify',
-			providerId: track.id,
-			addedAt: Date.now()
-		}));
-	}
-
 	onMount(async () => {
 		party = createPartySocket($page.params.slug);
+		await createDatabase(party);
 
 		if (!user) {
 			user = await Spotify.currentUser.profile();
@@ -67,8 +59,10 @@
 
 				if (dropData) {
 					const tracks = await getTracksFromLink(dropData);
-					const items = createQueueItems(tracks);
-					$playQueue = [...$playQueue, ...items];
+					const items = tracks.map(createQueueItem);
+					items.forEach((item) => {
+						store.setRow('items', item.providerId, item);
+					});
 				}
 			});
 		}
@@ -78,8 +72,10 @@
 
 			if (clipboardData) {
 				const tracks = await getTracksFromLink(clipboardData);
-				const items = createQueueItems(tracks);
-				$playQueue = [...$playQueue, ...items];
+				const items = tracks.map(createQueueItem);
+				items.forEach((item) => {
+					store.setRow('items', item.providerId, item);
+				});
 			}
 		});
 	});
@@ -95,12 +91,7 @@
 			{#if user}
 				<CurrentUser {user} />
 			{:else}
-				<button
-					class="flex items-center gap-2 rounded-full bg-stone-200 px-4 py-1 font-semibold tracking-wide text-stone-600 dark:bg-stone-700 dark:text-stone-300"
-				>
-					<i class="fa-solid fa-right-to-bracket" />
-					Join</button
-				>
+				<JoinButton />
 			{/if}
 		</header>
 
@@ -114,7 +105,7 @@
 
 		<Divider />
 
-		<Player {party} />
+		<Player />
 
 		<Divider />
 
@@ -137,7 +128,7 @@
 		</div>
 
 		<div class="space-y-2 overflow-y-scroll pb-8">
-			{#each $playQueue as item}
+			{#each items as item}
 				<TrackCard {item} />
 			{/each}
 		</div>
