@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { Spotify, getTracksFromLink } from '$lib/spotify';
+	import { playQueue } from '$lib/stores/queue';
+	import { Spotify } from '$lib/spotify';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
 	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
@@ -11,20 +12,18 @@
 	import Divider from '$lib/components/Divider.svelte';
 	import JoinButton from '$lib/components/JoinButton.svelte';
 	import HostDetails from '$lib/components/HostDetails.svelte';
-	import { createDatabase, createQueueItem, store } from '$lib/db';
+	import { createDatabase, store } from '$lib/db';
 	import { createPartySocket } from '$lib/party';
+	import { handleDrop } from '$lib/drag-events';
 
 	import type { UserProfile } from '@spotify/web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
 
 	export let data;
 
-	let items = Object.entries(store.getTable('items')).map(([key, value]) => {
-		console.log(key, value);
-		return { id: key, ...value };
-	});
 	let user: UserProfile | null = data.user;
 	let party: PartySocket;
+	let tableListenerId: string;
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -39,48 +38,19 @@
 			user = await Spotify.currentUser.profile();
 		}
 
-		const main = document.getElementById('main');
-
-		if (main) {
-			main.addEventListener('dragenter', (e) => {
-				e.preventDefault();
-				// show a toast "Drop anywhere on the screen to add to queue."
+		tableListenerId = store.addTableListener('items', () => {
+			$playQueue = Object.entries(store.getTable('items')).map(([id, item]) => {
+				return { id, ...item };
 			});
-			main.addEventListener('dragover', (e) => {
-				e.preventDefault();
-			});
-			main.addEventListener('dragleave', (e) => {
-				e.preventDefault();
-				// hide toast
-			});
-			main.addEventListener('drop', async (e) => {
-				e.preventDefault();
-				// hide toast
-				const dropData = e.dataTransfer?.getData('text/plain');
-
-				if (dropData) {
-					const tracks = await getTracksFromLink(dropData);
-					const items = tracks.map(createQueueItem);
-					items.forEach((item) => {
-						store.setRow('items', item.providerId, item);
-					});
-				}
-			});
-		}
-
-		document.addEventListener('paste', async (e) => {
-			const clipboardData = e.clipboardData?.getData('text/plain');
-
-			if (clipboardData) {
-				const tracks = await getTracksFromLink(clipboardData);
-				const items = tracks.map(createQueueItem);
-				items.forEach((item) => {
-					store.setRow('items', item.providerId, item);
-				});
-			}
 		});
 	});
+
+	onDestroy(() => {
+		store.delListener(tableListenerId);
+	});
 </script>
+
+<svelte:document on:drop|preventDefault={handleDrop} on:dragover|preventDefault />
 
 <main id="main" class="flex h-screen justify-center bg-stone-50 p-8 pb-0 dark:bg-stone-900">
 	<div class="cq-container flex w-full flex-col gap-6">
@@ -129,7 +99,7 @@
 		</div>
 
 		<div class="space-y-2 overflow-y-scroll pb-8">
-			{#each items as item}
+			{#each $playQueue as item}
 				<TrackCard {item} />
 			{/each}
 		</div>
