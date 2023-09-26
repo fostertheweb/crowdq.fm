@@ -20,6 +20,7 @@
 	export let data;
 
 	let items = Object.entries(store.getTable('items')).map(([key, value]) => {
+		console.log(key, value);
 		return { id: key, ...value };
 	});
 	let user: UserProfile | null = data.user;

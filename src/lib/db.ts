@@ -27,7 +27,7 @@ store.setTablesSchema({
 });
 
 export async function createDatabase(partySocket: PartySocket) {
-	const persister = createPartyKitPersister(store, partySocket);
+	const persister = createPartyKitPersister(store, partySocket, 'http');
 
 	await persister.startAutoSave();
 	await persister.startAutoLoad();

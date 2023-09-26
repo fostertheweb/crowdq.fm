@@ -21,8 +21,8 @@ dependencies:
     specifier: ^4.0.2
     version: 4.0.2
   partykit:
-    specifier: 0.0.21
-    version: 0.0.21
+    specifier: 0.0.23
+    version: 0.0.23
   partysocket:
     specifier: 0.0.8
     version: 0.0.8
@@ -33,8 +33,8 @@ dependencies:
     specifier: ^4.4.4
     version: 4.4.4
   tinybase:
-    specifier: ^4.3.5
-    version: 4.3.5(partykit@0.0.21)(partysocket@0.0.8)(prettier@3.0.3)
+    specifier: ^4.3.6
+    version: 4.3.6(partykit@0.0.23)(partysocket@0.0.8)(prettier@3.0.3)
 
 devDependencies:
   '@melt-ui/pp':
@@ -2146,8 +2146,8 @@ packages:
       callsites: 3.1.0
     dev: true
 
-  /partykit@0.0.21:
-    resolution: {integrity: sha512-xvRtvvTl4qC8wXHWSQKm1TYvHu+UP1h4xA3q1DsEX3dRv1Hr/PJgmGCNe4t5Nnt2JEuFCqdhzy1PfXrFHKo1JA==}
+  /partykit@0.0.23:
+    resolution: {integrity: sha512-/XFN2mqS0M88xJS5I7x7c/jP61XrSJvc6Mss4+76d0ig+JCKiOzJtd1JJufThLwcSOfH1Xq0S9sBCLWOCJUohA==}
     hasBin: true
     dependencies:
       '@cloudflare/workers-types': 4.20230914.0
@@ -2828,14 +2828,14 @@ packages:
       globrex: 0.1.2
     dev: true
 
-  /tinybase@4.3.5(partykit@0.0.21)(partysocket@0.0.8)(prettier@3.0.3):
-    resolution: {integrity: sha512-xzOr9HxkBHrlvqFQd3MfiVMIRnpveUEcM88BSXI2DojrWDt2XQeDPG00vDEZ9cKOL9nDWIGjc/EqKC+Yjv1tHQ==}
+  /tinybase@4.3.6(partykit@0.0.23)(partysocket@0.0.8)(prettier@3.0.3):
+    resolution: {integrity: sha512-mctn68S1X5yT0FRwAnhtwWr/gPUhkX1+11rnIXElYX9z4+ttI1KZOn3NlPuM2ddVz/DSBDqgRzuDAewLk4BomA==}
     hasBin: true
     peerDependencies:
       '@sqlite.org/sqlite-wasm': ^3.43.1-build1
       '@vlcn.io/crsqlite-wasm': ^0.15.2
       automerge-repo: ^0.1.0
-      partykit: ^0.0.21
+      partykit: ^0.0.23
       partysocket: ^0.0.8
       prettier: ^3.0.3
       react: ^18.2.0
@@ -2864,7 +2864,7 @@ packages:
       yjs:
         optional: true
     dependencies:
-      partykit: 0.0.21
+      partykit: 0.0.23
       partysocket: 0.0.8
       prettier: 3.0.3
     dev: false

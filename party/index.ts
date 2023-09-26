@@ -7,12 +7,14 @@ export default class extends TinyBasePartyKitServer {
 	}
 
 	async onMessage(message, client) {
+		console.log(message);
 		await super.onMessage(message, client);
 		// custom onMessage code
 	}
 
 	async onRequest(request) {
 		// custom onRequest code, else:
+		console.log(request);
 		return await super.onRequest(request);
 	}
 }
