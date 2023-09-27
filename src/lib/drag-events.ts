@@ -1,5 +1,3 @@
-import { get } from 'svelte/store';
-import { playQueue } from '$lib/stores/queue';
 import { getTracksFromLink } from '$lib/spotify';
 import { createQueueItem, store } from '$lib/db';
 
@@ -11,7 +9,7 @@ export async function handleDrop(e: DragEvent) {
 		const tracks = await getTracksFromLink(dropData);
 		const items = tracks.map(createQueueItem);
 		items.forEach((item) => {
-			store.setRow('items', `item-${get(playQueue).length + 1}`, item);
+			store.setRow('items', String(Date.now()), item);
 		});
 	}
 }

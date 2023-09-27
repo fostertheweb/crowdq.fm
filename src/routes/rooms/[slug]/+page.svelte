@@ -53,6 +53,20 @@
 <svelte:document on:drop|preventDefault={handleDrop} on:dragover|preventDefault />
 
 <main id="main" class="flex h-screen justify-center bg-stone-50 p-8 pb-0 dark:bg-stone-900">
+	<div
+		class="left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm"
+	>
+		<div
+			class="flex h-full w-full items-center justify-center rounded border-4 border-dashed border-stone-200"
+		>
+			<div class="font-general text-2xl font-semibold tracking-wide text-stone-100">
+				<div class="flex flex-col items-center gap-2">
+					<span>Add to Queue</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="cq-container flex w-full flex-col gap-6">
 		<header class="flex items-center justify-between">
 			<h3 class="font-straker text-2xl tracking-wider text-stone-700 dark:text-stone-50">
