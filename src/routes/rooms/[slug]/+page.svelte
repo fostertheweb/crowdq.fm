@@ -54,11 +54,9 @@
 
 <main id="main" class="flex h-screen justify-center bg-stone-50 p-8 pb-0 dark:bg-stone-900">
 	<div
-		class="left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm"
-	>
+		class="left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm">
 		<div
-			class="flex h-full w-full items-center justify-center rounded border-4 border-dashed border-stone-200"
-		>
+			class="flex h-full w-full items-center justify-center rounded border-4 border-dashed border-stone-200">
 			<div class="font-general text-2xl font-semibold tracking-wide text-stone-100">
 				<div class="flex flex-col items-center gap-2">
 					<span>Add to Queue</span>
@@ -96,8 +94,7 @@
 
 		<div class="flex items-center justify-between">
 			<h2
-				class="font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300"
-			>
+				class="font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300">
 				Queue
 			</h2>
 			<button

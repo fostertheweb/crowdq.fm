@@ -11,13 +11,11 @@
 		</div>
 	</nav>
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center justify-center pt-24 text-center text-stone-800 dark:text-stone-100"
-	>
+		class="mx-auto flex max-w-7xl flex-col items-center justify-center pt-24 text-center text-stone-800 dark:text-stone-100">
 		<h1 class="font-general text-3xl font-semibold">
 			Shared{' '}
 			<span
-				class="underline decoration-orange-500/60 underline-offset-8 dark:decoration-orange-500"
-			>
+				class="underline decoration-orange-500/60 underline-offset-8 dark:decoration-orange-500">
 				play queue
 			</span>{' '}
 			for friends
@@ -31,14 +29,12 @@
 		<div class="mt-8 flex items-center gap-8 tracking-wide">
 			<a
 				href="/lobby"
-				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold text-white hover:brightness-125"
-			>
+				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold text-white hover:brightness-125">
 				Create Room
 			</a>
 			<a
 				href="#features"
-				class="rounded-full border-2 border-stone-500 bg-stone-50 px-4 py-2 font-general font-semibold text-stone-600 hover:brightness-125 dark:border-stone-500 dark:bg-stone-800 dark:text-stone-200"
-			>
+				class="rounded-full border-2 border-stone-500 bg-stone-50 px-4 py-2 font-general font-semibold text-stone-600 hover:brightness-125 dark:border-stone-500 dark:bg-stone-800 dark:text-stone-200">
 				Learn More
 			</a>
 		</div>
@@ -51,23 +47,20 @@
 					src="/spotify-white.png"
 					width={80}
 					height={24}
-					alt="Spotify"
-				/>
+					alt="Spotify" />
 				<img
 					class="h-6 scale-75 opacity-70 invert dark:opacity-90 dark:invert-0"
 					src="/youtube-white.png"
 					width={108}
 					height={18}
-					alt="YouTube"
-				/>
+					alt="YouTube" />
 			</div>
 		</div>
 	</div>
 </header>
 <footer class="border-t border-stone-100 bg-white dark:border-stone-700 dark:bg-stone-900">
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center gap-4 p-8 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between"
-	>
+		class="mx-auto flex max-w-7xl flex-col items-center gap-4 p-8 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
 		<div class="flex items-center gap-1">
 			<h3 class="font-straker text-xl font-medium tracking-wide text-stone-700 dark:text-stone-200">
 				crowdq<span class="text-orange-500">.</span>fm

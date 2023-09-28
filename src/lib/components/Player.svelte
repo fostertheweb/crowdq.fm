@@ -160,8 +160,7 @@
 	<div
 		class="cq-progress-bar h-1.5 rounded-full bg-orange-200"
 		style:background={$accentColor}
-		style:width={(duration > 0 ? (progress / duration) * 100 : 0) + '%'}
-	/>
+		style:width={(duration > 0 ? (progress / duration) * 100 : 0) + '%'} />
 </div>
 
 <div class="flex items-center justify-between">
@@ -169,13 +168,11 @@
 		<PlayerControl />
 
 		<button
-			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-		>
+			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
 			<IconHeart />
 		</button>
 		<button
-			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-		>
+			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
 			<IconThumbsDown />
 		</button>
 	</div>

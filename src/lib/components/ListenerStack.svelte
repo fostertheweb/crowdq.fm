@@ -21,8 +21,7 @@
 			<ListenerAvatar {listener} />
 		{/each}
 		<div
-			class="flex h-8 items-center justify-center rounded-r bg-stone-200 pl-4 pr-2 font-general text-sm font-medium text-stone-500 dark:bg-stone-700 dark:text-stone-400"
-		>
+			class="flex h-8 items-center justify-center rounded-r bg-stone-200 pl-4 pr-2 font-general text-sm font-medium text-stone-500 dark:bg-stone-700 dark:text-stone-400">
 			+3
 		</div>
 	</div>
