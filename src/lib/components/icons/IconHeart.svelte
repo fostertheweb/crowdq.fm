@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let filled: boolean;
+	export let filled: boolean = false;
 </script>
 
 {#if filled}

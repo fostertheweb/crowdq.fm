@@ -18,6 +18,8 @@
 
 	import type { UserProfile } from '@spotify/web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
+	import IconSliders from '$lib/components/icons/IconSliders.svelte';
+	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 
 	export let data;
 
@@ -82,7 +84,15 @@
 
 		<div class="flex items-center justify-between">
 			<!-- TODO: show host controls instead if host == true -->
-			<HostDetails />
+			{#if user?.id === 'jfost784'}
+				<button
+					class="flex items-center gap-2 rounded-full bg-stone-200 px-3 py-2 text-sm text-stone-500">
+					<IconSliders />
+					<span class="font-general font-medium tracking-wide">Settings</span>
+				</button>
+			{:else}
+				<HostDetails />
+			{/if}
 			<ListenerStack />
 		</div>
 
@@ -99,8 +109,9 @@
 			</h2>
 			<button
 				use:melt={$trigger}
-				class="h-8 w-8 rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-				><i class="fa-regular fa-plus-circle fa-lg" />
+				class="flex items-center gap-2 rounded-full px-3 py-2 text-sm text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
+				<IconPlus />
+				<span class="font-general font-medium tracking-wide">Add</span>
 			</button>
 			<div use:melt={$portalled}>
 				{#if $open}
