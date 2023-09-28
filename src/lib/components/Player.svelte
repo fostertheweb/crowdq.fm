@@ -7,6 +7,9 @@
 	import { playQueue } from '$lib/stores/queue';
 	import PlayerControl from './PlayerControl.svelte';
 	import { Spotify } from '$lib/spotify';
+	import IconHeart from './icons/IconHeart.svelte';
+	import IconThumbsDown from './icons/IconThumbsDown.svelte';
+	import IconMusic from './icons/IconMusic.svelte';
 
 	let player;
 	let progressInterval: ReturnType<typeof setInterval>;
@@ -132,7 +135,9 @@
 		<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded" />
 	{:else}
 		<div class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
-			<i class="fa-solid fa-music text-5xl text-stone-50 drop-shadow dark:text-stone-400" />
+			<span class="text-5xl text-stone-50 drop-shadow dark:text-stone-400">
+				<IconMusic />
+			</span>
 		</div>
 	{/if}
 	<div class="space-y-1">
@@ -160,17 +165,19 @@
 </div>
 
 <div class="flex items-center justify-between">
-	<div class="space-x-2">
+	<div class="flex items-center gap-2">
 		<PlayerControl />
 
 		<button
-			class="h-8 w-8 rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-			><i class="fa-regular fa-heart fa-lg" /></button
+			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 		>
+			<IconHeart />
+		</button>
 		<button
-			class="h-8 w-8 rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-			><i class="fa-regular fa-thumbs-down fa-lg" /></button
+			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 		>
+			<IconThumbsDown />
+		</button>
 	</div>
 
 	<VolumeControl />

@@ -13,7 +13,7 @@
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center justify-center pt-24 text-center text-stone-800 dark:text-stone-100"
 	>
-		<h1 class="font-general text-6xl font-semibold">
+		<h1 class="font-general text-3xl font-semibold">
 			Shared{' '}
 			<span
 				class="underline decoration-orange-500/60 underline-offset-8 dark:decoration-orange-500"
@@ -23,7 +23,7 @@
 			for friends
 			<br /> online or on the couch
 		</h1>
-		<p class="mt-8 text-lg font-normal text-stone-600 dark:text-stone-200">
+		<p class="mt-8 text-base font-normal text-stone-600 dark:text-stone-200">
 			Stop listening alone and show everyone your great taste in music.
 			<br /> Create a room and invite others to the listening party.
 		</p>

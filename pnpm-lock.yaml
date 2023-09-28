@@ -14,6 +14,9 @@ dependencies:
   '@spotify/web-api-ts-sdk':
     specifier: ^1.1.2
     version: 1.1.2
+  '@tabler/icons-svelte':
+    specifier: ^2.35.0
+    version: 2.35.0(svelte@4.2.0)
   '@vercel/kv':
     specifier: ^0.2.2
     version: 0.2.2
@@ -70,6 +73,9 @@ devDependencies:
   eslint-plugin-svelte:
     specifier: ^2.33.0
     version: 2.33.0(eslint@8.48.0)(svelte@4.2.0)
+  flowbite-svelte-icons:
+    specifier: ^0.4.4
+    version: 0.4.4(svelte@4.2.0)(tailwind-merge@1.14.0)(tailwindcss@3.3.3)
   postcss:
     specifier: ^8.4.29
     version: 8.4.29
@@ -808,6 +814,19 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@tabler/icons-svelte@2.35.0(svelte@4.2.0):
+    resolution: {integrity: sha512-prN/gLpTIte32d9r7O00289J80+02FclgtVGsgVwdxf1ElpTC3eBcjck0Kbl8DtbEnw3HoG/eeu9jxTo3uafxg==}
+    peerDependencies:
+      svelte: '>=3 <5'
+    dependencies:
+      '@tabler/icons': 2.35.0
+      svelte: 4.2.0
+    dev: false
+
+  /@tabler/icons@2.35.0:
+    resolution: {integrity: sha512-qW/itKdmFvfGw6mAQ+cZy+2MYTXb0XdGAVhO3obYLJEfsSPMwQRO0S9ckFk1xMQX/Tj7REC3TEmWUBWNi3/o3g==}
+    dev: false
 
   /@types/cookie@0.5.1:
     resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
@@ -1613,6 +1632,18 @@ packages:
 
   /flatted@3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
+    dev: true
+
+  /flowbite-svelte-icons@0.4.4(svelte@4.2.0)(tailwind-merge@1.14.0)(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-fOZri6HYYyo13olXQzvoid19hlYR/HjzQobpzBPkj8QseCJ9R1uWR7bNlhPl5vFCElqcfm3UooYiwT4rKKiqzQ==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0
+      tailwind-merge: ^1.13.2
+      tailwindcss: ^3.3.2
+    dependencies:
+      svelte: 4.2.0
+      tailwind-merge: 1.14.0
+      tailwindcss: 3.3.3
     dev: true
 
   /focus-trap@7.5.2:
@@ -2772,6 +2803,10 @@ packages:
 
   /tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
+
+  /tailwind-merge@1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
+    dev: true
 
   /tailwindcss@3.3.3:
     resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}
