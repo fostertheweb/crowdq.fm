@@ -18,7 +18,7 @@
 <div class="flex flex-col items-end gap-1">
 	<div class="relative flex items-center gap-1 -space-x-4">
 		{#each listeners as listener}
-			<ListenerAvatar {listener} />
+			<ListenerAvatar {listener} bordered />
 		{/each}
 		<div
 			class="flex h-8 items-center justify-center rounded-r bg-stone-200 pl-4 pr-2 font-general text-sm font-medium text-stone-500 dark:bg-stone-700 dark:text-stone-400">

@@ -1,8 +1,11 @@
 <script lang="ts">
 	import type { QueueItem } from '$lib/types';
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
+	import { store } from '$lib/db';
 
 	export let item: QueueItem;
+
+	const listener = store.getTable('listeners')[item.addedBy];
 
 	function millisToMinutesAndSeconds(millis: number) {
 		var minutes = Math.floor(millis / 60000);
@@ -35,7 +38,7 @@
 		</div>
 	</div>
 	<div class="absolute right-2">
-		<ListenerAvatar listener={{ avatar: '' }} />
+		<ListenerAvatar {listener} size="sm" />
 	</div>
 	<div
 		class="absolute right-2 hidden rounded bg-stone-200 px-2 py-1 text-sm text-stone-400 opacity-0 transition ease-in-out group-hover:opacity-100 dark:bg-stone-900">

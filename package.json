@@ -41,10 +41,10 @@
 		"@melt-ui/svelte": "^0.34.6",
 		"@spotify/web-api-ts-sdk": "^1.1.2",
 		"extract-colors": "^4.0.2",
-		"partykit": "0.0.23",
+		"partykit": "0.0.24",
 		"partysocket": "0.0.8",
 		"polished": "^4.2.2",
 		"short-unique-id": "^4.4.4",
-		"tinybase": "^4.3.6"
+		"tinybase": "^4.3.8"
 	}
 }

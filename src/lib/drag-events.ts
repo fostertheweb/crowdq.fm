@@ -10,7 +10,7 @@ export async function handleDrop(e: DragEvent) {
 		const tracks = await getTracksFromLink(dropData);
 		const items = tracks.map((track) => createQueueItem(track, id));
 		items.forEach((item) => {
-			store.setRow('items', String(Date.now()), item);
+			store.addRow('items', item);
 		});
 	}
 }

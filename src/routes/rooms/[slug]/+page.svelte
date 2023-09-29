@@ -12,7 +12,7 @@
 	import Divider from '$lib/components/Divider.svelte';
 	import JoinButton from '$lib/components/JoinButton.svelte';
 	import HostDetails from '$lib/components/HostDetails.svelte';
-	import { createDatabase, createUser, store } from '$lib/db';
+	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
 	import { createPartySocket } from '$lib/party';
 	import { handleDrop } from '$lib/drag-events';
 
@@ -36,6 +36,8 @@
 		party = createPartySocket($page.params.slug);
 		await createDatabase(party);
 
+		$playQueue = itemsTableToCollection(store.getTable('items'));
+
 		if (!user) {
 			user = await Spotify.currentUser.profile();
 		}
@@ -43,9 +45,7 @@
 		store.setRow('listeners', user.id, createUser(user, true));
 
 		tableListenerId = store.addTableListener('items', () => {
-			$playQueue = Object.entries(store.getTable('items')).map(([id, item]) => {
-				return { id, ...item };
-			});
+			$playQueue = itemsTableToCollection(store.getTable('items'));
 		});
 	});
 
@@ -87,7 +87,7 @@
 		<div class="flex items-center justify-between">
 			{#if user?.id === 'jfost784'}
 				<button
-					class="flex items-center gap-2 rounded-full bg-stone-200 px-3 py-2 text-sm text-stone-500">
+					class="flex items-center gap-2 rounded-full bg-stone-200 px-3 py-2 text-sm text-stone-500 dark:bg-stone-700 dark:text-stone-300">
 					<IconSliders />
 					<span class="font-general font-medium tracking-wide">Settings</span>
 				</button>

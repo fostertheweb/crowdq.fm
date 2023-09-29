@@ -1,4 +1,4 @@
-import { createStore } from 'tinybase/cjs';
+import { createStore, type Table } from 'tinybase/cjs';
 import { createPartyKitPersister } from 'tinybase/persisters/persister-partykit-client';
 
 import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
@@ -32,6 +32,16 @@ export async function createDatabase(partySocket: PartySocket) {
 
 	await persister.startAutoSave();
 	await persister.startAutoLoad();
+}
+
+export function itemsTableToCollection(table: Table) {
+	const rows = Object.entries(table).map(([id, item]) => {
+		return { id, ...item };
+	});
+
+	console.log({ rows });
+
+	return rows;
 }
 
 export function createQueueItem(track: Track, listenerId: string) {
