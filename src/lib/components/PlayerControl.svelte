@@ -27,7 +27,7 @@
 {#if $playerStatus === 'playing'}
 	<button
 		on:click={() => console.log('pause')}
-		class="h-10 w-10 rounded-full bg-orange-200 text-orange-800 hover:brightness-90 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
+		class="flex h-10 w-10 items-center justify-center rounded-full bg-orange-200 text-orange-800 hover:brightness-90 dark:bg-orange-700 dark:text-orange-300 dark:hover:bg-orange-600"
 		style:background-color={lighten(0.4, $accentColor)}
 		style:color={$accentColor}>
 		<IconPause />

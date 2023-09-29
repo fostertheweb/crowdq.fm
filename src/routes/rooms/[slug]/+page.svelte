@@ -12,7 +12,7 @@
 	import Divider from '$lib/components/Divider.svelte';
 	import JoinButton from '$lib/components/JoinButton.svelte';
 	import HostDetails from '$lib/components/HostDetails.svelte';
-	import { createDatabase, store } from '$lib/db';
+	import { createDatabase, createUser, store } from '$lib/db';
 	import { createPartySocket } from '$lib/party';
 	import { handleDrop } from '$lib/drag-events';
 
@@ -39,6 +39,8 @@
 		if (!user) {
 			user = await Spotify.currentUser.profile();
 		}
+
+		store.setRow('listeners', user.id, createUser(user, true));
 
 		tableListenerId = store.addTableListener('items', () => {
 			$playQueue = Object.entries(store.getTable('items')).map(([id, item]) => {
@@ -83,7 +85,6 @@
 		<Divider />
 
 		<div class="flex items-center justify-between">
-			<!-- TODO: show host controls instead if host == true -->
 			{#if user?.id === 'jfost784'}
 				<button
 					class="flex items-center gap-2 rounded-full bg-stone-200 px-3 py-2 text-sm text-stone-500">

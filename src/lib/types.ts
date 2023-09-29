@@ -22,11 +22,12 @@ export type QueueItem = {
 	artists: string;
 	artwork: string;
 	duration: number;
+	explicit: boolean;
 	provider: string;
 	providerId: string;
 	addedAt: number;
+	addedBy: string;
 	position: number;
-	listenerId: number | null;
 };
 
 export type Listener = {
@@ -35,7 +36,6 @@ export type Listener = {
 	avatar: string | null;
 	disconnectedAt?: Date | null;
 	isHost: boolean;
-	room: string | null;
 };
 
 export type PlayerStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'error';

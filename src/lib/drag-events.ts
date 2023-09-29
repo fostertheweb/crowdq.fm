@@ -1,4 +1,4 @@
-import { getTracksFromLink } from '$lib/spotify';
+import { Spotify, getTracksFromLink } from '$lib/spotify';
 import { createQueueItem, store } from '$lib/db';
 
 export async function handleDrop(e: DragEvent) {
@@ -6,8 +6,9 @@ export async function handleDrop(e: DragEvent) {
 	const dropData = e.dataTransfer?.getData('text/plain');
 
 	if (dropData) {
+		const { id } = await Spotify.currentUser.profile();
 		const tracks = await getTracksFromLink(dropData);
-		const items = tracks.map(createQueueItem);
+		const items = tracks.map((track) => createQueueItem(track, id));
 		items.forEach((item) => {
 			store.setRow('items', String(Date.now()), item);
 		});
