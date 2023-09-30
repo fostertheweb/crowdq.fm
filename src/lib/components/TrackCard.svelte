@@ -18,13 +18,13 @@
 	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-3 text-left text-sm transition ease-in-out hover:bg-stone-100 dark:hover:bg-stone-800">
 	<div class="relative shrink-0">
 		{#if item.artwork}
-			<img src={item.artwork} class="h-12 w-12 rounded-sm bg-stone-200 shadow" alt="" />
+			<img src={item.artwork} class="h-10 w-10 rounded-sm bg-stone-200 shadow" alt="" />
 		{:else}
 			<div>Loading...</div>
 		{/if}
 	</div>
 	<div class="cq-track-details flex flex-col gap-1">
-		<div class="flex items-center gap-2 truncate text-base text-stone-700 dark:text-stone-200">
+		<div class="flex items-center gap-2 truncate text-sm text-stone-700 dark:text-stone-200">
 			<span>{item.name}</span>
 			{#if item.explicit}
 				<div
@@ -33,7 +33,7 @@
 				</div>
 			{/if}
 		</div>
-		<div class="truncate text-sm text-stone-500 dark:text-stone-400">
+		<div class="truncate text-xs text-stone-500 dark:text-stone-400">
 			{item.artists}
 		</div>
 	</div>

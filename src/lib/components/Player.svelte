@@ -17,20 +17,19 @@
 	let playNextIntervalId: ReturnType<typeof setInterval>;
 	let trackEnd = false;
 
-	$: console.log($currentQueueItem);
-	$: console.log($playerStatus);
-	$: console.log($playerPosition);
-	$: console.log($playQueue);
+	$: console.log({ currentQueueItem: $currentQueueItem });
+	$: console.log({ playerStatus: $playerStatus });
+	$: console.log({ playerPosition: $playerPosition });
 
 	$: progress = $playerPosition;
 	$: duration = $currentQueueItem?.duration || 0;
+	$: percent = (progress / duration) * 100 + '%';
 
 	$: if ($playerStatus === 'playing') {
-		if (!progressInterval) {
-			progressInterval = setInterval(() => {
-				progress += 1000;
-			}, 1000);
-		}
+		progressInterval = setInterval(() => {
+			progress += 1000;
+			clearInterval(progressInterval);
+		}, 1000);
 	} else {
 		clearInterval(progressInterval);
 	}
@@ -39,8 +38,6 @@
 		extractColors($currentQueueItem.artwork, {
 			crossOrigin: 'anonymous'
 		}).then((colors) => {
-			console.log(colors);
-
 			if (colors) {
 				$accentColor = colors[0].hex;
 				testColors = colors.map((c) => c.hex);
@@ -49,11 +46,16 @@
 	}
 
 	$: if (trackEnd) {
-		console.log('track end');
-		playNextIntervalId = setInterval(() => {
+		playNextIntervalId = setInterval(async () => {
 			clearInterval(playNextIntervalId);
 			trackEnd = false;
-			console.log('play next');
+			const nextItem = $playQueue[$playQueue.indexOf($currentQueueItem!) + 1];
+			if (nextItem) {
+				$currentQueueItem = nextItem;
+				await Spotify.player.startResumePlayback($spotifyDevice!, undefined, [
+					`spotify:track:${nextItem.providerId}`
+				]);
+			}
 		}, 500);
 	}
 
@@ -91,6 +93,7 @@
 							// Track finished playing
 							const previousTracks = state.track_window?.previous_tracks;
 							if (previousTracks && previousTracks.length > 0) {
+								playerStatus.set('loading');
 								trackEnd = true;
 							} else {
 								playerStatus.set('paused');
@@ -165,9 +168,9 @@
 
 <div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
 	<div
-		class="cq-progress-bar h-1.5 rounded-full bg-orange-200"
+		class="cq-progress-bar h-1.5 rounded-full bg-transparent"
 		style:background={$accentColor}
-		style:width={(duration > 0 ? (progress / duration) * 100 : 0) + '%'} />
+		style:width={percent} />
 </div>
 
 <div class="flex items-center justify-between">
