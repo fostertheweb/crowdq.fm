@@ -14,7 +14,8 @@
 	let player;
 	let progressInterval: ReturnType<typeof setInterval>;
 	let testColors: Array<string> = [];
-	let playNextIntervalId: number;
+	let playNextIntervalId: ReturnType<typeof setInterval>;
+	let trackEnd = false;
 
 	$: console.log($currentQueueItem);
 	$: console.log($playerStatus);
@@ -45,6 +46,15 @@
 				testColors = colors.map((c) => c.hex);
 			}
 		});
+	}
+
+	$: if (trackEnd) {
+		console.log('track end');
+		playNextIntervalId = setInterval(() => {
+			clearInterval(playNextIntervalId);
+			trackEnd = false;
+			console.log('play next');
+		}, 500);
 	}
 
 	onMount(async () => {
@@ -81,10 +91,7 @@
 							// Track finished playing
 							const previousTracks = state.track_window?.previous_tracks;
 							if (previousTracks && previousTracks.length > 0) {
-								playNextIntervalId = window.setInterval(() => {
-									console.log('play_next');
-									window.clearInterval(playNextIntervalId);
-								}, 500);
+								trackEnd = true;
 							} else {
 								playerStatus.set('paused');
 							}
