@@ -3,6 +3,7 @@ import { createPartyKitPersister } from 'tinybase/persisters/persister-partykit-
 
 import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
 import type PartySocket from 'partysocket';
+import type { QueueItem } from './types';
 
 export const store = createStore();
 
@@ -36,7 +37,7 @@ export async function createDatabase(partySocket: PartySocket) {
 
 export function itemsTableToCollection(table: Table) {
 	const rows = Object.entries(table).map(([id, item]) => {
-		return { id, ...item };
+		return { id, ...item } as QueueItem;
 	});
 
 	console.log({ rows });

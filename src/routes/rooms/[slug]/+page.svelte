@@ -20,12 +20,15 @@
 	import type PartySocket from 'partysocket';
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
+	import { currentQueueItem } from '$lib/stores/player';
 
 	export let data;
 
 	let user: UserProfile | null = data.user;
 	let party: PartySocket;
 	let tableListenerId: string;
+
+	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -122,9 +125,16 @@
 		</div>
 
 		<div class="space-y-2 overflow-y-scroll pb-8">
-			{#each $playQueue as item}
-				<TrackCard {item} />
-			{/each}
+			{#if $playQueue.length > 0}
+				{#each $playQueue.slice(currentIndex + 1) as item}
+					<TrackCard {item} />
+				{/each}
+				<div class="text-center text-xs text-stone-400">
+					{$playQueue.length} songs, {$playQueue.reduce((d, t) => d + t.duration, 0)}
+				</div>
+			{:else}
+				<div class="">Damn bro, no songs.</div>
+			{/if}
 		</div>
 	</div>
 </main>
