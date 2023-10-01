@@ -25,12 +25,14 @@
 		<div class="flex flex-col gap-4 px-2">
 			<HeaderWithUser name={user?.display_name} image={user?.images[0].url} />
 
-			<a
-				href="/rooms/wahoo"
-				class="leading flex w-full items-center justify-center gap-2 rounded-md bg-rose-500 px-8 py-3 text-center font-general text-base font-semibold tracking-wide text-white shadow-sm filter transition ease-linear hover:shadow-md hover:brightness-105">
-				<i class="fa-duotone fa-sparkles" />
-				Create Room
-			</a>
+			<form method="POST">
+				<button
+					type="submit"
+					class="leading flex w-full items-center justify-center gap-2 rounded-md bg-rose-500 px-8 py-3 text-center font-general text-base font-semibold tracking-wide text-white shadow-sm filter transition ease-linear hover:shadow-md hover:brightness-105">
+					<i class="fa-duotone fa-sparkles" />
+					Create Room
+				</button>
+			</form>
 		</div>
 	</div>
 </main>

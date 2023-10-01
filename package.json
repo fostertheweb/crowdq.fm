@@ -40,6 +40,7 @@
 	"dependencies": {
 		"@melt-ui/svelte": "^0.34.6",
 		"@spotify/web-api-ts-sdk": "^1.1.2",
+		"@vercel/kv": "^0.2.3",
 		"extract-colors": "^4.0.2",
 		"partykit": "0.0.24",
 		"partysocket": "0.0.8",

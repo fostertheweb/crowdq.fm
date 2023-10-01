@@ -142,7 +142,7 @@
 		{/each}
 	</div>
 	{#if $currentQueueItem}
-		<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded" />
+		<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 	{:else}
 		<div class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
 			<span class="text-5xl text-stone-50 drop-shadow dark:text-stone-400">
