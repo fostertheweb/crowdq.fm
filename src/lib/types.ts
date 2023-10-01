@@ -1,8 +1,8 @@
 export type Room = {
-	id?: string;
 	slug: string;
-	imageUrl: string | null;
-	hostedBy: string | null;
+	imageUrl: string;
+	hostId: string;
+	hostedBy: string;
 	options?: RoomOptions | null;
 };
 
