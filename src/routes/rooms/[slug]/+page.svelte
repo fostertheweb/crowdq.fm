@@ -88,14 +88,14 @@
 		<Divider />
 
 		<div class="flex items-center justify-between">
-			{#if user?.id === 'jfost784'}
+			{#if data.isHost}
 				<button
 					class="flex items-center gap-2 rounded-full bg-stone-200 px-3 py-2 text-sm text-stone-500 dark:bg-stone-700 dark:text-stone-300">
 					<IconSliders />
 					<span class="font-general font-medium tracking-wide">Settings</span>
 				</button>
 			{:else}
-				<HostDetails />
+				<HostDetails room={data.room} />
 			{/if}
 			<ListenerStack />
 		</div>
