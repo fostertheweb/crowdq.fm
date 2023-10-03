@@ -10,27 +10,25 @@
 
 		<div></div>
 	</nav>
-	<header class="flex flex-col justify-center">
-		<div class="py-8">
-			<h1 class="font-general text-4xl font-semibold">
-				collaborative play queue
-				<br />for <span class="text-rose-500">now</span> or
-				<span class="text-orange-500">later</span>
-			</h1>
-			<p class="mt-8 text-base font-normal text-stone-600 dark:text-stone-200">
-				Create or join a room with friends for your perfect listening party.
-				<br />Can't sync up? Share a play queue with friends for another time.
-			</p>
+	<header class="mx-auto flex max-w-7xl flex-col justify-center">
+		<h1 class="font-general text-4xl font-semibold">
+			collaborative play queue
+			<br />for <span class="text-rose-500">now</span> or
+			<span class="text-orange-500">later</span>
+		</h1>
+		<p class="mt-8 text-base font-normal text-stone-600 dark:text-stone-200">
+			Create or join a room with friends for your perfect listening party.
+			<br />Can't sync up? Share a play queue with friends for another time.
+		</p>
 
-			<div class="mt-8 flex items-center gap-8 tracking-wide">
-				<a
-					href="/lobby"
-					class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold tracking-wide text-white shadow hover:brightness-125">
-					Create Room
-				</a>
-			</div>
+		<div class="mt-8 flex items-center gap-8 tracking-wide">
+			<a
+				href="/lobby"
+				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold tracking-wide text-white shadow hover:brightness-125">
+				Create Room
+			</a>
 		</div>
-		<div class="flex items-center gap-3">
+		<div class="mt-8 flex items-center gap-3">
 			<p class="text-sm text-stone-500 dark:text-stone-300">Supporting</p>
 			<div class="flex items-center gap-2">
 				<img
@@ -50,9 +48,9 @@
 		</div>
 	</header>
 </div>
-<footer class="bg-white dark:bg-stone-900">
+<footer class="bg-white p-8 dark:bg-stone-900">
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center gap-4 p-8 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
+		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
 		<div class="flex items-baseline gap-1">
 			Made by <a href="https://github.com/fostertheweb" class="underline hover:text-stone-700"
 				>fostertheweb</a>
