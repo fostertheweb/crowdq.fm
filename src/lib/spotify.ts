@@ -1,4 +1,4 @@
-import { SpotifyApi } from '@spotify/web-api-ts-sdk';
+import { SpotifyApi, type AccessToken } from '@spotify/web-api-ts-sdk';
 import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
 
 const scopes = [
@@ -16,6 +16,10 @@ const scopes = [
 const redirectUri = 'http://localhost:5173/lobby';
 
 export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes);
+
+export function createServerClient(session: AccessToken) {
+	return SpotifyApi.withAccessToken(clientId, session);
+}
 
 export function postAccessToken() {
 	return SpotifyApi.performUserAuthorization(clientId, redirectUri, scopes, '/api/authorize');

@@ -1,5 +1,6 @@
 import { createStore, type Table } from 'tinybase/cjs';
 import { createPartyKitPersister } from 'tinybase/persisters/persister-partykit-client';
+import { NODE_ENV } from '$env/static/private';
 
 import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
 import type PartySocket from 'partysocket';
@@ -29,7 +30,8 @@ store.setTablesSchema({
 });
 
 export async function createDatabase(partySocket: PartySocket) {
-	const persister = createPartyKitPersister(store, partySocket, 'http');
+	const protocol = NODE_ENV === 'production' ? 'https' : 'http';
+	const persister = createPartyKitPersister(store, partySocket, protocol);
 
 	await persister.startAutoSave();
 	await persister.startAutoLoad();
@@ -39,8 +41,6 @@ export function itemsTableToCollection(table: Table) {
 	const rows = Object.entries(table).map(([id, item]) => {
 		return { id, ...item } as QueueItem;
 	});
-
-	console.log({ rows });
 
 	return rows;
 }

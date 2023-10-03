@@ -1,8 +1,8 @@
+import { redirect } from '@sveltejs/kit';
 import { kv } from '$lib/kv';
 import ShortUniqueId from 'short-unique-id';
 
 import type { Room } from '$lib/types';
-import { redirect } from '@sveltejs/kit';
 
 export async function load({ locals }) {
 	return {
