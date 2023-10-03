@@ -1,6 +1,5 @@
 import { createStore, type Table } from 'tinybase/cjs';
 import { createPartyKitPersister } from 'tinybase/persisters/persister-partykit-client';
-import { NODE_ENV } from '$env/static/private';
 
 import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
 import type PartySocket from 'partysocket';
@@ -30,7 +29,7 @@ store.setTablesSchema({
 });
 
 export async function createDatabase(partySocket: PartySocket) {
-	const protocol = NODE_ENV === 'production' ? 'https' : 'http';
+	const protocol = window.location.protocol.slice(0, -1) as 'http' | 'https';
 	const persister = createPartyKitPersister(store, partySocket, protocol);
 
 	await persister.startAutoSave();
