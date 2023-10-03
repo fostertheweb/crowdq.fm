@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.50.1
     version: 0.50.1(svelte@4.2.0)
   '@spotify/web-api-ts-sdk':
-    specifier: ^1.1.2
-    version: 1.1.2
+    specifier: spotify/spotify-web-api-ts-sdk#5d14751c6881d7831f60c1e785cb43697df2658f
+    version: github.com/spotify/spotify-web-api-ts-sdk/5d14751c6881d7831f60c1e785cb43697df2658f
   '@vercel/kv':
     specifier: ^0.2.3
     version: 0.2.3
@@ -18,8 +18,8 @@ dependencies:
     specifier: ^4.0.2
     version: 4.0.2
   partykit:
-    specifier: 0.0.24
-    version: 0.0.24
+    specifier: 0.0.25
+    version: 0.0.25
   partysocket:
     specifier: 0.0.8
     version: 0.0.8
@@ -31,7 +31,7 @@ dependencies:
     version: 4.4.4
   tinybase:
     specifier: ^4.3.11
-    version: 4.3.11(partykit@0.0.24)(partysocket@0.0.8)(prettier@3.0.3)
+    version: 4.3.11(partykit@0.0.25)(partysocket@0.0.8)(prettier@3.0.3)
 
 devDependencies:
   '@melt-ui/pp':
@@ -723,10 +723,6 @@ packages:
   /@polka/url@1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
-
-  /@spotify/web-api-ts-sdk@1.1.2:
-    resolution: {integrity: sha512-WxmaKUGZH2xtoVDZuy6PXbrAIiEux9pL1IDaDm6iRI25nT8be6huCNpNtYe0MBtq+rejbJqjg9JI2MVlfEMyUQ==}
-    dev: false
 
   /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.24.1):
     resolution: {integrity: sha512-o2pZCfATFtA/Gw/BB0Xm7k4EYaekXxaPGER3xGSY3FvzFJGTlJlZjBseaXwYSM94lZ0HniOjTokN3cWaLX6fow==}
@@ -2138,8 +2134,8 @@ packages:
       callsites: 3.1.0
     dev: true
 
-  /partykit@0.0.24:
-    resolution: {integrity: sha512-F0qg7V6aGYZLwUWz9iWN+0ZN3rtXdDKFhzmf7HhlVNH44ExxNCffo+PqIcgBiMoewXt1r45nPX9K5anEB7A6dg==}
+  /partykit@0.0.25:
+    resolution: {integrity: sha512-VNc2iYiTbYbN3fCQQadqD32ocLWkgzMemycJeZ2ysv6xE/Mx0c4UcWW+jpY2iAoQexhzeifjBEBMeaL9T4O6uw==}
     hasBin: true
     dependencies:
       '@cloudflare/workers-types': 4.20230922.0
@@ -2820,7 +2816,7 @@ packages:
       globrex: 0.1.2
     dev: true
 
-  /tinybase@4.3.11(partykit@0.0.24)(partysocket@0.0.8)(prettier@3.0.3):
+  /tinybase@4.3.11(partykit@0.0.25)(partysocket@0.0.8)(prettier@3.0.3):
     resolution: {integrity: sha512-a12dYyLS47rQIL/YkeqUfxyvg3ahfDUdw2GUx/Erd+EnrXb4l6zDr86wu8b6OYrnc1923lj1uWjCmp9jwrz3OA==}
     hasBin: true
     peerDependencies:
@@ -2856,7 +2852,7 @@ packages:
       yjs:
         optional: true
     dependencies:
-      partykit: 0.0.24
+      partykit: 0.0.25
       partysocket: 0.0.8
       prettier: 3.0.3
     dev: false
@@ -3075,4 +3071,10 @@ packages:
 
   /zod@3.22.2:
     resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
+    dev: false
+
+  github.com/spotify/spotify-web-api-ts-sdk/5d14751c6881d7831f60c1e785cb43697df2658f:
+    resolution: {tarball: https://codeload.github.com/spotify/spotify-web-api-ts-sdk/tar.gz/5d14751c6881d7831f60c1e785cb43697df2658f}
+    name: '@spotify/web-api-ts-sdk'
+    version: 1.1.2
     dev: false
