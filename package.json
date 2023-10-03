@@ -39,7 +39,7 @@
 	"type": "module",
 	"dependencies": {
 		"@melt-ui/svelte": "^0.50.1",
-		"@spotify/web-api-ts-sdk": "spotify/spotify-web-api-ts-sdk#5d14751c6881d7831f60c1e785cb43697df2658f",
+		"@spotify/web-api-ts-sdk": "^1.1.2",
 		"@vercel/kv": "^0.2.3",
 		"extract-colors": "^4.0.2",
 		"partykit": "0.0.25",
