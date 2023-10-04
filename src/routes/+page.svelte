@@ -2,7 +2,7 @@
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 </script>
 
-<div class="bg-gradient-to-br from-stone-50 to-rose-50 p-8">
+<div class="bg-gradient-to-br from-stone-50 to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
 	<nav class="mx-auto flex w-full max-w-7xl items-center justify-between pb-8">
 		<h3 class="font-straker text-2xl font-medium tracking-wide text-stone-700 dark:text-white">
 			crowdq<span class="text-orange-500">.</span>fm
@@ -11,7 +11,7 @@
 		<div></div>
 	</nav>
 	<header class="mx-auto flex max-w-7xl flex-col justify-center">
-		<h1 class="font-general text-4xl font-semibold">
+		<h1 class="font-general text-4xl font-semibold dark:text-stone-100">
 			collaborative play queue
 			<br />for <span class="text-rose-500">now</span> or
 			<span class="text-orange-500">later</span>
@@ -28,8 +28,8 @@
 				Create Room
 			</a>
 		</div>
-		<div class="mt-8 flex items-center gap-3">
-			<p class="text-sm text-stone-500 dark:text-stone-300">Supporting</p>
+		<div class="mt-8 flex items-center gap-3 text-stone-500 dark:text-stone-300">
+			<p class="text-sm">Supporting</p>
 			<div class="flex items-center gap-2">
 				<img
 					class="h-6 opacity-70 invert dark:opacity-90 dark:invert-0"

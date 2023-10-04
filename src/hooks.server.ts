@@ -3,6 +3,10 @@ import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
 import { redirect } from '@sveltejs/kit';
 
 export async function handle({ event, resolve }) {
+	if (event.url.pathname.startsWith('/login') || event.url.pathname.startsWith('/lobby')) {
+		event.cookies.delete('cq-room');
+	}
+
 	let Spotify = null;
 
 	const cookie = event.cookies.get('cq-session');
