@@ -147,7 +147,7 @@
 			{:else}
 				<button
 					class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 dark:bg-green-600 dark:text-white">
-					<IconPlay />
+					<IconPlay lg={false} />
 					<span class="font-general font-medium tracking-wide">Play in Spotify</span>
 				</button>
 			{/if}
