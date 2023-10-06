@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { postAccessToken, Spotify } from '$lib/spotify';
 	import HeaderWithUser from '$lib/components/HeaderWithUser.svelte';
-	import type { UserProfile } from '@spotify/web-api-ts-sdk';
+	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 	export let data;
 

@@ -17,7 +17,7 @@
 	import { createPartySocket } from '$lib/party';
 	import { handleDrop } from '$lib/drag-events';
 
-	import type { UserProfile } from '@spotify/web-api-ts-sdk';
+	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';

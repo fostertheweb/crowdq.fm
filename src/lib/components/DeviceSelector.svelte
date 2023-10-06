@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createRadioGroup, melt } from '@melt-ui/svelte';
-	import type { Device } from '@spotify/web-api-ts-sdk';
+	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 	export let devices: Array<Device>;
 

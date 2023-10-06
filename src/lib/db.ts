@@ -1,7 +1,7 @@
 import { createStore, type Table } from 'tinybase/cjs';
 import { createPartyKitPersister } from 'tinybase/persisters/persister-partykit-client';
 
-import type { Track, UserProfile } from '@spotify/web-api-ts-sdk';
+import type { Track, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 import type PartySocket from 'partysocket';
 import type { QueueItem } from './types';
 

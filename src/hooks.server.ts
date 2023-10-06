@@ -1,4 +1,4 @@
-import { SpotifyApi } from '@spotify/web-api-ts-sdk';
+import { SpotifyApi } from '@fostertheweb/spotify-web-api-ts-sdk';
 import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
 import { redirect } from '@sveltejs/kit';
 
