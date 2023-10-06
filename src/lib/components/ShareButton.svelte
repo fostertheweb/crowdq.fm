@@ -6,7 +6,7 @@
 		if (browser) {
 			const url = window.location.toString();
 
-			if (navigator.canShare({ text: url })) {
+			if (navigator.share) {
 				await navigator.share({ text: url });
 			} else {
 				await window.navigator.clipboard.writeText(url);
