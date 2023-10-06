@@ -2,6 +2,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { createDialog, melt } from '@melt-ui/svelte';
+	import mobile from 'is-mobile';
 	import { playQueue } from '$lib/stores/queue';
 	import { Spotify } from '$lib/spotify';
 	import TrackCard from '$lib/components/TrackCard.svelte';
@@ -21,12 +22,15 @@
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import { currentQueueItem } from '$lib/stores/player';
+	import IconEyeRoll from '$lib/components/icons/IconEyeRoll.svelte';
+	import IconShare from '$lib/components/icons/IconShare.svelte';
 
 	export let data;
 
 	let user: UserProfile | null = data.user;
 	let party: PartySocket;
 	let tableListenerId: string;
+	let isMobile: boolean = false;
 
 	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
 
@@ -36,6 +40,7 @@
 	} = createDialog();
 
 	onMount(async () => {
+		isMobile = mobile();
 		party = createPartySocket($page.params.slug);
 		await createDatabase(party);
 
@@ -81,6 +86,7 @@
 			{#if user}
 				<CurrentUser {user} />
 			{:else}
+				<!-- if mobile then show login -->
 				<JoinButton />
 			{/if}
 		</header>
@@ -90,19 +96,33 @@
 		<div class="flex items-center justify-between">
 			{#if data.isHost}
 				<button
-					class="flex items-center gap-2 rounded-full bg-stone-200 px-3 py-2 text-sm text-stone-500 dark:bg-stone-700 dark:text-stone-300">
+					class="flex items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
 					<IconSliders />
 					<span class="font-general font-medium tracking-wide">Settings</span>
 				</button>
 			{:else}
 				<HostDetails room={data.room} />
 			{/if}
-			<ListenerStack />
+
+			{#if !isMobile}
+				<div class="flex items-center gap-2">
+					<ListenerStack />
+					<button
+						class="flex h-8 w-8 items-center justify-center gap-2 rounded-full bg-stone-200/60 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
+						><IconShare /></button>
+				</div>
+			{:else}
+				<button
+					class="flex h-8 w-8 items-center justify-center gap-2 rounded-full bg-stone-200/60 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
+					><IconShare /></button>
+			{/if}
 		</div>
 
-		<Divider />
+		{#if !isMobile}
+			<Divider />
 
-		<Player />
+			<Player />
+		{/if}
 
 		<Divider />
 
@@ -111,17 +131,26 @@
 				class="font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300">
 				Queue
 			</h2>
-			<button
-				use:melt={$trigger}
-				class="flex items-center gap-2 rounded-full px-3 py-2 text-sm text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
-				<IconPlus />
-				<span class="font-general font-medium tracking-wide">Add</span>
-			</button>
-			<div use:melt={$portalled}>
-				{#if $open}
-					<AddTrackDialog {title} {content} {description} {overlay} {close} />
-				{/if}
-			</div>
+
+			{#if !isMobile}
+				<button
+					use:melt={$trigger}
+					class="flex items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
+					<IconPlus />
+					<span class="font-general font-medium tracking-wide">Add</span>
+				</button>
+				<div use:melt={$portalled}>
+					{#if $open}
+						<AddTrackDialog {title} {content} {description} {overlay} {close} />
+					{/if}
+				</div>
+			{:else}
+				<button
+					class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
+					<IconPlus />
+					<span class="font-general font-medium tracking-wide">Play in Spotify</span>
+				</button>
+			{/if}
 		</div>
 
 		<div class="space-y-2 overflow-y-scroll pb-8">
@@ -133,7 +162,10 @@
 					{$playQueue.length} songs, {$playQueue.reduce((d, t) => d + t.duration, 0)}
 				</div>
 			{:else}
-				<div class="">Damn bro, no songs.</div>
+				<div class="flex flex-col items-center justify-center gap-4 p-8 text-stone-600">
+					<IconEyeRoll />
+					<span>No songs in queue</span>
+				</div>
 			{/if}
 		</div>
 	</div>

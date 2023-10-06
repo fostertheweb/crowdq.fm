@@ -42,6 +42,7 @@
 		"@spotify/web-api-ts-sdk": "^1.1.2",
 		"@vercel/kv": "^0.2.3",
 		"extract-colors": "^4.0.2",
+		"is-mobile": "^4.0.0",
 		"partykit": "0.0.25",
 		"partysocket": "0.0.8",
 		"polished": "^4.2.2",

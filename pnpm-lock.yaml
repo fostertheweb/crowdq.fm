@@ -17,6 +17,9 @@ dependencies:
   extract-colors:
     specifier: ^4.0.2
     version: 4.0.2
+  is-mobile:
+    specifier: ^4.0.0
+    version: 4.0.0
   partykit:
     specifier: 0.0.25
     version: 0.0.25
@@ -1798,6 +1801,10 @@ packages:
     dependencies:
       is-extglob: 2.1.1
     dev: true
+
+  /is-mobile@4.0.0:
+    resolution: {integrity: sha512-mlcHZA84t1qLSuWkt2v0I2l61PYdyQDt4aG1mLIXF5FDMm4+haBCxCPYSr/uwqQNRk1MiTizn0ypEuRAOLRAew==}
+    dev: false
 
   /is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
