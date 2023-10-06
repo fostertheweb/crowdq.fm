@@ -23,7 +23,7 @@
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import { currentQueueItem } from '$lib/stores/player';
 	import IconEyeRoll from '$lib/components/icons/IconEyeRoll.svelte';
-	import IconShare from '$lib/components/icons/IconShare.svelte';
+	import ShareButton from '$lib/components/ShareButton.svelte';
 
 	export let data;
 
@@ -104,18 +104,12 @@
 				<HostDetails room={data.room} />
 			{/if}
 
-			{#if !isMobile}
-				<div class="flex items-center gap-2">
+			<div class="flex items-center gap-2">
+				{#if !isMobile}
 					<ListenerStack />
-					<button
-						class="flex h-8 w-8 items-center justify-center gap-2 rounded-full bg-stone-200/60 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-						><IconShare /></button>
-				</div>
-			{:else}
-				<button
-					class="flex h-8 w-8 items-center justify-center gap-2 rounded-full bg-stone-200/60 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
-					><IconShare /></button>
-			{/if}
+				{/if}
+				<ShareButton />
+			</div>
 		</div>
 
 		{#if !isMobile}
@@ -162,7 +156,8 @@
 					{$playQueue.length} songs, {$playQueue.reduce((d, t) => d + t.duration, 0)}
 				</div>
 			{:else}
-				<div class="flex flex-col items-center justify-center gap-4 p-8 text-stone-600">
+				<div
+					class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-8 text-stone-500">
 					<IconEyeRoll />
 					<span>No songs in queue</span>
 				</div>
