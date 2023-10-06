@@ -24,13 +24,15 @@
 	import { currentQueueItem } from '$lib/stores/player';
 	import IconEyeRoll from '$lib/components/icons/IconEyeRoll.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
+	import IconPlay from '$lib/components/icons/IconPlay.svelte';
 
 	export let data;
 
 	let user: UserProfile | null = data.user;
+	let hasJoined = false;
 	let party: PartySocket;
 	let tableListenerId: string;
-	let isMobile: boolean = false;
+	let isMobile = false;
 
 	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
 
@@ -40,17 +42,21 @@
 	} = createDialog();
 
 	onMount(async () => {
+		const storedHasJoined = localStorage.getItem('cq-join');
+		hasJoined = storedHasJoined && parseInt(storedHasJoined) === 1 ? true : false;
 		isMobile = mobile();
 		party = createPartySocket($page.params.slug);
 		await createDatabase(party);
 
 		$playQueue = itemsTableToCollection(store.getTable('items'));
 
-		if (!user) {
+		if (!user && hasJoined) {
 			user = await Spotify.currentUser.profile();
 		}
 
-		store.setRow('listeners', user.id, createUser(user, true));
+		if (user) {
+			store.setRow('listeners', user.id, createUser(user, true));
+		}
 
 		tableListenerId = store.addTableListener('items', () => {
 			$playQueue = itemsTableToCollection(store.getTable('items'));
@@ -87,7 +93,7 @@
 				<CurrentUser {user} />
 			{:else}
 				<!-- if mobile then show login -->
-				<JoinButton />
+				<JoinButton {isMobile} />
 			{/if}
 		</header>
 
@@ -140,8 +146,8 @@
 				</div>
 			{:else}
 				<button
-					class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
-					<IconPlus />
+					class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 dark:bg-green-600 dark:text-white">
+					<IconPlay />
 					<span class="font-general font-medium tracking-wide">Play in Spotify</span>
 				</button>
 			{/if}
