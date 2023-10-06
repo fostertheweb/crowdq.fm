@@ -6,8 +6,8 @@
 		if (browser) {
 			const url = window.location.toString();
 
-			if ('share' in navigator) {
-				await navigator.share(url as ShareData);
+			if (navigator.canShare({ text: url })) {
+				await navigator.share({ text: url });
 			} else {
 				await window.navigator.clipboard.writeText(url);
 				// TODO: show toast to confirm copied
