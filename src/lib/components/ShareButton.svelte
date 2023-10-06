@@ -10,6 +10,7 @@
 				await navigator.share(url as ShareData);
 			} else {
 				await window.navigator.clipboard.writeText(url);
+				// TODO: show toast to confirm copied
 			}
 		}
 	}

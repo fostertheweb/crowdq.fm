@@ -1,5 +1,8 @@
 import { SpotifyApi, type AccessToken } from '@spotify/web-api-ts-sdk';
-import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
+import {
+	PUBLIC_SPOTIFY_REDIRECT_URI as redirectUri,
+	PUBLIC_SPOTIFY_CLIENT_ID as clientId
+} from '$env/static/public';
 
 const scopes = [
 	'user-library-modify',
@@ -12,8 +15,6 @@ const scopes = [
 	'app-remote-control',
 	'streaming'
 ];
-
-const redirectUri = 'http://localhost:5173/lobby';
 
 export const Spotify = SpotifyApi.withUserAuthorization(clientId, redirectUri, scopes);
 
