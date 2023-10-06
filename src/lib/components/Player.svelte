@@ -48,7 +48,6 @@
 	$: if (trackEnd) {
 		playNextIntervalId = setInterval(async () => {
 			clearInterval(playNextIntervalId);
-			trackEnd = false;
 			const nextItem = $playQueue[$playQueue.indexOf($currentQueueItem!) + 1];
 			if (nextItem) {
 				// why is this not working? lol
@@ -57,6 +56,7 @@
 				await Spotify.player.startResumePlayback($spotifyDevice!, undefined, [
 					`spotify:track:${nextItem.providerId}`
 				]);
+				trackEnd = false;
 			}
 		}, 500);
 	}
