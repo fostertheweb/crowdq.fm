@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { createDialog, melt } from '@melt-ui/svelte';
 	import mobile from 'is-mobile';
 	import { playQueue } from '$lib/stores/queue';
 	import { Spotify } from '$lib/spotify';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
-	import AddTrackDialog from '$lib/components/AddTrackDialog.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
 	import Divider from '$lib/components/Divider.svelte';
@@ -16,14 +14,14 @@
 	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
 	import { createPartySocket } from '$lib/party';
 	import { handleDrop } from '$lib/drag-events';
+	import IconSliders from '$lib/components/icons/IconSliders.svelte';
+	import { currentQueueItem } from '$lib/stores/player';
+	import ShareButton from '$lib/components/ShareButton.svelte';
+	import PlayInSpotifyButton from '$lib/components/PlayInSpotifyButton.svelte';
+	import AddToQueueButton from '$lib/components/AddToQueueButton.svelte';
 
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
-	import IconSliders from '$lib/components/icons/IconSliders.svelte';
-	import IconPlus from '$lib/components/icons/IconPlus.svelte';
-	import { currentQueueItem } from '$lib/stores/player';
-	import ShareButton from '$lib/components/ShareButton.svelte';
-	import IconPlay from '$lib/components/icons/IconPlay.svelte';
 
 	export let data;
 
@@ -34,11 +32,6 @@
 	let isMobile = false;
 
 	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
-
-	const {
-		elements: { trigger, overlay, content, title, description, close, portalled },
-		states: { open }
-	} = createDialog();
 
 	onMount(async () => {
 		const storedHasJoined = localStorage.getItem('cq-join');
@@ -132,23 +125,9 @@
 			</h2>
 
 			{#if !isMobile}
-				<button
-					use:melt={$trigger}
-					class="flex items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
-					<IconPlus />
-					<span class="font-general font-medium tracking-wide">Add</span>
-				</button>
-				<div use:melt={$portalled}>
-					{#if $open}
-						<AddTrackDialog {title} {content} {description} {overlay} {close} />
-					{/if}
-				</div>
+				<AddToQueueButton />
 			{:else}
-				<button
-					class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 dark:bg-green-600 dark:text-white">
-					<IconPlay lg={false} />
-					<span class="font-general font-medium tracking-wide">Play in Spotify</span>
-				</button>
+				<PlayInSpotifyButton disabled={!user} />
 			{/if}
 		</div>
 
