@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="flex h-screen flex-col items-center justify-start gap-8 bg-stone-100 p-8 dark:bg-stone-800">
+	class="flex h-screen flex-col items-center justify-start gap-8 bg-stone-50 p-8 dark:bg-stone-900">
 	<div class="cq-container flex flex-col gap-8 rounded bg-white p-8 shadow dark:bg-stone-600">
 		<div class="flex flex-col gap-6 px-2">
 			<div class="flex justify-between">

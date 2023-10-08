@@ -1,13 +1,10 @@
-import { SpotifyApi } from '@fostertheweb/spotify-web-api-ts-sdk';
-import { PUBLIC_SPOTIFY_CLIENT_ID as clientId } from '$env/static/public';
 import { redirect } from '@sveltejs/kit';
+import { createServerClient } from '$lib/spotify';
 
 export async function handle({ event, resolve }) {
-	if (event.url.pathname.startsWith('/login') || event.url.pathname.startsWith('/lobby')) {
+	if (event.url.pathname.startsWith('/login')) {
 		event.cookies.delete('cq-room');
 	}
-
-	let Spotify = null;
 
 	const cookie = event.cookies.get('cq-session');
 
@@ -16,25 +13,25 @@ export async function handle({ event, resolve }) {
 
 		if (credentials) {
 			if (Date.now() >= credentials.expires) {
-				console.log('hooks.server.ts: handle: expired token');
+				console.log('Hooks: Session Expired');
 				event.cookies.delete('cq-session', { path: '/' });
 
 				return await resolve(event);
 			}
 
-			Spotify = SpotifyApi.withAccessToken(clientId, credentials);
+			console.log('Hooks: Create Client');
+			const client = createServerClient(credentials);
+			event.locals.user = await client.currentUser.profile();
 		}
 	} else {
 		if (event.url.pathname.startsWith('/lobby') && !event.url.search.includes('code')) {
 			throw redirect(302, '/login');
 		}
 
+		console.log('Hooks: No Cookie Resolve');
 		return await resolve(event);
 	}
 
-	if (Spotify) {
-		event.locals.user = await Spotify.currentUser.profile();
-	}
-
+	console.log('Hooks: Fallback Resolve');
 	return await resolve(event);
 }

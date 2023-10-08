@@ -22,7 +22,6 @@
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import { currentQueueItem } from '$lib/stores/player';
-	import IconEyeRoll from '$lib/components/icons/IconEyeRoll.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
 	import IconPlay from '$lib/components/icons/IconPlay.svelte';
 
@@ -163,8 +162,7 @@
 				</div>
 			{:else}
 				<div
-					class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-8 text-stone-500">
-					<IconEyeRoll />
+					class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-8 text-stone-500 dark:bg-stone-800 dark:text-stone-500">
 					<span>No songs in queue</span>
 				</div>
 			{/if}

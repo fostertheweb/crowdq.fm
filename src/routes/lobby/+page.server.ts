@@ -4,9 +4,12 @@ import ShortUniqueId from 'short-unique-id';
 
 import type { Room } from '$lib/types';
 
-export async function load({ locals }) {
+export async function load({ cookies, locals }) {
+	const room = cookies.get('cq-room');
+
 	return {
-		user: locals.user
+		user: locals.user,
+		room
 	};
 }
 
