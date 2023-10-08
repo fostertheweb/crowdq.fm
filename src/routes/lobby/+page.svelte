@@ -30,7 +30,7 @@
 
 <main
 	class="flex h-screen flex-col items-center justify-start gap-8 bg-stone-50 p-8 dark:bg-stone-900">
-	{#if true}
+	{#if data.room}
 		<div class="cq-container flex w-full flex-col gap-6">
 			<header class="flex items-center justify-between">
 				<h3 class="font-straker text-2xl tracking-wider text-stone-700 dark:text-stone-50">
