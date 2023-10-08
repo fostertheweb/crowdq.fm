@@ -48,6 +48,15 @@
 		</div>
 	</header>
 </div>
+<section>
+	<!-- queue -->
+</section>
+<section>
+	<!-- player -->
+</section>
+<section>
+	<!-- share play queue -->
+</section>
 <footer class="bg-white p-8 dark:bg-stone-900">
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
