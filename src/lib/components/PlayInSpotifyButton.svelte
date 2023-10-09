@@ -2,7 +2,11 @@
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import IconPlay from '$lib/components/icons/IconPlay.svelte';
 
+	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import DeviceSelector from './DeviceSelector.svelte';
+
 	export let disabled = true;
+	export let devices: Device[] | undefined;
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -29,31 +33,14 @@
 			<h3
 				use:melt={$title}
 				class="m-0 text-center font-general text-base font-medium tracking-wide text-stone-500">
-				Add Song to Queue
+				Select Spotify Device
 			</h3>
 			<div class="h-4" />
-			<p
-				use:melt={$description}
-				class="mb-5 mt-2 rounded bg-stone-100 px-4 py-2 text-sm leading-normal text-stone-600">
-				You can copy/paste or drag and drop anywhere in the window.
-			</p>
 
-			<fieldset class="space-y-2">
-				<label class="w-[90px] text-right font-medium text-stone-600" for="link"
-					>Spotify Song Link or YouTube URL</label>
-				<input
-					class="inline-flex w-full flex-1 items-center justify-center rounded border
-                    border-solid border-stone-200 bg-stone-100 p-2 px-3 leading-none text-stone-800"
-					id="link"
-					placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQD" />
-			</fieldset>
+			<DeviceSelector {devices} />
+
+			<fieldset class="space-y-2"></fieldset>
 			<div class="mt-6 flex justify-end gap-4 font-general font-medium tracking-wide">
-				<button
-					use:melt={$close}
-					class="inline-flex h-8 items-center justify-center rounded-full
-                    bg-stone-100 px-4 font-medium leading-none text-stone-600 hover:bg-stone-200">
-					Cancel
-				</button>
 				<button
 					use:melt={$close}
 					class="inline-flex h-8 items-center justify-center gap-1 rounded-full

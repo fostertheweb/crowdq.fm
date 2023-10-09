@@ -33,7 +33,7 @@ export async function load({ cookies, locals, params }) {
 		client = createServerClient(session);
 		user = await client.currentUser.profile();
 		const response = await client.player.getAvailableDevices();
-		devices = response.devices;
+		devices = response.devices.filter(({ is_active }) => is_active);
 	}
 
 	return {

@@ -127,7 +127,7 @@
 			{#if !isMobile}
 				<AddToQueueButton />
 			{:else}
-				<PlayInSpotifyButton disabled={!user} />
+				<PlayInSpotifyButton disabled={!user} devices={data.devices} />
 			{/if}
 		</div>
 

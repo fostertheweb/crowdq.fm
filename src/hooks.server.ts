@@ -6,13 +6,18 @@ export async function handle({ event, resolve }) {
 	const credentials = cookie ? JSON.parse(cookie) : null;
 
 	if (cookie && credentials) {
-		if (event.url.pathname.startsWith('/lobby')) {
-			if (Date.now() >= credentials.expires) {
-				console.log('Hooks: Session Expired');
-				event.cookies.delete('cq-session', { path: '/' });
+		if (Date.now() >= credentials.expires) {
+			console.log('Hooks: Session Expired');
+			event.cookies.delete('cq-session', { path: '/' });
+
+			if (event.url.pathname.startsWith('/lobby')) {
 				throw redirect(302, '/login');
 			}
 
+			return await resolve(event);
+		}
+
+		if (event.url.pathname.startsWith('/lobby')) {
 			if (!event.url.search.includes('code')) {
 				console.log('Hooks: Creatint New Room');
 				event.cookies.delete('cq-room', { path: '/' });
