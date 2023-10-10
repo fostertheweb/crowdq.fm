@@ -11,12 +11,16 @@
 	let user: UserProfile | null = data.user;
 
 	onMount(async () => {
-		const authenticated = !!localStorage.getItem(
-			'spotify-sdk:AuthorizationCodeWithPKCEStrategy:token'
-		);
+		const authKey = 'spotify-sdk:AuthorizationCodeWithPKCEStrategy:token';
+		const authString = localStorage.getItem(authKey);
+		const credentials = authString ? JSON.parse(authString) : null;
 
-		if (authenticated) {
-			user = await Spotify.currentUser.profile();
+		if (credentials) {
+			if (Date.now() >= credentials.expires) {
+				localStorage.removeItem(authKey);
+			} else {
+				user = await Spotify.currentUser.profile();
+			}
 		}
 	});
 </script>

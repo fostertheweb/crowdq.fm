@@ -34,7 +34,7 @@ export async function handle({ event, resolve }) {
 	if (event.url.pathname.startsWith('/lobby') && !event.url.search.includes('code')) {
 		console.log('Hooks: No Session or Code Param');
 		event.cookies.delete('cq-room', { path: '/' });
-		throw redirect(302, '/login');
+		// throw redirect(302, '/login');
 	}
 
 	console.log('Hooks: Fallback Resolve');
