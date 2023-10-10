@@ -38,7 +38,8 @@
 		queryKey: ['devices'],
 		queryFn: () => getAndFilterDevices(Spotify),
 		initialData: data.devices,
-		refetchOnWindowFocus: true
+		refetchOnWindowFocus: true,
+		enabled: !!user
 	});
 
 	onMount(async () => {
