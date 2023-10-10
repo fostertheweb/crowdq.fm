@@ -43,6 +43,14 @@
 	});
 
 	onMount(async () => {
+		const authKey = 'spotify-sdk:AuthorizationCodeWithPKCEStrategy:token';
+		const authString = localStorage.getItem(authKey);
+		const credentials = authString ? JSON.parse(authString) : null;
+
+		if (credentials && Date.now() >= credentials.expires) {
+			localStorage.removeItem(authKey);
+		}
+
 		const storedHasJoined = localStorage.getItem('cq-join');
 		hasJoined = storedHasJoined && parseInt(storedHasJoined) === 1 ? true : false;
 		isMobile = mobile();
