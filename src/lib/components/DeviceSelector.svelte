@@ -4,8 +4,11 @@
 	import IconDevice from '$lib/components/icons/IconDevice.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import IconExternalLink from '$lib/components/icons/IconExternalLink.svelte';
+	import IconSpinner from '$lib/components/icons/IconSpinner.svelte';
 
 	export let devices: Array<Device> | undefined;
+	export let isAdding = false;
+	export let shouldOpenSpotify = false;
 	export let addToQueue: (deviceId: string) => void;
 	export let cancel: () => void;
 
@@ -66,13 +69,29 @@
                     border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 hover:bg-stone-200">
 				Cancel
 			</button>
-			<button
-				on:click={() => addToQueue($value)}
-				class="inline-flex items-center justify-center gap-1 rounded-full
+			{#if shouldOpenSpotify}
+				<a
+					href="spotify://queue"
+					class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-general font-medium text-white"
+					><IconExternalLink />Open Spotify</a>
+			{:else}
+				<button
+					on:click={() => addToQueue($value)}
+					class="inline-flex items-center justify-center gap-1 rounded-full
                     bg-orange-300 px-4 py-3 font-medium leading-none text-orange-900 hover:bg-orange-400">
-				<IconPlus />
-				<span>Add</span>
-			</button>
+					{#if isAdding}
+						<IconSpinner />
+					{:else}
+						<IconPlus />
+					{/if}
+
+					{#if isAdding}
+						<span>Adding</span>
+					{:else}
+						<span>Add</span>
+					{/if}
+				</button>
+			{/if}
 		</div>
 	{/if}
 </div>

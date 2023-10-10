@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
-	import IconX from './icons/IconX.svelte';
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },

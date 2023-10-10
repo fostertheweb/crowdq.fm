@@ -6,30 +6,41 @@
 	import DeviceSelector from './DeviceSelector.svelte';
 	import { Spotify } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
-	import IconX from './icons/IconX.svelte';
+	import { onDestroy } from 'svelte';
 
 	export let disabled = true;
 	export let devices: Device[] | undefined;
 
+	let isAdding = false;
+	let shouldOpenSpotify = false;
+
 	const {
-		elements: { trigger, overlay, content, title, description, close, portalled },
+		elements: { trigger, overlay, content, title, portalled },
 		states: { open }
 	} = createDialog();
 
 	function addToQueue(deviceId: string) {
+		isAdding = true;
+
 		const additions = $playQueue.map((item) => {
 			const uri = `spotify:track:${item.providerId}`;
 			return Spotify.player.addItemToPlaybackQueue(uri, deviceId);
 		});
 
 		Promise.all(additions).then(() => {
-			$open = false;
+			isAdding = false;
+			shouldOpenSpotify = true;
 		});
 	}
 
 	function cancel() {
 		$open = false;
 	}
+
+	onDestroy(() => {
+		shouldOpenSpotify = false;
+		$open = false;
+	});
 </script>
 
 <button
@@ -55,7 +66,7 @@
 			</h3>
 			<div class="h-4" />
 
-			<DeviceSelector {devices} {addToQueue} {cancel} />
+			<DeviceSelector {devices} {isAdding} {shouldOpenSpotify} {addToQueue} {cancel} />
 		</div>
 	{/if}
 </div>
