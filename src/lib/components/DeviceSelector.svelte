@@ -71,7 +71,7 @@
 			</button>
 			{#if shouldOpenSpotify}
 				<a
-					href="spotify://queue"
+					href="spotify://"
 					class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-general font-medium text-white"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
