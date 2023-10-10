@@ -122,7 +122,7 @@
 		{#if !isMobile}
 			<Divider />
 
-			<Player />
+			<Player isHost={data.isHost} />
 		{/if}
 
 		<Divider />

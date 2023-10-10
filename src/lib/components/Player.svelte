@@ -11,6 +11,8 @@
 	import IconThumbsDown from './icons/IconThumbsDown.svelte';
 	import IconMusic from './icons/IconMusic.svelte';
 
+	export let isHost = false;
+
 	let player;
 	let progressInterval: ReturnType<typeof setInterval>;
 	let testColors: Array<string> = [];
@@ -177,7 +179,9 @@
 
 <div class="flex items-center justify-between">
 	<div class="flex items-center gap-2">
-		<PlayerControl />
+		{#if isHost}
+			<PlayerControl />
+		{/if}
 
 		<button
 			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
