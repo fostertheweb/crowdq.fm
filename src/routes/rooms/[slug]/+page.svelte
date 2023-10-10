@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
+	import { createQuery } from '@tanstack/svelte-query';
 	import { page } from '$app/stores';
 	import mobile from 'is-mobile';
 	import { playQueue } from '$lib/stores/queue';
-	import { Spotify } from '$lib/spotify';
+	import { Spotify, getAndFilterDevices } from '$lib/spotify';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
@@ -32,6 +33,13 @@
 	let isMobile = false;
 
 	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
+
+	const query = createQuery({
+		queryKey: ['devices'],
+		queryFn: () => getAndFilterDevices(Spotify),
+		initialData: data.devices,
+		refetchOnWindowFocus: true
+	});
 
 	onMount(async () => {
 		const storedHasJoined = localStorage.getItem('cq-join');
@@ -127,7 +135,7 @@
 			{#if !isMobile}
 				<AddToQueueButton />
 			{:else}
-				<PlayInSpotifyButton disabled={!user} devices={data.devices} />
+				<PlayInSpotifyButton disabled={!user} devices={$query.data} />
 			{/if}
 		</div>
 

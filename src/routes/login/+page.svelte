@@ -1,8 +1,24 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import LoginButton from '$lib/components/LoginButton.svelte';
 	import ContinueButton from '$lib/components/ContinueButton.svelte';
+	import { Spotify } from '$lib/spotify.js';
+
+	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import IconInfo from '$lib/components/icons/IconInfo.svelte';
 
 	export let data;
+	let user: UserProfile | null = data.user;
+
+	onMount(async () => {
+		const authenticated = !!localStorage.getItem(
+			'spotify-sdk:AuthorizationCodeWithPKCEStrategy:token'
+		);
+
+		if (authenticated) {
+			user = await Spotify.currentUser.profile();
+		}
+	});
 </script>
 
 <div
@@ -23,11 +39,11 @@
 			</div>
 		</div>
 
-		{#if data.user}
+		{#if user}
 			<div class="flex w-full flex-col gap-2">
-				<ContinueButton />
+				<ContinueButton name={user.display_name} />
 				<div class="flex items-center justify-center gap-2 p-2 text-sm text-stone-400">
-					<i class="fa-regular fa-exclamation-circle" />
+					<IconInfo />
 					<span>Spotify Premium required.</span>
 				</div>
 			</div>
@@ -35,7 +51,7 @@
 			<div class="flex w-full flex-col gap-2">
 				<LoginButton />
 				<div class="flex items-center justify-center gap-2 p-2 text-sm text-stone-400">
-					<i class="fa-regular fa-exclamation-circle" />
+					<IconInfo />
 					<span>Spotify Premium required.</span>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { kv } from '$lib/kv';
-import { createServerClient } from '$lib/spotify';
+import { createServerClient, getAndFilterDevices } from '$lib/spotify';
 
 import type { Room } from '$lib/types';
 import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
@@ -32,8 +32,7 @@ export async function load({ cookies, locals, params }) {
 		const session = JSON.parse(cookie);
 		client = createServerClient(session);
 		user = await client.currentUser.profile();
-		const response = await client.player.getAvailableDevices();
-		devices = response.devices.filter(({ is_active }) => is_active);
+		devices = await getAndFilterDevices(client);
 	}
 
 	return {

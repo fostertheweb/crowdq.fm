@@ -4,6 +4,9 @@
 
 	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import DeviceSelector from './DeviceSelector.svelte';
+	import { Spotify } from '$lib/spotify';
+	import { playQueue } from '$lib/stores/queue';
+	import IconX from './icons/IconX.svelte';
 
 	export let disabled = true;
 	export let devices: Device[] | undefined;
@@ -12,6 +15,21 @@
 		elements: { trigger, overlay, content, title, description, close, portalled },
 		states: { open }
 	} = createDialog();
+
+	function addToQueue(deviceId: string) {
+		const additions = $playQueue.map((item) => {
+			const uri = `spotify:track:${item.providerId}`;
+			return Spotify.player.addItemToPlaybackQueue(uri, deviceId);
+		});
+
+		Promise.all(additions).then(() => {
+			$open = false;
+		});
+	}
+
+	function cancel() {
+		$open = false;
+	}
 </script>
 
 <button
@@ -37,25 +55,7 @@
 			</h3>
 			<div class="h-4" />
 
-			<DeviceSelector {devices} />
-
-			<fieldset class="space-y-2"></fieldset>
-			<div class="mt-6 flex justify-end gap-4 font-general font-medium tracking-wide">
-				<button
-					use:melt={$close}
-					class="inline-flex h-8 items-center justify-center gap-1 rounded-full
-                    bg-orange-300 px-4 font-medium leading-none text-orange-900 hover:bg-orange-400">
-					<span>Add</span>
-				</button>
-			</div>
-			<button
-				use:melt={$close}
-				aria-label="close"
-				class="absolute right-4 top-4 inline-flex h-6 w-6 appearance-none
-                items-center justify-center rounded-full p-1 text-stone-800
-                hover:bg-stone-200 focus:shadow-stone-400">
-				<i class="fa-regular fa-times" />
-			</button>
+			<DeviceSelector {devices} {addToQueue} {cancel} />
 		</div>
 	{/if}
 </div>

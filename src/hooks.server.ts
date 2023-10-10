@@ -19,7 +19,7 @@ export async function handle({ event, resolve }) {
 
 		if (event.url.pathname.startsWith('/lobby')) {
 			if (!event.url.search.includes('code')) {
-				console.log('Hooks: Creatint New Room');
+				console.log('Hooks: Creating New Room');
 				event.cookies.delete('cq-room', { path: '/' });
 			}
 		}

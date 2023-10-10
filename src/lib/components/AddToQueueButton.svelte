@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
+	import IconX from './icons/IconX.svelte';
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -31,7 +32,7 @@
 			<p
 				use:melt={$description}
 				class="mb-5 mt-2 rounded bg-stone-100 px-4 py-2 text-sm leading-normal text-stone-600">
-				You can copy/paste or drag and drop anywhere in the window.
+				You can also drag and drop one or more songs anywhere in the window.
 			</p>
 
 			<fieldset class="space-y-2">
@@ -46,26 +47,18 @@
 			<div class="mt-6 flex justify-end gap-4 font-general font-medium tracking-wide">
 				<button
 					use:melt={$close}
-					class="inline-flex h-8 items-center justify-center rounded-full
-                    bg-stone-100 px-4 font-medium leading-none text-stone-600 hover:bg-stone-200">
+					class="inline-flex items-center justify-center rounded-full
+                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 hover:bg-stone-200">
 					Cancel
 				</button>
 				<button
 					use:melt={$close}
-					class="inline-flex h-8 items-center justify-center gap-1 rounded-full
-                    bg-orange-300 px-4 font-medium leading-none text-orange-900 hover:bg-orange-400">
+					class="inline-flex items-center justify-center gap-1 rounded-full
+                    bg-orange-300 px-4 py-3 font-medium leading-none text-orange-900 hover:bg-orange-400">
 					<IconPlus />
 					<span>Add</span>
 				</button>
 			</div>
-			<button
-				use:melt={$close}
-				aria-label="close"
-				class="absolute right-4 top-4 inline-flex h-6 w-6 appearance-none
-                items-center justify-center rounded-full p-1 text-stone-800
-                hover:bg-stone-200 focus:shadow-stone-400">
-				<i class="fa-regular fa-times" />
-			</button>
 		</div>
 	{/if}
 </div>
