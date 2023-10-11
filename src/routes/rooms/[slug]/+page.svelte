@@ -4,7 +4,7 @@
 	import { page } from '$app/stores';
 	import mobile from 'is-mobile';
 	import { playQueue } from '$lib/stores/queue';
-	import { Spotify, getAndFilterDevices } from '$lib/spotify';
+	import { Spotify, getAndFilterDevices, postAccessToken } from '$lib/spotify';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
@@ -48,7 +48,10 @@
 		const credentials = authString ? JSON.parse(authString) : null;
 
 		if (credentials && Date.now() >= credentials.expires) {
+			console.log('expired');
 			localStorage.removeItem(authKey);
+		} else if (!user) {
+			await postAccessToken();
 		}
 
 		const storedHasJoined = localStorage.getItem('cq-join');

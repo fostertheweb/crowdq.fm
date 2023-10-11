@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { kv } from '$lib/kv';
-import { createServerClient, getAndFilterDevices } from '$lib/spotify';
+import { createServerClient } from '$lib/spotify';
 
 import type { Room } from '$lib/types';
 import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
@@ -16,10 +16,6 @@ export async function load({ cookies, locals, params }) {
 		throw redirect(301, '/404');
 	}
 
-	if (locals.user?.id) {
-		isHost = locals.user.id === room.hostId;
-	}
-
 	cookies.set('cq-room', params.slug, {
 		path: '/',
 		httpOnly: true,
@@ -32,7 +28,13 @@ export async function load({ cookies, locals, params }) {
 		const session = JSON.parse(cookie);
 		client = createServerClient(session);
 		user = await client.currentUser.profile();
-		devices = await getAndFilterDevices(client);
+		const response = await client.player.getAvailableDevices();
+		devices = response.devices.filter(({ is_active }) => is_active);
+	}
+
+	if (user?.id) {
+		isHost = user.id === room.hostId;
+		console.log(isHost);
 	}
 
 	return {

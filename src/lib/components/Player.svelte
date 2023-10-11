@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { extractColors } from 'extract-colors';
 	import { accentColor, currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
 	import { spotifyDevice } from '$lib/stores/spotify';
@@ -7,9 +7,9 @@
 	import { playQueue } from '$lib/stores/queue';
 	import PlayerControl from './PlayerControl.svelte';
 	import { Spotify } from '$lib/spotify';
-	import IconHeart from './icons/IconHeart.svelte';
-	import IconThumbsDown from './icons/IconThumbsDown.svelte';
 	import IconMusic from './icons/IconMusic.svelte';
+	import LikeButton from './LikeButton.svelte';
+	import SkipButton from './SkipButton.svelte';
 
 	export let isHost = false;
 
@@ -19,15 +19,12 @@
 	let playNextIntervalId: ReturnType<typeof setInterval>;
 	let trackEnd = false;
 
-	$: console.log({ currentQueueItem: $currentQueueItem });
-	$: console.log({ playerStatus: $playerStatus });
-	$: console.log({ playerPosition: $playerPosition });
-
 	$: progress = $playerPosition;
 	$: duration = $currentQueueItem?.duration || 0;
-	$: percent = (progress / duration) * 100 + '%';
+	$: percent = (progress / duration) * 100 || 0;
 
 	$: if ($playerStatus === 'playing') {
+		clearInterval(progressInterval);
 		progressInterval = setInterval(() => {
 			progress += 1000;
 			clearInterval(progressInterval);
@@ -52,15 +49,13 @@
 			clearInterval(playNextIntervalId);
 			const nextItem = $playQueue[$playQueue.indexOf($currentQueueItem!) + 1];
 			if (nextItem) {
-				// why is this not working? lol
-				duration = nextItem.duration;
 				$currentQueueItem = nextItem;
+				trackEnd = false;
 				await Spotify.player.startResumePlayback($spotifyDevice!, undefined, [
 					`spotify:track:${nextItem.providerId}`
 				]);
-				trackEnd = false;
 			}
-		}, 500);
+		}, 750);
 	}
 
 	onMount(async () => {
@@ -83,23 +78,29 @@
 
 				player.addListener('player_state_changed', (state) => {
 					if (!state) {
+						clearInterval(progressInterval);
 						playerStatus.set('idle');
 						playerPosition.set(0);
 					} else {
 						if (state.loading) {
+							clearInterval(progressInterval);
 							playerStatus.set('loading');
 							playerPosition.set(state.position);
 						}
 
 						if (state.paused) {
+							clearInterval(progressInterval);
 							playerPosition.set(state.position);
 
 							// Track finished playing
 							const previousTracks = state.track_window?.previous_tracks;
 							if (previousTracks && previousTracks.length > 0) {
+								clearInterval(progressInterval);
 								playerStatus.set('loading');
 								trackEnd = true;
 							} else {
+								// TODO: prevent flash of play button
+								clearInterval(progressInterval);
 								playerStatus.set('paused');
 							}
 						} else {
@@ -136,6 +137,11 @@
 				player.connect();
 			};
 		}
+	});
+
+	onDestroy(() => {
+		clearInterval(progressInterval);
+		clearInterval(playNextIntervalId);
 	});
 </script>
 
@@ -174,7 +180,7 @@
 	<div
 		class="cq-progress-bar h-1.5 rounded-full bg-transparent"
 		style:background={$accentColor}
-		style:width={percent} />
+		style:width={percent + '%'} />
 </div>
 
 <div class="flex items-center justify-between">
@@ -182,15 +188,8 @@
 		{#if isHost}
 			<PlayerControl />
 		{/if}
-
-		<button
-			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
-			<IconHeart />
-		</button>
-		<button
-			class="flex h-8 w-8 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
-			<IconThumbsDown />
-		</button>
+		<LikeButton />
+		<SkipButton />
 	</div>
 
 	<VolumeControl />
