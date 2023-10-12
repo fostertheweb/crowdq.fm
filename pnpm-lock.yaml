@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^20.5.9
     version: 20.5.9
   '@types/spotify-web-playback-sdk':
-    specifier: ^0.1.16
-    version: 0.1.16
+    specifier: ^0.1.17
+    version: 0.1.17
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.45.0
     version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@5.2.2)
@@ -846,8 +846,8 @@ packages:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
     dev: true
 
-  /@types/spotify-web-playback-sdk@0.1.16:
-    resolution: {integrity: sha512-5U/Lx9ZIZPw3i4gMJQSwwe/981GzQhFXETrqjbaZOHuw8d/I6JFQ2WHCqdqpftdSQX+9DQpStd41obI4vIu1cw==}
+  /@types/spotify-web-playback-sdk@0.1.17:
+    resolution: {integrity: sha512-mS/IA1kk56zkP5g5Ys2DsE34JSTJiBhy2GPVdO31N7HABQSdAm4tvl4iv6Wq8xG8QwJs7fgrbyZf1PVCZQSGAQ==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.48.0)(typescript@5.2.2):

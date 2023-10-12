@@ -1,4 +1,7 @@
 {
 	"name": "crowdq-fm-party",
-	"main": "party/index.ts"
+	"main": "party/index.ts",
+	"parties": {
+		"store": "party/store.ts"
+	}
 }

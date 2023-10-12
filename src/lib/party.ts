@@ -7,3 +7,11 @@ export function createPartySocket(slug: string) {
 		room: slug
 	});
 }
+
+export function createStoreSocket(slug: string) {
+	return new PartySocket({
+		host,
+		room: slug,
+		party: 'store'
+	});
+}

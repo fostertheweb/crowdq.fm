@@ -34,7 +34,6 @@ export async function load({ cookies, locals, params }) {
 
 	if (user?.id) {
 		isHost = user.id === room.hostId;
-		console.log(isHost);
 	}
 
 	return {

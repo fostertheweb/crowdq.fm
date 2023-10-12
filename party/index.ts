@@ -1,20 +1,15 @@
-import { TinyBasePartyKitServer } from 'tinybase/persisters/persister-partykit-server';
+import type * as Party from 'partykit/server';
 
-export default class extends TinyBasePartyKitServer {
-	async onStart() {
-		// no need to call super.onStart()
-		console.log('Server started');
+export default class WebSocket implements Party.Server {
+	constructor(readonly party: Party.Party) {}
+
+	onStart() {
+		console.log('Party server started');
 	}
 
-	async onMessage(message, client) {
-		console.log(message);
-		await super.onMessage(message, client);
-		// custom onMessage code
-	}
+	onMessage(message, sender): void | Promise<void> {
+		console.log('Received message from', sender.id, message);
 
-	async onRequest(request) {
-		// custom onRequest code, else:
-		console.log(request);
-		return await super.onRequest(request);
+		this.party.broadcast(message);
 	}
 }

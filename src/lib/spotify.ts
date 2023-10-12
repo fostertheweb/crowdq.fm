@@ -69,8 +69,3 @@ function extractIdFromUrl(url: string) {
 
 	return params[0];
 }
-
-export async function getAndFilterDevices(client: SpotifyApi) {
-	const response = await client.player.getAvailableDevices();
-	return response.devices.filter(({ is_active }) => is_active);
-}

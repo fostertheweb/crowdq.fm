@@ -4,7 +4,9 @@
 	import { page } from '$app/stores';
 	import mobile from 'is-mobile';
 	import { playQueue } from '$lib/stores/queue';
-	import { Spotify, getAndFilterDevices, postAccessToken } from '$lib/spotify';
+	import { spotifyDevice } from '$lib/stores/spotify';
+	import { party } from '$lib/stores/party';
+	import { Spotify, postAccessToken } from '$lib/spotify';
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import Player from '$lib/components/Player.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
@@ -13,7 +15,7 @@
 	import JoinButton from '$lib/components/JoinButton.svelte';
 	import HostDetails from '$lib/components/HostDetails.svelte';
 	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
-	import { createPartySocket } from '$lib/party';
+	import { createPartySocket, createStoreSocket } from '$lib/party';
 	import { handleDrop } from '$lib/drag-events';
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import { currentQueueItem } from '$lib/stores/player';
@@ -22,13 +24,14 @@
 	import AddToQueueButton from '$lib/components/AddToQueueButton.svelte';
 
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import { browser } from '$app/environment';
 	import type PartySocket from 'partysocket';
 
 	export let data;
 
 	let user: UserProfile | null = data.user;
 	let hasJoined = false;
-	let party: PartySocket;
+	let storeSocket: PartySocket | null;
 	let tableListenerId: string;
 	let isMobile = false;
 
@@ -36,13 +39,57 @@
 
 	const query = createQuery({
 		queryKey: ['devices'],
-		queryFn: () => getAndFilterDevices(Spotify),
+		queryFn: async () => {
+			const response = await Spotify.player.getAvailableDevices();
+			return response.devices.filter(({ is_active }) => is_active);
+		},
 		initialData: data.devices,
 		refetchOnWindowFocus: true,
-		enabled: !!user
+		enabled: !!user && browser
 	});
 
+	async function playNextTrack() {
+		let nextIndex = 0;
+		if ($currentQueueItem) {
+			nextIndex = $playQueue.indexOf($currentQueueItem) + 1;
+		}
+		const nextItem = $playQueue[nextIndex];
+		$currentQueueItem = nextItem;
+
+		if ($spotifyDevice) {
+			await Spotify.player.startResumePlayback($spotifyDevice, undefined, [
+				'spotify:track:' + nextItem.providerId
+			]);
+		}
+	}
+
+	async function pause() {
+		if ($spotifyDevice) {
+			await Spotify.player.pausePlayback($spotifyDevice);
+		}
+	}
+
 	onMount(async () => {
+		storeSocket = createStoreSocket($page.params.slug);
+		await createDatabase(storeSocket);
+
+		$party = createPartySocket($page.params.slug);
+		$party.addEventListener('message', async (event) => {
+			console.log({ event });
+
+			switch (event.data) {
+				case 'play_next_track':
+					await playNextTrack();
+					break;
+				case 'pause':
+					await pause();
+					break;
+				default:
+					console.log('hehe');
+					break;
+			}
+		});
+
 		const authKey = 'spotify-sdk:AuthorizationCodeWithPKCEStrategy:token';
 		const authString = localStorage.getItem(authKey);
 		const credentials = authString ? JSON.parse(authString) : null;
@@ -57,8 +104,6 @@
 		const storedHasJoined = localStorage.getItem('cq-join');
 		hasJoined = storedHasJoined && parseInt(storedHasJoined) === 1 ? true : false;
 		isMobile = mobile();
-		party = createPartySocket($page.params.slug);
-		await createDatabase(party);
 
 		$playQueue = itemsTableToCollection(store.getTable('items'));
 
