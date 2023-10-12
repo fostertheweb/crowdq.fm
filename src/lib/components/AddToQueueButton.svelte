@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
+	import IconInfo from './icons/IconInfo.svelte';
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -28,21 +29,25 @@
 				Add Song to Queue
 			</h3>
 			<div class="h-4" />
-			<p
-				use:melt={$description}
-				class="mb-5 mt-2 rounded bg-stone-100 px-4 py-2 text-sm leading-normal text-stone-600">
-				You can also drag and drop one or more songs anywhere in the window.
-			</p>
 
 			<fieldset class="space-y-2">
 				<label class="w-[90px] text-right font-medium text-stone-600" for="link"
 					>Spotify Song Link or YouTube URL</label>
 				<input
 					class="inline-flex w-full flex-1 items-center justify-center rounded border
-                    border-solid border-stone-200 bg-stone-100 p-2 px-3 leading-none text-stone-800"
+                    border-solid border-stone-200 bg-stone-100 p-2 px-3 leading-none text-stone-800 outline-orange-400"
 					id="link"
 					placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQD" />
 			</fieldset>
+
+			<div class="h-4" />
+
+			<p
+				use:melt={$description}
+				class="mb-5 mt-2 flex items-baseline gap-2 rounded bg-stone-100 px-4 py-2 text-sm leading-normal text-stone-600">
+				You can also drag and drop one or more songs anywhere in the window.
+			</p>
+
 			<div class="mt-6 flex justify-end gap-4 font-general font-medium tracking-wide">
 				<button
 					use:melt={$close}

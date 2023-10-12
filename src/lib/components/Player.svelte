@@ -9,7 +9,6 @@
 	import { Spotify } from '$lib/spotify';
 	import IconMusic from './icons/IconMusic.svelte';
 	import LikeButton from './LikeButton.svelte';
-	import SkipButton from './SkipButton.svelte';
 
 	export let isHost = false;
 
@@ -116,7 +115,6 @@
 					}
 				});
 
-				// Not Ready
 				player.addListener('not_ready', ({ device_id }) => {
 					console.log('Device ID has gone offline', device_id);
 				});
@@ -189,7 +187,6 @@
 			<PlayerControl />
 		{/if}
 		<LikeButton />
-		<SkipButton />
 	</div>
 
 	<VolumeControl />

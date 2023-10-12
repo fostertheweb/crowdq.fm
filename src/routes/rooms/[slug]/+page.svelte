@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import { createQuery } from '@tanstack/svelte-query';
 	import { page } from '$app/stores';
 	import mobile from 'is-mobile';
 	import { playQueue } from '$lib/stores/queue';
-	import { spotifyDevice } from '$lib/stores/spotify';
 	import { party } from '$lib/stores/party';
 	import { Spotify, postAccessToken } from '$lib/spotify';
-	import TrackCard from '$lib/components/TrackCard.svelte';
+	import { playNextTrack, pause } from '$lib/player';
 	import Player from '$lib/components/Player.svelte';
 	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
@@ -16,15 +14,11 @@
 	import HostDetails from '$lib/components/HostDetails.svelte';
 	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
 	import { createPartySocket, createStoreSocket } from '$lib/party';
-	import { handleDrop } from '$lib/drag-events';
+	import PlayQueue from '$lib/components/PlayQueue.svelte';
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
-	import { currentQueueItem } from '$lib/stores/player';
 	import ShareButton from '$lib/components/ShareButton.svelte';
-	import PlayInSpotifyButton from '$lib/components/PlayInSpotifyButton.svelte';
-	import AddToQueueButton from '$lib/components/AddToQueueButton.svelte';
 
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
-	import { browser } from '$app/environment';
 	import type PartySocket from 'partysocket';
 
 	export let data;
@@ -35,41 +29,8 @@
 	let tableListenerId: string;
 	let isMobile = false;
 
-	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
-
-	const query = createQuery({
-		queryKey: ['devices'],
-		queryFn: async () => {
-			const response = await Spotify.player.getAvailableDevices();
-			return response.devices.filter(({ is_active }) => is_active);
-		},
-		initialData: data.devices,
-		refetchOnWindowFocus: true,
-		enabled: !!user && browser
-	});
-
-	async function playNextTrack() {
-		let nextIndex = 0;
-		if ($currentQueueItem) {
-			nextIndex = $playQueue.indexOf($currentQueueItem) + 1;
-		}
-		const nextItem = $playQueue[nextIndex];
-		$currentQueueItem = nextItem;
-
-		if ($spotifyDevice) {
-			await Spotify.player.startResumePlayback($spotifyDevice, undefined, [
-				'spotify:track:' + nextItem.providerId
-			]);
-		}
-	}
-
-	async function pause() {
-		if ($spotifyDevice) {
-			await Spotify.player.pausePlayback($spotifyDevice);
-		}
-	}
-
 	onMount(async () => {
+		isMobile = mobile();
 		storeSocket = createStoreSocket($page.params.slug);
 		await createDatabase(storeSocket);
 
@@ -89,43 +50,38 @@
 					break;
 			}
 		});
+		$playQueue = itemsTableToCollection(store.getTable('items'));
+
+		tableListenerId = store.addTableListener('items', () => {
+			$playQueue = itemsTableToCollection(store.getTable('items'));
+		});
 
 		const authKey = 'spotify-sdk:AuthorizationCodeWithPKCEStrategy:token';
 		const authString = localStorage.getItem(authKey);
 		const credentials = authString ? JSON.parse(authString) : null;
 
 		if (credentials && Date.now() >= credentials.expires) {
-			console.log('expired');
-			localStorage.removeItem(authKey);
-		} else if (!user) {
+			console.log('expired, request new token');
 			await postAccessToken();
+			localStorage.removeItem(authKey);
 		}
 
-		const storedHasJoined = localStorage.getItem('cq-join');
-		hasJoined = storedHasJoined && parseInt(storedHasJoined) === 1 ? true : false;
-		isMobile = mobile();
+		// const storedHasJoined = localStorage.getItem('cq-join');
+		// hasJoined = storedHasJoined && parseInt(storedHasJoined) === 1 ? true : false;
 
-		$playQueue = itemsTableToCollection(store.getTable('items'));
-
-		if (!user && hasJoined) {
-			user = await Spotify.currentUser.profile();
-		}
+		// if (!user && hasJoined) {
+		// 	user = await Spotify.currentUser.profile();
+		// }
 
 		if (user) {
 			store.setRow('listeners', user.id, createUser(user, true));
 		}
-
-		tableListenerId = store.addTableListener('items', () => {
-			$playQueue = itemsTableToCollection(store.getTable('items'));
-		});
 	});
 
 	onDestroy(() => {
 		store.delListener(tableListenerId);
 	});
 </script>
-
-<svelte:document on:drop|preventDefault={handleDrop} on:dragover|preventDefault />
 
 <main id="main" class="flex h-screen justify-center bg-stone-50 p-8 pb-0 dark:bg-stone-900">
 	<div
@@ -149,7 +105,6 @@
 			{#if user}
 				<CurrentUser {user} />
 			{:else}
-				<!-- if mobile then show login -->
 				<JoinButton {isMobile} />
 			{/if}
 		</header>
@@ -183,34 +138,7 @@
 
 		<Divider />
 
-		<div class="flex items-center justify-between">
-			<h2
-				class="font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300">
-				Queue
-			</h2>
-
-			{#if !isMobile}
-				<AddToQueueButton />
-			{:else}
-				<PlayInSpotifyButton disabled={!user} devices={$query.data} />
-			{/if}
-		</div>
-
-		<div class="space-y-2 overflow-y-scroll pb-8">
-			{#if $playQueue.length > 0}
-				{#each $playQueue.slice(currentIndex + 1) as item}
-					<TrackCard {item} />
-				{/each}
-				<div class="text-center text-xs text-stone-400">
-					{$playQueue.length} songs, {$playQueue.reduce((d, t) => d + t.duration, 0)}
-				</div>
-			{:else}
-				<div
-					class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-8 text-stone-500 dark:bg-stone-800 dark:text-stone-500">
-					<span>No songs in queue</span>
-				</div>
-			{/if}
-		</div>
+		<PlayQueue {isMobile} {user} devices={data.devices} />
 	</div>
 </main>
 
