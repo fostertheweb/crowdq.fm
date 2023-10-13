@@ -24,7 +24,7 @@
 	export let data;
 
 	let user: UserProfile | null = data.user;
-	let hasJoined = false;
+	let isHost = data.isHost;
 	let storeSocket: PartySocket | null;
 	let tableListenerId: string;
 	let isMobile = false;
@@ -60,18 +60,15 @@
 		const authString = localStorage.getItem(authKey);
 		const credentials = authString ? JSON.parse(authString) : null;
 
-		if (credentials && Date.now() >= credentials.expires) {
-			console.log('expired, request new token');
+		if (credentials) {
+			console.log('Has local credentials, post token');
 			await postAccessToken();
-			localStorage.removeItem(authKey);
+
+			if (!user) {
+				user = await Spotify.currentUser.profile();
+				isHost = user.id === data.room.hostId;
+			}
 		}
-
-		// const storedHasJoined = localStorage.getItem('cq-join');
-		// hasJoined = storedHasJoined && parseInt(storedHasJoined) === 1 ? true : false;
-
-		// if (!user && hasJoined) {
-		// 	user = await Spotify.currentUser.profile();
-		// }
 
 		if (user) {
 			store.setRow('listeners', user.id, createUser(user, true));
@@ -112,7 +109,7 @@
 		<Divider />
 
 		<div class="flex items-center justify-between">
-			{#if data.isHost}
+			{#if isHost}
 				<button
 					class="flex items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600">
 					<IconSliders />
