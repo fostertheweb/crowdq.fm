@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Player from '$lib/components/dummy/Player.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 </script>
 
@@ -51,8 +52,21 @@
 <section>
 	<!-- queue -->
 </section>
-<section>
-	<!-- player -->
+<section class="p-8">
+	<div class="relative mx-auto flex w-full max-w-7xl py-16">
+		<div
+			class="absolute right-96 top-8 h-72 w-72 rounded-full bg-[#e8d1b7]/70 mix-blend-multiply blur-2xl" />
+		<div
+			class="absolute right-64 top-4 h-72 w-72 rounded-full bg-[#634c46]/50 mix-blend-multiply blur-2xl" />
+		<div
+			class="absolute right-16 top-16 h-72 w-72 rounded-full bg-[#db8654]/50 mix-blend-multiply blur-2xl" />
+		<div class="w-1/2">
+			<h3 class="font-general text-2xl font-semibold text-stone-600">Listen to music</h3>
+		</div>
+		<div class="flex w-1/2 justify-center">
+			<Player />
+		</div>
+	</div>
 </section>
 <section>
 	<!-- share play queue -->
