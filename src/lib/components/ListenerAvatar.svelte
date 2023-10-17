@@ -6,7 +6,7 @@
 	export let bordered = false;
 
 	const sizes: { [key: string]: string } = {
-		lg: 'h-12 w-12',
+		lg: 'h-10 w-10',
 		md: 'h-8 w-8',
 		sm: 'h-6 w-6'
 	};

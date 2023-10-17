@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@fostertheweb/spotify-web-api-ts-sdk": "^1.2.0",
 		"@melt-ui/svelte": "^0.50.1",
-		"@tanstack/svelte-query": "^4.36.1",
+		"@tanstack/svelte-query": "^5.0.0",
 		"@vercel/kv": "^0.2.3",
 		"extract-colors": "^4.0.2",
 		"is-mobile": "^4.0.0",

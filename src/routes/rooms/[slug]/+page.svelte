@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import mobile from 'is-mobile';
-	import { playQueue } from '$lib/stores/queue';
-	import { party } from '$lib/stores/party';
-	import { Spotify, postAccessToken } from '$lib/spotify';
-	import { playNextTrack, pause } from '$lib/player';
-	import Player from '$lib/components/Player.svelte';
-	import ListenerStack from '$lib/components/ListenerStack.svelte';
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
 	import Divider from '$lib/components/Divider.svelte';
-	import JoinButton from '$lib/components/JoinButton.svelte';
 	import HostDetails from '$lib/components/HostDetails.svelte';
+	import JoinButton from '$lib/components/JoinButton.svelte';
+	import ListenerStack from '$lib/components/ListenerStack.svelte';
+	import PlayQueue from '$lib/components/PlayQueue.svelte';
+	import Player from '$lib/components/Player.svelte';
+	import ShareButton from '$lib/components/ShareButton.svelte';
+	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
 	import { createPartySocket, createStoreSocket } from '$lib/party';
-	import PlayQueue from '$lib/components/PlayQueue.svelte';
-	import IconSliders from '$lib/components/icons/IconSliders.svelte';
-	import ShareButton from '$lib/components/ShareButton.svelte';
+	import { pause, playNextTrack } from '$lib/player';
+	import { Spotify, postAccessToken } from '$lib/spotify';
+	import { party } from '$lib/stores/party';
+	import { playQueue } from '$lib/stores/queue';
+	import mobile from 'is-mobile';
+	import { onDestroy, onMount } from 'svelte';
 
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
@@ -80,7 +80,7 @@
 	});
 </script>
 
-<main id="main" class="flex h-screen justify-center bg-stone-50 p-8 pb-0 dark:bg-stone-900">
+<main class="flex h-screen justify-center">
 	<div
 		class="left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm">
 		<div
@@ -93,7 +93,7 @@
 		</div>
 	</div>
 
-	<div class="cq-container flex w-full flex-col gap-6">
+	<div class="cq-container flex w-full flex-col px-4 pt-6">
 		<header class="flex items-center justify-between">
 			<h3 class="font-straker text-2xl tracking-wider text-stone-700 dark:text-stone-50">
 				crowdq<span class="text-orange-500">.</span>fm
@@ -130,7 +130,7 @@
 		{#if !isMobile}
 			<Divider />
 
-			<Player isHost={data.isHost} />
+			<Player {isHost} />
 		{/if}
 
 		<Divider />
@@ -141,6 +141,7 @@
 
 <style>
 	.cq-container {
+		box-sizing: border-box;
 		max-width: 480px;
 	}
 </style>

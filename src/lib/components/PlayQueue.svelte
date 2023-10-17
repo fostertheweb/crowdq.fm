@@ -1,19 +1,23 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { createQuery } from '@tanstack/svelte-query';
-	import { Spotify } from '$lib/spotify';
-	import { handleDrop } from '$lib/drag-events';
-	import { playQueue } from '$lib/stores/queue';
-	import { currentQueueItem } from '$lib/stores/player';
-	import TrackCard from '$lib/components/TrackCard.svelte';
-	import PlayInSpotifyButton from '$lib/components/PlayInSpotifyButton.svelte';
 	import AddToQueueButton from '$lib/components/AddToQueueButton.svelte';
+	import PlayInSpotifyButton from '$lib/components/PlayInSpotifyButton.svelte';
+	import TrackCard from '$lib/components/TrackCard.svelte';
+	import { handleDrop } from '$lib/drag-events';
+	import { Spotify } from '$lib/spotify';
+	import { currentQueueItem } from '$lib/stores/player';
+	import { playQueue } from '$lib/stores/queue';
+	import { createQuery } from '@tanstack/svelte-query';
 
 	import type { Device, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 	export let isMobile: boolean;
 	export let devices: Device[] | undefined;
 	export let user: UserProfile | null;
+
+	let queueElement: HTMLDivElement;
+	let scrollY = 0;
+	$: displayShadow = scrollY > 0;
 
 	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
 
@@ -31,7 +35,9 @@
 
 <svelte:document on:drop|preventDefault={handleDrop} on:dragover|preventDefault />
 
-<div class="flex items-center justify-between">
+<div
+	class="cq-shadow-xl z-10 flex items-center justify-between bg-stone-50 pb-6"
+	class:cq-shadow-xl={displayShadow}>
 	<h2 class="font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300">
 		Queue
 	</h2>
@@ -43,7 +49,10 @@
 	{/if}
 </div>
 
-<div class="space-y-2 overflow-y-scroll pb-8">
+<div
+	bind:this={queueElement}
+	class="space-y-2 overflow-y-scroll pb-8"
+	on:scroll={() => (scrollY = queueElement.scrollTop)}>
 	{#if $playQueue.length > 0}
 		{#each $playQueue.slice(currentIndex + 1) as item}
 			<TrackCard {item} />
@@ -58,3 +67,14 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.cq-shadow-xl {
+		--tw-shadow-color: rgb(28 25 23 / 0.1);
+		--tw-shadow: var(--tw-shadow-colored);
+		--tw-shadow-colored: 0 20px 25px -25px var(--tw-shadow-color),
+			0 8px 10px -10px var(--tw-shadow-color);
+		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+			var(--tw-shadow);
+	}
+</style>

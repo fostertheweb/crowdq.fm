@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
-	import { extractColors } from 'extract-colors';
-	import { accentColor, currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
-	import { spotifyDevice } from '$lib/stores/spotify';
-	import VolumeControl from './VolumeControl.svelte';
-	import { playQueue } from '$lib/stores/queue';
-	import PlayerControl from './PlayerControl.svelte';
 	import { Spotify } from '$lib/spotify';
-	import IconMusic from './icons/IconMusic.svelte';
+	import { accentColor, currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
+	import { playQueue } from '$lib/stores/queue';
+	import { spotifyDevice } from '$lib/stores/spotify';
+	import { extractColors } from 'extract-colors';
+	import { onDestroy, onMount } from 'svelte';
 	import LikeButton from './LikeButton.svelte';
+	import PlayerControl from './PlayerControl.svelte';
+	import VolumeControl from './VolumeControl.svelte';
+	import IconMusic from './icons/IconMusic.svelte';
 
 	export let isHost = false;
 
@@ -143,53 +143,56 @@
 	});
 </script>
 
-<div class="relative flex items-center gap-4">
-	<div class="absolute right-0 top-0 flex items-center space-x-2">
-		{#each testColors as color}
-			<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
-		{/each}
-	</div>
-	{#if $currentQueueItem}
-		<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
-	{:else}
-		<div class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
-			<span class="text-5xl text-stone-50 drop-shadow dark:text-stone-400">
-				<IconMusic />
-			</span>
+<div class="flex flex-col gap-6">
+	<div class="relative flex items-center gap-4">
+		<div class="absolute right-0 top-0 flex items-center space-x-2">
+			{#each testColors as color}
+				<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
+			{/each}
 		</div>
-	{/if}
-	<div class="space-y-1">
 		{#if $currentQueueItem}
-			<div class="text-lg dark:text-white">{$currentQueueItem.name}</div>
+			<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 		{:else}
-			<div class="text-lg dark:text-white">--</div>
-		{/if}
-		{#if $currentQueueItem}
-			<div class="text-base text-stone-500 dark:text-stone-400">
-				{$currentQueueItem.artists}
+			<div
+				class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
+				<span class="text-5xl text-stone-50 drop-shadow dark:text-stone-400">
+					<IconMusic />
+				</span>
 			</div>
-		{:else}
-			<div class="text-base text-stone-500 dark:text-stone-400">--</div>
 		{/if}
-	</div>
-</div>
-
-<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
-	<div
-		class="cq-progress-bar h-1.5 rounded-full bg-transparent"
-		style:background={$accentColor}
-		style:width={percent + '%'} />
-</div>
-
-<div class="flex items-center justify-between">
-	<div class="flex items-center gap-2">
-		{#if isHost}
-			<PlayerControl />
-		{/if}
-		<LikeButton />
+		<div class="space-y-1">
+			{#if $currentQueueItem}
+				<div class="text-lg dark:text-white">{$currentQueueItem.name}</div>
+			{:else}
+				<div class="text-lg dark:text-white">--</div>
+			{/if}
+			{#if $currentQueueItem}
+				<div class="text-base text-stone-500 dark:text-stone-400">
+					{$currentQueueItem.artists}
+				</div>
+			{:else}
+				<div class="text-base text-stone-500 dark:text-stone-400">--</div>
+			{/if}
+		</div>
 	</div>
 
-	<VolumeControl />
+	<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
+		<div
+			class="cq-progress-bar h-1.5 rounded-full bg-transparent"
+			style:background={$accentColor}
+			style:width={percent + '%'} />
+	</div>
+
+	<div class="flex items-center justify-between">
+		<div class="flex items-center gap-2">
+			{#if isHost}
+				<PlayerControl />
+			{/if}
+			<LikeButton />
+		</div>
+
+		<VolumeControl />
+	</div>
 </div>
 
 <style>

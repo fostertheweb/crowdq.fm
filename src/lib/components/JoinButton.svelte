@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { postAccessToken } from '$lib/spotify';
 	import IconJoin from '$lib/components/icons/IconJoin.svelte';
 	import IconSpotify from '$lib/components/icons/IconSpotify.svelte';
+	import { postAccessToken } from '$lib/spotify';
 
 	export let isMobile: boolean;
 
@@ -10,7 +10,6 @@
 	}
 
 	function join() {
-		localStorage.setItem('cq-join', String(1));
 		postAccessToken();
 	}
 </script>
