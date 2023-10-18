@@ -36,7 +36,7 @@
 <svelte:document on:drop|preventDefault={handleDrop} on:dragover|preventDefault />
 
 <div
-	class="cq-shadow-xl z-10 flex items-center justify-between bg-stone-50 pb-6"
+	class="cq-shadow-xl z-10 flex items-center justify-between bg-stone-50 pb-6 dark:bg-stone-900"
 	class:cq-shadow-xl={displayShadow}>
 	<h2 class="font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300">
 		Queue

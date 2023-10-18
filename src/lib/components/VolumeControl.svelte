@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createSlider, melt } from '@melt-ui/svelte';
-	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import IconMinus from '$lib/components/icons/IconMinus.svelte';
+	import IconPlus from '$lib/components/icons/IconPlus.svelte';
+	import { createSlider, melt } from '@melt-ui/svelte';
 
 	const {
 		elements: { root, range, thumb }
@@ -12,7 +12,8 @@
 </script>
 
 <div class="flex items-center space-x-2 rounded-full bg-stone-200/60 px-1 dark:bg-stone-700">
-	<button class="p-2 text-stone-400 hover:text-stone-500"><IconMinus /></button>
+	<button class="p-2 text-stone-400 hover:text-stone-500 dark:hover:text-stone-300"
+		><IconMinus /></button>
 
 	<span use:melt={$root} class="relative flex w-24 items-center">
 		<span class="block h-1 w-full rounded-full bg-stone-300">
@@ -22,7 +23,7 @@
 			use:melt={$thumb()}
 			class="block h-4 w-4 rounded-full bg-white shadow outline-none focus:ring-4 focus:ring-black/40" />
 	</span>
-	<button class="px-2 py-1 text-stone-400 hover:text-stone-500">
+	<button class="px-2 py-1 text-stone-400 hover:text-stone-500 dark:hover:text-stone-300">
 		<IconPlus />
 	</button>
 </div>

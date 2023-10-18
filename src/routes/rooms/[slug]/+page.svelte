@@ -71,7 +71,9 @@
 		}
 
 		if (user) {
-			store.setRow('listeners', user.id, createUser(user, true));
+			store.setRow('listeners', $party.id, createUser(user, true));
+		} else {
+			store.delRow('listeners', $party.id);
 		}
 	});
 
