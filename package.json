@@ -45,10 +45,10 @@
 		"@vercel/kv": "^0.2.3",
 		"extract-colors": "^4.0.2",
 		"is-mobile": "^4.0.0",
-		"partykit": "0.0.25",
-		"partysocket": "0.0.8",
+		"partykit": "0.0.31",
+		"partysocket": "0.0.11",
 		"polished": "^4.2.2",
 		"short-unique-id": "^4.4.4",
-		"tinybase": "^4.3.11"
+		"tinybase": "^4.3.15"
 	}
 }

@@ -80,6 +80,7 @@
 		</div>
 
 		<div class="flex items-center gap-3 font-semibold text-stone-600 dark:text-stone-400">
+			<!-- github link -->
 			<a href="#">Privacy Policy</a>
 			<div class="h-4 w-px bg-stone-500/20" />
 			<a href="#">Changelog</a>

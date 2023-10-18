@@ -4,12 +4,18 @@
 	import { listeners } from '$lib/stores/party';
 	import { onMount } from 'svelte';
 
+	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+
+	export let currentUser: UserProfile | null;
+
 	let tableListenerId: string;
 	$: additionalListeners = $listeners.length - 3;
 
 	onMount(async () => {
 		tableListenerId = store.addTableListener('listeners', () => {
-			$listeners = listenersTableToCollection(store.getTable('listeners'));
+			$listeners = listenersTableToCollection(store.getTable('listeners')).filter(
+				(listener) => listener.id !== currentUser?.id
+			);
 		});
 	});
 </script>

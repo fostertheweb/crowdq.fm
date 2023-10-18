@@ -123,7 +123,7 @@
 
 			<div class="flex items-center gap-2">
 				{#if !isMobile}
-					<ListenerStack />
+					<ListenerStack currentUser={user} />
 				{/if}
 				<ShareButton />
 			</div>
