@@ -1,11 +1,25 @@
 <script lang="ts">
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
+	import { createQueueItem, store } from '$lib/db';
+	import { getTracksFromLink } from '$lib/spotify';
+	import { party } from '$lib/stores/party';
 	import { createDialog, melt } from '@melt-ui/svelte';
+	import { get } from 'svelte/store';
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
 		states: { open }
 	} = createDialog();
+
+	let link: string;
+
+	async function handleAddSong() {
+		const tracks = await getTracksFromLink(link);
+		tracks.forEach((track) => {
+			store.addRow('items', createQueueItem(track, get(party)!.id));
+		});
+		$open = false;
+	}
 </script>
 
 <button
@@ -33,6 +47,9 @@
 				<label class="w-[90px] text-right font-medium text-stone-600" for="link"
 					>Spotify Song Link or YouTube URL</label>
 				<input
+					on:change={(e) => (link = e.currentTarget.value)}
+					on:keydown={(e) => e.code === 'Enter' && handleAddSong()}
+					name="link"
 					class="inline-flex w-full flex-1 items-center justify-center rounded border
                     border-solid border-stone-200 bg-stone-100 p-2 px-3 leading-none text-stone-800 outline-orange-400"
 					id="link"
@@ -55,7 +72,7 @@
 					Cancel
 				</button>
 				<button
-					use:melt={$close}
+					on:click={handleAddSong}
 					class="inline-flex items-center justify-center gap-1 rounded-full
                     bg-orange-300 px-4 py-3 font-medium leading-none text-orange-900 hover:bg-orange-400">
 					<IconPlus />

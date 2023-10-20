@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { QueueItem } from '$lib/types';
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 	import { store } from '$lib/db';
+	import type { QueueItem } from '$lib/types';
 
 	export let item: QueueItem;
 
-	const listener = store.getTable('listeners')[item.addedBy];
+	const listener = store.getRow('listeners', item.addedBy);
 
 	function millisToMinutesAndSeconds(millis: number) {
 		var minutes = Math.floor(millis / 60000);

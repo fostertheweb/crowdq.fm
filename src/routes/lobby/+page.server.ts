@@ -1,5 +1,5 @@
-import { redirect } from '@sveltejs/kit';
 import { kv } from '$lib/kv';
+import { redirect } from '@sveltejs/kit';
 import ShortUniqueId from 'short-unique-id';
 
 import type { Room } from '$lib/types';

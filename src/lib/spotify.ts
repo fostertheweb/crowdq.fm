@@ -1,8 +1,8 @@
-import { SpotifyApi, type AccessToken } from '@fostertheweb/spotify-web-api-ts-sdk';
 import {
-	PUBLIC_SPOTIFY_REDIRECT_URI as redirectUri,
-	PUBLIC_SPOTIFY_CLIENT_ID as clientId
+	PUBLIC_SPOTIFY_CLIENT_ID as clientId,
+	PUBLIC_SPOTIFY_REDIRECT_URI as redirectUri
 } from '$env/static/public';
+import { SpotifyApi, type AccessToken } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 const scopes = [
 	'user-library-modify',
