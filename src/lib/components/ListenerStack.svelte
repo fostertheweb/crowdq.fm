@@ -2,7 +2,7 @@
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
 	import { listenersTableToCollection, store } from '$lib/db';
 	import { listeners } from '$lib/stores/party';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
@@ -17,6 +17,10 @@
 				(listener) => listener.id !== currentUser?.id
 			);
 		});
+	});
+
+	onDestroy(() => {
+		store.delListener(tableListenerId);
 	});
 </script>
 
@@ -33,8 +37,7 @@
 				</div>
 			{/if}
 		{:else}
-			<div
-				class="flex h-8 items-center justify-center text-sm text-stone-500 dark:bg-stone-700 dark:text-stone-400">
+			<div class="flex h-8 items-center justify-center text-sm text-stone-500 dark:text-stone-400">
 				Invite others to listen!
 			</div>
 		{/if}
