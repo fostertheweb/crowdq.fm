@@ -12,7 +12,6 @@
 
 	export let isHost = false;
 
-	let player;
 	let progressInterval: ReturnType<typeof setInterval>;
 	let testColors: Array<string> = [];
 	let playNextIntervalId: ReturnType<typeof setInterval>;
@@ -61,13 +60,8 @@
 		const credentials = await Spotify.getAccessToken();
 
 		if (credentials?.access_token) {
-			const script = document.createElement('script');
-			script.src = 'https://sdk.scdn.co/spotify-player.js';
-			document.body.appendChild(script);
-
-			// TODO: define types for Spotify SDK
 			window.onSpotifyWebPlaybackSDKReady = () => {
-				player = new window.Spotify.Player({
+				const player = new window.Spotify.Player({
 					name: 'crowdq.fm',
 					getOAuthToken(callback) {
 						callback(credentials.access_token);
@@ -133,8 +127,40 @@
 
 				player.activateElement();
 				player.connect();
+
+				// store = player;
 			};
 		}
+
+		window.onYouTubeIframeAPIReady = () => {
+			const player = new window.YT.Player('yt-player', {
+				height: '0',
+				width: '0',
+				playerVars: {
+					fs: 0,
+					enablejsapi: 1,
+					controls: 0,
+					disablekb: 1,
+					modestbranding: 1,
+					origin: window.location.origin
+				},
+				events: {
+					onReady(event: any) {
+						// yt ready
+						event.target.setVolume(25);
+					},
+					onStateChange(event: any) {
+						// update state
+
+						if (event.target.getPlayerState() === 0) {
+							// playNextTrack
+						}
+					}
+				}
+			});
+
+			// store = player
+		};
 	});
 
 	onDestroy(() => {
@@ -142,6 +168,11 @@
 		clearInterval(playNextIntervalId);
 	});
 </script>
+
+<svelte:head>
+	<script src="https://sdk.scdn.co/spotify-player.js"></script>
+	<script src="https://www.youtube.com/iframe_api" async></script>
+</svelte:head>
 
 <div class="flex flex-col gap-6">
 	<div class="relative flex items-center gap-4">

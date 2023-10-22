@@ -4,6 +4,7 @@ import { createPartyKitPersister } from 'tinybase/persisters/persister-partykit-
 import type { Track, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 import type PartySocket from 'partysocket';
 import type { Listener, QueueItem } from './types';
+import { convertISO8601ToMs, type YouTubeVideo } from './youtube';
 
 export const store = createStore();
 
@@ -52,7 +53,19 @@ export function listenersTableToCollection(table: Table) {
 	return rows;
 }
 
-export function createQueueItem(track: Track, listenerId: string) {
+export function createQueueItemFromVideo(video: YouTubeVideo, listenerId: string) {
+	return {
+		name: video.snippet.title,
+		artwork: video.snippet.thumbnails.default.url,
+		duration: convertISO8601ToMs(video.contentDetails.duration),
+		provider: 'youtube',
+		provider_id: video.id,
+		addedAt: Date.now(),
+		addedBy: listenerId
+	};
+}
+
+export function createQueueItemFromTrack(track: Track, listenerId: string) {
 	return {
 		name: track.name,
 		album: track.album.name,

@@ -1,17 +1,28 @@
-import { Spotify, getTracksFromLink } from '$lib/spotify';
-import { createQueueItem, store } from '$lib/db';
+import { createQueueItemFromTrack, createQueueItemFromVideo, store } from '$lib/db';
+import { getTracksFromLink } from '$lib/spotify';
+import { get } from 'svelte/store';
+import { party } from './stores/party';
+import { getVideoFromLink } from './youtube';
 
 export async function handleDrop(e: DragEvent) {
 	// hide toast
 	const dropData = e.dataTransfer?.getData('text/plain');
 
 	if (dropData) {
-		const { id } = await Spotify.currentUser.profile();
-		const tracks = await getTracksFromLink(dropData);
-		const items = tracks.map((track) => createQueueItem(track, id));
-		items.forEach((item) => {
-			store.addRow('items', item);
-		});
+		const _party = get(party);
+
+		if (_party) {
+			if (dropData.includes('spotify')) {
+				const tracks = await getTracksFromLink(dropData);
+				const items = tracks.map((track) => createQueueItemFromTrack(track, _party.id));
+				items.forEach((item) => {
+					store.addRow('items', item);
+				});
+			} else {
+				const video = await getVideoFromLink(dropData);
+				store.addRow('items', createQueueItemFromVideo(video, _party.id));
+			}
+		}
 	}
 }
 

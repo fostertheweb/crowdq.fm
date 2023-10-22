@@ -18,7 +18,7 @@
 	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-3 text-left text-sm transition ease-in-out hover:bg-stone-100 dark:hover:bg-stone-800">
 	<div class="relative shrink-0">
 		{#if item.artwork}
-			<img src={item.artwork} class="h-10 w-10 rounded-sm bg-stone-200 shadow" alt="" />
+			<img src={item.artwork} class="h-10 w-auto rounded-sm bg-stone-200 shadow" alt="" />
 		{:else}
 			<div>Loading...</div>
 		{/if}
@@ -26,16 +26,18 @@
 	<div class="cq-track-details flex flex-col gap-1">
 		<div class="flex items-center gap-2 truncate text-sm text-stone-700 dark:text-stone-200">
 			<span>{item.name}</span>
-			{#if item.explicit}
+			{#if item.provider === 'spotify' && item.explicit}
 				<div
 					class="small-caps cq-font-heading flex items-center justify-center rounded-sm bg-stone-200 px-1 py-0 text-xs tracking-wide text-stone-500 dark:bg-stone-600 dark:text-stone-300">
 					E
 				</div>
 			{/if}
 		</div>
-		<div class="truncate text-xs text-stone-500 dark:text-stone-400">
-			{item.artists}
-		</div>
+		{#if item.provider === 'spotify'}
+			<div class="truncate text-xs text-stone-500 dark:text-stone-400">
+				{item.artists}
+			</div>
+		{/if}
 	</div>
 	<div class="absolute right-2">
 		<ListenerAvatar {listener} size="sm" />
