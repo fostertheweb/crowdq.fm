@@ -46,7 +46,7 @@
 					await UniversalPlayer.pause();
 					break;
 				default:
-					console.log('hehe');
+					console.log('Event handler not implemented', event.data);
 					break;
 			}
 		});
@@ -61,7 +61,6 @@
 		const credentials = authString ? JSON.parse(authString) : null;
 
 		if (credentials) {
-			console.log('Has local credentials, post token');
 			await postAccessToken();
 
 			if (!user) {

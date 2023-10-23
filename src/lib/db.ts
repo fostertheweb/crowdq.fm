@@ -59,7 +59,7 @@ export function createQueueItemFromVideo(video: YouTubeVideo, listenerId: string
 		artwork: video.snippet.thumbnails.default.url,
 		duration: convertISO8601ToMs(video.contentDetails.duration),
 		provider: 'youtube',
-		provider_id: video.id,
+		providerId: video.id,
 		addedAt: Date.now(),
 		addedBy: listenerId
 	};

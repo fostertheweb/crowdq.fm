@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { Spotify } from './spotify';
+import { Spotify as SpotifyApiClient } from './spotify';
 import { SpotifyPlayer, YouTubePlayer, currentQueueItem } from './stores/player';
 import { playQueue } from './stores/queue';
 import { spotifyDevice } from './stores/spotify';
@@ -17,7 +17,7 @@ export async function playNextTrack() {
 	const nextItem = queue[nextIndex];
 	currentQueueItem.set(nextItem);
 
-	UniversalPlayer.play({ item: nextItem, position: 0, status: 'playing' });
+	UniversalPlayer.play({ item: nextItem, position: 0, status: 'loading' });
 }
 
 type Playback = {
@@ -30,15 +30,19 @@ export class UniversalPlayer {
 	static async play(playback: Playback) {
 		const device = get(spotifyDevice);
 		const youtube = get(YouTubePlayer);
+		const spotify = get(SpotifyPlayer);
+
+		const spotifyPlaybackState = await SpotifyApiClient.player.getPlaybackState();
+		const isSpotifyPlaying = spotifyPlaybackState?.is_playing;
+		const isYouTubePlaying = youtube?.getPlayerState() === 1;
 
 		if (playback.item?.provider === 'spotify') {
-			if (youtube) {
-				console.log(youtube);
-				// youtube.stopVideo();
+			if (youtube && isYouTubePlaying) {
+				youtube.stopVideo();
 			}
 
 			if (device) {
-				await Spotify.player.startResumePlayback(device, undefined, [
+				await SpotifyApiClient.player.startResumePlayback(device, undefined, [
 					'spotify:track:' + playback.item.providerId
 				]);
 			}
@@ -47,15 +51,14 @@ export class UniversalPlayer {
 		if (playback.item?.provider === 'youtube') {
 			const videoId = playback.item?.providerId;
 
-			if (device) {
-				await Spotify.player.pausePlayback(device);
+			if (device && isSpotifyPlaying) {
+				await SpotifyApiClient.player.pausePlayback(device);
 			}
 
 			youtube?.loadVideoById({
 				videoId,
 				startSeconds: playback.position / 1000
 			});
-			youtube?.playVideo();
 		}
 	}
 

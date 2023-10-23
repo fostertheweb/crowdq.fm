@@ -28,9 +28,6 @@
 	$: duration = $currentQueueItem?.duration || 0;
 	$: percent = (progress / duration) * 100 || 0;
 
-	$: console.log($SpotifyPlayer);
-	$: console.log($YouTubePlayer);
-
 	$: if ($playerStatus === 'playing') {
 		clearInterval(progressInterval);
 		progressInterval = setInterval(() => {
@@ -72,16 +69,14 @@
 		document.body.appendChild(youtubePlayerScript);
 
 		window.onYouTubeIframeAPIReady = () => {
-			console.log('YouTube IFrame API Ready');
 			const player = new window.YT.Player('yt-player', {
-				height: '108',
-				width: '192',
 				playerVars: {
 					fs: 0,
 					enablejsapi: 1,
 					controls: 0,
 					disablekb: 1,
-					modestbranding: 1
+					modestbranding: 1,
+					origin: window.location.origin
 				},
 				events: {
 					onReady(event) {
@@ -90,7 +85,7 @@
 					},
 					onStateChange(event: any) {
 						// update state
-						console.log(event);
+						console.log('YouTube State Change:', event);
 
 						if (event.target.getPlayerState() === 0) {
 							// playNextTrack
@@ -195,6 +190,11 @@
 				<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
 			{/each}
 		</div>
+		<div
+			class="pointer-events-none"
+			style:display={$currentQueueItem?.provider === 'youtube' ? 'block' : 'none'}>
+			<div id="yt-player" class="h-28 grow-0 rounded shadow"></div>
+		</div>
 		{#if $currentQueueItem}
 			{#if $currentQueueItem.provider === 'spotify'}
 				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
@@ -213,7 +213,7 @@
 			{:else}
 				<div class="text-lg dark:text-white">--</div>
 			{/if}
-			{#if $currentQueueItem}
+			{#if $currentQueueItem && $currentQueueItem.artists}
 				<div class="text-base text-stone-500 dark:text-stone-400">
 					{$currentQueueItem.artists}
 				</div>
@@ -245,5 +245,9 @@
 <style>
 	.cq-progress-bar {
 		transition: width 1s linear;
+	}
+
+	#yt-player {
+		width: calc(7rem * 16 / 9);
 	}
 </style>

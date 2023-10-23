@@ -2,8 +2,6 @@
 	export let deviceType = 'default';
 
 	$: deviceType = deviceType.toLowerCase();
-
-	console.log(deviceType);
 </script>
 
 {#if deviceType === 'smartphone'}
