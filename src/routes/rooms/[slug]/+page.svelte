@@ -11,7 +11,7 @@
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
 	import { createPartySocket, createStoreSocket } from '$lib/party';
-	import { pause, playNextTrack } from '$lib/player';
+	import { UniversalPlayer, playNextTrack } from '$lib/player';
 	import { Spotify, postAccessToken } from '$lib/spotify';
 	import { party } from '$lib/stores/party';
 	import { playQueue } from '$lib/stores/queue';
@@ -43,7 +43,7 @@
 					await playNextTrack();
 					break;
 				case 'pause':
-					await pause();
+					await UniversalPlayer.pause();
 					break;
 				default:
 					console.log('hehe');

@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { Spotify } from '$lib/spotify';
-	import { accentColor, currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
+	import {
+		SpotifyPlayer,
+		YouTubePlayer,
+		accentColor,
+		currentQueueItem,
+		playerPosition,
+		playerStatus
+	} from '$lib/stores/player';
 	import { playQueue } from '$lib/stores/queue';
 	import { spotifyDevice } from '$lib/stores/spotify';
 	import { extractColors } from 'extract-colors';
@@ -20,6 +27,9 @@
 	$: progress = $playerPosition;
 	$: duration = $currentQueueItem?.duration || 0;
 	$: percent = (progress / duration) * 100 || 0;
+
+	$: console.log($SpotifyPlayer);
+	$: console.log($YouTubePlayer);
 
 	$: if ($playerStatus === 'playing') {
 		clearInterval(progressInterval);
@@ -57,9 +67,48 @@
 	}
 
 	onMount(async () => {
+		const youtubePlayerScript = document.createElement('script');
+		youtubePlayerScript.src = 'https://www.youtube.com/iframe_api';
+		document.body.appendChild(youtubePlayerScript);
+
+		window.onYouTubeIframeAPIReady = () => {
+			console.log('YouTube IFrame API Ready');
+			const player = new window.YT.Player('yt-player', {
+				height: '108',
+				width: '192',
+				playerVars: {
+					fs: 0,
+					enablejsapi: 1,
+					controls: 0,
+					disablekb: 1,
+					modestbranding: 1
+				},
+				events: {
+					onReady(event) {
+						console.log('YouTube Player Ready', event);
+						event.target.setVolume(25);
+					},
+					onStateChange(event: any) {
+						// update state
+						console.log(event);
+
+						if (event.target.getPlayerState() === 0) {
+							// playNextTrack
+						}
+					}
+				}
+			});
+
+			$YouTubePlayer = player;
+		};
+
 		const credentials = await Spotify.getAccessToken();
 
 		if (credentials?.access_token) {
+			const spotifyPlayerScript = document.createElement('script');
+			spotifyPlayerScript.src = 'https://sdk.scdn.co/spotify-player.js';
+			document.body.appendChild(spotifyPlayerScript);
+
 			window.onSpotifyWebPlaybackSDKReady = () => {
 				const player = new window.Spotify.Player({
 					name: 'crowdq.fm',
@@ -128,39 +177,9 @@
 				player.activateElement();
 				player.connect();
 
-				// store = player;
+				$SpotifyPlayer = player;
 			};
 		}
-
-		window.onYouTubeIframeAPIReady = () => {
-			const player = new window.YT.Player('yt-player', {
-				height: '0',
-				width: '0',
-				playerVars: {
-					fs: 0,
-					enablejsapi: 1,
-					controls: 0,
-					disablekb: 1,
-					modestbranding: 1,
-					origin: window.location.origin
-				},
-				events: {
-					onReady(event: any) {
-						// yt ready
-						event.target.setVolume(25);
-					},
-					onStateChange(event: any) {
-						// update state
-
-						if (event.target.getPlayerState() === 0) {
-							// playNextTrack
-						}
-					}
-				}
-			});
-
-			// store = player
-		};
 	});
 
 	onDestroy(() => {
@@ -168,11 +187,6 @@
 		clearInterval(playNextIntervalId);
 	});
 </script>
-
-<svelte:head>
-	<script src="https://sdk.scdn.co/spotify-player.js"></script>
-	<script src="https://www.youtube.com/iframe_api" async></script>
-</svelte:head>
 
 <div class="flex flex-col gap-6">
 	<div class="relative flex items-center gap-4">
@@ -182,7 +196,9 @@
 			{/each}
 		</div>
 		{#if $currentQueueItem}
-			<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
+			{#if $currentQueueItem.provider === 'spotify'}
+				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
+			{/if}
 		{:else}
 			<div
 				class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
