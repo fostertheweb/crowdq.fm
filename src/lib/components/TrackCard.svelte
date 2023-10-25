@@ -24,8 +24,9 @@
 		{/if}
 	</div>
 	<div class="cq-track-details flex flex-col gap-1">
-		<div class="flex items-center gap-2 truncate text-sm text-stone-700 dark:text-stone-200">
-			<span>{item.name}</span>
+		<div
+			class="cq-track-name flex items-center gap-2 truncate overflow-ellipsis whitespace-nowrap text-sm text-stone-700 dark:text-stone-200">
+			<span class="">{item.name}</span>
 			{#if item.provider === 'spotify' && item.explicit}
 				<div
 					class="small-caps cq-font-heading flex items-center justify-center rounded-sm bg-stone-200 px-1 py-0 text-xs tracking-wide text-stone-500 dark:bg-stone-600 dark:text-stone-300">
@@ -51,5 +52,9 @@
 <style>
 	.cq-track-details {
 		width: 85%;
+	}
+
+	.cq-track-name {
+		max-width: calc(100% - 2.5rem);
 	}
 </style>

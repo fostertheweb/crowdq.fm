@@ -197,7 +197,7 @@
 		</div>
 		{#if $currentQueueItem}
 			{#if $currentQueueItem.provider === 'spotify'}
-				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
+				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 scale-0 rounded shadow-md" />
 			{/if}
 		{:else}
 			<div
@@ -210,15 +210,11 @@
 		<div class="space-y-1">
 			{#if $currentQueueItem}
 				<div class="text-lg dark:text-white">{$currentQueueItem.name}</div>
-			{:else}
-				<div class="text-lg dark:text-white">--</div>
 			{/if}
 			{#if $currentQueueItem && $currentQueueItem.artists}
 				<div class="text-base text-stone-500 dark:text-stone-400">
 					{$currentQueueItem.artists}
 				</div>
-			{:else}
-				<div class="text-base text-stone-500 dark:text-stone-400">--</div>
 			{/if}
 		</div>
 	</div>

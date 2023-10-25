@@ -30,7 +30,6 @@ export class UniversalPlayer {
 	static async play(playback: Playback) {
 		const device = get(spotifyDevice);
 		const youtube = get(YouTubePlayer);
-		const spotify = get(SpotifyPlayer);
 
 		const spotifyPlaybackState = await SpotifyApiClient.player.getPlaybackState();
 		const isSpotifyPlaying = spotifyPlaybackState?.is_playing;
