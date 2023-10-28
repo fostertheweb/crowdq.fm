@@ -1,8 +1,8 @@
 <script lang="ts">
-	import VolumeControl from './VolumeControl.svelte';
 	import { lighten } from 'polished';
 	import IconHeart from '../icons/IconHeart.svelte';
 	import IconPause from '../icons/IconPause.svelte';
+	import VolumeControl from './VolumeControl.svelte';
 
 	let item = {
 		artwork: 'https://i.scdn.co/image/ab67616d0000b273d03c8d74d7f963dee63ef893',
@@ -15,7 +15,7 @@
 
 <div
 	style:width="480px"
-	class="flex h-fit flex-col gap-4 rounded-lg border border-white/60 bg-white bg-opacity-50 p-4 shadow-lg backdrop-blur-md">
+	class="flex h-fit flex-col gap-4 rounded-lg border border-white/60 bg-white bg-opacity-50 p-4 shadow-lg backdrop-blur-md dark:border-white/20 dark:bg-opacity-20">
 	<div class="relative flex items-center gap-4">
 		<img src={item.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 		<div class="space-y-1">
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<div class="h-1.5 w-full rounded-full bg-stone-800/20 dark:bg-stone-700">
+	<div class="h-1.5 w-full rounded-full bg-stone-800/20 dark:bg-stone-800">
 		<div
 			class="cq-progress-bar h-1.5 rounded-full bg-transparent"
 			style:background={accentColor}

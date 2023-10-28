@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { UniversalPlayer } from '$lib/player';
 	import { Spotify } from '$lib/spotify';
 	import {
 		SpotifyPlayer,
@@ -56,9 +57,10 @@
 			if (nextItem) {
 				$currentQueueItem = nextItem;
 				trackEnd = false;
-				await Spotify.player.startResumePlayback($spotifyDevice!, undefined, [
-					`spotify:track:${nextItem.providerId}`
-				]);
+				await UniversalPlayer.play({ item: nextItem, position: 0, status: 'loading' });
+				// await Spotify.player.startResumePlayback($spotifyDevice!, undefined, [
+				// 	`spotify:track:${nextItem.providerId}`
+				// ]);
 			}
 		}, 750);
 	}
@@ -86,9 +88,26 @@
 					onStateChange(event: any) {
 						// update state
 						console.log('YouTube State Change:', event);
+						$playerPosition = Math.ceil(event.target.getCurrentTime() * 1000);
 
-						if (event.target.getPlayerState() === 0) {
-							// playNextTrack
+						switch (event.target.getPlayerState()) {
+							case 0:
+								clearInterval(progressInterval);
+								$playerPosition = 0;
+								$playerStatus = 'loading';
+								trackEnd = true;
+								break;
+							case 1:
+								$playerStatus = 'playing';
+								break;
+							case 2:
+								clearInterval(progressInterval);
+								$playerStatus = 'paused';
+								break;
+							default:
+								$playerPosition = 0;
+								$playerStatus = 'idle';
+								break;
 						}
 					}
 				}

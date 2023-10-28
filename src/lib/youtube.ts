@@ -72,6 +72,21 @@ export function convertISO8601ToMs(duration: string): number {
 	return 0;
 }
 
+export function getYouTubePlayerState(playerState: number) {
+	switch (playerState) {
+		case -1:
+			return 'idle';
+		case 0:
+			return 'idle';
+		case 1:
+			return 'playing';
+		case 2:
+			return 'paused';
+		default:
+			return 'idle';
+	}
+}
+
 export type YouTubeID = {
 	kind: string;
 	videoId: string;
