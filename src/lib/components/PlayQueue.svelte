@@ -20,6 +20,26 @@
 	$: displayShadow = scrollY > 0;
 
 	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
+	$: remainingQueue = $playQueue.slice(currentIndex + 1);
+	$: totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
+
+	function formatMillis(millis: number) {
+		const hours = Math.floor(millis / 3600000);
+		const minutes = Math.floor((millis % 3600000) / 60000);
+		const seconds = Math.floor((millis % 60000) / 1000);
+
+		let result = `${seconds} seconds.`;
+
+		if (minutes > 0) {
+			result = `${minutes} minutes ${result}`;
+		}
+
+		if (hours > 0) {
+			result = `${hours} hours ${result}`;
+		}
+
+		return result;
+	}
 
 	const query = createQuery({
 		queryKey: ['devices'],
@@ -53,17 +73,20 @@
 	bind:this={queueElement}
 	class="space-y-2 overflow-y-scroll pb-8"
 	on:scroll={() => (scrollY = queueElement.scrollTop)}>
-	{#if $playQueue.length > 0}
-		{#each $playQueue.slice(currentIndex + 1) as item}
+	{#if remainingQueue.length > 0}
+		{#each remainingQueue as item}
 			<TrackCard {item} />
 		{/each}
-		<div class="text-center text-xs text-stone-400">
-			{$playQueue.length} songs, {$playQueue.reduce((d, t) => d + t.duration, 0)}
-		</div>
 	{:else}
 		<div
 			class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-8 text-stone-500 dark:bg-stone-800 dark:text-stone-500">
 			<span>No songs in queue</span>
+		</div>
+	{/if}
+	<!-- TODO: better display logic to consider current item -->
+	{#if $playQueue.length > 0 && remainingQueue.length === 0}
+		<div class="text-center text-xs text-stone-400">
+			Listened to {$playQueue.length} songs, for {formatMillis(totalListeningTime)}
 		</div>
 	{/if}
 </div>

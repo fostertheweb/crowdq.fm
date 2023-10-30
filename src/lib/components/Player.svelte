@@ -203,20 +203,22 @@
 </script>
 
 <div class="flex flex-col gap-6">
-	<div class="relative flex items-center gap-4">
-		<div class="absolute right-0 top-0 flex items-center space-x-2">
+	<div
+		class="relative flex items-center gap-4"
+		class:flex-col={$currentQueueItem?.provider === 'youtube'}>
+		<div class="absolute right-0 top-0 hidden items-center space-x-2">
 			{#each testColors as color}
 				<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
 			{/each}
 		</div>
 		<div
-			class="pointer-events-none"
+			class="pointer-events-none w-full"
 			style:display={$currentQueueItem?.provider === 'youtube' ? 'block' : 'none'}>
-			<div id="yt-player" class="h-28 grow-0 rounded shadow"></div>
+			<div id="yt-player" class="h-auto w-full rounded shadow"></div>
 		</div>
 		{#if $currentQueueItem}
 			{#if $currentQueueItem.provider === 'spotify'}
-				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 scale-0 rounded shadow-md" />
+				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 			{/if}
 		{:else}
 			<div
@@ -228,7 +230,9 @@
 		{/if}
 		<div class="space-y-1">
 			{#if $currentQueueItem}
-				<div class="text-lg dark:text-white">{$currentQueueItem.name}</div>
+				<div class="cq-name truncate overflow-ellipsis whitespace-nowrap text-lg dark:text-white">
+					{$currentQueueItem.name}
+				</div>
 			{/if}
 			{#if $currentQueueItem && $currentQueueItem.artists}
 				<div class="text-base text-stone-500 dark:text-stone-400">
@@ -263,6 +267,10 @@
 	}
 
 	#yt-player {
-		width: calc(7rem * 16 / 9);
+		min-width: calc(7rem * 16 / 9);
+	}
+
+	.cq-name {
+		width: calc(480px - 2rem);
 	}
 </style>
