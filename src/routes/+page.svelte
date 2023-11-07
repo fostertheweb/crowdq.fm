@@ -69,14 +69,14 @@
 </script>
 
 <div class="bg-gradient-to-br from-stone-50 to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
-	<nav class="mx-auto flex w-full max-w-7xl items-center justify-between pb-8">
+	<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
 		<h3 class="font-straker text-2xl font-medium tracking-wide text-stone-700 dark:text-white">
 			crowdq<span class="text-orange-500">.</span>fm
 		</h3>
 
 		<div></div>
 	</nav>
-	<header class="mx-auto flex max-w-7xl flex-col justify-center">
+	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<h1 class="font-general text-4xl font-semibold text-rose-950 dark:text-stone-100">
 			collaborative play queue
 			<br />for <span class="text-rose-500">now</span> or
@@ -115,30 +115,43 @@
 	</header>
 </div>
 <section class="border-t-4 border-rose-100 p-8">
-	<div class="mx-auto flex w-full max-w-7xl py-16">
+	<div class="mx-auto flex w-full max-w-5xl justify-center gap-16 py-16">
 		<div class="cq-tracks w-1/2 rounded bg-white p-2 shadow">
 			{#each tracks as track}
 				<TrackCard item={track.item} listener={track.listener} />
 			{/each}
 		</div>
-		<div class="w-1/2 text-center">
+		<div class="w-1/2 space-y-4 text-left">
 			<h3 class="font-general text-3xl font-semibold text-stone-700">Craft the Queue</h3>
+			<p class="text-stone-600">
+				Paneer cheesy grin st. agur blue cheese. Chalk and cheese taleggio brie monterey jack
+				stilton halloumi feta cream cheese. St. agur blue cheese babybel jarlsberg cauliflower
+				cheese brie manchego goat smelly cheese. Camembert de normandie manchego fromage cheese on
+				toast when the cheese comes out everybody's happy squirty cheese cheesy grin ricotta.
+				Squirty cheese cream cheese queso say cheese.
+			</p>
 		</div>
 	</div>
 </section>
 <section
 	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-stone-50 p-8 dark:from-rose-950 dark:to-stone-950">
-	<div class="mx-auto flex w-full max-w-7xl py-16">
-		<div class="w-1/2 text-center">
+	<div class="mx-auto flex w-full max-w-5xl justify-center gap-16 py-16">
+		<div class="w-1/2 space-y-4 text-left">
 			<h3 class="font-general text-3xl font-semibold text-rose-900">Listen Together</h3>
+			<p class="text-rose-950">
+				Caerphilly cheese strings macaroni cheese. Bavarian bergkase cheeseburger monterey jack hard
+				cheese stinking bishop cheeseburger fromage frais squirty cheese. Cheese and wine croque
+				monsieur bocconcini boursin cheese on toast macaroni cheese ricotta cottage cheese. Pepper
+				jack swiss monterey jack feta manchego roquefort boursin.
+			</p>
 		</div>
 		<div class="relative">
 			<div
-				class="absolute -left-8 -top-8 h-72 w-72 rounded-full bg-[#2485a1]/40 mix-blend-multiply blur-2xl" />
+				class="absolute -left-8 -top-8 h-72 w-72 rounded-full bg-[#2485a1]/30 mix-blend-multiply blur-2xl" />
 			<div
-				class="absolute -right-8 -top-4 h-72 w-72 rounded-full bg-[#a81922]/30 mix-blend-multiply blur-2xl" />
+				class="absolute -right-8 -top-4 h-72 w-72 rounded-full bg-[#a81922]/20 mix-blend-multiply blur-2xl" />
 			<div
-				class="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-[#c38497]/40 mix-blend-multiply blur-2xl" />
+				class="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-[#c38497]/30 mix-blend-multiply blur-2xl" />
 			<Player />
 		</div>
 	</div>
@@ -146,7 +159,7 @@
 <section>
 	<!-- share play queue -->
 </section>
-<footer class="border-t-4 border-orange-100 bg-white p-8 dark:bg-stone-900">
+<footer class="border-t-2 border-stone-100 bg-white p-8 dark:bg-stone-900">
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
 		<div class="flex items-baseline gap-1">
