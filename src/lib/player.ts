@@ -50,9 +50,12 @@ export class UniversalPlayer {
 		if (playback.item?.provider === 'youtube') {
 			const videoId = playback.item?.providerId;
 
-			if (device && isSpotifyPlaying) {
-				await SpotifyApiClient.player.pausePlayback(device);
-			}
+			console.log({ device, isSpotifyPlaying });
+
+			// TODO: uncomment when I'm not being hacked
+			// if (device && isSpotifyPlaying) {
+			// 	await SpotifyApiClient.player.pausePlayback(device);
+			// }
 
 			youtube?.loadVideoById({
 				videoId,

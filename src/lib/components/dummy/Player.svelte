@@ -5,17 +5,16 @@
 	import VolumeControl from './VolumeControl.svelte';
 
 	let item = {
-		artwork: 'https://i.scdn.co/image/ab67616d0000b273d03c8d74d7f963dee63ef893',
-		name: 'On My Mama',
-		artists: 'Victoria Monét'
+		artwork: 'https://i.scdn.co/image/ab67616d0000b273a0369b863f523411e35d817b',
+		name: 'Rhythm & Blues',
+		artists: 'Ayra Starr'
 	};
 
-	let accentColor = '#db8654';
+	let accentColor = '#67c3dd';
 </script>
 
 <div
-	style:width="480px"
-	class="flex h-fit flex-col gap-4 rounded-lg border border-white/60 bg-white bg-opacity-50 p-4 shadow-lg backdrop-blur-md dark:border-white/20 dark:bg-opacity-20">
+	class="cq-player flex h-fit flex-col gap-4 rounded-lg border border-white/60 bg-white bg-opacity-50 p-4 shadow-lg backdrop-blur-md dark:border-white/20 dark:bg-opacity-20">
 	<div class="relative flex items-center gap-4">
 		<img src={item.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 		<div class="space-y-1">
@@ -51,3 +50,9 @@
 		<VolumeControl />
 	</div>
 </div>
+
+<style>
+	.cq-player {
+		width: 480px;
+	}
+</style>

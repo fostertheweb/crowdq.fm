@@ -206,7 +206,7 @@
 	<div
 		class="relative flex items-center gap-4"
 		class:flex-col={$currentQueueItem?.provider === 'youtube'}>
-		<div class="absolute right-0 top-0 hidden items-center space-x-2">
+		<div class="absolute right-0 top-0 flex items-center space-x-2">
 			{#each testColors as color}
 				<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
 			{/each}

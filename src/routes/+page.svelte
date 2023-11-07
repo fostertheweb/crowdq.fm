@@ -1,6 +1,71 @@
 <script lang="ts">
 	import Player from '$lib/components/dummy/Player.svelte';
+	import TrackCard from '$lib/components/dummy/TrackCard.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
+
+	const tracks = [
+		{
+			item: {
+				artwork: 'https://i.scdn.co/image/ab67616d0000b273d03c8d74d7f963dee63ef893',
+				name: 'On My Mama',
+				artists: 'Victoria Monét',
+				explicit: false
+			},
+			listener: {
+				avatar:
+					'https://userstock.io/data/wp-content/uploads/2017/07/ahmed-saffu-201122-300x300.jpg'
+			}
+		},
+
+		{
+			item: {
+				artwork: 'https://i.scdn.co/image/ab67616d0000b27355e00e99a232c2117de6c00a',
+				name: 'Scream Drive Faster',
+				artists: 'LAUREL',
+				explicit: false
+			},
+			listener: {
+				avatar:
+					'https://userstock.io/data/wp-content/uploads/2017/07/pexels-photo-26939-1-300x300.jpg'
+			}
+		},
+		{
+			item: {
+				artwork: 'https://i.scdn.co/image/ab67616d0000b2738128b3a01e0246795dfab1a2',
+				name: 'Desire',
+				artists: 'Cleo Sol',
+				explicit: false
+			},
+			listener: {
+				avatar:
+					'https://userstock.io/data/wp-content/uploads/2017/07/yegide-matthews-60888-300x300.jpg'
+			}
+		},
+
+		{
+			item: {
+				artwork: 'https://i.scdn.co/image/ab67616d0000b273d87c524bbf1aa68ce698da29',
+				name: 'Got Me Started',
+				artists: 'Troye Sivan',
+				explicit: false
+			},
+			listener: {
+				avatar:
+					'https://userstock.io/data/wp-content/uploads/2017/09/yingchou-han-261533-300x300.jpg'
+			}
+		},
+		{
+			item: {
+				artwork: 'https://i.scdn.co/image/ab67616d0000b273ebc5a9d869143c4def6771e9',
+				name: 'NATURAL',
+				artists: 'Isaiah Falls, Tamae, Icee Red'
+			},
+			listener: {
+				avatar:
+					'https://userstock.io/data/wp-content/uploads/2017/07/william-stitt-111007-300x300.jpg'
+			}
+		}
+	];
 </script>
 
 <div class="bg-gradient-to-br from-stone-50 to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
@@ -49,21 +114,31 @@
 		</div>
 	</header>
 </div>
-<section>
-	<!-- queue -->
-</section>
-<section class="p-8">
-	<div class="relative mx-auto flex w-full max-w-7xl py-16">
-		<div
-			class="absolute right-96 top-8 h-72 w-72 rounded-full bg-[#e8d1b7]/70 mix-blend-multiply blur-2xl" />
-		<div
-			class="absolute right-64 top-4 h-72 w-72 rounded-full bg-[#634c46]/50 mix-blend-multiply blur-2xl" />
-		<div
-			class="absolute right-16 top-16 h-72 w-72 rounded-full bg-[#db8654]/50 mix-blend-multiply blur-2xl" />
-		<div class="w-1/2">
-			<h3 class="font-general text-2xl font-semibold text-stone-600">Listen to music</h3>
+<section class="border-t-4 border-rose-100 p-8">
+	<div class="mx-auto flex w-full max-w-7xl py-16">
+		<div class="cq-tracks w-1/2 rounded bg-white p-2 shadow">
+			{#each tracks as track}
+				<TrackCard item={track.item} listener={track.listener} />
+			{/each}
 		</div>
-		<div class="flex w-1/2 justify-center">
+		<div class="w-1/2 text-center">
+			<h3 class="font-general text-2xl font-semibold text-stone-600">Craft the Queue</h3>
+		</div>
+	</div>
+</section>
+<section
+	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-stone-50 p-8 dark:from-rose-950 dark:to-stone-950">
+	<div class="mx-auto flex w-full max-w-7xl py-16">
+		<div class="w-1/2 text-center">
+			<h3 class="font-general text-2xl font-semibold text-stone-600">Listen Together</h3>
+		</div>
+		<div class="relative">
+			<div
+				class="absolute -top-8 left-0 h-72 w-72 rounded-full bg-[#2485a1]/70 mix-blend-multiply blur-2xl" />
+			<div
+				class="absolute -top-4 right-0 h-72 w-72 rounded-full bg-[#a81922]/50 mix-blend-multiply blur-2xl" />
+			<div
+				class="absolute bottom-0 left-16 h-72 w-72 rounded-full bg-[#c38497]/50 mix-blend-multiply blur-2xl" />
 			<Player />
 		</div>
 	</div>
@@ -91,5 +166,9 @@
 <style>
 	header {
 		min-height: 60vh;
+	}
+
+	.cq-tracks {
+		width: 480px;
 	}
 </style>
