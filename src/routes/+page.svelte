@@ -77,7 +77,7 @@
 		<div></div>
 	</nav>
 	<header class="mx-auto flex max-w-7xl flex-col justify-center">
-		<h1 class="font-general text-4xl font-semibold dark:text-stone-100">
+		<h1 class="font-general text-4xl font-semibold text-rose-950 dark:text-stone-100">
 			collaborative play queue
 			<br />for <span class="text-rose-500">now</span> or
 			<span class="text-orange-500">later</span>
@@ -122,7 +122,7 @@
 			{/each}
 		</div>
 		<div class="w-1/2 text-center">
-			<h3 class="font-general text-2xl font-semibold text-stone-600">Craft the Queue</h3>
+			<h3 class="font-general text-3xl font-semibold text-stone-700">Craft the Queue</h3>
 		</div>
 	</div>
 </section>
@@ -130,15 +130,15 @@
 	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-stone-50 p-8 dark:from-rose-950 dark:to-stone-950">
 	<div class="mx-auto flex w-full max-w-7xl py-16">
 		<div class="w-1/2 text-center">
-			<h3 class="font-general text-2xl font-semibold text-stone-600">Listen Together</h3>
+			<h3 class="font-general text-3xl font-semibold text-rose-900">Listen Together</h3>
 		</div>
 		<div class="relative">
 			<div
-				class="absolute -top-8 left-0 h-72 w-72 rounded-full bg-[#2485a1]/70 mix-blend-multiply blur-2xl" />
+				class="absolute -left-8 -top-8 h-72 w-72 rounded-full bg-[#2485a1]/40 mix-blend-multiply blur-2xl" />
 			<div
-				class="absolute -top-4 right-0 h-72 w-72 rounded-full bg-[#a81922]/50 mix-blend-multiply blur-2xl" />
+				class="absolute -right-8 -top-4 h-72 w-72 rounded-full bg-[#a81922]/30 mix-blend-multiply blur-2xl" />
 			<div
-				class="absolute bottom-0 left-16 h-72 w-72 rounded-full bg-[#c38497]/50 mix-blend-multiply blur-2xl" />
+				class="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-[#c38497]/40 mix-blend-multiply blur-2xl" />
 			<Player />
 		</div>
 	</div>
@@ -146,7 +146,7 @@
 <section>
 	<!-- share play queue -->
 </section>
-<footer class="bg-white p-8 dark:bg-stone-900">
+<footer class="border-t-4 border-orange-100 bg-white p-8 dark:bg-stone-900">
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
 		<div class="flex items-baseline gap-1">

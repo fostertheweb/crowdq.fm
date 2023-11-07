@@ -14,7 +14,7 @@
 </script>
 
 <div
-	class="cq-player flex h-fit flex-col gap-4 rounded-lg border border-white/60 bg-white bg-opacity-50 p-4 shadow-lg backdrop-blur-md dark:border-white/20 dark:bg-opacity-20">
+	class="cq-player flex h-fit flex-col gap-4 rounded-lg border border-white/60 bg-white bg-opacity-60 p-4 shadow-lg backdrop-blur-md dark:border-white/20 dark:bg-opacity-20">
 	<div class="relative flex items-center gap-4">
 		<img src={item.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 		<div class="space-y-1">
@@ -25,7 +25,7 @@
 		</div>
 	</div>
 
-	<div class="h-1.5 w-full rounded-full bg-stone-800/20 dark:bg-stone-800">
+	<div class="h-1.5 w-full rounded-full bg-black/10 dark:bg-stone-800">
 		<div
 			class="cq-progress-bar h-1.5 rounded-full bg-transparent"
 			style:background={accentColor}
@@ -36,12 +36,12 @@
 		<div class="flex items-center gap-2">
 			<button
 				class="flex h-10 w-10 items-center justify-center rounded-full"
-				style:background-color={lighten(0.3, accentColor)}
+				style:background-color={lighten(0.2, accentColor)}
 				style:color={accentColor}>
 				<IconPause />
 			</button>
 			<button
-				class="flex h-10 w-10 items-center justify-center rounded-full text-stone-500 hover:bg-stone-200/60 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
+				class="flex h-10 w-10 items-center justify-center rounded-full text-stone-500 hover:bg-white/20 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600"
 				style:color={accentColor}>
 				<IconHeart filled={true} />
 			</button>
