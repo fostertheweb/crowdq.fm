@@ -48,7 +48,7 @@
 			return response.devices.filter(({ is_active }) => is_active);
 		},
 		initialData: devices,
-		refetchOnWindowFocus: true,
+		refetchOnWindowFocus: 'always',
 		enabled: !!user && browser
 	});
 </script>

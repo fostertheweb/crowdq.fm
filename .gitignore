@@ -138,3 +138,4 @@ package
 .env*.local
 
 .partykit
+.DS_Store

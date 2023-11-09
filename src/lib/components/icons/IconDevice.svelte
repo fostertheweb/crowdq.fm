@@ -29,5 +29,8 @@
 <style>
 	svg {
 		fill: currentColor;
+		font-size: 200%;
+		text-align: center;
+		width: 100%;
 	}
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import AddToSpotify from '$lib/components/dummy/AddToSpotify.svelte';
 	import Player from '$lib/components/dummy/Player.svelte';
 	import TrackCard from '$lib/components/dummy/TrackCard.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
@@ -68,7 +69,7 @@
 	];
 </script>
 
-<div class="bg-gradient-to-br from-stone-50 to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
+<div class="bg-gradient-to-br from-white to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
 	<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
 		<h3 class="font-straker text-2xl font-medium tracking-wide text-stone-700 dark:text-white">
 			crowdq<span class="text-orange-500">.</span>fm
@@ -79,7 +80,7 @@
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<h1 class="font-general text-4xl font-semibold text-rose-950 dark:text-stone-100">
 			collaborative play queue
-			<br />for <span class="text-rose-500">now</span> or
+			<br class="hidden md:block" />for <span class="text-rose-500">now</span> or
 			<span class="text-orange-500">later</span>
 		</h1>
 		<p class="mt-8 text-base font-normal text-stone-600 dark:text-stone-200">
@@ -115,34 +116,36 @@
 	</header>
 </div>
 <section class="border-t-4 border-rose-100 p-8">
-	<div class="mx-auto flex w-full max-w-5xl justify-center gap-16 py-16">
-		<div class="cq-tracks w-1/2 rounded bg-white p-2 shadow">
+	<div
+		class="mx-auto flex w-full max-w-5xl flex-col-reverse justify-center gap-16 py-16 lg:flex-row">
+		<div class="cq-tracks h-fit rounded bg-white p-2 shadow dark:bg-stone-700 lg:w-1/2">
 			{#each tracks as track}
 				<TrackCard item={track.item} listener={track.listener} />
 			{/each}
 		</div>
-		<div class="w-1/2 space-y-4 text-left">
-			<h3 class="font-general text-3xl font-semibold text-stone-700">Craft the Queue</h3>
-			<p class="text-stone-600">
-				Paneer cheesy grin st. agur blue cheese. Chalk and cheese taleggio brie monterey jack
-				stilton halloumi feta cream cheese. St. agur blue cheese babybel jarlsberg cauliflower
-				cheese brie manchego goat smelly cheese. Camembert de normandie manchego fromage cheese on
-				toast when the cheese comes out everybody's happy squirty cheese cheesy grin ricotta.
-				Squirty cheese cream cheese queso say cheese.
-			</p>
+		<div class="space-y-4 text-left lg:w-1/2">
+			<h3 class="font-general text-3xl font-semibold text-stone-700 dark:text-stone-300">
+				Craft the Queue
+			</h3>
+			<ul class="cq-list-style list-inside space-y-3 text-stone-600 dark:text-stone-400">
+				<li>Drag and drop one or more songs from Spotify</li>
+				<li>Paste a Spotify song link or YouTube URL</li>
+				<li>Mix Spotify and YouTube for the perfect playlist</li>
+				<li>See who added each song to the queue</li>
+			</ul>
 		</div>
 	</div>
 </section>
 <section
-	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-stone-50 p-8 dark:from-rose-950 dark:to-stone-950">
-	<div class="mx-auto flex w-full max-w-5xl justify-center gap-16 py-16">
-		<div class="w-1/2 space-y-4 text-left">
+	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-white p-8 dark:from-rose-950 dark:to-stone-950">
+	<div class="mx-auto flex w-full max-w-5xl flex-col justify-center gap-16 py-16 lg:flex-row">
+		<div class="space-y-4 text-left lg:w-1/2">
 			<h3 class="font-general text-3xl font-semibold text-rose-900">Listen Together</h3>
 			<p class="text-rose-950">
-				Caerphilly cheese strings macaroni cheese. Bavarian bergkase cheeseburger monterey jack hard
-				cheese stinking bishop cheeseburger fromage frais squirty cheese. Cheese and wine croque
-				monsieur bocconcini boursin cheese on toast macaroni cheese ricotta cottage cheese. Pepper
-				jack swiss monterey jack feta manchego roquefort boursin.
+				Simply create a shared queue, invite your favorite people, and enjoy the harmonious magic of
+				synchronized playback. Watch as the rhythm of each beat aligns perfectly, fostering a sense
+				of togetherness even across distances. Whether it's a virtual party, a remote work session,
+				or a cozy night in with loved ones, crowdq.fm will maintain the vibes.
 			</p>
 		</div>
 		<div class="relative">
@@ -156,14 +159,29 @@
 		</div>
 	</div>
 </section>
-<section>
-	<!-- share play queue -->
+<section class="border-t-4 border-stone-200/50 p-8">
+	<div
+		class="mx-auto flex w-full max-w-5xl flex-col-reverse justify-center gap-16 py-16 lg:flex-row">
+		<!-- share play queue -->
+		<div class="cq-spotify-add">
+			<AddToSpotify />
+		</div>
+		<div class="space-y-4 text-left lg:w-1/2">
+			<h3 class="font-general text-3xl font-semibold text-stone-700">Take the Queue to Go</h3>
+			<span class="rounded-full bg-stone-200 px-2 py-1 text-xs text-stone-500">Spotify Only</span>
+			<p class="text-stone-600">
+				We can't always be in sync, but we can still share a sonic experience that will bring us
+				together. When you are away from your computer or want to load up a play queue for later,
+				open crowdq.fm on the go and send the queue to any Spotify device.
+			</p>
+		</div>
+	</div>
 </section>
 <footer class="border-t-2 border-stone-100 bg-white p-8 dark:bg-stone-900">
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
 		<div class="flex items-baseline gap-1">
-			Made by <a href="https://github.com/fostertheweb" class="underline hover:text-stone-700"
+			made by <a href="https://github.com/fostertheweb" class="underline hover:text-stone-700"
 				>fostertheweb</a>
 		</div>
 
@@ -183,5 +201,15 @@
 
 	.cq-tracks {
 		width: 480px;
+		max-width: 100%;
+	}
+
+	.cq-spotify-add {
+		width: 480px;
+		max-width: 100%;
+	}
+
+	.cq-list-style {
+		list-style-type: disc;
 	}
 </style>

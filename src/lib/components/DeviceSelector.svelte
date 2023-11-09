@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { createRadioGroup, melt } from '@melt-ui/svelte';
-	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import IconDevice from '$lib/components/icons/IconDevice.svelte';
-	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import IconExternalLink from '$lib/components/icons/IconExternalLink.svelte';
+	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import IconSpinner from '$lib/components/icons/IconSpinner.svelte';
+	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import { createRadioGroup, melt } from '@melt-ui/svelte';
 
 	export let devices: Array<Device> | undefined;
 	export let isAdding = false;
@@ -46,21 +46,30 @@
 				><IconExternalLink />Open Spotify</a>
 		</div>
 	{:else}
-		{#each devices as device}
-			{#if device.id}
-				<button
-					use:melt={$item(device.id)}
-					class="flex items-center justify-center gap-2 rounded border p-3 shadow {$isChecked(
-						device.id
-					)
-						? 'border-green-500 bg-green-50 text-green-900 ring ring-green-200'
-						: 'border-stone-200 bg-stone-50'}"
-					id={device.id}>
-					<IconDevice deviceType={device.type} />
-					{device.name}
-				</button>
-			{/if}
-		{/each}
+		<div
+			class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-4 text-sm text-stone-600 dark:bg-stone-700 dark:text-stone-400">
+			<div>
+				<p>If you don't see your device, open the Spotify app and return to crowdq.fm</p>
+				<p class="mt-4">You might have to play music in the app for the device to show up here.</p>
+			</div>
+		</div>
+		<div class="flex gap-4">
+			{#each devices as device}
+				{#if device.id}
+					<button
+						use:melt={$item(device.id)}
+						class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 p-2 {$isChecked(
+							device.id
+						)
+							? 'border-green-500 bg-green-50 text-green-900 ring-0 ring-green-50'
+							: 'bg-stone-50 ring-stone-200'}"
+						id={device.id}>
+						<IconDevice deviceType={device.type} />
+						{device.name}
+					</button>
+				{/if}
+			{/each}
+		</div>
 
 		<div class="mt-2 flex justify-end gap-3 font-general font-medium tracking-wide">
 			<button
