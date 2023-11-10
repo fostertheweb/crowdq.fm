@@ -1,7 +1,11 @@
 <script lang="ts">
 	import AddToSpotify from '$lib/components/dummy/AddToSpotify.svelte';
+	import ListenerStack from '$lib/components/dummy/ListenerStack.svelte';
 	import Player from '$lib/components/dummy/Player.svelte';
 	import TrackCard from '$lib/components/dummy/TrackCard.svelte';
+	import IconArrowRight from '$lib/components/icons/IconArrowRight.svelte';
+	import IconChrome from '$lib/components/icons/IconChrome.svelte';
+	import IconList from '$lib/components/icons/IconList.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 
 	const tracks = [
@@ -88,60 +92,76 @@
 			<br />Can't sync up? Share a play queue with friends for another time.
 		</p>
 
-		<div class="mt-8 flex items-center gap-8 tracking-wide">
+		<div class="mt-8 flex items-center gap-6 tracking-wide">
 			<a
 				href="/lobby"
 				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold tracking-wide text-white shadow hover:brightness-125">
 				Create Room
 			</a>
-		</div>
-		<div class="mt-8 flex items-center gap-3 text-stone-500 dark:text-stone-300">
-			<p class="text-sm">Supporting</p>
-			<div class="flex items-center gap-2">
-				<img
-					class="h-6 opacity-70 invert dark:opacity-90 dark:invert-0"
-					src="/images/spotify-white.png"
-					width={80}
-					height={24}
-					alt="Spotify" />
-				<IconPlus />
-				<img
-					class="-ml-2 h-6 scale-75 opacity-70 invert dark:opacity-90 dark:invert-0"
-					src="/images/youtube-white.png"
-					width={108}
-					height={18}
-					alt="YouTube" />
-			</div>
+			<a href="#features" class="text-rose-950 underline hover:text-rose-800">Learn More</a>
 		</div>
 	</header>
 </div>
-<section class="border-t-4 border-rose-100 p-8">
+<section id="features" class="border-t-4 border-rose-100 p-8 dark:border-rose-900">
 	<div
 		class="mx-auto flex w-full max-w-5xl flex-col-reverse justify-center gap-16 py-16 lg:flex-row">
-		<div class="cq-tracks h-fit rounded bg-white p-2 shadow dark:bg-stone-700 lg:w-1/2">
+		<div
+			class="cq-tracks h-fit rounded border bg-white p-2 shadow shadow-stone-500/10 dark:border-stone-700/60 dark:bg-stone-800 lg:w-1/2">
 			{#each tracks as track}
 				<TrackCard item={track.item} listener={track.listener} />
 			{/each}
 		</div>
-		<div class="space-y-4 text-left lg:w-1/2">
+		<div class="text-left lg:w-1/2">
 			<h3 class="font-general text-3xl font-semibold text-stone-700 dark:text-stone-300">
 				Craft the Queue
 			</h3>
-			<ul class="cq-list-style list-inside space-y-3 text-stone-600 dark:text-stone-400">
-				<li>Drag and drop one or more songs from Spotify</li>
-				<li>Paste a Spotify song link or YouTube URL</li>
-				<li>Mix Spotify and YouTube for the perfect playlist</li>
-				<li>See who added each song to the queue</li>
+			<ul class="mt-6 space-y-3 text-stone-600 dark:text-stone-400">
+				<li class="border-px space-y-2 border-b border-stone-200/60 pb-3 dark:border-stone-800">
+					<div class="flex items-center gap-2">
+						<img
+							class="h-5 w-fit opacity-70 invert dark:opacity-90 dark:invert-0"
+							src="/images/spotify-white.png"
+							width={80}
+							height={24}
+							alt="Spotify" />
+						<IconPlus />
+						<img
+							class="-ml-2 h-5 w-fit scale-75 opacity-70 invert dark:opacity-90 dark:invert-0"
+							src="/images/youtube-white.png"
+							width={108}
+							height={18}
+							alt="YouTube" />
+					</div>
+					<p class="text-sm">Mix Spotify and YouTube for the perfect playlist</p>
+				</li>
+				<li class="border-px space-y-2 border-b border-stone-200/60 pb-3 dark:border-stone-800">
+					<div class="flex items-center gap-2">
+						<IconChrome />
+						<IconArrowRight />
+						<IconList />
+					</div>
+					<p class="text-sm">Drag and drop songs from Spotify or YouTube into queue</p>
+				</li>
+				<li class="border-px space-y-2 border-b border-stone-200/60 pb-3 dark:border-stone-800">
+					<p class="font-general font-medium">&#8984; + C, &#8984; + V</p>
+					<p class="text-sm">Copy and paste a Spotify song link or YouTube video URL</p>
+				</li>
+				<li class="space-y-2">
+					<ListenerStack />
+					<p class="text-sm">Judge everyone's taste in music</p>
+				</li>
 			</ul>
 		</div>
 	</div>
 </section>
 <section
-	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-white p-8 dark:from-rose-950 dark:to-stone-950">
+	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-white p-8 dark:border-rose-900 dark:from-rose-950 dark:to-stone-950">
 	<div class="mx-auto flex w-full max-w-5xl flex-col justify-center gap-16 py-16 lg:flex-row">
 		<div class="space-y-4 text-left lg:w-1/2">
-			<h3 class="font-general text-3xl font-semibold text-rose-900">Listen Together</h3>
-			<p class="text-rose-950">
+			<h3 class="font-general text-3xl font-semibold text-rose-900 dark:text-rose-50">
+				Listen Together
+			</h3>
+			<p class="text-rose-950 dark:text-rose-100">
 				Simply create a shared queue, invite your favorite people, and enjoy the harmonious magic of
 				synchronized playback. Watch as the rhythm of each beat aligns perfectly, fostering a sense
 				of togetherness even across distances. Whether it's a virtual party, a remote work session,
@@ -159,7 +179,7 @@
 		</div>
 	</div>
 </section>
-<section class="border-t-4 border-stone-200/50 p-8">
+<section class="border-t-4 border-stone-200/50 p-8 dark:border-stone-800">
 	<div
 		class="mx-auto flex w-full max-w-5xl flex-col-reverse justify-center gap-16 py-16 lg:flex-row">
 		<!-- share play queue -->
@@ -167,17 +187,22 @@
 			<AddToSpotify />
 		</div>
 		<div class="space-y-4 text-left lg:w-1/2">
-			<h3 class="font-general text-3xl font-semibold text-stone-700">Take the Queue to Go</h3>
-			<span class="rounded-full bg-stone-200 px-2 py-1 text-xs text-stone-500">Spotify Only</span>
-			<p class="text-stone-600">
+			<h3 class="font-general text-3xl font-semibold text-stone-700 dark:text-stone-300">
+				Take the Queue to Go
+			</h3>
+			<p class="text-stone-600 dark:text-stone-400">
 				We can't always be in sync, but we can still share a sonic experience that will bring us
 				together. When you are away from your computer or want to load up a play queue for later,
 				open crowdq.fm on the go and send the queue to any Spotify device.
 			</p>
+			<div
+				class="h-fit w-fit rounded-full bg-stone-200 px-2 py-1 text-xs text-stone-500 dark:bg-stone-700 dark:text-stone-300">
+				Spotify Only
+			</div>
 		</div>
 	</div>
 </section>
-<footer class="border-t-2 border-stone-100 bg-white p-8 dark:bg-stone-900">
+<footer class="border-t-2 border-stone-100 bg-white p-8 dark:border-stone-800 dark:bg-stone-900">
 	<div
 		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
 		<div class="flex items-baseline gap-1">
@@ -207,9 +232,5 @@
 	.cq-spotify-add {
 		width: 480px;
 		max-width: 100%;
-	}
-
-	.cq-list-style {
-		list-style-type: disc;
 	}
 </style>
