@@ -8,8 +8,9 @@
 	let isAdding = false;
 </script>
 
-<div class="rounded bg-white p-6 pt-2 shadow">
-	<h3 class="m-0 text-center font-general text-base font-medium tracking-wide text-stone-500">
+<div class="rounded bg-white p-6 pt-2 shadow dark:bg-stone-700">
+	<h3
+		class="m-0 text-center font-general text-base font-medium tracking-wide text-stone-500 dark:text-stone-300">
 		Select Spotify Device
 	</h3>
 	<div class="h-4" />
@@ -19,17 +20,17 @@
 		aria-label="Select device">
 		<div class="flex gap-4">
 			<button
-				class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 border-stone-200 bg-stone-50 p-2 text-stone-700">
+				class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 border-stone-200 bg-stone-50 p-2 text-stone-700 dark:border-stone-500 dark:bg-stone-600 dark:text-stone-300">
 				<IconDevice deviceType="computer" />
 				Laptop
 			</button>
 			<button
-				class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 border-green-500 bg-green-50 p-2 text-green-900 ring-0 ring-green-50">
+				class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 border-green-500 bg-green-50 p-2 text-green-900 dark:border-green-400 dark:bg-green-200">
 				<IconDevice deviceType="smartphone" />
 				iPhone
 			</button>
 			<button
-				class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 border-stone-200 bg-stone-50 p-2 text-stone-700">
+				class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 border-stone-200 bg-stone-50 p-2 text-stone-700 dark:border-stone-500 dark:bg-stone-600 dark:text-stone-300">
 				<IconDevice deviceType="tv" />
 				Television
 			</button>

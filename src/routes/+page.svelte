@@ -5,8 +5,8 @@
 	import TrackCard from '$lib/components/dummy/TrackCard.svelte';
 	import IconArrowRight from '$lib/components/icons/IconArrowRight.svelte';
 	import IconChrome from '$lib/components/icons/IconChrome.svelte';
+	import IconGitHub from '$lib/components/icons/IconGitHub.svelte';
 	import IconList from '$lib/components/icons/IconList.svelte';
-	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 
 	const tracks = [
 		{
@@ -75,11 +75,14 @@
 
 <div class="bg-gradient-to-br from-white to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
 	<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
-		<h3 class="font-straker text-2xl font-medium tracking-wide text-stone-700 dark:text-white">
+		<h3 class="font-straker text-3xl font-medium tracking-wide text-stone-700 dark:text-white">
 			crowdq<span class="text-orange-500">.</span>fm
 		</h3>
 
-		<div></div>
+		<div class="flex items-center gap-1 font-semibold text-stone-600 dark:text-white/60">
+			<IconGitHub />
+			<a class="hover:underline" href="https://github.com/fostertheweb/crowdq.fm">GitHub</a>
+		</div>
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<h1 class="font-general text-4xl font-semibold text-rose-950 dark:text-stone-100">
@@ -98,7 +101,10 @@
 				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold tracking-wide text-white shadow hover:brightness-125">
 				Create Room
 			</a>
-			<a href="#features" class="text-rose-950 underline hover:text-rose-800">Learn More</a>
+			<a
+				href="#features"
+				class="text-rose-950 underline hover:text-rose-800 dark:text-white/80 dark:hover:text-white"
+				>Learn More</a>
 		</div>
 	</header>
 </div>
@@ -115,42 +121,52 @@
 			<h3 class="font-general text-3xl font-semibold text-stone-700 dark:text-stone-300">
 				Craft the Queue
 			</h3>
-			<ul class="mt-6 space-y-3 text-stone-600 dark:text-stone-400">
-				<li class="border-px space-y-2 border-b border-stone-200/60 pb-3 dark:border-stone-800">
-					<div class="flex items-center gap-2">
+			<div class="mt-6 flex gap-4 text-stone-600 dark:text-stone-400">
+				<div
+					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					<div class="-ml-2 flex h-8 scale-90 items-center gap-1">
 						<img
-							class="h-5 w-fit opacity-70 invert dark:opacity-90 dark:invert-0"
+							class="opacity-70 invert dark:opacity-90 dark:invert-0"
 							src="/images/spotify-white.png"
 							width={80}
 							height={24}
 							alt="Spotify" />
-						<IconPlus />
+						<span class="font-general font-medium">+</span>
 						<img
-							class="-ml-2 h-5 w-fit scale-75 opacity-70 invert dark:opacity-90 dark:invert-0"
+							class="-ml-2.5 scale-75 opacity-70 invert dark:opacity-90 dark:invert-0"
 							src="/images/youtube-white.png"
 							width={108}
 							height={18}
 							alt="YouTube" />
 					</div>
 					<p class="text-sm">Mix Spotify and YouTube for the perfect playlist</p>
-				</li>
-				<li class="border-px space-y-2 border-b border-stone-200/60 pb-3 dark:border-stone-800">
-					<div class="flex items-center gap-2">
+				</div>
+				<div
+					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					<div class="flex h-8 items-center gap-2 text-xl dark:text-stone-200">
 						<IconChrome />
-						<IconArrowRight />
+						<span class="text-base"><IconArrowRight /></span>
 						<IconList />
 					</div>
 					<p class="text-sm">Drag and drop songs from Spotify or YouTube into queue</p>
-				</li>
-				<li class="border-px space-y-2 border-b border-stone-200/60 pb-3 dark:border-stone-800">
-					<p class="font-general font-medium">&#8984; + C, &#8984; + V</p>
+				</div>
+			</div>
+			<div class="mt-4 flex gap-4 text-stone-600 dark:text-stone-400">
+				<div
+					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					<p class="flex h-8 items-center font-general font-medium dark:text-stone-200">
+						&#8984; + C, &#8984; + V
+					</p>
 					<p class="text-sm">Copy and paste a Spotify song link or YouTube video URL</p>
-				</li>
-				<li class="space-y-2">
-					<ListenerStack />
-					<p class="text-sm">Judge everyone's taste in music</p>
-				</li>
-			</ul>
+				</div>
+				<div
+					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					<div class="h-8">
+						<ListenerStack />
+					</div>
+					<p class="text-sm">See who added which songs to the queue</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -210,11 +226,9 @@
 				>fostertheweb</a>
 		</div>
 
-		<div class="flex items-center gap-3 font-semibold text-stone-600 dark:text-stone-400">
-			<!-- github link -->
-			<a href="#">Privacy Policy</a>
-			<div class="h-4 w-px bg-stone-500/20" />
-			<a href="#">Changelog</a>
+		<div class="flex items-center gap-1 font-semibold text-stone-600 dark:text-stone-400">
+			<IconGitHub />
+			<a class="hover:underline" href="https://github.com/fostertheweb/crowdq.fm">GitHub</a>
 		</div>
 	</div>
 </footer>
