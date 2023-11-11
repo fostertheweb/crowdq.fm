@@ -58,17 +58,15 @@
 <div
 	class="cq-shadow-xl z-10 flex items-center justify-between bg-stone-50 pb-6 dark:bg-stone-900"
 	class:cq-shadow-xl={displayShadow}>
-	<div class="flex items-center gap-1">
+	<div class="flex items-center gap-2">
 		<h2
 			class=" font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300">
 			Queue
 		</h2>
 
-		<div class="flex h-8 flex-col items-center justify-center">
-			<span
-				class="rounded-full bg-stone-100 px-2 py-px font-general text-sm font-medium text-stone-500 dark:bg-stone-700 dark:text-stone-300"
-				>{remainingQueue.length}</span>
-		</div>
+		<span
+			class="w-10 min-w-fit rounded-full bg-stone-100 px-3 text-center font-general text-base font-medium leading-8 text-stone-500 dark:bg-stone-700/40 dark:text-stone-400"
+			>{remainingQueue.length}</span>
 	</div>
 
 	{#if !isMobile}

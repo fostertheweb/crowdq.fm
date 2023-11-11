@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { lighten } from 'polished';
+	import IconPause from '$lib/components/icons/IconPause.svelte';
+	import IconPlay from '$lib/components/icons/IconPlay.svelte';
 	import { party } from '$lib/stores/party';
 	import { accentColor, playerStatus } from '$lib/stores/player';
-	import IconPlay from '$lib/components/icons/IconPlay.svelte';
-	import IconPause from '$lib/components/icons/IconPause.svelte';
+	import { darken, lighten } from 'polished';
 
 	async function playNextTrack() {
 		$party?.send('play_next_track');
@@ -12,39 +12,65 @@
 	async function pause() {
 		$party?.send('pause');
 	}
+
+	$: styles = {
+		'text-color': $accentColor,
+		'text-hover-color': $accentColor,
+		'light-bg': lighten(0.3, $accentColor),
+		'light-hover-bg': lighten(0.2, $accentColor),
+		'dark-text-color': darken(0.2, $accentColor),
+		'dark-text-hover-color': darken(0.15, $accentColor),
+		'dark-bg': lighten(0.1, $accentColor),
+		'dark-hover-bg': lighten(0.2, $accentColor)
+	};
+
+	$: cssVariables = Object.entries(styles)
+		.map(([key, value]) => `--${key}:${value}`)
+		.join(';');
 </script>
 
-{#if $playerStatus === 'playing'}
-	<button
-		on:click={pause}
-		style={`--hover-bg:${lighten(0.25, $accentColor)};`}
-		class="flex h-10 w-10 items-center justify-center rounded-full"
-		style:background-color={lighten(0.3, $accentColor)}
-		style:color={$accentColor}>
-		<IconPause />
-	</button>
-{:else if $playerStatus === 'loading'}
-	<button
-		disabled
-		style={`--hover-bg:${lighten(0.25, $accentColor)};`}
-		class="flex h-10 w-10 items-center justify-center rounded-full"
-		style:background-color={lighten(0.3, $accentColor)}
-		style:color={$accentColor}>
-		<IconPause />
-	</button>
-{:else}
-	<button
-		on:click={playNextTrack}
-		style={`--hover-bg:${lighten(0.25, $accentColor)};`}
-		class="flex h-10 w-10 items-center justify-center rounded-full"
-		style:background-color={lighten(0.3, $accentColor)}
-		style:color={$accentColor}>
-		<IconPlay />
-	</button>
-{/if}
+<div style={cssVariables}>
+	{#if $playerStatus === 'playing'}
+		<button
+			on:click={pause}
+			class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+			<IconPause />
+		</button>
+	{:else if $playerStatus === 'loading'}
+		<button
+			disabled
+			class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+			<IconPause />
+		</button>
+	{:else}
+		<button
+			on:click={playNextTrack}
+			class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+			<IconPlay />
+		</button>
+	{/if}
+</div>
 
 <style>
+	button {
+		color: var(--text-color);
+		background-color: var(--light-bg);
+	}
+
 	button:hover {
-		background-color: var(--hover-bg) !important;
+		color: var(--text-hover-color);
+		background-color: var(--light-hover-bg) !important;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		button {
+			color: var(--dark-text-color);
+			background-color: var(--dark-bg);
+		}
+
+		button:hover {
+			color: var(--dark-text-hover-color);
+			background-color: var(--dark-hover-bg) !important;
+		}
 	}
 </style>

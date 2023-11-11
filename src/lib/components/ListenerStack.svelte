@@ -32,7 +32,7 @@
 			{/each}
 			{#if additionalListeners > 0}
 				<div
-					class="flex h-8 items-center justify-center rounded-r-full bg-stone-200 pl-4 pr-3 font-general text-sm font-medium text-stone-500 dark:bg-stone-700 dark:text-stone-400">
+					class="flex h-8 items-center justify-center rounded-r-full bg-stone-200/40 pl-4 pr-3 font-general text-sm font-medium text-stone-500 dark:bg-stone-700/40 dark:text-stone-400">
 					+{additionalListeners}
 				</div>
 			{/if}
