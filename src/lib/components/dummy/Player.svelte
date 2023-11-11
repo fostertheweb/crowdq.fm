@@ -41,7 +41,7 @@
 				<IconPause />
 			</button>
 			<button
-				class="flex h-10 w-10 items-center justify-center rounded-full text-stone-500 dark:bg-transparent dark:text-stone-300"
+				class="flex h-10 w-10 items-center justify-center rounded-full text-stone-500 dark:bg-white/20 dark:text-stone-300"
 				style:color={accentColor}>
 				<IconHeart filled={true} />
 			</button>
