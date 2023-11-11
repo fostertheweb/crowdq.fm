@@ -39,7 +39,7 @@
 		<div class="mt-2 flex justify-end gap-3 font-general font-medium tracking-wide">
 			<button
 				class="inline-flex items-center justify-center rounded-full
-                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 hover:bg-stone-200">
+                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600">
 				Cancel
 			</button>
 			{#if shouldOpenSpotify}
@@ -50,7 +50,7 @@
 			{:else}
 				<button
 					class="inline-flex items-center justify-center gap-1 rounded-full
-                    bg-orange-300 px-4 py-3 font-medium leading-none text-orange-900 hover:bg-orange-400">
+                    bg-orange-300 px-4 py-3 font-medium leading-none text-orange-900">
 					{#if isAdding}
 						<IconSpinner />
 					{:else}

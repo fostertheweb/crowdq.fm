@@ -112,7 +112,8 @@
 		<div class="flex items-center justify-between">
 			{#if isHost}
 				<button
-					class="flex items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
+					disabled
+					class="flex cursor-not-allowed items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
 					<IconSliders />
 					<span class="font-general font-medium tracking-wide">Settings</span>
 				</button>
