@@ -80,38 +80,6 @@ export function createQueueItemFromTrack(track: Track, listenerId: string) {
 	};
 }
 
-type TikTokEmbed = {
-	version: string;
-	type: string;
-	title: string;
-	author_url: string;
-	author_name: string;
-	width: string;
-	height: string;
-	html: string;
-	thumbnail_width: number;
-	thumbnail_height: number;
-	thumbnail_url: string;
-	provider_url: string;
-	provider_name: string;
-};
-
-export function createQueueItemFromTikTok(video: TikTokEmbed, listenerId: string) {
-	const parser = new DOMParser();
-	const doc = parser.parseFromString(video.html, 'text/html');
-
-	return {
-		name: video.title,
-		artists: video.author_name,
-		artwork: video.thumbnail_url,
-		// duration: convertISO8601ToMs(video.contentDetails.duration),
-		provider: 'tiktok',
-		providerId: doc.querySelector('blockquote')?.getAttribute('data-video-id') ?? '',
-		addedAt: Date.now(),
-		addedBy: listenerId
-	};
-}
-
 export function createUser(profile: UserProfile, isHost: boolean) {
 	return {
 		id: profile.id,
