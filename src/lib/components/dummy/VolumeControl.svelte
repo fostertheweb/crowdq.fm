@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex items-center space-x-2 rounded-full bg-white/50 px-1 dark:bg-white/20">
-	<button class="p-2 text-stone-400"><IconMinus /></button>
+	<button class="cursor-default p-2 text-stone-400 dark:text-white/70"><IconMinus /></button>
 
 	<span use:melt={$root} class="relative flex w-24 items-center">
 		<span class="block h-1 w-full rounded-full bg-stone-300">
@@ -21,7 +21,7 @@
 		</span>
 		<span use:melt={$thumb()} class="block h-4 w-4 rounded-full bg-white shadow outline-none" />
 	</span>
-	<button class="px-2 py-1 text-stone-400">
+	<button class="cursor-default px-2 py-1 text-stone-400 dark:text-white/70">
 		<IconPlus />
 	</button>
 </div>

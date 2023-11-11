@@ -121,9 +121,9 @@
 			<h3 class="font-general text-3xl font-semibold text-stone-700 dark:text-stone-300">
 				Craft the Queue
 			</h3>
-			<div class="mt-6 flex gap-4 text-stone-600 dark:text-stone-400">
+			<div class="cq-feature-row mt-6 flex gap-4 text-stone-600 dark:text-stone-400">
 				<div
-					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
 					<div class="-ml-2 flex h-8 scale-90 items-center gap-1">
 						<img
 							class="opacity-70 invert dark:opacity-90 dark:invert-0"
@@ -142,7 +142,7 @@
 					<p class="text-sm">Mix Spotify and YouTube for the perfect playlist</p>
 				</div>
 				<div
-					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
 					<div class="flex h-8 items-center gap-2 text-xl dark:text-stone-200">
 						<IconChrome />
 						<span class="text-base"><IconArrowRight /></span>
@@ -151,16 +151,16 @@
 					<p class="text-sm">Drag and drop songs from Spotify or YouTube into queue</p>
 				</div>
 			</div>
-			<div class="mt-4 flex gap-4 text-stone-600 dark:text-stone-400">
+			<div class="cq-feature-row mt-4 flex gap-4 text-stone-600 dark:text-stone-400">
 				<div
-					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
 					<p class="flex h-8 items-center font-general font-medium dark:text-stone-200">
 						&#8984; + C, &#8984; + V
 					</p>
 					<p class="text-sm">Copy and paste a Spotify song link or YouTube video URL</p>
 				</div>
 				<div
-					class="w-2/5 space-y-2 rounded border border-stone-200 bg-stone-100 p-3 dark:border-stone-800 dark:bg-stone-950/60">
+					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
 					<div class="h-8">
 						<ListenerStack />
 					</div>
@@ -246,5 +246,9 @@
 	.cq-spotify-add {
 		width: 480px;
 		max-width: 100%;
+	}
+
+	.cq-feature-row {
+		max-width: 480px;
 	}
 </style>

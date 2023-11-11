@@ -1,19 +1,35 @@
 <script lang="ts">
-	import { lighten } from 'polished';
+	import { darken, lighten } from 'polished';
 	import IconHeart from '../icons/IconHeart.svelte';
 	import IconPause from '../icons/IconPause.svelte';
 	import VolumeControl from './VolumeControl.svelte';
 
-	let item = {
+	const item = {
 		artwork: 'https://i.scdn.co/image/ab67616d0000b273a0369b863f523411e35d817b',
 		name: 'Rhythm & Blues',
 		artists: 'Ayra Starr'
 	};
 
-	let accentColor = '#67c3dd';
+	const accentColor = '#67c3dd';
+
+	const styles = {
+		'text-color': accentColor,
+		'text-hover-color': accentColor,
+		'light-bg': lighten(0.3, accentColor),
+		'light-hover-bg': lighten(0.2, accentColor),
+		'dark-text-color': darken(0.2, accentColor),
+		'dark-text-hover-color': darken(0.15, accentColor),
+		'dark-bg': lighten(0.1, accentColor),
+		'dark-hover-bg': lighten(0.2, accentColor)
+	};
+
+	const cssVariables = Object.entries(styles)
+		.map(([key, value]) => `--${key}:${value}`)
+		.join(';');
 </script>
 
 <div
+	style={cssVariables}
 	class="cq-player flex h-fit flex-col gap-4 rounded-lg border border-white/60 bg-white bg-opacity-60 p-4 shadow-lg backdrop-blur-md dark:border-white/20 dark:bg-opacity-20">
 	<div class="relative flex items-center gap-4">
 		<img src={item.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
@@ -35,13 +51,11 @@
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
 			<button
-				class="flex h-10 w-10 items-center justify-center rounded-full"
-				style:background-color={lighten(0.2, accentColor)}
-				style:color={accentColor}>
+				class="cq-dummy-pause flex h-10 w-10 cursor-default items-center justify-center rounded-full">
 				<IconPause />
 			</button>
 			<button
-				class="flex h-10 w-10 items-center justify-center rounded-full text-stone-500 dark:bg-white/20 dark:text-stone-300"
+				class="flex h-10 w-10 cursor-default items-center justify-center rounded-full text-stone-500 dark:bg-white/20 dark:text-stone-300"
 				style:color={accentColor}>
 				<IconHeart filled={true} />
 			</button>
@@ -55,5 +69,17 @@
 	.cq-player {
 		width: 480px;
 		max-width: 100%;
+	}
+
+	.cq-dummy-pause {
+		color: var(--text-color);
+		background-color: var(--light-bg);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.cq-dummy-pause {
+			color: var(--dark-text-color);
+			background-color: var(--dark-bg);
+		}
 	}
 </style>
