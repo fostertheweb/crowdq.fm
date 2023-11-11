@@ -15,7 +15,7 @@
 
 	$: styles = {
 		'text-color': $accentColor,
-		'text-hover-color': $accentColor,
+		'text-hover-color': darken(0.05, $accentColor),
 		'light-bg': lighten(0.3, $accentColor),
 		'light-hover-bg': lighten(0.2, $accentColor),
 		'dark-text-color': darken(0.2, $accentColor),

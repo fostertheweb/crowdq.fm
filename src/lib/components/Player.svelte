@@ -16,7 +16,6 @@
 	import LikeButton from './LikeButton.svelte';
 	import PlayerControl from './PlayerControl.svelte';
 	import VolumeControl from './VolumeControl.svelte';
-	import IconMusic from './icons/IconMusic.svelte';
 
 	export let isHost = false;
 
@@ -58,9 +57,6 @@
 				$currentQueueItem = nextItem;
 				trackEnd = false;
 				await UniversalPlayer.play({ item: nextItem, position: 0, status: 'loading' });
-				// await Spotify.player.startResumePlayback($spotifyDevice!, undefined, [
-				// 	`spotify:track:${nextItem.providerId}`
-				// ]);
 			}
 		}, 750);
 	}
@@ -202,11 +198,11 @@
 	});
 </script>
 
-<div class="flex flex-col gap-6">
+<div class="flex flex-col" class:gap-6={$currentQueueItem}>
 	<div
 		class="relative flex items-center gap-4"
 		class:flex-col={$currentQueueItem?.provider === 'youtube'}>
-		<div class="absolute right-0 top-0 flex items-center space-x-2">
+		<div class="absolute right-0 top-0 hidden items-center space-x-2">
 			{#each testColors as color}
 				<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
 			{/each}
@@ -221,12 +217,12 @@
 				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 			{/if}
 		{:else}
-			<div
+			<!-- <div
 				class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
 				<span class="text-5xl text-stone-50 drop-shadow dark:text-stone-400">
 					<IconMusic />
 				</span>
-			</div>
+			</div> -->
 		{/if}
 		<div class="space-y-1">
 			{#if $currentQueueItem}
@@ -242,12 +238,14 @@
 		</div>
 	</div>
 
-	<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
-		<div
-			class="cq-progress-bar h-1.5 rounded-full bg-transparent"
-			style:background={$accentColor}
-			style:width={percent + '%'} />
-	</div>
+	{#if $currentQueueItem}
+		<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
+			<div
+				class="cq-progress-bar h-1.5 rounded-full bg-transparent"
+				style:background={$accentColor}
+				style:width={percent + '%'} />
+		</div>
+	{/if}
 
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">

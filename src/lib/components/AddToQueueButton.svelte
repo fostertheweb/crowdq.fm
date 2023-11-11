@@ -1,8 +1,14 @@
 <script lang="ts">
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
-	import { createQueueItemFromTrack, createQueueItemFromVideo, store } from '$lib/db';
+	import {
+		createQueueItemFromTikTok,
+		createQueueItemFromTrack,
+		createQueueItemFromVideo,
+		store
+	} from '$lib/db';
 	import { getTracksFromLink } from '$lib/spotify';
 	import { party } from '$lib/stores/party';
+	import { getTikTokEmbed } from '$lib/tiktok';
 	import { getVideoFromLink } from '$lib/youtube';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { get } from 'svelte/store';
@@ -20,6 +26,10 @@
 			tracks.forEach((track) => {
 				store.addRow('items', createQueueItemFromTrack(track, get(party)!.id));
 			});
+		} else if (link.includes('tiktok')) {
+			const tiktok = await getTikTokEmbed(link);
+			console.log(tiktok);
+			store.addRow('items', createQueueItemFromTikTok(tiktok, get(party)!.id));
 		} else {
 			const video = await getVideoFromLink(link);
 			store.addRow('items', createQueueItemFromVideo(video, get(party)!.id));

@@ -23,6 +23,8 @@ export async function handleDrop(e: DragEvent) {
 				store.addRow('items', createQueueItemFromVideo(video, _party.id));
 			}
 		}
+	} else {
+		// TODO: inform user they are not connected to the room
 	}
 }
 
