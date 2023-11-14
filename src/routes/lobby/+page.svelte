@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { postAccessToken, Spotify } from '$lib/spotify';
-	import HeaderWithUser from '$lib/components/HeaderWithUser.svelte';
-	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import { goto } from '$app/navigation';
 	import Divider from '$lib/components/Divider.svelte';
-	import IconSpotify from '$lib/components/icons/IconSpotify.svelte';
-	import IconMusic from '$lib/components/icons/IconMusic.svelte';
+	import HeaderWithUser from '$lib/components/HeaderWithUser.svelte';
 	import IconArrowRight from '$lib/components/icons/IconArrowRight.svelte';
+	import IconMusic from '$lib/components/icons/IconMusic.svelte';
+	import IconSpotify from '$lib/components/icons/IconSpotify.svelte';
+	import { postAccessToken, Spotify } from '$lib/spotify';
+	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import { onMount } from 'svelte';
 
 	export let data;
 
@@ -45,7 +45,7 @@
 					<IconArrowRight />
 					<IconMusic />
 				</div>
-				<div class="font-general font-medium">Returning to Room</div>
+				<div class="font-readex-pro font-medium">Returning to Room</div>
 			</div>
 		</div>
 	{:else}
@@ -56,8 +56,7 @@
 				<form method="POST">
 					<button
 						type="submit"
-						class="leading flex w-full items-center justify-center gap-2 rounded-md bg-rose-500 px-8 py-3 text-center font-general text-base font-semibold tracking-wide text-white shadow-sm filter transition ease-linear hover:shadow-md hover:brightness-105">
-						<i class="fa-duotone fa-sparkles" />
+						class="leading font-readex-pro flex w-full items-center justify-center gap-2 rounded-md bg-rose-500 px-8 py-3 text-center text-base font-semibold text-white shadow-sm filter transition ease-linear hover:shadow-md hover:brightness-105">
 						Create Room
 					</button>
 				</form>

@@ -3,10 +3,10 @@
 	import ListenerStack from '$lib/components/dummy/ListenerStack.svelte';
 	import Player from '$lib/components/dummy/Player.svelte';
 	import TrackCard from '$lib/components/dummy/TrackCard.svelte';
-	import IconArrowRight from '$lib/components/icons/IconArrowRight.svelte';
-	import IconChrome from '$lib/components/icons/IconChrome.svelte';
+	import IconBrowserAdd from '$lib/components/icons/IconBrowserAdd.svelte';
+	import IconDrag from '$lib/components/icons/IconDrag.svelte';
 	import IconGitHub from '$lib/components/icons/IconGitHub.svelte';
-	import IconList from '$lib/components/icons/IconList.svelte';
+	import IconSpotify from '$lib/components/icons/IconSpotify.svelte';
 
 	const tracks = [
 		{
@@ -85,7 +85,7 @@
 		</div>
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
-		<h1 class="font-general text-4xl font-semibold text-rose-950 dark:text-stone-100">
+		<h1 class="font-readex-pro text-4xl font-bold text-rose-950 dark:text-stone-100">
 			collaborative play queue
 			<br class="hidden md:block" />for <span class="text-rose-500">now</span> or
 			<span class="text-orange-500">later</span>
@@ -98,7 +98,7 @@
 		<div class="mt-8 flex items-center gap-6 tracking-wide">
 			<a
 				href="/lobby"
-				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-general font-semibold tracking-wide text-white shadow hover:brightness-125">
+				class="font-readex-pro rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-semibold text-white shadow hover:brightness-125">
 				Create Room
 			</a>
 			<a
@@ -118,7 +118,7 @@
 			{/each}
 		</div>
 		<div class="text-left lg:w-1/2">
-			<h3 class="font-general text-3xl font-semibold text-stone-700 dark:text-stone-300">
+			<h3 class="font-readex-pro text-3xl font-semibold text-stone-700 dark:text-stone-300">
 				Craft the Queue
 			</h3>
 			<div class="cq-feature-row mt-6 flex gap-4 text-stone-600 dark:text-stone-400">
@@ -131,7 +131,7 @@
 							width={80}
 							height={24}
 							alt="Spotify" />
-						<span class="font-general font-medium">+</span>
+						<span class="font-readex-pro font-medium">+</span>
 						<img
 							class="-ml-2.5 scale-75 opacity-70 invert dark:opacity-90 dark:invert-0"
 							src="/images/youtube-white.png"
@@ -144,9 +144,9 @@
 				<div
 					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
 					<div class="flex h-8 items-center gap-2 text-xl dark:text-stone-200">
-						<IconChrome />
-						<span class="text-base"><IconArrowRight /></span>
-						<IconList />
+						<IconSpotify />
+						<IconDrag />
+						<IconBrowserAdd />
 					</div>
 					<p class="text-sm">Drag and drop songs from Spotify or YouTube into queue</p>
 				</div>
@@ -154,7 +154,7 @@
 			<div class="cq-feature-row mt-4 flex gap-4 text-stone-600 dark:text-stone-400">
 				<div
 					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
-					<p class="flex h-8 items-center font-general font-medium dark:text-stone-200">
+					<p class="font-readex-pro flex h-8 items-center font-medium dark:text-stone-200">
 						&#8984; + C, &#8984; + V
 					</p>
 					<p class="text-sm">Copy and paste a Spotify song link or YouTube video URL</p>
@@ -174,7 +174,7 @@
 	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-white p-8 dark:border-rose-900 dark:from-rose-950 dark:to-stone-950">
 	<div class="mx-auto flex w-full max-w-5xl flex-col justify-center gap-16 py-16 lg:flex-row">
 		<div class="space-y-4 text-left lg:w-1/2">
-			<h3 class="font-general text-3xl font-semibold text-rose-900 dark:text-rose-50">
+			<h3 class="font-readex-pro text-3xl font-semibold text-rose-900 dark:text-rose-50">
 				Listen Together
 			</h3>
 			<p class="text-rose-950 dark:text-rose-100">
@@ -184,13 +184,13 @@
 				or a cozy night in with loved ones, crowdq.fm will maintain the vibes.
 			</p>
 		</div>
-		<div class="relative">
+		<div class="cq-blobs relative">
 			<div
-				class="absolute -left-8 -top-8 h-72 w-72 rounded-full bg-[#2485a1]/30 mix-blend-multiply blur-2xl" />
+				class="absolute -left-8 -top-8 h-72 w-72 rounded-full bg-[#2485a1] bg-opacity-30 mix-blend-multiply blur-2xl dark:mix-blend-normal" />
 			<div
-				class="absolute -right-8 -top-4 h-72 w-72 rounded-full bg-[#a81922]/20 mix-blend-multiply blur-2xl" />
+				class="absolute -right-8 -top-4 h-72 w-72 rounded-full bg-[#a81922] bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-normal" />
 			<div
-				class="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-[#c38497]/30 mix-blend-multiply blur-2xl" />
+				class="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-[#c38497] bg-opacity-30 mix-blend-multiply blur-2xl dark:mix-blend-normal" />
 			<Player />
 		</div>
 	</div>
@@ -203,7 +203,7 @@
 			<AddToSpotify />
 		</div>
 		<div class="space-y-4 text-left lg:w-1/2">
-			<h3 class="font-general text-3xl font-semibold text-stone-700 dark:text-stone-300">
+			<h3 class="font-readex-pro text-3xl font-semibold text-stone-700 dark:text-stone-300">
 				Take the Queue to Go
 			</h3>
 			<p class="text-stone-600 dark:text-stone-400">
@@ -250,5 +250,9 @@
 
 	.cq-feature-row {
 		max-width: 480px;
+	}
+
+	.cq-blobs {
+		width: 480px;
 	}
 </style>

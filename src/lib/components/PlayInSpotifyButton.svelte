@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { createDialog, melt } from '@melt-ui/svelte';
 	import IconPlay from '$lib/components/icons/IconPlay.svelte';
+	import { createDialog, melt } from '@melt-ui/svelte';
 
-	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
-	import DeviceSelector from './DeviceSelector.svelte';
 	import { Spotify } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
+	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import { onDestroy } from 'svelte';
+	import DeviceSelector from './DeviceSelector.svelte';
 
 	export let disabled = true;
 	export let devices: Device[] | undefined;
@@ -48,7 +48,7 @@
 	{disabled}
 	class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 disabled:opacity-60 dark:bg-green-600 dark:text-white">
 	<IconPlay lg={false} />
-	<span class="font-general font-medium tracking-wide">Play in Spotify</span>
+	<span class="font-readex-pro font-medium tracking-wide">Play in Spotify</span>
 </button>
 
 <div use:melt={$portalled}>
@@ -61,7 +61,7 @@
 			use:melt={$content}>
 			<h3
 				use:melt={$title}
-				class="m-0 text-center font-general text-base font-medium tracking-wide text-stone-500">
+				class="font-readex-pro m-0 text-center text-base font-medium tracking-wide text-stone-500">
 				Select Spotify Device
 			</h3>
 			<div class="h-4" />

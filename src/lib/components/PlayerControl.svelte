@@ -6,6 +6,7 @@
 	import { darken, lighten } from 'polished';
 
 	async function playNextTrack() {
+		// TODO: fix resume functionality
 		$party?.send('play_next_track');
 	}
 

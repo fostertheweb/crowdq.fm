@@ -86,7 +86,7 @@
 		class="left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm">
 		<div
 			class="flex h-full w-full items-center justify-center rounded border-4 border-dashed border-stone-200">
-			<div class="font-general text-2xl font-semibold tracking-wide text-stone-100">
+			<div class="font-readex-pro text-2xl font-semibold tracking-wide text-stone-100">
 				<div class="flex flex-col items-center gap-2">
 					<span>Add to Queue</span>
 				</div>
@@ -113,9 +113,9 @@
 			{#if isHost}
 				<button
 					disabled
-					class="flex cursor-not-allowed items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
+					class="flex cursor-not-allowed items-center gap-1.5 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
 					<IconSliders />
-					<span class="font-general font-medium tracking-wide">Settings</span>
+					<span class="font-readex-pro font-medium">Settings</span>
 				</button>
 			{:else}
 				<HostDetails room={data.room} />

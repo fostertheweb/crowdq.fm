@@ -6,7 +6,7 @@ export default {
 		extend: {
 			fontFamily: {
 				straker: ['Straker'],
-				general: ['General Sans']
+				'readex-pro': ['Readex Pro']
 			}
 		}
 	},

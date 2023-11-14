@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { darken, lighten } from 'polished';
-	import IconHeart from '../icons/IconHeart.svelte';
 	import IconPause from '../icons/IconPause.svelte';
+	import IconRemoveLike from '../icons/IconRemoveLike.svelte';
 	import VolumeControl from './VolumeControl.svelte';
 
 	const item = {
@@ -35,7 +35,7 @@
 		<img src={item.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
 		<div class="space-y-1">
 			<div class="text-lg dark:text-white">{item.name}</div>
-			<div class="text-base text-stone-700 dark:text-stone-400">
+			<div class="text-base text-stone-700 dark:text-white/70">
 				{item.artists}
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 			<button
 				class="flex h-10 w-10 cursor-default items-center justify-center rounded-full text-stone-500 dark:bg-white/20 dark:text-stone-300"
 				style:color={accentColor}>
-				<IconHeart filled={true} />
+				<IconRemoveLike />
 			</button>
 		</div>
 

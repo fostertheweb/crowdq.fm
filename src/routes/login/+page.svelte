@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import LoginButton from '$lib/components/LoginButton.svelte';
 	import ContinueButton from '$lib/components/ContinueButton.svelte';
+	import LoginButton from '$lib/components/LoginButton.svelte';
+	import { postAccessToken } from '$lib/spotify';
 	import { Spotify } from '$lib/spotify.js';
+	import { onMount } from 'svelte';
 
-	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import IconInfo from '$lib/components/icons/IconInfo.svelte';
+	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 	export let data;
 	let user: UserProfile | null = data.user;
@@ -20,6 +21,7 @@
 				localStorage.removeItem(authKey);
 			} else {
 				user = await Spotify.currentUser.profile();
+				postAccessToken();
 			}
 		}
 	});
@@ -36,7 +38,7 @@
 				</h3>
 				<div class="flex items-center gap-2">
 					<div
-						class="font-general text-lg font-semibold tracking-wide text-stone-700 dark:text-stone-300">
+						class="font-readex-pro text-lg font-semibold tracking-wide text-stone-700 dark:text-stone-300">
 						Log In
 					</div>
 				</div>

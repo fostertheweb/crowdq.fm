@@ -5,6 +5,7 @@
 	import IconSpinner from '$lib/components/icons/IconSpinner.svelte';
 	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import { createRadioGroup, melt } from '@melt-ui/svelte';
+	import IconInfo from './icons/IconInfo.svelte';
 
 	export let devices: Array<Device> | undefined;
 	export let isAdding = false;
@@ -27,13 +28,12 @@
 	aria-label="Select device">
 	{#if !devices || devices.length === 0}
 		<div
-			class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-4 dark:bg-stone-700 dark:text-stone-400">
+			class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-2 dark:bg-stone-700 dark:text-stone-400">
 			<div>
-				<p>No active devices found. Open the Spotify app and return to crowdq.fm</p>
-				<p class="mt-4">You might have to play music in the app for the device to show up here.</p>
+				<p>No active devices found. Open Spotify and come back.</p>
 			</div>
 		</div>
-		<div class="mt-2 flex justify-end gap-3 font-general font-medium tracking-wide">
+		<div class="font-readex-pro mt-2 flex justify-end gap-3 font-medium tracking-wide">
 			<button
 				on:click={() => cancel()}
 				class="inline-flex items-center justify-center rounded-full
@@ -42,17 +42,10 @@
 			</button>
 			<a
 				href="spotify://"
-				class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-general font-medium text-white"
+				class="font-readex-pro inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-medium text-white"
 				><IconExternalLink />Open Spotify</a>
 		</div>
 	{:else}
-		<div
-			class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-4 text-sm text-stone-600 dark:bg-stone-700 dark:text-stone-400">
-			<div>
-				<p>If you don't see your device, open the Spotify app and return to crowdq.fm</p>
-				<p class="mt-4">You might have to play music in the app for the device to show up here.</p>
-			</div>
-		</div>
 		<div class="flex gap-4">
 			{#each devices as device}
 				{#if device.id}
@@ -71,7 +64,13 @@
 			{/each}
 		</div>
 
-		<div class="mt-2 flex justify-end gap-3 font-general font-medium tracking-wide">
+		<div
+			class="flex items-baseline justify-center gap-2 text-sm text-stone-600 dark:text-stone-400">
+			<span class="text-base"><IconInfo /></span>
+			<p class="leading-6">Don't see your device? Open Spotify and come back.</p>
+		</div>
+
+		<div class="font-readex-pro mt-2 flex justify-end gap-3 font-medium tracking-wide">
 			<button
 				on:click={() => cancel()}
 				class="inline-flex items-center justify-center rounded-full
@@ -81,7 +80,7 @@
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-general font-medium text-white"
+					class="font-readex-pro inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-medium text-white"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<button

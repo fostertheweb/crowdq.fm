@@ -1,9 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
-	><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
-		d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3V320c0 17.7 14.3 32 32 32s32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 53 43 96 96 96H352c53 0 96-43 96-96V352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V352z" /></svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+	><g id="share-link--share-transmit"
+		><path
+			id="Union"
+			fill="currentColor"
+			d="M37 1.5a9.5 9.5 0 0 0-9.328 11.31l-9.63 4.814a9.5 9.5 0 1 0 0 12.751l9.63 4.815A9.5 9.5 0 1 0 37 27.5c-2.454 0-4.69.93-6.376 2.458L20.46 24.876a9.644 9.644 0 0 0 0-1.752l10.164-5.082A9.465 9.465 0 0 0 37 20.5a9.5 9.5 0 0 0 0-19Z"
+		></path
+		></g
+	></svg>
 
 <style>
 	svg {
-		fill: currentColor;
+		width: 16px;
+		height: 16px;
 	}
 </style>

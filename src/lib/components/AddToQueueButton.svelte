@@ -6,6 +6,7 @@
 	import { getVideoFromLink } from '$lib/youtube';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { get } from 'svelte/store';
+	import IconPlusMusic from './icons/IconPlusMusic.svelte';
 
 	const {
 		elements: { trigger, overlay, content, title, description, close, portalled },
@@ -30,9 +31,9 @@
 
 <button
 	use:melt={$trigger}
-	class="flex items-center gap-2 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
-	<IconPlus />
-	<span class="font-general font-medium tracking-wide">Add</span>
+	class="flex items-center gap-1 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
+	<IconPlusMusic />
+	<span class="font-readex-pro font-medium">Add</span>
 </button>
 <div use:melt={$portalled}>
 	{#if $open}
@@ -44,7 +45,7 @@
 			use:melt={$content}>
 			<h3
 				use:melt={$title}
-				class="m-0 text-center font-general text-base font-medium tracking-wide text-stone-500">
+				class="font-readex-pro m-0 text-center text-base font-medium tracking-wide text-stone-500">
 				Add Song to Queue
 			</h3>
 			<div class="h-4" />
@@ -70,7 +71,7 @@
 				You can also drag and drop one or more songs anywhere in the window.
 			</p>
 
-			<div class="mt-6 flex justify-end gap-4 font-general font-medium tracking-wide">
+			<div class="font-readex-pro mt-6 flex justify-end gap-4 font-medium tracking-wide">
 				<button
 					use:melt={$close}
 					class="inline-flex items-center justify-center rounded-full

@@ -9,19 +9,24 @@
 	import { playQueue } from '$lib/stores/queue';
 	import { createQuery } from '@tanstack/svelte-query';
 
+	import type { QueueItem } from '$lib/types';
 	import type { Device, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 	export let isMobile: boolean;
 	export let devices: Device[] | undefined;
 	export let user: UserProfile | null;
 
+	let remainingQueue: QueueItem[];
 	let queueElement: HTMLDivElement;
+	let totalListeningTime = 0;
 	let scrollY = 0;
 	$: displayShadow = scrollY > 0;
 
-	$: currentIndex = $playQueue.indexOf($currentQueueItem!);
-	$: remainingQueue = $playQueue.slice(currentIndex + 1);
-	$: totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
+	currentQueueItem.subscribe((item) => {
+		const currentIndex = $playQueue.indexOf(item!);
+		remainingQueue = $playQueue.slice(currentIndex + 1);
+		totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
+	});
 
 	function formatMillis(millis: number) {
 		const hours = Math.floor(millis / 3600000);
@@ -45,7 +50,7 @@
 		queryKey: ['devices'],
 		queryFn: async () => {
 			const response = await Spotify.player.getAvailableDevices();
-			return response.devices.filter(({ is_active }) => is_active);
+			return response.devices.filter(({ name }) => name !== 'crowdq.fm');
 		},
 		initialData: devices,
 		refetchOnWindowFocus: 'always',
@@ -59,13 +64,12 @@
 	class="cq-shadow-xl z-10 flex items-center justify-between bg-stone-50 pb-6 dark:bg-stone-900"
 	class:cq-shadow-xl={displayShadow}>
 	<div class="flex items-center gap-2">
-		<h2
-			class=" font-general text-2xl font-semibold tracking-wide text-stone-600 dark:text-stone-300">
+		<h2 class=" font-readex-pro text-2xl font-semibold text-stone-600 dark:text-stone-300">
 			Queue
 		</h2>
 
 		<span
-			class="w-10 min-w-fit rounded-full bg-stone-100 px-3 text-center font-general text-base font-medium leading-8 text-stone-500 dark:bg-stone-700/40 dark:text-stone-400"
+			class="font-readex-pro w-10 min-w-fit rounded-full bg-stone-100 px-3 text-center text-base font-medium leading-8 text-stone-500 dark:bg-stone-700/40 dark:text-stone-400"
 			>{remainingQueue.length}</span>
 	</div>
 

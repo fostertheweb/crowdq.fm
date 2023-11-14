@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment';
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 
+	import '@fontsource/readex-pro';
 	import '../app.css';
 
 	const queryClient = new QueryClient({

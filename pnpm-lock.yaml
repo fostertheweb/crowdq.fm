@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@fontsource/readex-pro':
+    specifier: ^5.0.8
+    version: 5.0.8
   '@fostertheweb/spotify-web-api-ts-sdk':
     specifier: ^1.2.0
     version: 1.2.0
@@ -639,6 +642,10 @@ packages:
 
   /@floating-ui/utils@0.1.1:
     resolution: {integrity: sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==}
+
+  /@fontsource/readex-pro@5.0.8:
+    resolution: {integrity: sha512-EAL80pZt8y68000NeRO+MibNRk9rbTMelLy2ra2jAZQDOaekRb7zIhkebW1bPIoicncgkRMMowSk1RrDFTMytw==}
+    dev: false
 
   /@fostertheweb/spotify-web-api-ts-sdk@1.2.0:
     resolution: {integrity: sha512-rf9aRUhFpndXitz6LJ4PBBQ4TObz/TkUT9kYwo4wC7tGAYSEx7bARntlMSh7pKqaH6baTsBcwEMrceXj31FyvA==}

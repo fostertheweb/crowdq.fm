@@ -2,17 +2,25 @@
 	export let lg = true;
 </script>
 
-<svg class:lg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"
-	><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
-		d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" /></svg>
+<svg class:lg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+	><g id="button-play--button-television-buttons-movies-play-tv-video-controls"
+		><path
+			id="Union"
+			fill="currentColor"
+			d="M12.32 1.93C7.824.39 3.613 3.126 2.832 7.625 2.16 11.504 1.5 17.074 1.5 24s.66 12.496 1.333 16.376c.78 4.5 4.992 7.235 9.486 5.694 3.46-1.187 8.475-3.26 15.477-6.881 6.873-3.556 11.819-6.617 15.245-8.974C45.287 28.67 46.5 26.379 46.5 24c0-2.378-1.213-4.67-3.46-6.214-3.425-2.357-8.371-5.419-15.244-8.974C20.794 5.19 15.779 3.117 12.319 1.93Z"
+		></path
+		></g
+	></svg>
 
 <style>
 	svg {
-		fill: currentColor;
+		width: 16px;
+		height: 16px;
 	}
 
 	.lg {
-		transform: scale(1.2);
 		margin-right: -0.2em;
+		width: 18px;
+		height: 18px;
 	}
 </style>
