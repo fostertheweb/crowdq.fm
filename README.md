@@ -1,6 +1,6 @@
-<h3 class="text-lg font-medium font-calistoga">Dependencies</h3>
+<h3 class="text-lg font-medium font-serif">Dependencies</h3>
 
-<ul class="list-disc">
+<ul class="list-disc list-inside">
   <li>
     <a href="https://kit.svelte.dev">SvelteKit</a>
   </li>
