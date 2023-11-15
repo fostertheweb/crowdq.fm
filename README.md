@@ -1,3 +1,7 @@
-# crowdq-fm-offline
+<h3 class="text-lg font-medium font-readex-pro">Dependencies</h3>
 
-Offline-first collaborative Spotify/YouTube play queue
+<ul>
+  <li>
+    <a href="https://tinybase.org">TinyBase</a>
+  </li>
+</ul>
