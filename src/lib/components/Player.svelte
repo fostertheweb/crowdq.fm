@@ -125,7 +125,7 @@
 					getOAuthToken(callback) {
 						callback(credentials.access_token);
 					},
-					volume: 0.5
+					volume: 0.25
 				});
 
 				player.addListener('player_state_changed', (state) => {

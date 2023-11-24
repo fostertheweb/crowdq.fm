@@ -46,7 +46,8 @@ export function itemsTableToCollection(table: Table) {
 }
 
 export function listenersTableToCollection(table: Table) {
-	const rows = Object.entries(table).map(([id, listener]) => {
+	const entries = Object.entries(table);
+	const rows = entries.map(([id, listener]) => {
 		return { id, ...listener } as Listener;
 	});
 
@@ -82,7 +83,7 @@ export function createQueueItemFromTrack(track: Track, listenerId: string) {
 
 export function createUser(profile: UserProfile, isHost: boolean) {
 	return {
-		id: profile.id,
+		providerId: profile.id,
 		displayName: profile.display_name,
 		avatar: profile.images[0].url,
 		isHost

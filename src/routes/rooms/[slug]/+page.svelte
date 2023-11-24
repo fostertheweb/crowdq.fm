@@ -28,6 +28,7 @@
 	let storeSocket: PartySocket | null;
 	let tableListenerId: string;
 	let isMobile = false;
+	let userId = user?.id;
 
 	onMount(async () => {
 		isMobile = mobile();
@@ -65,14 +66,16 @@
 
 			if (!user) {
 				user = await Spotify.currentUser.profile();
+				userId = user.id;
+				isHost = userId === data.room.hostId;
+			} else {
 				isHost = user.id === data.room.hostId;
+				store.setRow('listeners', user.id, createUser(user, isHost));
 			}
-		}
-
-		if (user) {
-			store.setRow('listeners', $party.id, createUser(user, true));
 		} else {
-			store.delRow('listeners', $party.id);
+			if (userId) {
+				store.delRow('listeners', userId);
+			}
 		}
 	});
 

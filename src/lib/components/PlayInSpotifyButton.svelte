@@ -56,12 +56,12 @@
 		<div use:melt={$overlay} class="fixed inset-0 z-50 bg-black/50" />
 		<div
 			class="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw]
-            max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-md bg-white
-            p-6 pt-2 shadow-lg"
+            max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded bg-white
+            p-6 pt-2 shadow-lg dark:bg-stone-700"
 			use:melt={$content}>
 			<h3
 				use:melt={$title}
-				class="font-readex-pro m-0 text-center text-base font-medium tracking-wide text-stone-500">
+				class="m-0 text-center font-readex-pro text-base font-medium tracking-wide text-stone-500 dark:text-stone-300">
 				Select Spotify Device
 			</h3>
 			<div class="h-4" />

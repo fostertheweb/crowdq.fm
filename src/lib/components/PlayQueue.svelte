@@ -9,21 +9,22 @@
 	import { playQueue } from '$lib/stores/queue';
 	import { createQuery } from '@tanstack/svelte-query';
 
-	import type { QueueItem } from '$lib/types';
 	import type { Device, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 	export let isMobile: boolean;
 	export let devices: Device[] | undefined;
 	export let user: UserProfile | null;
 
-	let remainingQueue: QueueItem[];
+	$: remainingQueue = $playQueue;
 	let queueElement: HTMLDivElement;
 	let totalListeningTime = 0;
 	let scrollY = 0;
 	$: displayShadow = scrollY > 0;
 
 	currentQueueItem.subscribe((item) => {
+		console.log({ item });
 		const currentIndex = $playQueue.indexOf(item!);
+		console.log({ currentIndex });
 		remainingQueue = $playQueue.slice(currentIndex + 1);
 		totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
 	});
@@ -69,7 +70,7 @@
 		</h2>
 
 		<span
-			class="font-readex-pro w-10 min-w-fit rounded-full bg-stone-100 px-3 text-center text-base font-medium leading-8 text-stone-500 dark:bg-stone-700/40 dark:text-stone-400"
+			class="w-10 min-w-fit rounded-full bg-stone-100 px-3 text-center font-readex-pro text-base font-medium leading-8 text-stone-500 dark:bg-stone-700/40 dark:text-stone-400"
 			>{remainingQueue.length}</span>
 	</div>
 
