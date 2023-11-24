@@ -10,7 +10,6 @@
 	export let currentUser: UserProfile | null;
 
 	function isNotCurrentUser(listener: Listener) {
-		console.log(listener, currentUser);
 		return listener.providerId !== currentUser?.id;
 	}
 

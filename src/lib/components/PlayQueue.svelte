@@ -16,19 +16,13 @@
 	export let devices: Device[] | undefined;
 	export let user: UserProfile | null;
 
-	$: remainingQueue = $playQueue;
 	let queueElement: HTMLDivElement;
 	let totalListeningTime = 0;
 	let scrollY = 0;
 	$: displayShadow = scrollY > 0;
-
-	currentQueueItem.subscribe((item) => {
-		console.log({ item });
-		const currentIndex = $playQueue.indexOf(item!);
-		console.log({ currentIndex });
-		remainingQueue = $playQueue.slice(currentIndex + 1);
-		totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
-	});
+	$: currentIndex = $playQueue.findIndex((item) => item.id === $currentQueueItem?.id);
+	$: remainingQueue = $playQueue.slice(currentIndex + 1);
+	$: totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
 
 	function formatMillis(millis: number) {
 		const hours = Math.floor(millis / 3600000);
