@@ -10,6 +10,7 @@
 	import { createQuery } from '@tanstack/svelte-query';
 
 	import type { Device, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import IconNoMusic from './icons/IconNoMusic.svelte';
 
 	export let isMobile: boolean;
 	export let devices: Device[] | undefined;
@@ -91,8 +92,9 @@
 		{/each}
 	{:else}
 		<div
-			class="flex flex-col items-center justify-center gap-4 rounded bg-stone-100 p-8 text-stone-500 dark:bg-stone-800 dark:text-stone-500">
-			<span>No songs in queue</span>
+			class=" flex flex-col items-center gap-4 pt-12 text-base text-stone-500 dark:text-stone-500">
+			<IconNoMusic />
+			<span>Bummer, no songs queued</span>
 		</div>
 	{/if}
 	<!-- TODO: better display logic to consider current item -->

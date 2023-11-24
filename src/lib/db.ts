@@ -22,7 +22,7 @@ store.setTablesSchema({
 		position: { type: 'number' }
 	},
 	listeners: {
-		id: { type: 'string' },
+		providerId: { type: 'string' },
 		displayName: { type: 'string' },
 		avatar: { type: 'string' },
 		isHost: { type: 'boolean', default: false }

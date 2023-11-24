@@ -36,6 +36,10 @@
 		await createDatabase(storeSocket);
 
 		$party = createPartySocket($page.params.slug);
+		$party.addEventListener('close', (event) => {
+			console.log({ event });
+			// store.delRow('listeners', event);
+		});
 		$party.addEventListener('message', async (event) => {
 			console.log({ event });
 
@@ -68,13 +72,14 @@
 				user = await Spotify.currentUser.profile();
 				userId = user.id;
 				isHost = userId === data.room.hostId;
+				store.setRow('listeners', $party.id, createUser(user, isHost));
 			} else {
 				isHost = user.id === data.room.hostId;
-				store.setRow('listeners', user.id, createUser(user, isHost));
+				store.setRow('listeners', $party.id, createUser(user, isHost));
 			}
 		} else {
 			if (userId) {
-				store.delRow('listeners', userId);
+				store.delRow('listeners', $party.id);
 			}
 		}
 	});

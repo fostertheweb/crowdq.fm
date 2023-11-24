@@ -1,5 +1,5 @@
-import PartySocket from 'partysocket';
 import { PUBLIC_PARTYKIT_HOST as host } from '$env/static/public';
+import PartySocket from 'partysocket';
 
 export function createPartySocket(slug: string) {
 	return new PartySocket({

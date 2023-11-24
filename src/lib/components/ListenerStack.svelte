@@ -10,7 +10,8 @@
 	export let currentUser: UserProfile | null;
 
 	function isNotCurrentUser(listener: Listener) {
-		return listener.id !== currentUser?.id;
+		console.log(listener, currentUser);
+		return listener.providerId !== currentUser?.id;
 	}
 
 	let tableListenerId: string;
@@ -20,7 +21,6 @@
 	onMount(async () => {
 		tableListenerId = store.addTableListener('listeners', (_store) => {
 			$listeners = listenersTableToCollection(store.getTable('listeners')).filter(isNotCurrentUser);
-			console.log($listeners);
 		});
 	});
 
