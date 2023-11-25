@@ -18,7 +18,10 @@
 	class="group relative flex w-full cursor-pointer items-center gap-4 rounded p-3 text-left text-sm transition ease-in-out hover:bg-stone-100 dark:hover:bg-stone-800">
 	<div class="relative shrink-0">
 		{#if item.artwork}
-			<img src={item.artwork} class="h-10 w-auto rounded-sm bg-stone-200 shadow" alt="" />
+			<img
+				src={item.artwork}
+				class="h-10 w-auto rounded-sm bg-stone-200 shadow shadow-black/5"
+				alt="" />
 		{:else}
 			<div>Loading...</div>
 		{/if}

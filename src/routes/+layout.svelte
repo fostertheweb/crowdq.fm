@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment';
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 
+	import Toaster from '$lib/components/Toaster.svelte';
 	import '@fontsource/readex-pro';
 	import '../app.css';
 
@@ -15,5 +16,6 @@
 </script>
 
 <QueryClientProvider client={queryClient}>
+	<Toaster />
 	<slot />
 </QueryClientProvider>

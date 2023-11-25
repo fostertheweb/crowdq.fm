@@ -73,7 +73,8 @@
 	];
 </script>
 
-<div class="bg-gradient-to-br from-white to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
+<div
+	class="bg-gradient-to-br from-orange-50/60 to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
 	<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
 		<h3 class="font-straker text-3xl font-medium tracking-wide text-stone-700 dark:text-white">
 			crowdq<span class="text-orange-500">.</span>fm
@@ -98,7 +99,7 @@
 		<div class="mt-8 flex items-center gap-6 tracking-wide">
 			<a
 				href="/lobby"
-				class="font-readex-pro rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-semibold text-white shadow hover:brightness-125">
+				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-readex-pro font-semibold text-white shadow hover:brightness-125">
 				Create Room
 			</a>
 			<a
@@ -154,7 +155,7 @@
 			<div class="cq-feature-row mt-4 flex gap-4 text-stone-600 dark:text-stone-400">
 				<div
 					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
-					<p class="font-readex-pro flex h-8 items-center font-medium dark:text-stone-200">
+					<p class="flex h-8 items-center font-readex-pro font-medium dark:text-stone-200">
 						&#8984; + C, &#8984; + V
 					</p>
 					<p class="text-sm">Copy and paste a Spotify song link or YouTube video URL</p>
@@ -171,7 +172,7 @@
 	</div>
 </section>
 <section
-	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-white p-8 dark:border-rose-900 dark:from-rose-950 dark:to-stone-950">
+	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-orange-50/40 p-8 dark:border-rose-900 dark:from-rose-950 dark:to-stone-950">
 	<div class="mx-auto flex w-full max-w-5xl flex-col justify-center gap-16 py-16 lg:flex-row">
 		<div class="space-y-4 text-left lg:w-1/2">
 			<h3 class="font-readex-pro text-3xl font-semibold text-rose-900 dark:text-rose-50">
@@ -220,9 +221,9 @@
 </section>
 <footer class="border-t-2 border-stone-100 bg-white p-8 dark:border-stone-800 dark:bg-stone-900">
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 md:flex-row md:justify-between">
+		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:justify-between">
 		<div class="flex items-baseline gap-1">
-			made by <a href="https://github.com/fostertheweb" class="underline hover:text-stone-700"
+			made by <a href="https://fostertheweb.com" class="underline hover:text-stone-700"
 				>fostertheweb</a>
 		</div>
 

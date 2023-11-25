@@ -214,7 +214,10 @@
 		</div>
 		{#if $currentQueueItem}
 			{#if $currentQueueItem.provider === 'spotify'}
-				<img src={$currentQueueItem.artwork} alt="" class="h-28 w-28 rounded shadow-md" />
+				<img
+					src={$currentQueueItem.artwork}
+					alt=""
+					class="h-28 w-28 rounded shadow-md shadow-black/5" />
 			{/if}
 		{:else}
 			<!-- <div

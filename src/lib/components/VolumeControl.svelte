@@ -20,7 +20,7 @@
 
 <div class="flex items-center space-x-2 rounded-full bg-stone-200/60 px-1 dark:bg-stone-700">
 	<button
-		class="p-2 text-stone-400 hover:text-stone-500 dark:hover:text-stone-300"
+		class="px-2 py-2.5 text-stone-400 hover:text-stone-500 dark:hover:text-stone-300"
 		on:click={() => states.value.update((current) => [current[0] - 1])}><IconMinus /></button>
 
 	<span use:melt={$root} class="relative flex w-24 items-center">
@@ -33,7 +33,7 @@
 	</span>
 	<button
 		on:click={() => states.value.update((current) => [current[0] + 1])}
-		class="px-2 py-1 text-stone-400 hover:text-stone-500 dark:hover:text-stone-300">
+		class="px-2 py-2.5 text-stone-400 hover:text-stone-500 dark:hover:text-stone-300">
 		<IconPlus />
 	</button>
 </div>

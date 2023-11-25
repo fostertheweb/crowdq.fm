@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import IconShare from '$lib/components/icons/IconShare.svelte';
+	import { addToast } from './Toaster.svelte';
 
 	async function share() {
 		if (browser) {
@@ -10,7 +11,16 @@
 				await navigator.share({ text: url });
 			} else {
 				await window.navigator.clipboard.writeText(url);
-				// TODO: show toast to confirm copied
+				// TODO: override delay
+				addToast({
+					data: {
+						title: 'Copied',
+						description: '',
+						color: 'green',
+						icon: 'copied',
+						canDismiss: false
+					}
+				});
 			}
 		}
 	}

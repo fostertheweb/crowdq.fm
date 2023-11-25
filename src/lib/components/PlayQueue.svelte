@@ -86,7 +86,7 @@
 		{/each}
 	{:else}
 		<div
-			class=" flex flex-col items-center gap-4 pt-12 text-base text-stone-500 dark:text-stone-500">
+			class=" flex flex-col items-center gap-4 pt-12 text-base text-stone-400 dark:text-stone-500">
 			<IconNoMusic />
 			<span>Bummer, no songs queued</span>
 		</div>

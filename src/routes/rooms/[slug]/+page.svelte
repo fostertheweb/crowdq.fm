@@ -85,6 +85,10 @@
 	});
 
 	onDestroy(() => {
+		if ($party) {
+			store.delRow('listeners', $party.id);
+		}
+
 		store.delListener(tableListenerId);
 	});
 </script>

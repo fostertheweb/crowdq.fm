@@ -68,9 +68,9 @@
 
 			<div
 				use:melt={$description}
-				class="flex items-center gap-2 rounded-lg border-cyan-500 bg-cyan-100 p-0 text-cyan-900 shadow shadow-cyan-500/20 dark:border-2 dark:bg-cyan-500/20 dark:text-cyan-100">
+				class="flex items-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 p-0 text-cyan-900 shadow shadow-black/5 dark:border-2 dark:bg-cyan-500/20 dark:text-cyan-100 dark:shadow-cyan-500/20">
 				<div
-					class="rounded-l-lg bg-cyan-300 px-6 py-6 text-cyan-600 dark:bg-cyan-500/10 dark:text-cyan-400">
+					class="rounded-l-lg bg-cyan-100 px-6 py-6 text-cyan-600 dark:bg-cyan-500/10 dark:text-cyan-400">
 					<IconInfo />
 				</div>
 				<p class="p-2 text-sm">You can drag and drop one or more songs anywhere in the window.</p>
@@ -80,7 +80,7 @@
 				<button
 					use:melt={$close}
 					class="inline-flex items-center justify-center rounded-full
-                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 shadow-sm dark:border-stone-500/30 dark:bg-stone-600 dark:text-stone-200 dark:hover:bg-stone-500/60">
+                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 shadow-sm hover:bg-stone-200/60 dark:border-stone-500/30 dark:bg-stone-600 dark:text-stone-200 dark:hover:bg-stone-500/60">
 					Cancel
 				</button>
 				<button
