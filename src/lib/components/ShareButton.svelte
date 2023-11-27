@@ -13,6 +13,7 @@
 				await window.navigator.clipboard.writeText(url);
 				// TODO: override delay
 				addToast({
+					closeDelay: 1500,
 					data: {
 						title: 'Copied',
 						description: '',

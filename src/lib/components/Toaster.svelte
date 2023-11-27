@@ -45,7 +45,7 @@
 						</div>
 					{/if}
 				</div>
-				{#if !data.canDismiss}
+				{#if data.canDismiss}
 					<button
 						class="flex h-6 w-6 items-center justify-center rounded-full hover:bg-white/20"
 						use:melt={$close(id)}
