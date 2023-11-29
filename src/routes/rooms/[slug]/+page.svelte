@@ -18,6 +18,7 @@
 	import mobile from 'is-mobile';
 	import { onDestroy, onMount } from 'svelte';
 
+	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player.js';
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
 
@@ -39,7 +40,9 @@
 
 		$party.addEventListener('message', async (event) => {
 			const message = JSON.parse(event.data);
+			console.log(message);
 
+			// TODO: don't call spotify player without authed user
 			switch (message.type) {
 				case 'play_next_track':
 					await playNextTrack();
@@ -51,10 +54,29 @@
 					await UniversalPlayer.resume();
 					break;
 				case 'connect':
-					console.log(message);
+					// console.log(message);
 					break;
 				case 'remove':
 					store.delRow(message.table, message.id);
+					break;
+				case 'sync_request':
+					const position = await UniversalPlayer.getPosition();
+
+					$party?.send(
+						JSON.stringify({
+							type: 'sync_response',
+							id: message.id,
+							item: $currentQueueItem,
+							status: $playerStatus,
+							position
+						})
+					);
+					break;
+				case 'sync_response':
+					// TODO: play music muted
+					$currentQueueItem = message.item;
+					$playerPosition = message.position;
+					$playerStatus = message.status;
 					break;
 				default:
 					console.log('Event handler not implemented', event.data);

@@ -8,22 +8,49 @@ export default class WebSocket implements Party.Server {
 		this.party.broadcast(JSON.stringify(message));
 
 		console.log(message);
+
+		const message2 = { type: 'sync_request', id: connection.id };
+		const connections = [...this.party.getConnections()];
+		const others = connections.filter((c) => c.id !== connection.id);
+
+		console.log({ others });
+
+		others[0].send(JSON.stringify(message2));
+
+		console.log(message2);
 	}
 
 	onClose(connection: Party.Connection<unknown>): void | Promise<void> {
 		const message = { type: 'remove', table: 'listeners', id: connection.id };
-		const connections = [...this.party.getConnections()];
-
-		connections[0].send(JSON.stringify(message));
+		// const connections = [...this.party.getConnections()];
+		// connections[0].send(JSON.stringify(message));
+		this.party.broadcast(JSON.stringify(message));
 
 		console.log(message);
 	}
 
 	onMessage(message, sender): void | Promise<void> {
-		const msg = { type: message, id: sender.id };
+		try {
+			const json = JSON.parse(message);
+			const connections = [...this.party.getConnections()];
 
-		this.party.broadcast(JSON.stringify(msg));
+			if (json.type === 'sync_request') {
+				const others = connections.filter((c) => c.id !== sender.id);
+				others[0].send(JSON.stringify(json));
+			}
 
-		console.log(msg);
+			if (json.type === 'sync_response') {
+				const requester = connections.find((c) => c.id == json.id);
+				requester?.send(JSON.stringify(json));
+			}
+
+			console.log(json);
+		} catch (e) {
+			const msg = { type: message, id: sender.id };
+
+			this.party.broadcast(JSON.stringify(msg));
+
+			console.log(msg);
+		}
 	}
 }

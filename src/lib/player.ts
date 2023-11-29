@@ -20,7 +20,7 @@ export async function playNextTrack() {
 	UniversalPlayer.play({ item: nextItem, position: 0, status: 'loading' });
 }
 
-type Playback = {
+export type Playback = {
 	item: QueueItem;
 	position: number;
 	status: PlayerStatus;
@@ -52,10 +52,9 @@ export class UniversalPlayer {
 
 			console.log({ device, isSpotifyPlaying });
 
-			// TODO: uncomment when I'm not being hacked
-			// if (device && isSpotifyPlaying) {
-			// 	await SpotifyApiClient.player.pausePlayback(device);
-			// }
+			if (device && isSpotifyPlaying) {
+				await SpotifyApiClient.player.pausePlayback(device);
+			}
 
 			youtube?.loadVideoById({
 				videoId,
@@ -112,6 +111,22 @@ export class UniversalPlayer {
 		if (currentItem) {
 			get(SpotifyPlayer)?.setVolume(volume / 100);
 			get(YouTubePlayer)?.setVolume(volume);
+		}
+	}
+
+	static async getPosition() {
+		const currentItem = get(currentQueueItem);
+
+		if (currentItem) {
+			if (currentItem.provider === 'spotify') {
+				const currentState = await get(SpotifyPlayer)?.getCurrentState();
+				return currentState?.position;
+			}
+
+			if (currentItem.provider === 'youtube') {
+				const position = get(YouTubePlayer)?.getCurrentTime();
+				return position ? position * 1000 : 0;
+			}
 		}
 	}
 }

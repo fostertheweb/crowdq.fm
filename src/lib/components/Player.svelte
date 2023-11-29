@@ -78,7 +78,6 @@
 				},
 				events: {
 					onReady(event) {
-						console.log('YouTube Player Ready', event);
 						event.target.setVolume(25);
 					},
 					onStateChange(event: any) {
