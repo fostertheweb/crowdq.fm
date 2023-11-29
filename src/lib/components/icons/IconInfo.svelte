@@ -13,6 +13,5 @@
 	svg {
 		width: 16px;
 		height: 16px;
-		transform: scale(1.5);
 	}
 </style>

@@ -36,19 +36,25 @@
 		await createDatabase(storeSocket);
 
 		$party = createPartySocket($page.params.slug);
-		$party.addEventListener('close', (event) => {
-			console.log({ event });
-			// store.delRow('listeners', event);
-		});
-		$party.addEventListener('message', async (event) => {
-			console.log({ event });
 
-			switch (event.data) {
+		$party.addEventListener('message', async (event) => {
+			const message = JSON.parse(event.data);
+
+			switch (message.type) {
 				case 'play_next_track':
 					await playNextTrack();
 					break;
 				case 'pause':
 					await UniversalPlayer.pause();
+					break;
+				case 'resume':
+					await UniversalPlayer.resume();
+					break;
+				case 'connect':
+					console.log(message);
+					break;
+				case 'remove':
+					store.delRow(message.table, message.id);
 					break;
 				default:
 					console.log('Event handler not implemented', event.data);

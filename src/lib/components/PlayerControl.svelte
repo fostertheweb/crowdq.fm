@@ -5,13 +5,14 @@
 	import { accentColor, playerStatus } from '$lib/stores/player';
 	import { darken, lighten } from 'polished';
 
-	async function playNextTrack() {
-		// TODO: fix resume functionality
-		$party?.send('play_next_track');
-	}
-
-	async function pause() {
-		$party?.send('pause');
+	async function handleClick() {
+		if ($playerStatus === 'playing') {
+			$party?.send('pause');
+		} else if ($playerStatus === 'paused') {
+			$party?.send('resume');
+		} else {
+			$party?.send('play_next_track');
+		}
 	}
 
 	$: styles = {
@@ -31,25 +32,18 @@
 </script>
 
 <div style={cssVariables}>
-	{#if $playerStatus === 'playing'}
-		<button
-			on:click={pause}
-			class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+	<button
+		on:click={handleClick}
+		disabled={$playerStatus === 'loading'}
+		class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+		{#if $playerStatus === 'playing'}
 			<IconPause />
-		</button>
-	{:else if $playerStatus === 'loading'}
-		<button
-			disabled
-			class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+		{:else if $playerStatus === 'loading'}
 			<IconPause />
-		</button>
-	{:else}
-		<button
-			on:click={playNextTrack}
-			class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+		{:else}
 			<IconPlay />
-		</button>
-	{/if}
+		{/if}
+	</button>
 </div>
 
 <style>
