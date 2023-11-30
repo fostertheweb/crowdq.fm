@@ -1,7 +1,5 @@
 import { createQueueItemFromTrack, createQueueItemFromVideo, store } from '$lib/db';
-import { getTracksFromLink } from '$lib/spotify';
-import { get } from 'svelte/store';
-import { party } from './stores/party';
+import { Spotify, getTracksFromLink } from '$lib/spotify';
 import { getVideoFromLink } from './youtube';
 
 export async function handleDrop(e: DragEvent) {
@@ -9,19 +7,17 @@ export async function handleDrop(e: DragEvent) {
 	const dropData = e.dataTransfer?.getData('text/plain');
 
 	if (dropData) {
-		const _party = get(party);
+		const user = await Spotify.currentUser.profile();
 
-		if (_party) {
-			if (dropData.includes('spotify')) {
-				const tracks = await getTracksFromLink(dropData);
-				const items = tracks.map((track) => createQueueItemFromTrack(track, _party.id));
-				items.forEach((item) => {
-					store.addRow('items', item);
-				});
-			} else {
-				const video = await getVideoFromLink(dropData);
-				store.addRow('items', createQueueItemFromVideo(video, _party.id));
-			}
+		if (dropData.includes('spotify')) {
+			const tracks = await getTracksFromLink(dropData);
+			const items = tracks.map((track) => createQueueItemFromTrack(track, user.id));
+			items.forEach((item) => {
+				store.addRow('items', item);
+			});
+		} else {
+			const video = await getVideoFromLink(dropData);
+			store.addRow('items', createQueueItemFromVideo(video, user.id));
 		}
 	} else {
 		// TODO: inform user they are not connected to the room

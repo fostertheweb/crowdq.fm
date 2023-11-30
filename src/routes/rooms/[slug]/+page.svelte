@@ -109,21 +109,21 @@
 				user = await Spotify.currentUser.profile();
 				userId = user.id;
 				isHost = userId === data.room.hostId;
-				store.setRow('listeners', $party.id, createUser(user, isHost));
+				store.setRow('listeners', user.id, createUser(user, isHost));
 			} else {
 				isHost = user.id === data.room.hostId;
-				store.setRow('listeners', $party.id, createUser(user, isHost));
+				store.setRow('listeners', user.id, createUser(user, isHost));
 			}
 		} else {
 			if (userId) {
-				store.delRow('listeners', $party.id);
+				store.delRow('listeners', userId);
 			}
 		}
 	});
 
 	onDestroy(() => {
-		if ($party) {
-			store.delRow('listeners', $party.id);
+		if (userId) {
+			store.delRow('listeners', userId);
 		}
 
 		store.delListener(tableListenerId);

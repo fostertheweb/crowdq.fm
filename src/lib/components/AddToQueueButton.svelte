@@ -1,11 +1,9 @@
 <script lang="ts">
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import { createQueueItemFromTrack, createQueueItemFromVideo, store } from '$lib/db';
-	import { getTracksFromLink } from '$lib/spotify';
-	import { party } from '$lib/stores/party';
+	import { Spotify, getTracksFromLink } from '$lib/spotify';
 	import { getVideoFromLink } from '$lib/youtube';
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { get } from 'svelte/store';
 	import IconInfo from './icons/IconInfo.svelte';
 	import IconPlusMusic from './icons/IconPlusMusic.svelte';
 
@@ -17,14 +15,16 @@
 	let link: string;
 
 	async function handleAddSong() {
+		const user = await Spotify.currentUser.profile();
+
 		if (link.includes('spotify')) {
 			const tracks = await getTracksFromLink(link);
 			tracks.forEach((track) => {
-				store.addRow('items', createQueueItemFromTrack(track, get(party)!.id));
+				store.addRow('items', createQueueItemFromTrack(track, user.id));
 			});
 		} else {
 			const video = await getVideoFromLink(link);
-			store.addRow('items', createQueueItemFromVideo(video, get(party)!.id));
+			store.addRow('items', createQueueItemFromVideo(video, user.id));
 		}
 		$open = false;
 	}
