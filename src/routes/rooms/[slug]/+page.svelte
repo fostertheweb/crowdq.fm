@@ -73,10 +73,19 @@
 					);
 					break;
 				case 'sync_response':
-					// TODO: play music muted
 					$currentQueueItem = message.item;
 					$playerPosition = message.position;
 					$playerStatus = message.status;
+
+					if (user) {
+						// mute volume for someone joining
+						UniversalPlayer.setVolume(0);
+						UniversalPlayer.play({
+							item: message.item,
+							position: message.position,
+							status: message.status
+						});
+					}
 					break;
 				default:
 					console.log('Event handler not implemented', event.data);

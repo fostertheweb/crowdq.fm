@@ -15,9 +15,11 @@ export default class WebSocket implements Party.Server {
 
 		console.log({ others });
 
-		others[0].send(JSON.stringify(message2));
+		if (others.length > 0) {
+			others[0].send(JSON.stringify(message2));
 
-		console.log(message2);
+			console.log(message2);
+		}
 	}
 
 	onClose(connection: Party.Connection<unknown>): void | Promise<void> {
@@ -36,15 +38,17 @@ export default class WebSocket implements Party.Server {
 
 			if (json.type === 'sync_request') {
 				const others = connections.filter((c) => c.id !== sender.id);
-				others[0].send(JSON.stringify(json));
+				if (others.length > 0) {
+					others[0].send(JSON.stringify(json));
+					console.log(json);
+				}
 			}
 
 			if (json.type === 'sync_response') {
 				const requester = connections.find((c) => c.id == json.id);
 				requester?.send(JSON.stringify(json));
+				console.log(json);
 			}
-
-			console.log(json);
 		} catch (e) {
 			const msg = { type: message, id: sender.id };
 

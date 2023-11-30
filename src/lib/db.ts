@@ -54,6 +54,8 @@ export function listenersTableToCollection(table: Table) {
 	return rows;
 }
 
+// TODO: addedBy needs to be Spotify user id
+
 export function createQueueItemFromVideo(video: YouTubeVideo, listenerId: string) {
 	return {
 		name: video.snippet.title,
