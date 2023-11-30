@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
 import { Spotify as SpotifyApiClient } from './spotify';
-import { SpotifyPlayer, YouTubePlayer, currentQueueItem } from './stores/player';
+import { SpotifyPlayer, YouTubePlayer, currentQueueItem, playerStatus } from './stores/player';
 import { playQueue } from './stores/queue';
 import { spotifyDevice } from './stores/spotify';
 import type { PlayerStatus, QueueItem } from './types';
@@ -40,17 +40,17 @@ export class UniversalPlayer {
 				youtube.stopVideo();
 			}
 
+			// FIXME: on sync with logged in user, device not ready yet
 			if (device) {
 				await SpotifyApiClient.player.startResumePlayback(device, undefined, [
 					'spotify:track:' + playback.item.providerId
 				]);
+				playerStatus.set('playing');
 			}
 		}
 
 		if (playback.item?.provider === 'youtube') {
 			const videoId = playback.item?.providerId;
-
-			console.log({ device, isSpotifyPlaying });
 
 			if (device && isSpotifyPlaying) {
 				await SpotifyApiClient.player.pausePlayback(device);
@@ -60,6 +60,7 @@ export class UniversalPlayer {
 				videoId,
 				startSeconds: playback.position / 1000
 			});
+			playerStatus.set('playing');
 		}
 	}
 
@@ -69,10 +70,12 @@ export class UniversalPlayer {
 		if (currentItem) {
 			if (currentItem.provider === 'spotify') {
 				get(SpotifyPlayer)?.resume();
+				playerStatus.set('playing');
 			}
 
 			if (currentItem.provider === 'youtube') {
 				get(YouTubePlayer)?.playVideo();
+				playerStatus.set('playing');
 			}
 		}
 	}
@@ -83,10 +86,12 @@ export class UniversalPlayer {
 		if (currentItem) {
 			if (currentItem.provider === 'spotify') {
 				get(SpotifyPlayer)?.pause();
+				playerStatus.set('paused');
 			}
 
 			if (currentItem.provider === 'youtube') {
 				get(YouTubePlayer)?.pauseVideo();
+				playerStatus.set('paused');
 			}
 		}
 	}
@@ -97,10 +102,12 @@ export class UniversalPlayer {
 		if (currentItem) {
 			if (currentItem.provider === 'spotify') {
 				get(SpotifyPlayer)?.pause();
+				playerStatus.set('paused');
 			}
 
 			if (currentItem.provider === 'youtube') {
 				get(YouTubePlayer)?.stopVideo();
+				playerStatus.set('paused');
 			}
 		}
 	}

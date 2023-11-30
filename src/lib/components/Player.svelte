@@ -133,15 +133,15 @@
 						playerStatus.set('idle');
 						playerPosition.set(0);
 					} else {
+						playerPosition.set(state.position);
+
 						if (state.loading) {
 							clearInterval(progressInterval);
 							playerStatus.set('loading');
-							playerPosition.set(state.position);
 						}
 
 						if (state.paused) {
 							clearInterval(progressInterval);
-							playerPosition.set(state.position);
 
 							// Track finished playing
 							const previousTracks = state.track_window?.previous_tracks;
@@ -154,9 +154,6 @@
 								clearInterval(progressInterval);
 								playerStatus.set('paused');
 							}
-						} else {
-							playerStatus.set('playing');
-							playerPosition.set(state.position);
 						}
 					}
 				});

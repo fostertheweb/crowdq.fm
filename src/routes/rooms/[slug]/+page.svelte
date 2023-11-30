@@ -78,8 +78,6 @@
 					$playerStatus = message.status;
 
 					if (user) {
-						// mute volume for someone joining
-						UniversalPlayer.setVolume(0);
 						UniversalPlayer.play({
 							item: message.item,
 							position: message.position,
