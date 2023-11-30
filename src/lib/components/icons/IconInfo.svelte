@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+<script lang="ts">
+	export let lg = false;
+</script>
+
+<svg class:lg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
 	><g id="information-circle--information-frame-info-more-help-point-circle"
 		><path
 			id="Subtract"
@@ -13,5 +17,9 @@
 	svg {
 		width: 16px;
 		height: 16px;
+	}
+
+	.lg {
+		transform: scale(1.4);
 	}
 </style>

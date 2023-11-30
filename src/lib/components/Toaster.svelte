@@ -27,7 +27,7 @@
 	{#each $toasts as { id, data } (id)}
 		<div class="absolute top-4 z-50 flex w-full flex-col items-center justify-center">
 			<div
-				class="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-stone-900/60 px-3 py-2 text-sm text-white shadow-lg"
+				class="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-stone-900/60 px-3 py-2 text-sm text-white shadow-lg backdrop-blur-sm"
 				use:melt={$content(id)}>
 				{#if data.icon}
 					<span class="px-1 text-green-300">

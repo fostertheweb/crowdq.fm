@@ -46,7 +46,7 @@
 			use:melt={$content}>
 			<h3
 				use:melt={$title}
-				class="m-0 text-center font-readex-pro text-base font-medium tracking-wide text-stone-500 dark:text-stone-300">
+				class="m-0 text-center font-readex-pro text-base font-medium text-stone-500 dark:text-stone-300">
 				Add Song to Queue
 			</h3>
 			<div class="h-4" />
@@ -68,10 +68,10 @@
 
 			<div
 				use:melt={$description}
-				class="flex items-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 p-0 text-cyan-900 shadow shadow-black/5 dark:border-2 dark:bg-cyan-500/20 dark:text-cyan-100 dark:shadow-cyan-500/20">
+				class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:bg-cyan-500/20 dark:text-cyan-100">
 				<div
-					class="rounded-l-lg bg-cyan-100 px-6 py-6 text-cyan-600 dark:bg-cyan-500/10 dark:text-cyan-400">
-					<IconInfo />
+					class="rounded-l-lg bg-cyan-50 px-6 py-6 text-cyan-600/70 dark:bg-cyan-500/10 dark:text-cyan-400">
+					<IconInfo lg />
 				</div>
 				<p class="p-2 text-sm">You can drag and drop one or more songs anywhere in the window.</p>
 			</div>
@@ -85,8 +85,8 @@
 				</button>
 				<button
 					on:click={handleAddSong}
-					class="inline-flex items-center justify-center gap-1 rounded-full border border-orange-200/20
-                    bg-orange-300 px-4 py-3 font-medium leading-none text-orange-900 shadow-sm hover:brightness-110">
+					class="inline-flex items-center justify-center gap-1 rounded-full border border-orange-400/20 bg-orange-300
+                    px-4 py-3 font-medium leading-none text-orange-900 shadow-sm hover:brightness-110">
 					<IconPlus />
 					<span>Add</span>
 				</button>

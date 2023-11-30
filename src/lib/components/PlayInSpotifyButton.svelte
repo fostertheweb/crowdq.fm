@@ -48,7 +48,7 @@
 	{disabled}
 	class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 disabled:opacity-60 dark:bg-green-600 dark:text-white">
 	<IconPlay lg={false} />
-	<span class="font-readex-pro font-medium tracking-wide">Play in Spotify</span>
+	<span class="font-readex-pro font-medium">Play in Spotify</span>
 </button>
 
 <div use:melt={$portalled}>
@@ -61,7 +61,7 @@
 			use:melt={$content}>
 			<h3
 				use:melt={$title}
-				class="m-0 text-center font-readex-pro text-base font-medium tracking-wide text-stone-500 dark:text-stone-300">
+				class="m-0 text-center font-readex-pro text-base font-medium text-stone-500 dark:text-stone-300">
 				Select Spotify Device
 			</h3>
 			<div class="h-4" />
