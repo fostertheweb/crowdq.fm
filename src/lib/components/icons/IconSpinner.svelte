@@ -1,20 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
-	><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
-		d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" /></svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+	><g id="loading-circle--progress-loading-load-half-wait-waiting"
+		><path
+			id="Union"
+			fill="currentColor"
+			fill-rule="evenodd"
+			d="M24.014 1C11.303 1 .999 11.304.999 24.015c0 11.235 8.05 20.588 18.697 22.61 1.247.236 2.317-.748 2.317-1.944v-4.402c0-.97-.685-1.755-1.565-1.974-6.41-1.594-11.16-7.389-11.16-14.29 0-8.133 6.593-14.725 14.726-14.725 6.984 0 12.834 4.863 14.345 11.39.207.893.998 1.597 1.982 1.597h4.387c1.187 0 2.167-1.055 1.948-2.294C44.77 9.195 35.35 1 24.014 1Zm9.92 36.026c-.678-.679-1.706-.756-2.48-.301a14.628 14.628 0 0 1-3.876 1.58c-.88.219-1.564 1.004-1.564 1.974v4.402c0 1.196 1.07 2.18 2.317 1.944a22.89 22.89 0 0 0 8.445-3.456c1.063-.709 1.13-2.172.28-3.023l-3.121-3.12Zm4.317-9.239c.237-.854 1.011-1.51 1.96-1.51h4.418c1.205 0 2.194 1.086 1.939 2.34a22.846 22.846 0 0 1-3.631 8.5c-.72 1.038-2.163 1.092-3.004.251l-3.105-3.105c-.687-.687-.757-1.727-.288-2.503l0-.001.024-.042a46.75 46.75 0 0 0 .37-.672c.227-.418.47-.888.602-1.193.133-.306.31-.813.461-1.272a44.313 44.313 0 0 0 .24-.746l.014-.047Z"
+			clip-rule="evenodd"></path
+		></g
+	></svg>
 
-<style>
-	@keyframes spin {
-		from {
-			transform: rotate(0deg);
-		}
-
-		to {
-			transform: rotate(360deg);
-		}
-	}
-
+<style lang="postcss">
 	svg {
-		fill: currentColor;
-		animation: spin 1s linear infinite;
+		height: 16px;
+		width: 16px;
+
+		@apply animate-spin;
 	}
 </style>

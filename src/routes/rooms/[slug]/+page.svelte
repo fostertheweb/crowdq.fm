@@ -29,6 +29,7 @@
 	let storeSocket: PartySocket | null;
 	let tableListenerId: string;
 	let isMobile = false;
+	let isAudioEnabled = isHost;
 	let userId = user?.id;
 
 	onMount(async () => {
@@ -45,7 +46,7 @@
 			// TODO: don't call spotify player without authed user
 			switch (message.type) {
 				case 'play_next_track':
-					await playNextTrack();
+					await playNextTrack(isAudioEnabled);
 					break;
 				case 'pause':
 					await UniversalPlayer.pause();
@@ -73,17 +74,11 @@
 					);
 					break;
 				case 'sync_response':
+					// TODO: toast or top banner?
+					isAudioEnabled = false;
 					$currentQueueItem = message.item;
 					$playerPosition = message.position;
 					$playerStatus = message.status;
-
-					if (user) {
-						UniversalPlayer.play({
-							item: message.item,
-							position: message.position,
-							status: message.status
-						});
-					}
 					break;
 				default:
 					console.log('Event handler not implemented', event.data);
@@ -179,7 +174,7 @@
 		{#if !isMobile}
 			<Divider />
 
-			<Player {isHost} />
+			<Player {isHost} {isAudioEnabled} />
 		{/if}
 
 		<Divider />

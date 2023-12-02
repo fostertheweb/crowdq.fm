@@ -16,22 +16,24 @@
 	import LikeButton from './LikeButton.svelte';
 	import PlayerControl from './PlayerControl.svelte';
 	import VolumeControl from './VolumeControl.svelte';
+	import IconDisc from './icons/IconDisc.svelte';
+	import IconMusicAlt from './icons/IconMusicAlt.svelte';
 
 	export let isHost = false;
+	export let isAudioEnabled = false;
 
 	let progressInterval: ReturnType<typeof setInterval>;
 	let testColors: Array<string> = [];
 	let playNextIntervalId: ReturnType<typeof setInterval>;
 	let trackEnd = false;
 
-	$: progress = $playerPosition;
 	$: duration = $currentQueueItem?.duration || 0;
-	$: percent = (progress / duration) * 100 || 0;
+	$: percent = ($playerPosition / duration) * 100 || 0;
 
 	$: if ($playerStatus === 'playing') {
 		clearInterval(progressInterval);
 		progressInterval = setInterval(() => {
-			progress += 1000;
+			$playerPosition += 1000;
 			clearInterval(progressInterval);
 		}, 1000);
 	} else {
@@ -56,9 +58,17 @@
 			if (nextItem) {
 				$currentQueueItem = nextItem;
 				trackEnd = false;
-				await UniversalPlayer.play({ item: nextItem, position: 0, status: 'loading' });
+				await UniversalPlayer.play(nextItem, 0);
 			}
 		}, 750);
+	}
+
+	async function handleEnableAudio() {
+		if ($currentQueueItem) {
+			await UniversalPlayer.play($currentQueueItem, $playerPosition);
+		}
+
+		isAudioEnabled = true;
 	}
 
 	onMount(async () => {
@@ -215,13 +225,6 @@
 					alt=""
 					class="h-28 w-28 rounded shadow-md shadow-black/5" />
 			{/if}
-		{:else}
-			<!-- <div
-				class="flex h-28 w-28 items-center justify-center rounded bg-stone-200 dark:bg-stone-600">
-				<span class="text-5xl text-stone-50 drop-shadow dark:text-stone-400">
-					<IconMusic />
-				</span>
-			</div> -->
 		{/if}
 		<div class="space-y-1">
 			{#if $currentQueueItem}
@@ -252,6 +255,18 @@
 				<PlayerControl />
 			{/if}
 			<LikeButton />
+			{#if !isAudioEnabled}
+				<button
+					on:click={handleEnableAudio}
+					class="flex items-center gap-1 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
+					{#if $playerStatus === 'loading'}
+						<IconDisc />
+					{:else}
+						<IconMusicAlt />
+					{/if}
+					<span class="font-readex-pro font-medium">Enable Audio</span>
+				</button>
+			{/if}
 		</div>
 
 		<VolumeControl />

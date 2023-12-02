@@ -1,11 +1,17 @@
 import { get } from 'svelte/store';
 import { Spotify as SpotifyApiClient } from './spotify';
-import { SpotifyPlayer, YouTubePlayer, currentQueueItem, playerStatus } from './stores/player';
+import {
+	SpotifyPlayer,
+	YouTubePlayer,
+	currentQueueItem,
+	playerPosition,
+	playerStatus
+} from './stores/player';
 import { playQueue } from './stores/queue';
 import { spotifyDevice } from './stores/spotify';
-import type { PlayerStatus, QueueItem } from './types';
+import type { QueueItem } from './types';
 
-export async function playNextTrack() {
+export async function playNextTrack(audioEnabled: boolean) {
 	let nextIndex = 0;
 
 	const currentItem = get(currentQueueItem);
@@ -17,17 +23,16 @@ export async function playNextTrack() {
 	const nextItem = queue[nextIndex];
 	currentQueueItem.set(nextItem);
 
-	UniversalPlayer.play({ item: nextItem, position: 0, status: 'loading' });
+	if (audioEnabled) {
+		UniversalPlayer.play(nextItem, 0);
+	} else {
+		playerPosition.set(0);
+		playerStatus.set('playing');
+	}
 }
 
-export type Playback = {
-	item: QueueItem;
-	position: number;
-	status: PlayerStatus;
-};
-
 export class UniversalPlayer {
-	static async play(playback: Playback) {
+	static async play(item: QueueItem, position: number) {
 		const device = get(spotifyDevice);
 		const youtube = get(YouTubePlayer);
 
@@ -35,22 +40,26 @@ export class UniversalPlayer {
 		const isSpotifyPlaying = spotifyPlaybackState?.is_playing;
 		const isYouTubePlaying = youtube?.getPlayerState() === 1;
 
-		if (playback.item?.provider === 'spotify') {
+		if (item.provider === 'spotify') {
 			if (youtube && isYouTubePlaying) {
 				youtube.stopVideo();
 			}
 
-			// FIXME: on sync with logged in user, device not ready yet
 			if (device) {
-				await SpotifyApiClient.player.startResumePlayback(device, undefined, [
-					'spotify:track:' + playback.item.providerId
-				]);
+				// TODO: fix this mess in spotify lib with an object
+				await SpotifyApiClient.player.startResumePlayback(
+					device,
+					undefined,
+					['spotify:track:' + item.providerId],
+					undefined,
+					position
+				);
 				playerStatus.set('playing');
 			}
 		}
 
-		if (playback.item?.provider === 'youtube') {
-			const videoId = playback.item?.providerId;
+		if (item.provider === 'youtube') {
+			const videoId = item.providerId;
 
 			if (device && isSpotifyPlaying) {
 				await SpotifyApiClient.player.pausePlayback(device);
@@ -58,7 +67,7 @@ export class UniversalPlayer {
 
 			youtube?.loadVideoById({
 				videoId,
-				startSeconds: playback.position / 1000
+				startSeconds: position / 1000
 			});
 			playerStatus.set('playing');
 		}
