@@ -7,6 +7,9 @@ export default {
 			fontFamily: {
 				straker: ['Straker'],
 				'readex-pro': ['Readex Pro']
+			},
+			transitionProperty: {
+				height: 'height'
 			}
 		}
 	},

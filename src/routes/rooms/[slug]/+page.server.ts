@@ -1,12 +1,13 @@
-import { redirect } from '@sveltejs/kit';
 import { kv } from '$lib/kv';
 import { createServerClient } from '$lib/spotify';
+import { redirect } from '@sveltejs/kit';
 
 import type { Room } from '$lib/types';
 import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
 export async function load({ cookies, locals, params }) {
 	const room = await kv.hgetall<Room>(`rooms:${params.slug}`);
+
 	let client;
 	let isHost = false;
 	let devices;
@@ -31,6 +32,8 @@ export async function load({ cookies, locals, params }) {
 		const response = await client.player.getAvailableDevices();
 		devices = response.devices.filter(({ is_active }) => is_active);
 	}
+
+	room.hostId = String(room.hostId);
 
 	if (user?.id) {
 		isHost = user.id === room.hostId;

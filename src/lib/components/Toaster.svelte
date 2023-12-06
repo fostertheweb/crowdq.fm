@@ -20,6 +20,7 @@
 <script lang="ts">
 	import { createToaster, melt } from '@melt-ui/svelte';
 	import IconCopied from './icons/IconCopied.svelte';
+	import IconNoMusic from './icons/IconNoMusic.svelte';
 	import IconX from './icons/IconX.svelte';
 </script>
 
@@ -30,17 +31,20 @@
 				class="flex w-fit items-center gap-2 rounded-full border border-white/20 bg-stone-900/60 px-3 py-2 text-sm text-white shadow-lg backdrop-blur-sm"
 				use:melt={$content(id)}>
 				{#if data.icon}
-					<span class="px-1 text-green-300">
+					<span class={`px-1 ${data.color}`}>
 						{#if data.icon === 'copied'}
 							<IconCopied />
-						{/if}</span>
+						{:else if data.icon === 'error'}
+							<IconNoMusic />
+						{/if}
+					</span>
 				{/if}
 				<div class="">
-					<h3 use:melt={$title(id)}>
+					<h3 use:melt={$title(id)} class="font-medium">
 						{data.title}
 					</h3>
 					{#if data.description.length > 0}
-						<div use:melt={$description(id)}>
+						<div use:melt={$description(id)} class="text-xs">
 							{data.description}
 						</div>
 					{/if}

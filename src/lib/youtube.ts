@@ -4,7 +4,7 @@ export async function getVideoById(id: string) {
 	const url = new URL('https://youtube.googleapis.com/youtube/v3/videos');
 	const params = new URLSearchParams({
 		id,
-		part: 'snippet,contentDetails',
+		part: 'contentDetails,snippet,status',
 		key: PUBLIC_YOUTUBE_API_KEY
 	});
 
@@ -25,6 +25,7 @@ export async function getVideoById(id: string) {
 export async function getVideoFromLink(input: string) {
 	const videoId = extractIdFromUrl(input);
 	const video = await getVideoById(videoId);
+	console.log({ video });
 	return video;
 }
 
@@ -110,6 +111,10 @@ export type YouTubeVideoSnippet = {
 	thumbnails: YouTubeThumbnails;
 };
 
+export type YouTubeVideoStatus = {
+	embeddable: boolean;
+};
+
 export type YouTubeVideoContentDetails = {
 	duration: string;
 };
@@ -118,6 +123,7 @@ export type YouTubeVideo = {
 	id: string;
 	snippet: YouTubeVideoSnippet;
 	contentDetails: YouTubeVideoContentDetails;
+	status: YouTubeVideoStatus;
 };
 
 export type YouTubeVideoList = {

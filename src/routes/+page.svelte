@@ -96,7 +96,7 @@
 			<br />Can't sync up? Share a play queue with friends for another time.
 		</p>
 
-		<div class="mt-8 flex items-center gap-6 tracking-wide">
+		<div class="mt-8 flex items-center gap-6">
 			<a
 				href="/lobby"
 				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-readex-pro font-semibold text-white shadow hover:brightness-125">

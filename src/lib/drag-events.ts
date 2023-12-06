@@ -1,5 +1,6 @@
 import { createQueueItemFromTrack, createQueueItemFromVideo, store } from '$lib/db';
 import { Spotify, getTracksFromLink } from '$lib/spotify';
+import { addToast } from './components/Toaster.svelte';
 import { getVideoFromLink } from './youtube';
 
 export async function handleDrop(e: DragEvent) {
@@ -17,7 +18,21 @@ export async function handleDrop(e: DragEvent) {
 			});
 		} else {
 			const video = await getVideoFromLink(dropData);
-			store.addRow('items', createQueueItemFromVideo(video, user.id));
+
+			if (video.status.embeddable) {
+				store.addRow('items', createQueueItemFromVideo(video, user.id));
+			} else {
+				addToast({
+					closeDelay: 5000,
+					data: {
+						title: 'Cannot add video',
+						description: 'Channel does not allow embedding',
+						color: 'text-red-400',
+						icon: 'error',
+						canDismiss: true
+					}
+				});
+			}
 		}
 	} else {
 		// TODO: inform user they are not connected to the room

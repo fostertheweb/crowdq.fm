@@ -15,7 +15,7 @@
 			<span>{item.name}</span>
 			{#if item.explicit}
 				<div
-					class="small-caps cq-font-heading flex items-center justify-center rounded-sm bg-stone-200 px-1 py-0 text-xs tracking-wide text-stone-500 dark:bg-stone-600 dark:text-stone-300">
+					class="small-caps cq-font-heading flex items-center justify-center rounded-sm bg-stone-200 px-1 py-0 text-xs text-stone-500 dark:bg-stone-600 dark:text-stone-300">
 					E
 				</div>
 			{/if}

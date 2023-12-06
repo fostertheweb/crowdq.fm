@@ -16,11 +16,8 @@
 	import LikeButton from './LikeButton.svelte';
 	import PlayerControl from './PlayerControl.svelte';
 	import VolumeControl from './VolumeControl.svelte';
-	import IconDisc from './icons/IconDisc.svelte';
-	import IconMusicAlt from './icons/IconMusicAlt.svelte';
 
 	export let isHost = false;
-	export let isAudioEnabled = false;
 
 	let progressInterval: ReturnType<typeof setInterval>;
 	let testColors: Array<string> = [];
@@ -61,14 +58,6 @@
 				await UniversalPlayer.play(nextItem, 0);
 			}
 		}, 750);
-	}
-
-	async function handleEnableAudio() {
-		if ($currentQueueItem) {
-			await UniversalPlayer.play($currentQueueItem, $playerPosition);
-		}
-
-		isAudioEnabled = true;
 	}
 
 	onMount(async () => {
@@ -255,18 +244,6 @@
 				<PlayerControl />
 			{/if}
 			<LikeButton />
-			{#if !isAudioEnabled}
-				<button
-					on:click={handleEnableAudio}
-					class="flex items-center gap-1 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
-					{#if $playerStatus === 'loading'}
-						<IconDisc />
-					{:else}
-						<IconMusicAlt />
-					{/if}
-					<span class="font-readex-pro font-medium">Enable Audio</span>
-				</button>
-			{/if}
 		</div>
 
 		<VolumeControl />
@@ -283,6 +260,6 @@
 	}
 
 	.cq-name {
-		width: calc(480px - 2rem);
+		max-width: calc(480px - 2rem);
 	}
 </style>

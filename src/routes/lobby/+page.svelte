@@ -33,7 +33,7 @@
 	{#if data.room}
 		<div class="cq-container flex w-full flex-col gap-6">
 			<header class="flex items-center justify-between">
-				<h3 class="font-straker text-2xl tracking-wider text-stone-700 dark:text-stone-50">
+				<h3 class="font-straker text-2xl tracking-wide text-stone-700 dark:text-stone-50">
 					crowdq<span class="text-orange-500">.</span>fm
 				</h3>
 			</header>
@@ -56,7 +56,7 @@
 				<form method="POST">
 					<button
 						type="submit"
-						class="leading font-readex-pro flex w-full items-center justify-center gap-2 rounded-md bg-rose-500 px-8 py-3 text-center text-base font-semibold text-white shadow-sm filter transition ease-linear hover:shadow-md hover:brightness-105">
+						class="leading flex w-full items-center justify-center gap-2 rounded-md bg-rose-500 px-8 py-3 text-center font-readex-pro text-base font-semibold text-white shadow-sm filter transition ease-linear hover:shadow-md hover:brightness-105">
 						Create Room
 					</button>
 				</form>

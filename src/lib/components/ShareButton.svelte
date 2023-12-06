@@ -17,7 +17,7 @@
 					data: {
 						title: 'Copied',
 						description: '',
-						color: 'green',
+						color: 'text-green-400',
 						icon: 'copied',
 						canDismiss: false
 					}

@@ -13,8 +13,14 @@
 	} = createDialog();
 
 	let link: string;
+	let inputElement: HTMLInputElement;
 
 	async function handleAddSong() {
+		if (!link || link.length === 0) {
+			inputElement.focus();
+			return;
+		}
+
 		const user = await Spotify.currentUser.profile();
 
 		if (link.includes('spotify')) {
@@ -56,6 +62,7 @@
 					class="w-[90px] text-right text-sm font-medium text-stone-600 dark:text-stone-300"
 					for="link">Spotify Song Link or YouTube URL</label>
 				<input
+					bind:this={inputElement}
 					on:change={(e) => (link = e.currentTarget.value)}
 					on:keydown={(e) => e.code === 'Enter' && handleAddSong()}
 					name="link"
@@ -68,7 +75,7 @@
 
 			<div
 				use:melt={$description}
-				class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:bg-cyan-500/20 dark:text-cyan-100">
+				class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:border-cyan-400/60 dark:bg-cyan-500/20 dark:text-cyan-100">
 				<div
 					class="rounded-l-lg bg-cyan-50 px-6 py-6 text-cyan-600/70 dark:bg-cyan-500/10 dark:text-cyan-400">
 					<IconInfo lg />
@@ -76,7 +83,7 @@
 				<p class="p-2 text-sm">You can drag and drop one or more songs anywhere in the window.</p>
 			</div>
 
-			<div class="mt-6 flex justify-end gap-4 font-readex-pro font-medium tracking-wide">
+			<div class="mt-6 flex justify-end gap-4 font-readex-pro font-medium">
 				<button
 					use:melt={$close}
 					class="inline-flex items-center justify-center rounded-full

@@ -10,7 +10,7 @@
 
 <div class="rounded bg-white p-6 pt-2 shadow dark:bg-stone-700">
 	<h3
-		class="font-readex-pro m-0 text-center text-base font-medium tracking-wide text-stone-500 dark:text-stone-300">
+		class="m-0 text-center font-readex-pro text-base font-medium text-stone-500 dark:text-stone-300">
 		Select Spotify Device
 	</h3>
 	<div class="h-4" />
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 
-		<div class="font-readex-pro mt-2 flex justify-end gap-3 font-medium tracking-wide">
+		<div class="mt-2 flex justify-end gap-3 font-readex-pro font-medium">
 			<div
 				class="inline-flex items-center justify-center rounded-full
                     border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 dark:border-stone-500 dark:bg-stone-500 dark:text-stone-200">
@@ -45,7 +45,7 @@
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="font-readex-pro inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-medium text-white"
+					class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-readex-pro font-medium text-white"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<div

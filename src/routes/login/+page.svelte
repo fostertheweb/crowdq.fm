@@ -37,8 +37,7 @@
 					crowdq<span class="text-orange-500">.</span>fm
 				</h3>
 				<div class="flex items-center gap-2">
-					<div
-						class="font-readex-pro text-lg font-semibold tracking-wide text-stone-700 dark:text-stone-300">
+					<div class="font-readex-pro text-lg font-medium text-stone-700 dark:text-stone-300">
 						Log In
 					</div>
 				</div>

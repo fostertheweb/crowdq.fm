@@ -33,7 +33,7 @@
 				<p>No active devices found. Open Spotify and come back.</p>
 			</div>
 		</div>
-		<div class="font-readex-pro mt-2 flex justify-end gap-3 font-medium tracking-wide">
+		<div class="mt-2 flex justify-end gap-3 font-readex-pro font-medium">
 			<button
 				on:click={() => cancel()}
 				class="inline-flex items-center justify-center rounded-full
@@ -42,7 +42,7 @@
 			</button>
 			<a
 				href="spotify://"
-				class="font-readex-pro inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-medium text-white"
+				class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-readex-pro font-medium text-white"
 				><IconExternalLink />Open Spotify</a>
 		</div>
 	{:else}
@@ -70,7 +70,7 @@
 			<p class="leading-6">Don't see your device? Open Spotify and come back.</p>
 		</div>
 
-		<div class="font-readex-pro mt-2 flex justify-end gap-3 font-medium tracking-wide">
+		<div class="mt-2 flex justify-end gap-3 font-readex-pro font-medium">
 			<button
 				on:click={() => cancel()}
 				class="inline-flex items-center justify-center rounded-full
@@ -80,7 +80,7 @@
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="font-readex-pro inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-medium text-white"
+					class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-readex-pro font-medium text-white"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<button
