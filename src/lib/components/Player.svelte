@@ -56,6 +56,13 @@
 				$currentQueueItem = nextItem;
 				trackEnd = false;
 				await UniversalPlayer.play(nextItem, 0);
+			} else {
+				// TODO: don't let queue reset so user can continue adding songs and not start over
+				// TODO: queue ended, show listening stats and prompt to save playlist or continue
+				trackEnd = false;
+				$currentQueueItem = null;
+				$playerStatus = 'idle';
+				$playerPosition = 0;
 			}
 		}, 750);
 	}

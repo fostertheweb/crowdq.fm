@@ -21,6 +21,7 @@
 	let scrollY = 0;
 	$: displayShadow = scrollY > 0;
 	$: currentIndex = $playQueue.findIndex((item) => item.id === $currentQueueItem?.id);
+	// TODO: try shift on playQueue and += for listening time
 	$: remainingQueue = $playQueue.slice(currentIndex + 1);
 	$: totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
 
@@ -88,6 +89,7 @@
 		<div class=" flex flex-col items-center gap-6 pt-12 text-sm text-stone-300 dark:text-stone-500">
 			<IconListMusic lg={true} />
 			<div class="text-center">
+				<!-- TODO: use different message when queue ended -->
 				<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
 					No songs have been queued
 				</h4>
@@ -97,7 +99,7 @@
 		</div>
 	{/if}
 	<!-- TODO: better display logic to consider current item -->
-	{#if $playQueue.length > 0 && remainingQueue.length === 0}
+	{#if $playQueue.length > 0 && remainingQueue.length === 0 && !$currentQueueItem}
 		<div class="text-center text-xs text-stone-400">
 			Listened to {$playQueue.length} songs, for {formatMillis(totalListeningTime)}
 		</div>
