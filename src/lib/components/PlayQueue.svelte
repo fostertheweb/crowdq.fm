@@ -10,7 +10,7 @@
 	import { createQuery } from '@tanstack/svelte-query';
 
 	import type { Device, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
-	import IconNoMusic from './icons/IconNoMusic.svelte';
+	import IconListMusic from './icons/IconListMusic.svelte';
 
 	export let isMobile: boolean;
 	export let devices: Device[] | undefined;
@@ -85,10 +85,15 @@
 			<TrackCard {item} />
 		{/each}
 	{:else}
-		<div
-			class=" flex flex-col items-center gap-4 pt-12 text-base text-stone-400 dark:text-stone-500">
-			<IconNoMusic />
-			<span>Bummer, no songs queued</span>
+		<div class=" flex flex-col items-center gap-6 pt-12 text-sm text-stone-300 dark:text-stone-500">
+			<IconListMusic lg={true} />
+			<div class="text-center">
+				<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
+					No songs have been queued
+				</h4>
+				<p class="mt-2 text-stone-400">Add a song with a copied link or drag</p>
+				<p class="text-stone-400">and drop from Spotify or YouTube</p>
+			</div>
 		</div>
 	{/if}
 	<!-- TODO: better display logic to consider current item -->
