@@ -1,5 +1,4 @@
 <script lang="ts">
-	import IconPlay from '$lib/components/icons/IconPlay.svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
 
 	import { Spotify } from '$lib/spotify';
@@ -7,6 +6,7 @@
 	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import { onDestroy } from 'svelte';
 	import DeviceSelector from './DeviceSelector.svelte';
+	import IconPhoneMusic from './icons/IconPhoneMusic.svelte';
 
 	export let disabled = true;
 	export let devices: Device[] | undefined;
@@ -47,7 +47,7 @@
 	use:melt={$trigger}
 	{disabled}
 	class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 disabled:opacity-60 dark:bg-green-600 dark:text-white">
-	<IconPlay lg={false} />
+	<IconPhoneMusic />
 	<span class="font-readex-pro font-medium">Play in Spotify</span>
 </button>
 
@@ -55,13 +55,13 @@
 	{#if $open}
 		<div use:melt={$overlay} class="fixed inset-0 z-50 bg-black/50" />
 		<div
-			class="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw]
-            max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded bg-white
-            p-6 pt-2 shadow-lg dark:bg-stone-700"
+			class="fixed bottom-0 left-0 z-50 h-fit max-h-[85vh] rounded-t
+            bg-white p-6 pt-2 shadow-lg dark:bg-stone-700 sm:left-[50%] sm:top-[50%] sm:w-[90vw]
+            sm:max-w-[450px] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-b"
 			use:melt={$content}>
 			<h3
 				use:melt={$title}
-				class="m-0 text-center font-readex-pro text-base font-medium text-stone-500 dark:text-stone-300">
+				class="m-0 py-2 text-center font-readex-pro text-base font-medium text-stone-500 dark:text-stone-300">
 				Select Spotify Device
 			</h3>
 			<div class="h-4" />

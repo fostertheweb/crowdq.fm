@@ -2,10 +2,10 @@
 	import IconDevice from '$lib/components/icons/IconDevice.svelte';
 	import IconExternalLink from '$lib/components/icons/IconExternalLink.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
+	import IconQuestion from '$lib/components/icons/IconQuestion.svelte';
 	import IconSpinner from '$lib/components/icons/IconSpinner.svelte';
 	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import { createRadioGroup, melt } from '@melt-ui/svelte';
-	import IconInfo from './icons/IconInfo.svelte';
 
 	export let devices: Array<Device> | undefined;
 	export let isAdding = false;
@@ -65,12 +65,16 @@
 		</div>
 
 		<div
-			class="flex items-baseline justify-center gap-2 text-sm text-stone-600 dark:text-stone-400">
-			<span class="text-base"><IconInfo /></span>
-			<p class="leading-6">Don't see your device? Open Spotify and come back.</p>
+			class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:border-cyan-100/20 dark:bg-cyan-500/20 dark:text-cyan-100">
+			<div
+				class="rounded-l-lg bg-cyan-50 px-6 py-6 text-cyan-600/70 dark:bg-cyan-500/10 dark:text-cyan-400">
+				<IconQuestion lg />
+			</div>
+			<p class="p-2 text-sm">Don't see your device? Open Spotify and come back.</p>
 		</div>
 
-		<div class="mt-2 flex justify-end gap-3 font-readex-pro font-medium">
+		<div
+			class="mt-2 flex flex-col-reverse justify-end gap-3 font-readex-pro font-medium sm:flex-row">
 			<button
 				on:click={() => cancel()}
 				class="inline-flex items-center justify-center rounded-full
@@ -80,7 +84,7 @@
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-readex-pro font-medium text-white"
+					class="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-3 py-2 font-readex-pro font-medium text-white"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<button

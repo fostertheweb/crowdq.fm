@@ -52,7 +52,7 @@
 			use:melt={$content}>
 			<h3
 				use:melt={$title}
-				class="m-0 text-center font-readex-pro text-base font-medium text-stone-500 dark:text-stone-300">
+				class="m-0 py-2 text-center font-readex-pro text-base font-medium text-stone-500 dark:text-stone-300">
 				Add Song to Queue
 			</h3>
 			<div class="h-4" />

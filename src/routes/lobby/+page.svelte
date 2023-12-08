@@ -44,7 +44,7 @@
 		{#if data.room}
 			<div
 				class=" flex flex-col items-center gap-6 pt-12 text-sm text-stone-300 dark:text-stone-500">
-				<IconDisc lg={true} />
+				<IconDisc lg />
 				<div class="text-center">
 					<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
 						Returning to {data.room.hostedBy}'s Room

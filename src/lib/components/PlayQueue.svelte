@@ -90,7 +90,7 @@
 		{/each}
 	{:else}
 		<div class=" flex flex-col items-center gap-6 pt-12 text-sm text-stone-300 dark:text-stone-500">
-			<IconListMusic lg={true} />
+			<IconListMusic lg />
 			<div class="text-center">
 				<!-- TODO: use different message when queue ended -->
 				<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
