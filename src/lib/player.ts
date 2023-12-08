@@ -122,11 +122,18 @@ export class UniversalPlayer {
 	}
 
 	static setVolume(volume: number) {
+		const youtube = get(YouTubePlayer);
+		const spotify = get(SpotifyPlayer);
 		const currentItem = get(currentQueueItem);
 
 		if (currentItem) {
-			get(SpotifyPlayer)?.setVolume(volume / 100);
-			get(YouTubePlayer)?.setVolume(volume);
+			if (spotify) {
+				spotify.setVolume(volume / 100);
+			}
+
+			if (youtube) {
+				youtube.setVolume(volume);
+			}
 		}
 	}
 

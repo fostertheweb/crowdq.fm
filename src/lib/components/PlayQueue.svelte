@@ -22,6 +22,8 @@
 	$: displayShadow = scrollY > 0;
 	$: currentIndex = $playQueue.findIndex((item) => item.id === $currentQueueItem?.id);
 	// TODO: try shift on playQueue and += for listening time
+	// TODO: will have to slice when currentitem updates
+	// TODO: shift in playNextTrack?
 	$: remainingQueue = $playQueue.slice(currentIndex + 1);
 	$: totalListeningTime += $currentQueueItem?.duration || 0;
 	console.log({ totalListeningTime });

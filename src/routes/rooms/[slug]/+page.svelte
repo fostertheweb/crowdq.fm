@@ -158,12 +158,13 @@
 
 	{#if !isAudioEnabled && user}
 		<div class="w-full bg-orange-100 p-2 dark:bg-orange-700">
-			<div class="mx-auto flex items-center justify-center gap-2 px-4 text-center text-orange-900">
+			<div
+				class="mx-auto flex items-center justify-center gap-2 px-4 text-center text-orange-900 dark:text-orange-50">
 				<IconAudioDisabled />
-				<p class="mr-2 text-sm dark:text-orange-50">Audio currently disabled.</p>
+				<p class="mr-2 text-sm">Audio currently disabled.</p>
 				<button
 					on:click={handleEnableAudio}
-					class="flex items-center gap-1 rounded-full bg-orange-300/60 px-2 py-1 text-xs text-orange-900 hover:bg-orange-300 dark:bg-orange-900 dark:text-orange-200 dark:hover:bg-orange-900/80 dark:hover:text-orange-50">
+					class="flex items-center gap-1 rounded-full bg-orange-300/60 px-2 py-1 text-xs text-orange-900 hover:bg-orange-300 dark:bg-orange-900 dark:text-orange-200 dark:hover:bg-orange-900/70 dark:hover:text-orange-50">
 					<span class="font-readex-pro font-medium">Enable Audio</span>
 				</button>
 			</div>
