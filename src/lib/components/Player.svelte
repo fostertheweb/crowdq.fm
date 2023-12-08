@@ -31,7 +31,6 @@
 		clearInterval(progressInterval);
 		progressInterval = setInterval(() => {
 			playerPosition.update((current) => current + 1000);
-			clearInterval(progressInterval);
 		}, 1000);
 	} else {
 		clearInterval(progressInterval);
@@ -108,8 +107,10 @@
 								$playerStatus = 'paused';
 								break;
 							default:
-								$playerPosition = 0;
-								$playerStatus = 'idle';
+								if ($currentQueueItem?.provider === 'youtube') {
+									$playerPosition = 0;
+									$playerStatus = 'idle';
+								}
 								break;
 						}
 					}
