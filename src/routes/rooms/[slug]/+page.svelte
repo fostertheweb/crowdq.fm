@@ -51,6 +51,7 @@
 
 		$party.addEventListener('message', async (event) => {
 			const message = JSON.parse(event.data);
+
 			console.log(message);
 
 			switch (message.type) {
@@ -63,14 +64,11 @@
 				case 'resume':
 					await UniversalPlayer.resume();
 					break;
-				case 'connect':
-					// console.log(message);
-					break;
 				case 'remove':
 					store.delRow(message.table, message.id);
 					break;
 				case 'sync_request':
-					const position = await UniversalPlayer.getPosition();
+					// const position = await UniversalPlayer.getPosition();
 
 					$party?.send(
 						JSON.stringify({
@@ -78,7 +76,7 @@
 							id: message.id,
 							item: $currentQueueItem,
 							status: $playerStatus,
-							position
+							position: $playerPosition
 						})
 					);
 					break;
@@ -86,6 +84,9 @@
 					switch (message.status) {
 						case 'playing':
 							isAudioEnabled = false;
+							$currentQueueItem = message.item;
+							$playerPosition = message.position;
+							$playerStatus = message.status;
 							break;
 
 						case 'idle':

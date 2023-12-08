@@ -25,7 +25,6 @@ export async function getVideoById(id: string) {
 export async function getVideoFromLink(input: string) {
 	const videoId = extractIdFromUrl(input);
 	const video = await getVideoById(videoId);
-	console.log({ video });
 	return video;
 }
 

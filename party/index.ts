@@ -13,8 +13,6 @@ export default class WebSocket implements Party.Server {
 		const connections = [...this.party.getConnections()];
 		const others = connections.filter((c) => c.id !== connection.id);
 
-		console.log({ others });
-
 		if (others.length > 0) {
 			others[0].send(JSON.stringify(message2));
 

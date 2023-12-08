@@ -146,7 +146,6 @@
 
 						if (state.loading) {
 							clearInterval(progressInterval);
-							console.log({ loading: state.loading });
 							playerStatus.set('loading');
 						}
 
