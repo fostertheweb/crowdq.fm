@@ -6,7 +6,7 @@
 	import { addToast } from './Toaster.svelte';
 
 	const {
-		elements: { trigger, content },
+		elements: { trigger, content, arrow },
 		states: { open }
 	} = createTooltip({
 		positioning: {
@@ -46,7 +46,8 @@
 	<div
 		use:melt={$content}
 		transition:fade={{ duration: 100 }}
-		class="z-20 flex w-fit items-center gap-2 rounded-lg border border-white/20 bg-stone-900/60 px-3 py-2 text-sm text-white shadow-lg backdrop-blur-sm">
+		class="z-20 flex w-fit items-center gap-2 rounded-lg border border-stone-200 bg-stone-100 px-3 py-2 text-sm text-stone-600 shadow-md shadow-black/5 backdrop-blur-sm dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50">
+		<div use:melt={$arrow} class="border-l border-t border-stone-200 dark:border-stone-800" />
 		<p class="text-xs font-medium">Copy invite link</p>
 	</div>
 {/if}
