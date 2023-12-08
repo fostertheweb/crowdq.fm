@@ -46,8 +46,7 @@
 	<div
 		use:melt={$content}
 		transition:fade={{ duration: 100 }}
-		class="flex w-fit items-center gap-2 rounded-lg border border-white/20 bg-stone-900/60 px-3 py-2 text-sm text-white shadow-lg backdrop-blur-sm">
-		<div class="border-l border-t border-white/20 bg-stone-900/60" use:melt={$arrow} />
+		class="z-20 flex w-fit items-center gap-2 rounded-lg border border-white/20 bg-stone-900/60 px-3 py-2 text-sm text-white shadow-lg backdrop-blur-sm">
 		<p class="text-xs font-medium">Copy invite link</p>
 	</div>
 {/if}
