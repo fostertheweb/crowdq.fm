@@ -1,4 +1,5 @@
 <script lang="ts">
+	import HeroImage from '$lib/components/HeroImage.svelte';
 	import AddToSpotify from '$lib/components/dummy/AddToSpotify.svelte';
 	import ListenerStack from '$lib/components/dummy/ListenerStack.svelte';
 	import Player from '$lib/components/dummy/Player.svelte';
@@ -86,26 +87,33 @@
 		</div>
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
-		<h1 class="font-readex-pro text-4xl font-bold text-rose-950 dark:text-stone-100">
-			collaborative play queue
-			<br class="hidden md:block" />for <span class="text-rose-500">now</span> or
-			<span class="text-orange-500">later</span>
-		</h1>
-		<p class="mt-8 text-base font-normal text-stone-600 dark:text-stone-200">
-			Create or join a room with friends for your perfect listening party.
-			<br />Can't sync up? Share a play queue with friends for another time.
-		</p>
+		<div class="flex flex-col-reverse items-center justify-between sm:flex-row">
+			<div>
+				<h1
+					class="font-readex-pro text-4xl font-black capitalize text-rose-950 dark:text-stone-100">
+					collaborative play queue
+					<br class="hidden md:block" />for <span class="text-rose-500">now</span> or
+					<span class="text-orange-500">later</span>
+				</h1>
+				<p class="mt-8 text-base font-normal text-rose-950/80 dark:text-stone-200">
+					Join the Groove: Together in Tune, Anytime, Anywhere.
+				</p>
 
-		<div class="mt-8 flex items-center gap-6">
-			<a
-				href="/lobby"
-				class="rounded-full border-2 border-rose-500 bg-rose-500 px-4 py-2 font-readex-pro font-semibold text-white shadow hover:brightness-125">
-				Create Room
-			</a>
-			<a
-				href="#features"
-				class="text-rose-950 underline hover:text-rose-800 dark:text-white/80 dark:hover:text-white"
-				>Learn More</a>
+				<div class="mt-8 flex items-center gap-6">
+					<a
+						href="/lobby"
+						class="flex items-center gap-2 rounded-full border-2 border-rose-500 bg-rose-500 px-8 py-2 font-readex-pro font-semibold text-white shadow hover:brightness-125">
+						Get Started
+					</a>
+					<a
+						href="#features"
+						class="text-rose-950 underline hover:text-rose-800 dark:text-white/80 dark:hover:text-white"
+						>Learn More</a>
+				</div>
+			</div>
+			<div class="p-8 text-rose-950 sm:w-1/2">
+				<HeroImage />
+			</div>
 		</div>
 	</header>
 </div>
@@ -179,7 +187,7 @@
 				Listen Together
 			</h3>
 			<p class="text-rose-950 dark:text-rose-100">
-				Simply create a shared queue, invite your favorite people, and enjoy the harmonious magic of
+				Create a shared queue, invite your favorite people, and enjoy the harmonious magic of
 				synchronized playback. Watch as the rhythm of each beat aligns perfectly, fostering a sense
 				of togetherness even across distances. Whether it's a virtual party, a remote work session,
 				or a cozy night in with loved ones, crowdq.fm will maintain the vibes.
@@ -240,13 +248,13 @@
 	}
 
 	.cq-tracks {
-		width: 480px;
-		max-width: 100%;
+		width: 100%;
+		max-width: 480px;
 	}
 
 	.cq-spotify-add {
-		width: 480px;
-		max-width: 100%;
+		width: 100%;
+		max-width: 480px;
 	}
 
 	.cq-feature-row {
@@ -254,6 +262,7 @@
 	}
 
 	.cq-blobs {
-		width: 480px;
+		width: 100%;
+		max-width: 480px;
 	}
 </style>

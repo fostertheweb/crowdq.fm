@@ -6,7 +6,7 @@
 	import { addToast } from './Toaster.svelte';
 
 	const {
-		elements: { trigger, content, arrow },
+		elements: { trigger, content },
 		states: { open }
 	} = createTooltip({
 		positioning: {
@@ -14,7 +14,7 @@
 		},
 		openDelay: 0,
 		closeDelay: 0,
-		closeOnPointerDown: false,
+		closeOnPointerDown: true,
 		forceVisible: true
 	});
 

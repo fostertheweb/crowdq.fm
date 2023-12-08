@@ -20,7 +20,7 @@
 	}
 
 	.lg {
-		/* TODO: use 36px */
-		transform: scale(2.2);
+		width: 36px;
+		height: 36px;
 	}
 </style>

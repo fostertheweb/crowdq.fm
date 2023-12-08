@@ -20,6 +20,7 @@
 	}
 
 	.lg {
-		transform: scale(1.4);
+		width: 24px;
+		height: 24px;
 	}
 </style>
