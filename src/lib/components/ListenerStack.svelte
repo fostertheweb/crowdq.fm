@@ -40,10 +40,6 @@
 					+{additionalListeners}
 				</div>
 			{/if}
-		{:else}
-			<div class="flex h-8 items-center justify-center text-sm text-stone-500 dark:text-stone-400">
-				Invite others to listen!
-			</div>
 		{/if}
 	</div>
 </div>

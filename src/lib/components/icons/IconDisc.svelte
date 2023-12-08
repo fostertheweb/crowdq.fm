@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+<script lang="ts">
+	export let lg = false;
+</script>
+
+<svg class:lg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
 	><g id="music-disc--music-audio-note-cd-disc-dvd-entertainment"
 		><path
 			id="Union"
@@ -14,6 +18,11 @@
 		width: 16px;
 		height: 16px;
 
-		@apply animate-spin;
+		@apply animate-spin duration-1000;
+	}
+
+	.lg {
+		width: 36px;
+		height: 36px;
 	}
 </style>

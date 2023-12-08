@@ -5,6 +5,8 @@
 	import { Spotify } from '$lib/spotify.js';
 	import { onMount } from 'svelte';
 
+	import CurrentUser from '$lib/components/CurrentUser.svelte';
+	import Divider from '$lib/components/Divider.svelte';
 	import IconInfo from '$lib/components/icons/IconInfo.svelte';
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 
@@ -27,22 +29,19 @@
 	});
 </script>
 
-<div
-	class="flex h-screen flex-col items-center justify-start gap-8 bg-stone-50 p-8 dark:bg-stone-900">
-	<div class="cq-container flex flex-col gap-8 rounded bg-white p-8 shadow dark:bg-stone-600">
-		<div class="flex flex-col gap-6 px-2">
-			<div class="flex justify-between">
-				<h3
-					class="font-straker text-2xl font-medium tracking-wide text-stone-700 dark:text-stone-200">
-					crowdq<span class="text-orange-500">.</span>fm
-				</h3>
-				<div class="flex items-center gap-2">
-					<div class="font-readex-pro text-lg font-medium text-stone-700 dark:text-stone-300">
-						Log In
-					</div>
-				</div>
-			</div>
-		</div>
+<main class="flex h-screen flex-col items-center">
+	<div class="cq-container flex w-full flex-col px-4 pt-6">
+		<header class="flex items-center justify-between">
+			<h3 class="font-straker text-2xl tracking-wide text-stone-700 dark:text-stone-50">
+				crowdq<span class="text-orange-500">.</span>fm
+			</h3>
+
+			{#if user}
+				<CurrentUser {user} />
+			{/if}
+		</header>
+
+		<Divider />
 
 		{#if user}
 			<div class="flex w-full flex-col gap-2">
@@ -53,7 +52,7 @@
 				</div>
 			</div>
 		{:else}
-			<div class="flex w-full flex-col gap-2">
+			<div class="space-y-2">
 				<LoginButton />
 				<div class="flex items-center justify-center gap-2 p-2 text-sm text-stone-400">
 					<IconInfo />
@@ -62,10 +61,10 @@
 			</div>
 		{/if}
 	</div>
-</div>
+</main>
 
 <style>
 	.cq-container {
-		width: 24rem;
+		width: 480px;
 	}
 </style>

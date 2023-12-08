@@ -46,7 +46,7 @@ export class UniversalPlayer {
 			}
 
 			if (device) {
-				// TODO: fix this mess in spotify lib with an object
+				// TODO: fix this mess in @fostertheweb/spotify-web-sdk lib with an object
 				await SpotifyApiClient.player.startResumePlayback(
 					device,
 					undefined,

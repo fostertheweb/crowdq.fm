@@ -5,7 +5,8 @@ import ShortUniqueId from 'short-unique-id';
 import type { Room } from '$lib/types';
 
 export async function load({ cookies, locals }) {
-	const room = cookies.get('cq-room');
+	const cookie = cookies.get('cq-room');
+	const room = await kv.hgetall<Room>(`rooms:${cookie}`);
 
 	return {
 		user: locals.user,

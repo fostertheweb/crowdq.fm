@@ -5,6 +5,8 @@
 	import { accentColor, playerStatus } from '$lib/stores/player';
 	import { darken, lighten } from 'polished';
 
+	export let isHost = false;
+
 	async function handleClick() {
 		if ($playerStatus === 'playing') {
 			$party?.send('pause');
@@ -31,20 +33,22 @@
 		.join(';');
 </script>
 
-<div style={cssVariables}>
-	<button
-		on:click={handleClick}
-		disabled={$playerStatus === 'loading'}
-		class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
-		{#if $playerStatus === 'playing'}
-			<IconPause />
-		{:else if $playerStatus === 'loading'}
-			<IconPause />
-		{:else}
-			<IconPlay />
-		{/if}
-	</button>
-</div>
+{#if isHost}
+	<div style={cssVariables}>
+		<button
+			on:click={handleClick}
+			disabled={$playerStatus === 'loading'}
+			class="flex h-10 w-10 items-center justify-center rounded-full transition-colors ease-linear">
+			{#if $playerStatus === 'playing'}
+				<IconPause />
+			{:else if $playerStatus === 'loading'}
+				<IconPause />
+			{:else}
+				<IconPlay />
+			{/if}
+		</button>
+	</div>
+{/if}
 
 <style>
 	button {

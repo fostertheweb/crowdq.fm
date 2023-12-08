@@ -93,10 +93,12 @@
 
 						switch (event.target.getPlayerState()) {
 							case 0:
-								clearInterval(progressInterval);
-								$playerPosition = 0;
-								$playerStatus = 'loading';
-								trackEnd = true;
+								if ($currentQueueItem?.provider === 'youtube') {
+									clearInterval(progressInterval);
+									$playerPosition = 0;
+									$playerStatus = 'loading';
+									trackEnd = true;
+								}
 								break;
 							case 1:
 								$playerStatus = 'playing';
@@ -140,9 +142,11 @@
 						playerPosition.set(0);
 					} else {
 						playerPosition.set(state.position);
+						playerStatus.set('playing');
 
 						if (state.loading) {
 							clearInterval(progressInterval);
+							console.log({ loading: state.loading });
 							playerStatus.set('loading');
 						}
 
@@ -247,9 +251,7 @@
 
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
-			{#if isHost}
-				<PlayerControl />
-			{/if}
+			<PlayerControl {isHost} />
 			<LikeButton />
 		</div>
 

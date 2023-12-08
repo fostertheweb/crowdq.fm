@@ -75,7 +75,7 @@
 
 			<div
 				use:melt={$description}
-				class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:border-cyan-400/60 dark:bg-cyan-500/20 dark:text-cyan-100">
+				class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:border-cyan-100/20 dark:bg-cyan-500/20 dark:text-cyan-100">
 				<div
 					class="rounded-l-lg bg-cyan-50 px-6 py-6 text-cyan-600/70 dark:bg-cyan-500/10 dark:text-cyan-400">
 					<IconInfo lg />

@@ -52,7 +52,6 @@
 			const message = JSON.parse(event.data);
 			console.log(message);
 
-			// TODO: don't call spotify player without authed user
 			switch (message.type) {
 				case 'play_next_track':
 					await playNextTrack(isAudioEnabled);
@@ -83,14 +82,23 @@
 					);
 					break;
 				case 'sync_response':
-					// TODO: toast or top banner?
-					if (message.status === 'playing') {
-						isAudioEnabled = false;
+					switch (message.status) {
+						case 'playing':
+							isAudioEnabled = false;
+							break;
+
+						case 'idle':
+							$currentQueueItem = null;
+							$playerPosition = 0;
+							$playerStatus = 'idle';
+
+						default:
+							$currentQueueItem = message.item;
+							$playerPosition = message.position;
+							$playerStatus = message.status;
+							break;
 					}
 
-					$currentQueueItem = message.item;
-					$playerPosition = message.position;
-					$playerStatus = message.status;
 					break;
 				default:
 					console.log('Event handler not implemented', event.data);
@@ -155,7 +163,7 @@
 				<p class="mr-2 text-sm dark:text-orange-50">Audio currently disabled.</p>
 				<button
 					on:click={handleEnableAudio}
-					class="flex items-center gap-1 rounded-full bg-orange-300/60 px-2 py-1 text-xs text-orange-900 hover:bg-orange-300 dark:bg-orange-900 dark:text-orange-300 dark:hover:bg-orange-600 dark:hover:text-orange-200">
+					class="flex items-center gap-1 rounded-full bg-orange-300/60 px-2 py-1 text-xs text-orange-900 hover:bg-orange-300 dark:bg-orange-900 dark:text-orange-200 dark:hover:bg-orange-900/80 dark:hover:text-orange-50">
 					<span class="font-readex-pro font-medium">Enable Audio</span>
 				</button>
 			</div>

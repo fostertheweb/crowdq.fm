@@ -23,7 +23,8 @@
 	$: currentIndex = $playQueue.findIndex((item) => item.id === $currentQueueItem?.id);
 	// TODO: try shift on playQueue and += for listening time
 	$: remainingQueue = $playQueue.slice(currentIndex + 1);
-	$: totalListeningTime = $playQueue.reduce((d, t) => d + t.duration, 0);
+	$: totalListeningTime += $currentQueueItem?.duration || 0;
+	console.log({ totalListeningTime });
 
 	function formatMillis(millis: number) {
 		const hours = Math.floor(millis / 3600000);
