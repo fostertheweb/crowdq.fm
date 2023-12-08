@@ -6,9 +6,9 @@
 </script>
 
 <div class="flex items-center">
-	<ListenerAvatar listener={{ avatar: user.images[0].url }} />
+	<ListenerAvatar listener={{ avatar: user.images[0].url, displayName: user.display_name }} />
 	<div
-		class="font-readex-pro -ml-4 flex h-8 items-center justify-center rounded-r-full bg-stone-200/40 pl-6 pr-3 text-sm font-medium text-stone-500 dark:bg-stone-700/40 dark:text-stone-400">
+		class="-ml-4 flex h-8 items-center justify-center rounded-r-full bg-stone-200/40 pl-6 pr-3 font-readex-pro text-sm font-medium text-stone-500 dark:bg-stone-700/40 dark:text-stone-400">
 		{user.display_name}
 	</div>
 </div>

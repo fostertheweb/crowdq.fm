@@ -14,11 +14,12 @@
 	import { UniversalPlayer, playNextTrack } from '$lib/player';
 	import { Spotify, postAccessToken } from '$lib/spotify';
 	import { party } from '$lib/stores/party';
-	import { playQueue } from '$lib/stores/queue';
+	import { playQueue, showOverlay } from '$lib/stores/queue';
 	import mobile from 'is-mobile';
 	import { onDestroy, onMount } from 'svelte';
 
 	import IconAudioDisabled from '$lib/components/icons/IconAudioDisabled.svelte';
+	import IconPlusMusic from '$lib/components/icons/IconPlusMusic.svelte';
 	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player.js';
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
@@ -143,19 +144,22 @@
 	});
 </script>
 
-<main class="flex h-screen flex-col items-center">
+{#if $showOverlay}
 	<div
-		class="left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm">
+		class="fixed left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm">
 		<div
 			class="flex h-full w-full items-center justify-center rounded border-4 border-dashed border-stone-200">
 			<div class="font-readex-pro text-2xl font-semibold text-stone-100">
-				<div class="flex flex-col items-center gap-2">
+				<div class="flex flex-col items-center gap-4 drop-shadow">
+					<IconPlusMusic xl />
 					<span>Add to Queue</span>
 				</div>
 			</div>
 		</div>
 	</div>
+{/if}
 
+<main class="flex flex-col items-center">
 	{#if !isAudioEnabled && user}
 		<div class="w-full bg-orange-100 p-2 dark:bg-orange-700">
 			<div
@@ -171,7 +175,7 @@
 		</div>
 	{/if}
 
-	<div class="cq-container flex w-full flex-col px-4 pt-6">
+	<div class="cq-container flex max-h-screen w-full flex-col px-4 pt-6">
 		<header class="flex items-center justify-between">
 			<h3 class="font-straker text-2xl tracking-wide text-stone-700 dark:text-stone-50">
 				crowdq<span class="text-orange-500">.</span>fm

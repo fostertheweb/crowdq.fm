@@ -1,4 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+<script lang="ts">
+	export let lg = false;
+	export let xl = false;
+</script>
+
+<svg class:lg class:xl xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
 	><g id="add-to-playlist--add-to-playlist-song-entertainment"
 		><path
 			id="Union"
@@ -13,5 +18,15 @@
 	svg {
 		width: 16px;
 		height: 16px;
+	}
+
+	.lg {
+		width: 36px;
+		height: 36px;
+	}
+
+	.xl {
+		width: 48px;
+		height: 48px;
 	}
 </style>

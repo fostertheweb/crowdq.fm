@@ -33,6 +33,7 @@ export type QueueItem = {
 export type Listener = {
 	id: string;
 	providerId: string;
+	displayName: string;
 	avatar: string | null;
 	disconnectedAt?: Date | null;
 	isHost: boolean;

@@ -1,10 +1,11 @@
 import { createQueueItemFromTrack, createQueueItemFromVideo, store } from '$lib/db';
 import { Spotify, getTracksFromLink } from '$lib/spotify';
 import { addToast } from './components/Toaster.svelte';
+import { showOverlay } from './stores/queue';
 import { getVideoFromLink } from './youtube';
 
 export async function handleDrop(e: DragEvent) {
-	// hide toast
+	showOverlay.set(false);
 	const dropData = e.dataTransfer?.getData('text/plain');
 
 	if (dropData) {
@@ -39,16 +40,10 @@ export async function handleDrop(e: DragEvent) {
 	}
 }
 
-export function handleDragEnter(e: DragEvent) {
-	// e.preventDefault();
-	// show a toast "Drop anywhere on the screen to add to queue."
+export function handleDragEnter() {
+	showOverlay.set(true);
 }
 
-export function handleDragOver(e: DragEvent) {
-	// e.preventDefault();
-}
-
-export function handleDragLeave(e: DragEvent) {
-	// e.preventDefault();
-	// hide toast
+export function handleDragLeave() {
+	showOverlay.set(false);
 }
