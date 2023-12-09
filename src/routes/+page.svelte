@@ -88,7 +88,7 @@
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<div class="flex flex-col-reverse items-center justify-between sm:flex-row">
-			<div>
+			<div class="sm:max-w-1/2">
 				<h1
 					class="font-readex-pro text-4xl font-black capitalize text-rose-950 dark:text-stone-100">
 					collaborative play queue
@@ -96,7 +96,7 @@
 					<span class="text-orange-500">later</span>
 				</h1>
 				<p class="mt-8 text-base font-normal text-rose-950/80 dark:text-stone-200">
-					Join the Groove: Together in Tune, Anytime, Anywhere.
+					Share your favorite tunes in real-time with friends,<br />making music a group effort.
 				</p>
 
 				<div class="mt-8 flex items-center gap-6">
@@ -114,9 +114,9 @@
 			<div class="relative text-rose-950 dark:text-black sm:w-1/2">
 				<HeroImage />
 				<div
-					class="absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-fuchsia-700 bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
+					class="absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-rose-400 bg-opacity-20 mix-blend-multiply blur-2xl dark:bg-fuchsia-700 dark:mix-blend-screen" />
 				<div
-					class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-white bg-opacity-10 mix-blend-multiply blur-2xl dark:mix-blend-normal" />
+					class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-orange-500 bg-opacity-10 mix-blend-multiply blur-2xl dark:bg-white dark:mix-blend-normal" />
 			</div>
 		</div>
 	</header>
