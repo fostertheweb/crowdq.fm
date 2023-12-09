@@ -6,7 +6,7 @@
 	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import { onDestroy } from 'svelte';
 	import DeviceSelector from './DeviceSelector.svelte';
-	import IconPhoneMusic from './icons/IconPhoneMusic.svelte';
+	import IconSpotify from './icons/IconSpotify.svelte';
 
 	export let disabled = true;
 	export let devices: Device[] | undefined;
@@ -46,9 +46,9 @@
 <button
 	use:melt={$trigger}
 	{disabled}
-	class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 disabled:opacity-60 dark:bg-green-600 dark:text-white">
-	<IconPhoneMusic />
-	<span class="font-readex-pro font-medium">Play in Spotify</span>
+	class="flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 disabled:opacity-60 dark:text-white">
+	<IconSpotify />
+	<span class="font-readex-pro font-medium">Play on Spotify</span>
 </button>
 
 <div use:melt={$portalled}>
