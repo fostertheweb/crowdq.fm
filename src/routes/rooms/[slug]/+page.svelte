@@ -11,7 +11,7 @@
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
 	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
 	import { createPartySocket, createStoreSocket } from '$lib/party';
-	import { UniversalPlayer, playNextTrack } from '$lib/player';
+	import { getPosition, next, pause, play, resume } from '$lib/player';
 	import { Spotify, postAccessToken } from '$lib/spotify';
 	import { party } from '$lib/stores/party';
 	import { playQueue, showOverlay } from '$lib/stores/queue';
@@ -36,12 +36,13 @@
 
 	$: if ($currentQueueItem && $playerPosition > $currentQueueItem.duration) {
 		console.log('Progress exceeded duration, play next track');
-		playNextTrack(isAudioEnabled);
+		next($playQueue.shift() || null, isAudioEnabled);
+		$playQueue = $playQueue;
 	}
 
 	async function handleEnableAudio() {
 		if ($currentQueueItem) {
-			await UniversalPlayer.play($currentQueueItem, $playerPosition);
+			await play($currentQueueItem, $playerPosition);
 		}
 
 		isAudioEnabled = true;
@@ -61,14 +62,14 @@
 
 			switch (message.type) {
 				case 'play_next_track':
-					await playNextTrack(isAudioEnabled);
-					// await UniversalPlayer.next(isAudioEnabled);
+					next($playQueue.shift() || null, isAudioEnabled);
+					$playQueue = $playQueue;
 					break;
 				case 'pause':
-					await UniversalPlayer.pause();
+					pause();
 					break;
 				case 'resume':
-					await UniversalPlayer.resume();
+					resume();
 					break;
 				case 'remove':
 					store.delRow(message.table, message.id);
@@ -76,7 +77,7 @@
 				case 'sync_request':
 					let position = 0;
 					if (isAudioEnabled) {
-						position = await UniversalPlayer.getPosition();
+						position = await getPosition();
 					} else {
 						position = $playerPosition;
 					}
@@ -114,7 +115,7 @@
 
 					break;
 				default:
-					console.log('Event handler not implemented', event.data);
+					console.log('Event handler not implemented: ', message);
 					break;
 			}
 		});

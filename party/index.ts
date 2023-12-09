@@ -22,8 +22,6 @@ export default class WebSocket implements Party.Server {
 
 	onClose(connection: Party.Connection<unknown>): void | Promise<void> {
 		const message = { type: 'remove', table: 'listeners', id: connection.id };
-		// const connections = [...this.party.getConnections()];
-		// connections[0].send(JSON.stringify(message));
 		this.party.broadcast(JSON.stringify(message));
 
 		console.log(message);
@@ -48,6 +46,7 @@ export default class WebSocket implements Party.Server {
 				console.log(json);
 			}
 		} catch (e) {
+			// fallback for string events
 			const msg = { type: message, id: sender.id };
 
 			this.party.broadcast(JSON.stringify(msg));

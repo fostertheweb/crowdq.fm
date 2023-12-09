@@ -1,7 +1,7 @@
 <script lang="ts">
 	import IconMinus from '$lib/components/icons/IconMinus.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
-	import { UniversalPlayer } from '$lib/player';
+	import { setVolume } from '$lib/player';
 	import { createSlider, melt } from '@melt-ui/svelte';
 
 	const {
@@ -10,7 +10,7 @@
 	} = createSlider({
 		defaultValue: [25],
 		onValueChange({ next }) {
-			UniversalPlayer.setVolume(next[0]);
+			setVolume(next[0]);
 			return next;
 		},
 		min: 0,

@@ -17,16 +17,12 @@
 	export let user: UserProfile | null;
 
 	let queueElement: HTMLDivElement;
+	let queueEnded = false;
 	let totalListeningTime = 0;
 	let scrollY = 0;
+
 	$: displayShadow = scrollY > 0;
-	$: currentIndex = $playQueue.findIndex((item) => item.id === $currentQueueItem?.id);
-	// TODO: try shift on playQueue and += for listening time
-	// TODO: will have to slice when currentitem updates
-	// TODO: shift in playNextTrack?
-	$: remainingQueue = $playQueue.slice(currentIndex + 1);
-	$: totalListeningTime += $currentQueueItem?.duration || 0;
-	console.log({ totalListeningTime });
+	$: totalListeningTime = totalListeningTime + ($currentQueueItem?.duration || 0);
 
 	function formatMillis(millis: number) {
 		const hours = Math.floor(millis / 3600000);
@@ -75,7 +71,7 @@
 
 		<span
 			class="w-10 min-w-fit rounded-full bg-stone-100 px-3 text-center font-readex-pro text-base font-medium leading-8 text-stone-500 dark:bg-stone-700/40 dark:text-stone-400"
-			>{remainingQueue.length}</span>
+			>{$playQueue.length}</span>
 	</div>
 
 	{#if !isMobile}
@@ -89,8 +85,8 @@
 	bind:this={queueElement}
 	class="space-y-2 overflow-y-scroll pb-8"
 	on:scroll={() => (scrollY = queueElement.scrollTop)}>
-	{#if remainingQueue.length > 0}
-		{#each remainingQueue as item}
+	{#if $playQueue.length > 0}
+		{#each $playQueue as item}
 			<TrackCard {item} />
 		{/each}
 	{:else}
@@ -107,7 +103,7 @@
 		</div>
 	{/if}
 	<!-- TODO: better display logic to consider current item -->
-	{#if $playQueue.length > 0 && remainingQueue.length === 0 && !$currentQueueItem}
+	{#if queueEnded}
 		<div class="text-center text-xs text-stone-400">
 			Listened to {$playQueue.length} songs, for {formatMillis(totalListeningTime)}
 		</div>

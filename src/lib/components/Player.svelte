@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { UniversalPlayer } from '$lib/player';
+	import { play } from '$lib/player';
 	import { Spotify } from '$lib/spotify';
 	import {
 		SpotifyPlayer,
@@ -48,18 +48,18 @@
 	}
 
 	$: if (trackEnd) {
+		$currentQueueItem = $playQueue.shift() || null;
+		$playQueue = $playQueue;
 		playNextIntervalId = setInterval(async () => {
 			clearInterval(playNextIntervalId);
-			const nextItem = $playQueue[$playQueue.indexOf($currentQueueItem!) + 1];
-			if (nextItem) {
-				$currentQueueItem = nextItem;
-				trackEnd = false;
-				await UniversalPlayer.play(nextItem, 0);
+			trackEnd = false;
+
+			if ($currentQueueItem) {
+				await play($currentQueueItem, 0);
 			} else {
 				// TODO: don't let queue reset so user can continue adding songs and not start over
 				// TODO: queue ended, show listening stats and prompt to save playlist or continue
-				trackEnd = false;
-				$currentQueueItem = null;
+				// $queueEnded = true;
 				$playerStatus = 'idle';
 				$playerPosition = 0;
 			}
