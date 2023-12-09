@@ -75,10 +75,10 @@
 </script>
 
 <div
-	class="bg-gradient-to-br from-orange-50/60 to-rose-50 p-8 dark:from-stone-950 dark:to-rose-950">
+	class="to-sienna-50 dark:to-sienna-950 from-jake-50/60 bg-gradient-to-br p-8 dark:from-stone-950">
 	<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
 		<h3 class="font-straker text-3xl font-medium tracking-wide text-stone-700 dark:text-white">
-			crowdq<span class="text-orange-500">.</span>fm
+			crowdq<span class="text-jake-400">.</span>fm
 		</h3>
 
 		<div class="flex items-center gap-1 font-semibold text-stone-600 dark:text-white/60">
@@ -89,39 +89,39 @@
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<div class="flex flex-col-reverse items-center justify-between sm:flex-row">
 			<div class="sm:max-w-1/2">
-				<h1
-					class="font-readex-pro text-4xl font-black capitalize text-rose-950 dark:text-stone-100">
-					collaborative play queue
-					<br class="hidden md:block" />for <span class="text-rose-500">now</span> or
-					<span class="text-orange-500">later</span>
+				<h1 class="text-sienna-950 font-readex-pro text-4xl font-black dark:text-stone-100">
+					Collaborative play queue
+					<br class="hidden md:block" />for <span class="text-sienna-500">now</span>
+					or
+					<span class="text-jake-400">later</span>
 				</h1>
-				<p class="mt-8 text-base font-normal text-rose-950/80 dark:text-stone-200">
+				<p class="text-sienna-950/80 mt-8 text-base font-normal dark:text-stone-200">
 					Share your favorite tunes in real-time with friends,<br />making music a group effort.
 				</p>
 
 				<div class="mt-8 flex items-center gap-6">
 					<a
 						href="/lobby"
-						class="flex items-center gap-2 rounded-full border-2 border-rose-500 bg-rose-500 px-8 py-2 font-readex-pro font-semibold text-white shadow hover:brightness-125">
+						class="border-sienna-700/30 bg-sienna-600 shadow-sienna-400/30 flex items-center gap-2 rounded-full border px-8 py-2 font-readex-pro font-medium text-white shadow-md transition ease-linear hover:brightness-110">
 						Get Started
 					</a>
 					<a
 						href="#features"
-						class="text-rose-950 underline hover:text-rose-800 dark:text-white/80 dark:hover:text-white"
+						class="text-sienna-950 hover:text-sienna-800 underline dark:text-white/80 dark:hover:text-white"
 						>Learn More</a>
 				</div>
 			</div>
-			<div class="relative text-rose-950 dark:text-black sm:w-1/2">
+			<div class="text-sienna-950 relative dark:text-black sm:w-1/2">
 				<HeroImage />
 				<div
-					class="absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-rose-400 bg-opacity-20 mix-blend-multiply blur-2xl dark:bg-fuchsia-700 dark:mix-blend-screen" />
+					class="bg-sienna-400 dark:bg-sienna-700 absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
 				<div
-					class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-orange-500 bg-opacity-10 mix-blend-multiply blur-2xl dark:bg-white dark:mix-blend-normal" />
+					class="bg-jake-400 absolute bottom-0 right-0 h-72 w-72 rounded-full bg-opacity-10 mix-blend-multiply blur-2xl dark:bg-white dark:mix-blend-normal" />
 			</div>
 		</div>
 	</header>
 </div>
-<section id="features" class="border-t-4 border-rose-100 p-8 dark:border-rose-900">
+<section id="features" class="border-sienna-100 dark:border-sienna-900 border-t-4 p-8">
 	<div
 		class="mx-auto flex w-full max-w-5xl flex-col-reverse justify-center gap-16 py-16 lg:flex-row">
 		<div
@@ -184,13 +184,13 @@
 	</div>
 </section>
 <section
-	class="border-t-4 border-rose-100 bg-gradient-to-br from-rose-50 to-orange-50/40 p-8 dark:border-rose-900 dark:from-rose-950 dark:to-stone-950">
+	class="border-sienna-100 from-sienna-50 dark:border-sienna-900 dark:from-sienna-950 to-jake-50/40 border-t-4 bg-gradient-to-br p-8 dark:to-stone-950">
 	<div class="mx-auto flex w-full max-w-5xl flex-col justify-center gap-16 py-16 lg:flex-row">
 		<div class="space-y-4 text-left lg:w-1/2">
-			<h3 class="font-readex-pro text-3xl font-semibold text-rose-900 dark:text-rose-50">
+			<h3 class="text-sienna-900 dark:text-sienna-50 font-readex-pro text-3xl font-semibold">
 				Listen Together
 			</h3>
-			<p class="text-rose-950 dark:text-rose-100">
+			<p class="text-sienna-950 dark:text-sienna-100">
 				Create a shared queue, invite your favorite people, and enjoy the harmonious magic of
 				synchronized playback. Watch as the rhythm of each beat aligns perfectly, fostering a sense
 				of togetherness even across distances. Whether it's a virtual party, a remote work session,

@@ -42,7 +42,7 @@
 			</button>
 			<a
 				href="spotify://"
-				class="inline-flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 font-readex-pro font-medium text-white"
+				class="inline-flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-white"
 				><IconExternalLink />Open Spotify</a>
 		</div>
 	{:else}
@@ -54,7 +54,7 @@
 						class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 p-2 {$isChecked(
 							device.id
 						)
-							? 'border-green-500 bg-green-50 text-green-900 ring-0 ring-green-50'
+							? 'border-jake-500 bg-jake-50 text-jake-900 ring-jake-50 ring-0'
 							: 'bg-stone-50 ring-stone-200'}"
 						id={device.id}>
 						<IconDevice deviceType={device.type} />
@@ -64,13 +64,9 @@
 			{/each}
 		</div>
 
-		<div
-			class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:border-cyan-100/20 dark:bg-cyan-500/20 dark:text-cyan-100">
-			<div
-				class="rounded-l-lg bg-cyan-50 px-6 py-6 text-cyan-600/70 dark:bg-cyan-500/10 dark:text-cyan-400">
-				<IconQuestion lg />
-			</div>
-			<p class="p-2 text-sm">Don't see your device? Open Spotify and come back.</p>
+		<div class=" mt-2 flex items-center gap-2 text-stone-400">
+			<IconQuestion />
+			<p class="text-sm">Don't see your device? Open Spotify and come back.</p>
 		</div>
 
 		<div
@@ -84,13 +80,13 @@
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-3 py-2 font-readex-pro font-medium text-white"
+					class="inline-flex items-center justify-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-white"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<button
 					on:click={() => addToQueue($value)}
-					class="inline-flex items-center justify-center gap-1 rounded-full
-                    bg-orange-300 px-4 py-3 font-medium leading-none text-orange-900 hover:bg-orange-400">
+					class="bg-jake-300 text-jake-900 hover:bg-jake-400 inline-flex items-center
+                    justify-center gap-1 rounded-full px-4 py-3 font-medium leading-none">
 					{#if isAdding}
 						<IconSpinner />
 					{:else}

@@ -32,7 +32,7 @@
 					data: {
 						title: 'Copied',
 						description: '',
-						color: 'text-green-400',
+						color: 'text-[#1cd760]',
 						icon: 'copied',
 						canDismiss: false
 					}

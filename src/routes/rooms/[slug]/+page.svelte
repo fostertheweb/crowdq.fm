@@ -174,14 +174,14 @@
 
 <main class="flex flex-col items-center">
 	{#if !isAudioEnabled && user}
-		<div class="w-full bg-orange-100 p-2 dark:bg-orange-700">
+		<div class="bg-jake-100 dark:bg-jake-700 w-full p-2">
 			<div
-				class="mx-auto flex items-center justify-center gap-2 px-4 text-center text-orange-900 dark:text-orange-50">
+				class="text-jake-900 dark:text-jake-50 mx-auto flex items-center justify-center gap-2 px-4 text-center">
 				<IconAudioDisabled />
 				<p class="mr-2 text-sm">Audio currently disabled.</p>
 				<button
 					on:click={handleEnableAudio}
-					class="flex items-center gap-1 rounded-full bg-orange-300/60 px-2 py-1 text-xs text-orange-900 hover:bg-orange-300 dark:bg-orange-900 dark:text-orange-200 dark:hover:bg-orange-900/70 dark:hover:text-orange-50">
+					class="bg-jake-300/60 text-jake-900 hover:bg-jake-300 dark:bg-jake-900 dark:text-jake-200 dark:hover:bg-jake-900/70 dark:hover:text-jake-50 flex items-center gap-1 rounded-full px-2 py-1 text-xs">
 					<span class="font-readex-pro font-medium">Enable Audio</span>
 				</button>
 			</div>
@@ -191,7 +191,7 @@
 	<div class="cq-container flex max-h-screen w-full flex-col px-4 pt-6">
 		<header class="flex items-center justify-between">
 			<h3 class="font-straker text-2xl tracking-wide text-stone-700 dark:text-stone-50">
-				crowdq<span class="text-orange-500">.</span>fm
+				crowdq<span class="text-jake-400">.</span>fm
 			</h3>
 
 			{#if user}

@@ -66,21 +66,16 @@
 					on:change={(e) => (link = e.currentTarget.value)}
 					on:keydown={(e) => e.code === 'Enter' && handleAddSong()}
 					name="link"
-					class="inline-flex w-full flex-1 items-center justify-center rounded-lg border-2 border-stone-200 bg-stone-100 px-4 py-3 leading-none text-stone-800 ring-orange-400/20 focus:border-orange-400 focus:outline-0 focus:ring-4 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300"
+					class="ring-jake-400/20 focus:border-jake-400 inline-flex w-full flex-1 items-center justify-center rounded-lg border-2 border-stone-200 bg-stone-100 px-4 py-3 leading-none text-stone-800 focus:outline-0 focus:ring-4 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300"
 					id="link"
 					placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQD" />
 			</fieldset>
 
 			<div class="h-6" />
 
-			<div
-				use:melt={$description}
-				class="flex items-center gap-2 rounded-lg border border-cyan-100/80 bg-cyan-50/30 p-0 text-cyan-900 dark:border-cyan-100/20 dark:bg-cyan-500/20 dark:text-cyan-100">
-				<div
-					class="rounded-l-lg bg-cyan-50 px-6 py-6 text-cyan-600/70 dark:bg-cyan-500/10 dark:text-cyan-400">
-					<IconInfo lg />
-				</div>
-				<p class="p-2 text-sm">You can drag and drop one or more songs anywhere in the window.</p>
+			<div use:melt={$description} class=" flex items-center gap-2 text-stone-400">
+				<IconInfo />
+				<p class="text-sm">Drag and drop one or more songs anywhere.</p>
 			</div>
 
 			<div class="mt-6 flex justify-end gap-4 font-readex-pro font-medium">
@@ -92,8 +87,8 @@
 				</button>
 				<button
 					on:click={handleAddSong}
-					class="inline-flex items-center justify-center gap-1 rounded-full border border-orange-400/20 bg-orange-300
-                    px-4 py-3 font-medium leading-none text-orange-900 shadow-sm hover:brightness-110">
+					class="border-jake-300/20 bg-jake-200 text-jake-950 hover:bg-jake-300/80 inline-flex items-center justify-center gap-1
+                    rounded-full border px-4 py-3 font-medium leading-none shadow-sm">
 					<IconPlus />
 					<span>Add</span>
 				</button>

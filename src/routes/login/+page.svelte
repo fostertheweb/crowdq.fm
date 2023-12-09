@@ -33,7 +33,7 @@
 	<div class="cq-container flex w-full flex-col px-4 pt-6">
 		<header class="flex items-center justify-between">
 			<h3 class="font-straker text-2xl tracking-wide text-stone-700 dark:text-stone-50">
-				crowdq<span class="text-orange-500">.</span>fm
+				crowdq<span class="text-jake-400">.</span>fm
 			</h3>
 
 			{#if user}

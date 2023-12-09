@@ -17,7 +17,7 @@
 {#if isMobile}
 	<button
 		on:click={login}
-		class="flex items-center gap-2 rounded-full bg-green-500 px-3 py-2 text-sm font-medium text-white hover:brightness-125 dark:bg-green-600 dark:text-white">
+		class="flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 text-sm font-medium text-white hover:brightness-125 dark:bg-[#1cd760] dark:text-white">
 		<IconSpotify />
 		Log in</button>
 {:else}

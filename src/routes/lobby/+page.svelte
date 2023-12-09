@@ -31,7 +31,7 @@
 	<div class="cq-container flex w-full flex-col px-4 pt-6">
 		<header class="flex items-center justify-between">
 			<h3 class="font-straker text-2xl tracking-wide text-stone-700 dark:text-stone-50">
-				crowdq<span class="text-orange-500">.</span>fm
+				crowdq<span class="text-jake-500">.</span>fm
 			</h3>
 
 			{#if user}
@@ -56,7 +56,7 @@
 			<form method="POST">
 				<button
 					type="submit"
-					class="leading mx-auto flex items-center justify-center gap-2 rounded-full bg-rose-500 px-16 py-3 text-center font-readex-pro text-base font-semibold text-white shadow-sm filter transition ease-linear hover:shadow-md hover:brightness-110">
+					class="border-sienna-700/30 bg-sienna-600 shadow-sienna-400/30 leading mx-auto flex items-center gap-2 rounded-full border px-8 py-2 font-readex-pro font-medium text-white shadow-md transition ease-linear hover:brightness-110">
 					<IconCreateRoom />
 					Create Room
 				</button>
