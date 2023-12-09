@@ -111,7 +111,7 @@
 						>Learn More</a>
 				</div>
 			</div>
-			<div class="p-8 text-rose-950 sm:w-1/2">
+			<div class="p-8 text-rose-950 dark:text-rose-100 sm:w-1/2">
 				<HeroImage />
 			</div>
 		</div>
