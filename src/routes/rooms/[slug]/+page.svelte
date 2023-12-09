@@ -35,7 +35,7 @@
 	let userId = user?.id;
 
 	$: if ($currentQueueItem && $playerPosition > $currentQueueItem.duration) {
-		console.log('play next track');
+		console.log('Progress exceeded duration, play next track');
 		playNextTrack(isAudioEnabled);
 	}
 
@@ -62,6 +62,7 @@
 			switch (message.type) {
 				case 'play_next_track':
 					await playNextTrack(isAudioEnabled);
+					// await UniversalPlayer.next(isAudioEnabled);
 					break;
 				case 'pause':
 					await UniversalPlayer.pause();

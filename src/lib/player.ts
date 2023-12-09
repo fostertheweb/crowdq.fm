@@ -11,6 +11,7 @@ import { playQueue } from './stores/queue';
 import { spotifyDevice } from './stores/spotify';
 import type { QueueItem } from './types';
 
+// TODO: kill this method
 export async function playNextTrack(audioEnabled: boolean) {
 	let nextIndex = 0;
 
