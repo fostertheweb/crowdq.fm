@@ -111,8 +111,12 @@
 						>Learn More</a>
 				</div>
 			</div>
-			<div class="p-8 text-rose-950 dark:text-rose-100 sm:w-1/2">
+			<div class="relative text-rose-950 dark:text-black sm:w-1/2">
 				<HeroImage />
+				<div
+					class="absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-fuchsia-700 bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
+				<div
+					class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-white bg-opacity-10 mix-blend-multiply blur-2xl dark:mix-blend-normal" />
 			</div>
 		</div>
 	</header>

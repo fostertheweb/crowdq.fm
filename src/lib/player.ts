@@ -20,8 +20,12 @@ export async function playNextTrack(audioEnabled: boolean) {
 	if (currentItem) {
 		nextIndex = queue.indexOf(currentItem) + 1;
 	}
+
 	const nextItem = queue[nextIndex];
+
 	currentQueueItem.set(nextItem);
+
+	console.log({ nextIndex, nextItem });
 
 	if (audioEnabled) {
 		UniversalPlayer.play(nextItem, 0);
@@ -143,7 +147,7 @@ export class UniversalPlayer {
 		if (currentItem) {
 			if (currentItem.provider === 'spotify') {
 				const currentState = await get(SpotifyPlayer)?.getCurrentState();
-				return currentState?.position;
+				return currentState?.position || 0;
 			}
 
 			if (currentItem.provider === 'youtube') {
@@ -151,5 +155,7 @@ export class UniversalPlayer {
 				return position ? position * 1000 : 0;
 			}
 		}
+
+		return 0;
 	}
 }

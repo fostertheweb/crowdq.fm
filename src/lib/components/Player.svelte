@@ -30,7 +30,7 @@
 	$: if ($playerStatus === 'playing') {
 		clearInterval(progressInterval);
 		progressInterval = setInterval(() => {
-			playerPosition.update((current) => current + 1000);
+			$playerPosition = $playerPosition + 1000;
 		}, 1000);
 	} else {
 		clearInterval(progressInterval);

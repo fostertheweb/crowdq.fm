@@ -34,6 +34,11 @@
 	let isAudioEnabled = isHost;
 	let userId = user?.id;
 
+	$: if ($currentQueueItem && $playerPosition > $currentQueueItem.duration) {
+		console.log('play next track');
+		playNextTrack(isAudioEnabled);
+	}
+
 	async function handleEnableAudio() {
 		if ($currentQueueItem) {
 			await UniversalPlayer.play($currentQueueItem, $playerPosition);
@@ -68,7 +73,12 @@
 					store.delRow(message.table, message.id);
 					break;
 				case 'sync_request':
-					// const position = await UniversalPlayer.getPosition();
+					let position = 0;
+					if (isAudioEnabled) {
+						position = await UniversalPlayer.getPosition();
+					} else {
+						position = $playerPosition;
+					}
 
 					$party?.send(
 						JSON.stringify({
@@ -76,7 +86,7 @@
 							id: message.id,
 							item: $currentQueueItem,
 							status: $playerStatus,
-							position: $playerPosition
+							position
 						})
 					);
 					break;

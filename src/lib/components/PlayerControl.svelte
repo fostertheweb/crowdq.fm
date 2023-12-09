@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IconPause from '$lib/components/icons/IconPause.svelte';
 	import IconPlay from '$lib/components/icons/IconPlay.svelte';
+	import { playNextTrack } from '$lib/player';
 	import { party } from '$lib/stores/party';
 	import { accentColor, playerStatus } from '$lib/stores/player';
 	import { darken, lighten } from 'polished';
@@ -14,6 +15,9 @@
 			$party?.send('resume');
 		} else {
 			$party?.send('play_next_track');
+			if (isHost) {
+				playNextTrack(true);
+			}
 		}
 	}
 
