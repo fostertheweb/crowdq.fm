@@ -269,6 +269,6 @@
 	}
 
 	.cq-name {
-		max-width: calc(480px - 2rem);
+		max-width: calc(480px - 10rem);
 	}
 </style>

@@ -87,7 +87,7 @@
 		</div>
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
-		<div class="flex flex-col-reverse items-center justify-between md:flex-row">
+		<div class="flex flex-col-reverse items-center justify-between md:flex-row md:gap-8">
 			<div class="md:max-w-1/2 w-full">
 				<h1 class="text-sienna-950 font-readex-pro text-4xl font-black dark:text-stone-100">
 					Collaborative play queue
@@ -111,12 +111,12 @@
 						>Learn More</a>
 				</div>
 			</div>
-			<div class="text-sienna-950 relative dark:text-stone-600 sm:w-1/2">
+			<div class="text-sienna-950 relative w-full max-w-[480px] dark:text-stone-600">
 				<HeroImage />
 				<div
-					class="bg-sienna-400 dark:bg-sienna-700/20 absolute left-[5%] top-[5%] hidden h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
+					class="bg-sienna-400 dark:bg-sienna-700/20 absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
 				<div
-					class="bg-jake-400 dark:bg-jake-200/10 absolute bottom-0 right-0 hidden h-72 w-72 rounded-full bg-opacity-10 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
+					class="bg-jake-400 dark:bg-jake-200/10 absolute bottom-0 right-0 h-72 w-72 rounded-full bg-opacity-10 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
 			</div>
 		</div>
 	</header>
