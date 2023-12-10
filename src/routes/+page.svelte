@@ -111,7 +111,7 @@
 						>Learn More</a>
 				</div>
 			</div>
-			<div class="text-sienna-950 relative dark:text-black sm:w-1/2">
+			<div class="text-sienna-950 relative dark:text-stone-950 sm:w-1/2">
 				<HeroImage />
 				<div
 					class="bg-sienna-400 dark:bg-sienna-700/20 absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
