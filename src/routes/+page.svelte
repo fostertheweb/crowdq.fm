@@ -75,7 +75,7 @@
 </script>
 
 <div
-	class="to-sienna-50 dark:to-sienna-950 from-jake-50/60 bg-gradient-to-br p-8 dark:from-stone-950">
+	class="to-sienna-50 dark:to-sienna-950 from-jake-50/60 dark:from-jake-950/20 bg-gradient-to-br p-8">
 	<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
 		<h3 class="font-straker text-3xl font-medium tracking-wide text-stone-700 dark:text-white">
 			crowdq<span class="text-jake-400">.</span>fm
