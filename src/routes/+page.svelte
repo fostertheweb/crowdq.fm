@@ -75,7 +75,7 @@
 </script>
 
 <div
-	class="to-sienna-50 dark:to-sienna-950 from-jake-50/60 dark:from-jake-950/20 bg-gradient-to-br p-8">
+	class="to-sienna-50 dark:to-sienna-950 from-jake-50/60 bg-gradient-to-br p-8 dark:from-stone-950">
 	<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
 		<h3 class="font-straker text-3xl font-medium tracking-wide text-stone-700 dark:text-white">
 			crowdq<span class="text-jake-400">.</span>fm
@@ -87,11 +87,11 @@
 		</div>
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
-		<div class="flex flex-col-reverse items-center justify-between sm:flex-row">
-			<div class="sm:max-w-1/2">
+		<div class="flex flex-col-reverse items-center justify-between md:flex-row">
+			<div class="md:max-w-1/2 w-full">
 				<h1 class="text-sienna-950 font-readex-pro text-4xl font-black dark:text-stone-100">
 					Collaborative play queue
-					<br class="hidden md:block" />for <span class="text-sienna-500">now</span>
+					<br class="hidden sm:block" />for <span class="text-sienna-500">now</span>
 					or
 					<span class="text-jake-400">later</span>
 				</h1>
@@ -111,12 +111,12 @@
 						>Learn More</a>
 				</div>
 			</div>
-			<div class="text-sienna-950 relative dark:text-stone-950 sm:w-1/2">
+			<div class="text-sienna-950 relative dark:text-stone-600 sm:w-1/2">
 				<HeroImage />
 				<div
-					class="bg-sienna-400 dark:bg-sienna-700/20 absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
+					class="bg-sienna-400 dark:bg-sienna-700/20 absolute left-[5%] top-[5%] hidden h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
 				<div
-					class="bg-jake-400 dark:bg-jake-200/10 absolute bottom-0 right-0 h-72 w-72 rounded-full bg-opacity-10 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
+					class="bg-jake-400 dark:bg-jake-200/10 absolute bottom-0 right-0 hidden h-72 w-72 rounded-full bg-opacity-10 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
 			</div>
 		</div>
 	</header>

@@ -20,6 +20,7 @@
 
 	import IconAudioDisabled from '$lib/components/icons/IconAudioDisabled.svelte';
 	import IconPlusMusic from '$lib/components/icons/IconPlusMusic.svelte';
+	import { handleDragEnter, handleDragLeave, handleDrop } from '$lib/drag-events.js';
 	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player.js';
 	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
 	import type PartySocket from 'partysocket';
@@ -157,8 +158,20 @@
 	});
 </script>
 
+<svelte:document
+	on:dragover|preventDefault
+	on:dragend|preventDefault
+	on:dragstart|preventDefault
+	on:dragexit|preventDefault
+	on:drop|preventDefault={handleDrop}
+	on:dragenter|preventDefault={handleDragEnter} />
+
 {#if $showOverlay}
 	<div
+		role="banner"
+		aria-label="Drop here to add songs to queue"
+		aria-roledescription="Drag and drop overlay to add songs to queue"
+		on:dragleave|preventDefault={handleDragLeave}
 		class="fixed left-0 top-0 z-30 h-screen w-screen bg-stone-900 bg-opacity-40 p-4 backdrop-blur-sm">
 		<div class="flex h-full w-full items-center justify-center">
 			<div class="font-readex-pro text-2xl font-semibold text-stone-100">

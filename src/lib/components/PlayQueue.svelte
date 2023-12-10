@@ -3,7 +3,6 @@
 	import AddToQueueButton from '$lib/components/AddToQueueButton.svelte';
 	import PlayInSpotifyButton from '$lib/components/PlayInSpotifyButton.svelte';
 	import TrackCard from '$lib/components/TrackCard.svelte';
-	import { handleDragEnter, handleDragLeave, handleDrop } from '$lib/drag-events';
 	import { Spotify } from '$lib/spotify';
 	import { currentQueueItem } from '$lib/stores/player';
 	import { playQueue } from '$lib/stores/queue';
@@ -53,11 +52,6 @@
 		enabled: !!user && browser
 	});
 </script>
-
-<svelte:document
-	on:drop|preventDefault={handleDrop}
-	on:dragenter|preventDefault={handleDragEnter}
-	on:dragleave|preventDefault={handleDragLeave} />
 
 <div
 	class="cq-shadow-xl z-10 flex items-center justify-between bg-stone-50 pb-6 dark:bg-stone-900"
