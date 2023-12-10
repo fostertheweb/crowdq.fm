@@ -159,9 +159,8 @@
 
 {#if $showOverlay}
 	<div
-		class="fixed left-0 top-0 z-30 hidden h-screen w-screen bg-stone-900 bg-opacity-30 p-4 backdrop-blur-sm">
-		<div
-			class="flex h-full w-full items-center justify-center rounded border-4 border-dashed border-stone-200">
+		class="fixed left-0 top-0 z-30 h-screen w-screen bg-stone-900 bg-opacity-40 p-4 backdrop-blur-sm">
+		<div class="flex h-full w-full items-center justify-center">
 			<div class="font-readex-pro text-2xl font-semibold text-stone-100">
 				<div class="flex flex-col items-center gap-4 drop-shadow">
 					<IconPlusMusic xl />
