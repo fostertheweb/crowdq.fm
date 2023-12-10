@@ -56,7 +56,7 @@
 			<form method="POST">
 				<button
 					type="submit"
-					class="border-sienna-700/30 bg-sienna-600 shadow-sienna-400/30 leading mx-auto flex items-center gap-2 rounded-full border px-8 py-2 font-readex-pro font-medium text-white shadow-md transition ease-linear hover:brightness-110">
+					class="border-sienna-700/30 dark:shadow-sienna-500/20 bg-sienna-600 shadow-sienna-400/30 leading mx-auto flex items-center gap-2 rounded-full border px-8 py-2 font-readex-pro font-medium text-white shadow-md transition ease-linear hover:brightness-110">
 					<IconCreateRoom />
 					Create Room
 				</button>

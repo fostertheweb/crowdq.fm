@@ -102,7 +102,7 @@
 				<div class="mt-8 flex items-center gap-6">
 					<a
 						href="/lobby"
-						class="border-sienna-700/30 bg-sienna-600 shadow-sienna-400/30 flex items-center gap-2 rounded-full border px-8 py-2 font-readex-pro font-medium text-white shadow-md transition ease-linear hover:brightness-110">
+						class="border-sienna-700/30 bg-sienna-600 shadow-sienna-400/30 dark:shadow-sienna-500/20 flex items-center gap-2 rounded-full border px-8 py-2 font-readex-pro font-medium text-white shadow-md transition ease-linear hover:brightness-110">
 						Get Started
 					</a>
 					<a
@@ -114,9 +114,9 @@
 			<div class="text-sienna-950 relative dark:text-black sm:w-1/2">
 				<HeroImage />
 				<div
-					class="bg-sienna-400 dark:bg-sienna-700 absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
+					class="bg-sienna-400 dark:bg-sienna-700/20 absolute left-[5%] top-[5%] h-96 w-96 rounded-full bg-opacity-20 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
 				<div
-					class="bg-jake-400 absolute bottom-0 right-0 h-72 w-72 rounded-full bg-opacity-10 mix-blend-multiply blur-2xl dark:bg-white dark:mix-blend-normal" />
+					class="bg-jake-400 dark:bg-jake-200/10 absolute bottom-0 right-0 h-72 w-72 rounded-full bg-opacity-10 mix-blend-multiply blur-2xl dark:mix-blend-screen" />
 			</div>
 		</div>
 	</header>
