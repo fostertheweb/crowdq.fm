@@ -54,8 +54,8 @@
 						class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 p-2 {$isChecked(
 							device.id
 						)
-							? 'border-jake-500 bg-jake-50 text-jake-900 ring-jake-50 ring-0'
-							: 'bg-stone-50 ring-stone-200'}"
+							? 'border-jake-500 bg-jake-50 text-jake-900 dark:bg-jake-400/50 dark:text-jake-200 ring-jake-50 ring-0'
+							: 'bg-stone-50 ring-stone-200 dark:border-stone-400 dark:bg-stone-500 dark:text-stone-300'}"
 						id={device.id}>
 						<IconDevice deviceType={device.type} />
 						{device.name}
@@ -74,7 +74,7 @@
 			<button
 				on:click={() => cancel()}
 				class="inline-flex items-center justify-center rounded-full
-                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 hover:bg-stone-200">
+                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 shadow-sm hover:bg-stone-200/60 dark:border-stone-500/30 dark:bg-stone-600 dark:text-stone-200 dark:hover:bg-stone-500/60">
 				Cancel
 			</button>
 			{#if shouldOpenSpotify}
@@ -85,8 +85,8 @@
 			{:else}
 				<button
 					on:click={() => addToQueue($value)}
-					class="bg-jake-300 text-jake-900 hover:bg-jake-400 inline-flex items-center
-                    justify-center gap-1 rounded-full px-4 py-3 font-medium leading-none">
+					class="border-jake-300/20 bg-jake-200 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 text-jake-950 hover:bg-jake-300/80 inline-flex items-center justify-center gap-1 rounded-full
+                    border px-4 py-3 font-medium leading-none shadow-sm dark:hover:brightness-105">
 					{#if isAdding}
 						<IconSpinner />
 					{:else}

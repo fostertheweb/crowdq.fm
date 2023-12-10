@@ -24,6 +24,11 @@ export async function handle({ event, resolve }) {
 			}
 		}
 
+		if (event.url.pathname.startsWith('/login')) {
+			// authenticating in the room will go directly to spotify
+			event.cookies.delete('cq-room', { path: '/' });
+		}
+
 		console.log('Hooks: Create Client');
 		const client = createServerClient(credentials);
 		event.locals.user = await client.currentUser.profile();

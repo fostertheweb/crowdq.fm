@@ -87,8 +87,8 @@
 				</button>
 				<button
 					on:click={handleAddSong}
-					class="border-jake-300/20 bg-jake-200 text-jake-950 hover:bg-jake-300/80 inline-flex items-center justify-center gap-1
-                    rounded-full border px-4 py-3 font-medium leading-none shadow-sm">
+					class="border-jake-300/20 bg-jake-200 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 text-jake-950 hover:bg-jake-300/80 inline-flex items-center justify-center gap-1 rounded-full
+                    border px-4 py-3 font-medium leading-none shadow-sm dark:hover:brightness-105">
 					<IconPlus />
 					<span>Add</span>
 				</button>
