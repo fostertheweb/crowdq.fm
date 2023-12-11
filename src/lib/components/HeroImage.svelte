@@ -2205,6 +2205,6 @@
 		width: 100%;
 		fill: currentColor;
 
-		@apply h-fit rounded-lg border border-sienna-600/30 shadow-lg dark:border-white/20;
+		@apply h-full rounded-lg border border-sienna-600/30 shadow-lg dark:border-white/20;
 	}
 </style>
