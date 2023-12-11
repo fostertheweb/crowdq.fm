@@ -1,8 +1,6 @@
 <script lang="ts">
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
-	import { listenersTableToCollection, store } from '$lib/db';
 	import { listeners } from '$lib/stores/party';
-	import { onDestroy, onMount } from 'svelte';
 
 	import type { Listener } from '$lib/types';
 	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
@@ -13,19 +11,8 @@
 		return listener.providerId !== currentUser?.id;
 	}
 
-	let tableListenerId: string;
-	$: additionalListeners = $listeners.length - 3;
-	$: visibleListeners = $listeners.filter(isNotCurrentUser).slice(0, 3);
-
-	onMount(async () => {
-		tableListenerId = store.addTableListener('listeners', (_store) => {
-			$listeners = listenersTableToCollection(store.getTable('listeners')).filter(isNotCurrentUser);
-		});
-	});
-
-	onDestroy(() => {
-		store.delListener(tableListenerId);
-	});
+	$: additionalListeners = $listeners.length - 5;
+	$: visibleListeners = $listeners.filter(isNotCurrentUser).slice(0, 5);
 </script>
 
 <div class="flex flex-col items-end gap-1">

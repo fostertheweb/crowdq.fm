@@ -8,20 +8,27 @@
 	import PlayQueue from '$lib/components/PlayQueue.svelte';
 	import Player from '$lib/components/Player.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
+	import IconAudioDisabled from '$lib/components/icons/IconAudioDisabled.svelte';
+	import IconPlusMusic from '$lib/components/icons/IconPlusMusic.svelte';
 	import IconSliders from '$lib/components/icons/IconSliders.svelte';
-	import { createDatabase, createUser, itemsTableToCollection, store } from '$lib/db';
+	import {
+		createDatabase,
+		createUser,
+		itemsTableToCollection,
+		listenersTableToCollection,
+		store
+	} from '$lib/db';
+	import { handleDragEnter, handleDragLeave, handleDrop } from '$lib/drag-events';
 	import { createPartySocket, createStoreSocket } from '$lib/party';
 	import { getPosition, next, pause, play, resume } from '$lib/player';
 	import { Spotify, postAccessToken } from '$lib/spotify';
-	import { party } from '$lib/stores/party';
+	import { listeners, party } from '$lib/stores/party';
+	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player';
 	import { playQueue, showOverlay } from '$lib/stores/queue';
 	import mobile from 'is-mobile';
 	import { onDestroy, onMount } from 'svelte';
 
-	import IconAudioDisabled from '$lib/components/icons/IconAudioDisabled.svelte';
-	import IconPlusMusic from '$lib/components/icons/IconPlusMusic.svelte';
-	import { handleDragEnter, handleDragLeave, handleDrop } from '$lib/drag-events.js';
-	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player.js';
+	import type { Listener, QueueItem } from '$lib/types';
 	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 	import type PartySocket from 'partysocket';
 
@@ -30,10 +37,13 @@
 	let user: UserProfile | null = data.user;
 	let isHost = data.isHost;
 	let storeSocket: PartySocket | null;
-	let tableListenerId: string;
+	let transactionListenerId: string;
 	let isMobile = false;
 	let isAudioEnabled = isHost;
 	let userId = user?.id;
+
+	$: $playQueue = itemsTableToCollection(store.getTable('items'), $currentQueueItem);
+	$: $listeners = listenersTableToCollection(store.getTable('listeners'));
 
 	$: if ($currentQueueItem && $playerPosition > $currentQueueItem.duration) {
 		console.log('Progress exceeded duration, play next track');
@@ -106,6 +116,7 @@
 							$currentQueueItem = null;
 							$playerPosition = 0;
 							$playerStatus = 'idle';
+							break;
 
 						default:
 							$currentQueueItem = message.item;
@@ -120,10 +131,30 @@
 					break;
 			}
 		});
-		$playQueue = itemsTableToCollection(store.getTable('items'));
 
-		tableListenerId = store.addTableListener('items', () => {
-			$playQueue = itemsTableToCollection(store.getTable('items'));
+		transactionListenerId = store.addDidFinishTransactionListener((_, getTransactionChanges) => {
+			const changes = getTransactionChanges();
+
+			changes.forEach((change) => {
+				if (change) {
+					Object.entries(change).forEach(([tableId, row]) => {
+						if (tableId) {
+							Object.entries(row).forEach(([rowId, rowData]: [string, any]) => {
+								switch (tableId) {
+									case 'items':
+										$playQueue.push({ id: rowId, ...rowData } as QueueItem);
+										$playQueue = $playQueue;
+										break;
+									case 'listeners':
+										$listeners.push({ id: rowId, ...rowData } as Listener);
+										$listeners = $listeners;
+										break;
+								}
+							});
+						}
+					});
+				}
+			});
 		});
 
 		const authKey = 'spotify-sdk:AuthorizationCodeWithPKCEStrategy:token';
@@ -154,7 +185,7 @@
 			store.delRow('listeners', userId);
 		}
 
-		store.delListener(tableListenerId);
+		store.delListener(transactionListenerId);
 	});
 </script>
 
@@ -186,14 +217,14 @@
 
 <main class="flex flex-col items-center">
 	{#if !isAudioEnabled && user}
-		<div class="w-full bg-indigo-100 p-2 dark:bg-indigo-700">
+		<div class="w-full bg-amber-100 p-2 dark:bg-amber-700">
 			<div
-				class="mx-auto flex items-center justify-center gap-2 px-4 text-center text-indigo-900 dark:text-indigo-50">
+				class="mx-auto flex items-center justify-center gap-2 px-4 text-center text-amber-900 dark:text-amber-50">
 				<IconAudioDisabled />
 				<p class="mr-2 text-sm">Audio currently disabled.</p>
 				<button
 					on:click={handleEnableAudio}
-					class="flex items-center gap-1 rounded-full bg-indigo-300/60 px-2 py-1 text-xs text-indigo-900 hover:bg-indigo-300/80 dark:bg-indigo-900 dark:text-indigo-200 dark:hover:bg-indigo-900/70 dark:hover:text-indigo-50">
+					class="flex items-center gap-1 rounded-full bg-amber-300/60 px-2 py-1 text-xs text-amber-900 hover:bg-amber-300/80 dark:bg-amber-900 dark:text-amber-200 dark:hover:bg-amber-900/70 dark:hover:text-amber-50">
 					<span class="font-readex-pro font-medium">Enable Audio</span>
 				</button>
 			</div>

@@ -31,5 +31,5 @@
 		size
 	]} {border} z-20 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-500">
 	<img use:melt={$image} alt="Avatar" class="h-full w-full rounded-[inherit]" />
-	<span use:melt={$fallback} class="font-medium text-stone-700">{initials}</span>
+	<span use:melt={$fallback} class="font-medium text-stone-700">{initials || '?'}</span>
 </div>
