@@ -38,6 +38,9 @@ dependencies:
   polished:
     specifier: ^4.2.2
     version: 4.2.2
+  randomcolor:
+    specifier: ^0.6.2
+    version: 0.6.2
   short-unique-id:
     specifier: ^4.4.4
     version: 4.4.4
@@ -58,6 +61,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.5.9
     version: 20.5.9
+  '@types/randomcolor':
+    specifier: ^0.5.9
+    version: 0.5.9
   '@types/spotify-web-playback-sdk':
     specifier: ^0.1.17
     version: 0.1.17
@@ -850,6 +856,10 @@ packages:
 
   /@types/pug@2.0.6:
     resolution: {integrity: sha512-SnHmG9wN1UVmagJOnyo/qkk0Z7gejYxOYYmaAwr5u2yFYfsupN3sg10kyzN8Hep/2zbHxCnsumxOoRIRMBwKCg==}
+    dev: true
+
+  /@types/randomcolor@0.5.9:
+    resolution: {integrity: sha512-k58cfpkK15AKn1m+oRd9nh5BnuiowhbyvBBdAzcddtARMr3xRzP0VlFaAKovSG6N6Knx08EicjPlOMzDejerrQ==}
     dev: true
 
   /@types/semver@7.5.0:
@@ -2461,6 +2471,10 @@ packages:
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /randomcolor@0.6.2:
+    resolution: {integrity: sha512-Mn6TbyYpFgwFuQ8KJKqf3bqqY9O1y37/0jgSK/61PUxV4QfIMv0+K2ioq8DfOjkBslcjwSzRfIDEXfzA9aCx7A==}
+    dev: false
 
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
