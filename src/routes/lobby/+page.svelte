@@ -49,7 +49,7 @@
 					<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
 						Returning to {data.room.hostedBy}'s Room
 					</h4>
-					<p class="mt-2 text-stone-400">Have a blessed day!</p>
+					<p class="mt-2 text-stone-400">Don't kill the vibe!</p>
 				</div>
 			</div>
 		{:else}

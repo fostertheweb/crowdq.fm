@@ -88,16 +88,15 @@
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<div
-			class="flex flex-col-reverse items-center justify-between gap-8 md:flex-row md:items-start">
+			class="flex flex-col-reverse items-center justify-between gap-8 md:flex-row md:items-start md:gap-16">
 			<div class="md:max-w-1/2 w-full">
 				<h1 class="font-readex-pro text-4xl font-black text-sienna-950 dark:text-stone-100">
-					Collaborative play queue
-					<br class="hidden sm:block" />for <span class="text-sienna-500">now</span>
+					Collaborative play queue for <span class="text-sienna-500">now</span>
 					or
 					<span class="text-jake-400">later</span>
 				</h1>
-				<p class="mt-8 text-base font-normal text-sienna-950/80 dark:text-stone-200">
-					Share your favorite tunes in real-time with friends,<br />making music a group effort.
+				<p class="mt-8 pr-8 text-base font-normal text-sienna-950/80 dark:text-stone-200">
+					Share your favorite tunes in real-time with friends, making music a group effort.
 				</p>
 
 				<div class="mt-8 flex items-center gap-6">
@@ -193,9 +192,8 @@
 			</h3>
 			<p class="text-sienna-950 dark:text-sienna-100">
 				Create a shared queue, invite your favorite people, and enjoy the harmonious magic of
-				synchronized playback. Watch as the rhythm of each beat aligns perfectly, fostering a sense
-				of togetherness even across distances. Whether it's a virtual party, a remote work session,
-				or a cozy night in with loved ones, crowdq.fm will maintain the vibes.
+				synchronized playback. Bring the vibes and foster a sense of togetherness even across
+				distances. Perfect for a virtual party, remote work session, or a cozy night on the couch.
 			</p>
 		</div>
 		<div class="cq-blobs relative">
@@ -223,7 +221,7 @@
 			<p class="text-stone-600 dark:text-stone-400">
 				We can't always be in sync, but we can still share a sonic experience that will bring us
 				together. When you are away from your computer or want to load up a play queue for later,
-				open crowdq.fm on the go and send the queue to any Spotify device.
+				visit a room from your phone and send the queue to any Spotify device.
 			</p>
 			<div
 				class="h-fit w-fit rounded-full bg-stone-200 px-2 py-1 text-xs text-stone-500 dark:bg-stone-700 dark:text-stone-300">
