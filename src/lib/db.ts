@@ -1,7 +1,7 @@
 import { createStore, type Table } from 'tinybase/cjs';
 import { createPartyKitPersister } from 'tinybase/persisters/persister-partykit-client';
 
-import type { Track, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+import type { Track, UserProfile } from '@fostertheweb/spotify-web-sdk';
 import type PartySocket from 'partysocket';
 import type { Listener, QueueItem } from './types';
 import { convertISO8601ToMs, type YouTubeVideo } from './youtube';

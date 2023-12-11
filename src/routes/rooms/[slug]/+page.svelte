@@ -22,7 +22,7 @@
 	import IconPlusMusic from '$lib/components/icons/IconPlusMusic.svelte';
 	import { handleDragEnter, handleDragLeave, handleDrop } from '$lib/drag-events.js';
 	import { currentQueueItem, playerPosition, playerStatus } from '$lib/stores/player.js';
-	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 	import type PartySocket from 'partysocket';
 
 	export let data;

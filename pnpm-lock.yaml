@@ -8,9 +8,9 @@ dependencies:
   '@fontsource/readex-pro':
     specifier: ^5.0.8
     version: 5.0.8
-  '@fostertheweb/spotify-web-api-ts-sdk':
-    specifier: ^1.2.1
-    version: 1.2.1
+  '@fostertheweb/spotify-web-sdk':
+    specifier: ^1.2.2
+    version: 1.2.2
   '@melt-ui/svelte':
     specifier: ^0.50.1
     version: 0.50.1(svelte@4.2.0)
@@ -647,8 +647,8 @@ packages:
     resolution: {integrity: sha512-EAL80pZt8y68000NeRO+MibNRk9rbTMelLy2ra2jAZQDOaekRb7zIhkebW1bPIoicncgkRMMowSk1RrDFTMytw==}
     dev: false
 
-  /@fostertheweb/spotify-web-api-ts-sdk@1.2.1:
-    resolution: {integrity: sha512-7gkNnttE3A8SB20DQUdAlpSLhg4J1gsYvOoFmpJJtNgY5IXU62Q+3cgDje+YXoNfQ7dXHHHO3DSNgbK5n6YAWQ==}
+  /@fostertheweb/spotify-web-sdk@1.2.2:
+    resolution: {integrity: sha512-C7k4ksMQdOrV30mVE0RYP3CxPUuLHrrNgiK3gwocB1sLVmw+EoKGZ7XrktzEs4jLs/g9ZgH5ubBmw44uCjrb6w==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:

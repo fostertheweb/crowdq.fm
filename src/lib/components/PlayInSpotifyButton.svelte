@@ -3,7 +3,7 @@
 
 	import { Spotify } from '$lib/spotify';
 	import { playQueue } from '$lib/stores/queue';
-	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { Device } from '@fostertheweb/spotify-web-sdk';
 	import { onDestroy } from 'svelte';
 	import DeviceSelector from './DeviceSelector.svelte';
 	import IconSpotify from './icons/IconSpotify.svelte';

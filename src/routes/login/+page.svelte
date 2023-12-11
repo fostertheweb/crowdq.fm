@@ -8,7 +8,7 @@
 	import CurrentUser from '$lib/components/CurrentUser.svelte';
 	import Divider from '$lib/components/Divider.svelte';
 	import IconInfo from '$lib/components/icons/IconInfo.svelte';
-	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 
 	export let data;
 	let user: UserProfile | null = data.user;

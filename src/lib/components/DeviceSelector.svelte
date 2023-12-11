@@ -4,7 +4,7 @@
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
 	import IconQuestion from '$lib/components/icons/IconQuestion.svelte';
 	import IconSpinner from '$lib/components/icons/IconSpinner.svelte';
-	import type { Device } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { Device } from '@fostertheweb/spotify-web-sdk';
 	import { createRadioGroup, melt } from '@melt-ui/svelte';
 
 	export let devices: Array<Device> | undefined;
@@ -54,7 +54,7 @@
 						class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 p-2 {$isChecked(
 							device.id
 						)
-							? 'border-jake-500 bg-jake-50 text-jake-900 dark:bg-jake-400/50 dark:text-jake-200 ring-jake-50 ring-0'
+							? 'border-jake-500 bg-jake-50 text-jake-900 ring-0 ring-jake-50 dark:bg-jake-400/50 dark:text-jake-200'
 							: 'bg-stone-50 ring-stone-200 dark:border-stone-400 dark:bg-stone-500 dark:text-stone-300'}"
 						id={device.id}>
 						<IconDevice deviceType={device.type} />
@@ -85,8 +85,8 @@
 			{:else}
 				<button
 					on:click={() => addToQueue($value)}
-					class="border-jake-300/20 bg-jake-200 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 text-jake-950 hover:bg-jake-300/80 inline-flex items-center justify-center gap-1 rounded-full
-                    border px-4 py-3 font-medium leading-none shadow-sm dark:hover:brightness-105">
+					class="inline-flex items-center justify-center gap-1 rounded-full border border-jake-300/20 bg-jake-200 px-4 py-3 font-medium leading-none
+                    text-jake-950 shadow-sm hover:bg-jake-300/80 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 dark:hover:brightness-105">
 					{#if isAdding}
 						<IconSpinner />
 					{:else}

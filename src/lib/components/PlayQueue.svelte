@@ -8,7 +8,7 @@
 	import { playQueue } from '$lib/stores/queue';
 	import { createQuery } from '@tanstack/svelte-query';
 
-	import type { Device, UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { Device, UserProfile } from '@fostertheweb/spotify-web-sdk';
 	import IconListMusic from './icons/IconListMusic.svelte';
 
 	export let isMobile: boolean;

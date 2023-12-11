@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ListenerAvatar from '$lib/components/ListenerAvatar.svelte';
-	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 
 	export let user: UserProfile;
 </script>

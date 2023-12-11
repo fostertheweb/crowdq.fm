@@ -1,7 +1,7 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 
-import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 
 declare global {
 	namespace App {

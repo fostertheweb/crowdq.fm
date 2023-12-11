@@ -3,7 +3,7 @@ import { createServerClient } from '$lib/spotify';
 import { redirect } from '@sveltejs/kit';
 
 import type { Room } from '$lib/types';
-import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 
 export async function load({ cookies, locals, params }) {
 	const room = await kv.hgetall<Room>(`rooms:${params.slug}`);

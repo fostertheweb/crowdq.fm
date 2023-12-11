@@ -5,7 +5,7 @@
 	import { onDestroy, onMount } from 'svelte';
 
 	import type { Listener } from '$lib/types';
-	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 
 	export let currentUser: UserProfile | null;
 

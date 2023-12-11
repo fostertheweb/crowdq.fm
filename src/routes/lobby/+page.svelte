@@ -5,7 +5,7 @@
 	import IconCreateRoom from '$lib/components/icons/IconCreateRoom.svelte';
 	import IconDisc from '$lib/components/icons/IconDisc.svelte';
 	import { postAccessToken, Spotify } from '$lib/spotify';
-	import type { UserProfile } from '@fostertheweb/spotify-web-api-ts-sdk';
+	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -56,7 +56,7 @@
 			<form method="POST">
 				<button
 					type="submit"
-					class="border-sienna-700/30 dark:shadow-sienna-500/20 bg-sienna-600 shadow-sienna-400/30 leading mx-auto flex items-center gap-2 rounded-full border px-8 py-2 font-readex-pro font-medium text-white shadow-md transition ease-linear hover:brightness-110">
+					class="leading mx-auto flex items-center gap-2 rounded-full border border-sienna-700/30 bg-sienna-600 px-8 py-2 font-readex-pro font-medium text-white shadow-md shadow-sienna-400/30 transition ease-linear hover:brightness-110 dark:shadow-sienna-500/20">
 					<IconCreateRoom />
 					Create Room
 				</button>
