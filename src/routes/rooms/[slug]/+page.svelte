@@ -42,9 +42,6 @@
 	let isAudioEnabled = isHost;
 	let userId = user?.id;
 
-	$: $playQueue = itemsTableToCollection(store.getTable('items'), $currentQueueItem);
-	$: $listeners = listenersTableToCollection(store.getTable('listeners'));
-
 	$: if ($currentQueueItem && $playerPosition > $currentQueueItem.duration) {
 		console.log('Progress exceeded duration, play next track');
 		next($playQueue.shift() || null, isAudioEnabled);
@@ -178,6 +175,12 @@
 				store.delRow('listeners', userId);
 			}
 		}
+
+		$playQueue = itemsTableToCollection(
+			store.getTable('items'),
+			isMobile ? null : $currentQueueItem
+		);
+		$listeners = listenersTableToCollection(store.getTable('listeners'));
 	});
 
 	onDestroy(() => {
@@ -216,7 +219,7 @@
 {/if}
 
 <main class="flex flex-col items-center">
-	{#if !isAudioEnabled && user}
+	{#if !isAudioEnabled && user && !isMobile}
 		<div class="w-full bg-amber-100 p-2 dark:bg-amber-700">
 			<div
 				class="mx-auto flex items-center justify-center gap-2 px-4 text-center text-amber-900 dark:text-amber-50">

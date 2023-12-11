@@ -88,7 +88,7 @@
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<div
-			class="flex flex-col-reverse items-center justify-between gap-8 md:flex-row md:items-start md:gap-16">
+			class="flex flex-col-reverse items-center justify-between gap-8 md:flex-row md:items-start md:gap-16 py-16">
 			<div class="md:max-w-1/2 w-full">
 				<h1 class="font-readex-pro text-4xl font-black text-sienna-950 dark:text-stone-100">
 					Collaborative play queue for <span class="text-sienna-500">now</span>
