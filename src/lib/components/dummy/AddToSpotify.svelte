@@ -25,7 +25,7 @@
 				Laptop
 			</div>
 			<div
-				class="border-jake-500 bg-jake-50 text-jake-900 dark:border-jake-400 dark:bg-jake-200 flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 p-2">
+				class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 border-jake-500 bg-jake-50 p-2 text-jake-900 dark:border-jake-400 dark:bg-jake-200">
 				<IconDevice deviceType="smartphone" />
 				iPhone
 			</div>
@@ -45,12 +45,12 @@
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="inline-flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-white"
+					class="inline-flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-black"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<div
-					class="bg-jake-200 text-jake-950 inline-flex items-center justify-center
-                    gap-1 rounded-full px-4 py-3 font-medium leading-none">
+					class="inline-flex items-center justify-center gap-1 rounded-full
+                    bg-jake-200 px-4 py-3 font-medium leading-none text-jake-950">
 					{#if isAdding}
 						<IconSpinner />
 					{:else}

@@ -42,7 +42,7 @@
 			</button>
 			<a
 				href="spotify://"
-				class="inline-flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-white"
+				class="inline-flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-black"
 				><IconExternalLink />Open Spotify</a>
 		</div>
 	{:else}
@@ -80,7 +80,7 @@
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="inline-flex items-center justify-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-white"
+					class="inline-flex items-center justify-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-black"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<button
