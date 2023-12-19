@@ -20,6 +20,8 @@
 	let totalListeningTime = 0;
 	let scrollY = 0;
 
+	$: console.log({ playQueue: $playQueue });
+
 	$: displayShadow = scrollY > 0;
 	$: totalListeningTime = totalListeningTime + ($currentQueueItem?.duration || 0);
 
