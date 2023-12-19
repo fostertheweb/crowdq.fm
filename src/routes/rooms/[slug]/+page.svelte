@@ -106,7 +106,7 @@
 					break;
 				case 'sync_response':
 					if (message.item) {
-						const currentIndex = $playQueue.indexOf(message.item);
+						const currentIndex = $playQueue.findIndex((item) => item.id === message.item.id);
 						console.log({ currentIndex });
 						$playQueue.splice(0, currentIndex + 1);
 						console.log('Play Queue after splice', $playQueue);
