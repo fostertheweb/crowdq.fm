@@ -103,7 +103,7 @@
 				case 'sync_response':
 					if (message.item) {
 						const currentIndex = $playQueue.indexOf(message.item);
-						$playQueue.splice(currentIndex);
+						$playQueue.splice(0, currentIndex + 1);
 						$playQueue = $playQueue;
 					}
 
