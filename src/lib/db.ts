@@ -37,15 +37,10 @@ export async function createDatabase(partySocket: PartySocket) {
 	await persister.startAutoLoad();
 }
 
-export function itemsTableToCollection(table: Table, currentQueueItem: QueueItem | null) {
-	const rows = Object.entries(table).map(([id, item]) => {
+export function itemsTableToCollection(table: Table) {
+	return Object.entries(table).map(([id, item]) => {
 		return { id, ...item } as QueueItem;
 	});
-	const currentIndex = rows.findIndex((item) => item.id === currentQueueItem?.id);
-
-	console.log({ currentIndex, currentQueueItem });
-
-	return currentIndex === -1 ? rows : rows.slice(currentIndex + 1);
 }
 
 export function listenersTableToCollection(table: Table) {

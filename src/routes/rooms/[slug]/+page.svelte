@@ -182,10 +182,7 @@
 			}
 		}
 
-		$playQueue = itemsTableToCollection(
-			store.getTable('items'),
-			isMobile ? null : $currentQueueItem
-		);
+		$playQueue = itemsTableToCollection(store.getTable('items'));
 		$listeners = listenersTableToCollection(store.getTable('listeners'));
 	});
 
