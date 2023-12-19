@@ -59,8 +59,12 @@
 	onMount(async () => {
 		isMobile = mobile();
 		storeSocket = createStoreSocket($page.params.slug);
+
+		// TODO: get or create
 		await createDatabase(storeSocket);
 
+		$playQueue = itemsTableToCollection(store.getTable('items'));
+		$listeners = listenersTableToCollection(store.getTable('listeners'));
 		$party = createPartySocket($page.params.slug);
 
 		$party.addEventListener('message', async (event) => {
@@ -181,9 +185,6 @@
 				store.delRow('listeners', userId);
 			}
 		}
-
-		$playQueue = itemsTableToCollection(store.getTable('items'));
-		$listeners = listenersTableToCollection(store.getTable('listeners'));
 	});
 
 	onDestroy(() => {
