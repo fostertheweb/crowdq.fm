@@ -5,9 +5,7 @@
 
 	export let item: QueueItem;
 
-	console.log(item.name, item.addedBy);
-
-	const listener = store.getRow('listeners', item.addedBy);
+	$: listener = store.getRow('listeners', item.addedBy);
 
 	function millisToMinutesAndSeconds(millis: number) {
 		var minutes = Math.floor(millis / 60000);
