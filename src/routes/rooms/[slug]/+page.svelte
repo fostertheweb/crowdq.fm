@@ -101,6 +101,11 @@
 					);
 					break;
 				case 'sync_response':
+					if (message.item) {
+						const currentIndex = $playQueue.indexOf(message.item);
+						$playQueue = $playQueue.slice(currentIndex);
+					}
+
 					switch (message.status) {
 						case 'playing':
 							isAudioEnabled = false;
