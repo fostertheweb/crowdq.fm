@@ -20,8 +20,6 @@
 	let totalListeningTime = 0;
 	let scrollY = 0;
 
-	$: console.log({ playQueue: $playQueue });
-
 	$: displayShadow = scrollY > 0;
 	$: totalListeningTime = totalListeningTime + ($currentQueueItem?.duration || 0);
 
@@ -80,7 +78,7 @@
 	class="space-y-2 overflow-y-scroll pb-8"
 	on:scroll={() => (scrollY = queueElement.scrollTop)}>
 	{#if $playQueue.length > 0}
-		{#each $playQueue as item}
+		{#each $playQueue as item (item.id)}
 			<TrackCard {item} />
 		{/each}
 	{:else}
