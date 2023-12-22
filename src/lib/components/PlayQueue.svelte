@@ -99,9 +99,9 @@
 				</p>
 				<button
 					disabled
-					class="flex items-center gap-1 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
+					class="leading mx-auto flex w-auto items-center justify-center gap-2 rounded-full bg-[#1cd760] px-16 py-3 text-center font-readex-pro text-base font-medium text-black shadow-md shadow-[#1cd760]/30 filter transition ease-linear hover:brightness-105 dark:shadow-[#1cd760]/20">
 					<IconListMusic />
-					<span class="font-readex-pro font-medium">Save Playlist</span>
+					<span>Save Playlist</span>
 				</button>
 			{:else}
 				<IconListMusic lg />
