@@ -5,7 +5,7 @@
 	import TrackCard from '$lib/components/TrackCard.svelte';
 	import { Spotify } from '$lib/spotify';
 	import { currentQueueItem } from '$lib/stores/player';
-	import { playQueue } from '$lib/stores/queue';
+	import { playQueue, queueEnded } from '$lib/stores/queue';
 	import { createQuery } from '@tanstack/svelte-query';
 
 	import type { Device, UserProfile } from '@fostertheweb/spotify-web-sdk';
@@ -16,12 +16,14 @@
 	export let user: UserProfile | null;
 
 	let queueElement: HTMLDivElement;
-	let queueEnded = false;
 	let totalListeningTime = 0;
 	let scrollY = 0;
+	let playCount = 0;
 
 	$: displayShadow = scrollY > 0;
+	$: $currentQueueItem && playCount++;
 	$: totalListeningTime = totalListeningTime + ($currentQueueItem?.duration || 0);
+	$: playCount > 0 && $playQueue.length === 0 ? queueEnded.set(true) : queueEnded.set(false);
 
 	function formatMillis(millis: number) {
 		const hours = Math.floor(millis / 3600000);
@@ -83,21 +85,35 @@
 		{/each}
 	{:else}
 		<div class=" flex flex-col items-center gap-6 pt-12 text-sm text-stone-300 dark:text-stone-500">
-			<IconListMusic lg />
-			<div class="text-center">
-				<!-- TODO: use different message when queue ended -->
-				<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
-					No songs have been queued
-				</h4>
-				<p class="mt-2 text-stone-400">Add a song with a copied link or drag</p>
-				<p class="text-stone-400">and drop from Spotify or YouTube</p>
-			</div>
-		</div>
-	{/if}
-	<!-- TODO: better display logic to consider current item -->
-	{#if queueEnded}
-		<div class="text-center text-xs text-stone-400">
-			Listened to {$playQueue.length} songs, for {formatMillis(totalListeningTime)}
+			{#if $queueEnded}
+				<IconListMusic lg />
+				<div class="text-center">
+					<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
+						Play queue has ended
+					</h4>
+					<p class="mt-2 text-stone-400">Continue adding songs to the queue or</p>
+					<p class="text-stone-400">save the queue as a playlist and dip</p>
+				</div>
+				<p class="text-xs text-stone-400">
+					Listened to {playCount} songs, for {formatMillis(totalListeningTime)}
+				</p>
+				<button
+					disabled
+					class="flex items-center gap-1 rounded-full bg-stone-200/60 px-3 py-2 text-sm text-stone-500 hover:bg-stone-200 hover:text-stone-600 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600 dark:hover:text-stone-200">
+					<IconListMusic />
+					<span class="font-readex-pro font-medium">Save Playlist</span>
+				</button>
+			{:else}
+				<IconListMusic lg />
+				<div class="text-center">
+					<!-- TODO: use different message when queue ended -->
+					<h4 class="font-readex-pro text-base font-medium text-stone-500/80">
+						No songs have been queued
+					</h4>
+					<p class="mt-2 text-stone-400">Add a song with a copied link or drag</p>
+					<p class="text-stone-400">and drop from Spotify or YouTube</p>
+				</div>
+			{/if}
 		</div>
 	{/if}
 </div>

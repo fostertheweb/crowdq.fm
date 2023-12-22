@@ -30,13 +30,11 @@
 
 	import type { Listener, QueueItem } from '$lib/types';
 	import type { UserProfile } from '@fostertheweb/spotify-web-sdk';
-	import type PartySocket from 'partysocket';
 
 	export let data;
 
 	let user: UserProfile | null = data.user;
 	let isHost = data.isHost;
-	let storeSocket: PartySocket | null;
 	let transactionListenerId: string;
 	let isMobile = false;
 	let isAudioEnabled = isHost;
@@ -58,15 +56,14 @@
 
 	onMount(async () => {
 		isMobile = mobile();
-		storeSocket = createStoreSocket($page.params.slug);
 
-		// TODO: get or create
+		const storeSocket = createStoreSocket($page.params.slug);
 		await createDatabase(storeSocket);
 
 		$playQueue = itemsTableToCollection(store.getTable('items'));
 		$listeners = listenersTableToCollection(store.getTable('listeners'));
-		$party = createPartySocket($page.params.slug);
 
+		$party = createPartySocket($page.params.slug);
 		$party.addEventListener('message', async (event) => {
 			const message = JSON.parse(event.data);
 

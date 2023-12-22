@@ -57,9 +57,6 @@
 			if ($currentQueueItem) {
 				await play($currentQueueItem, 0);
 			} else {
-				// TODO: don't let queue reset so user can continue adding songs and not start over
-				// TODO: queue ended, show listening stats and prompt to save playlist or continue
-				// $queueEnded = true;
 				$playerStatus = 'idle';
 				$playerPosition = 0;
 			}
