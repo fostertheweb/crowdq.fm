@@ -13,6 +13,8 @@
 	import { spotifyDevice } from '$lib/stores/spotify';
 	import { extractColors } from 'extract-colors';
 	import { onDestroy, onMount } from 'svelte';
+	import { quintOut } from 'svelte/easing';
+	import { slide } from 'svelte/transition';
 	import LikeButton from './LikeButton.svelte';
 	import PlayerControl from './PlayerControl.svelte';
 	import VolumeControl from './VolumeControl.svelte';
@@ -201,48 +203,54 @@
 	});
 </script>
 
-<div class="flex flex-col" class:gap-6={$currentQueueItem}>
+<div class="absolute right-0 top-0 hidden items-center space-x-2">
+	{#each testColors as color}
+		<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
+	{/each}
+</div>
+
+<div class="flex flex-col gap-6">
 	<div
-		class="relative flex items-center gap-4"
-		class:flex-col={$currentQueueItem?.provider === 'youtube'}>
-		<div class="absolute right-0 top-0 hidden items-center space-x-2">
-			{#each testColors as color}
-				<div class="h-4 w-4 rounded bg-stone-100" style:background={color} />
-			{/each}
-		</div>
-		<div
-			class="pointer-events-none w-full"
-			style:display={$currentQueueItem?.provider === 'youtube' ? 'block' : 'none'}>
-			<div id="yt-player" class="h-auto w-full rounded shadow"></div>
-		</div>
-		{#if $currentQueueItem}
-			{#if $currentQueueItem.provider === 'spotify'}
-				<img
-					src={$currentQueueItem.artwork}
-					alt=""
-					class="h-28 w-28 rounded shadow-md shadow-black/5" />
-			{/if}
-		{/if}
-		<div class="space-y-1">
-			{#if $currentQueueItem}
-				<div class="cq-name truncate overflow-ellipsis whitespace-nowrap text-lg dark:text-white">
-					{$currentQueueItem.name}
-				</div>
-			{/if}
-			{#if $currentQueueItem && $currentQueueItem.artists}
-				<div class="text-base text-stone-500 dark:text-stone-400">
-					{$currentQueueItem.artists}
-				</div>
-			{/if}
-		</div>
+		class="pointer-events-none w-full"
+		style:display={$currentQueueItem?.provider === 'youtube' ? 'block' : 'none'}>
+		<div id="yt-player" class="h-auto w-full rounded shadow"></div>
 	</div>
 
 	{#if $currentQueueItem}
-		<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
-			<div
-				class="cq-progress-bar h-1.5 rounded-full bg-transparent"
-				style:background={$accentColor}
-				style:width={percent + '%'} />
+		<div
+			class="flex flex-col"
+			class:gap-4={$currentQueueItem?.provider === 'youtube'}
+			class:gap-6={$currentQueueItem?.provider === 'spotify'}
+			transition:slide={{ delay: 250, duration: 300, easing: quintOut, axis: 'y' }}>
+			{#if $currentQueueItem?.provider === 'youtube'}
+				<div class="cq-title truncate overflow-ellipsis whitespace-nowrap text-lg dark:text-white">
+					{$currentQueueItem.name}
+				</div>
+			{:else}
+				<div class="relative flex items-center gap-4">
+					<img
+						src={$currentQueueItem.artwork}
+						alt=""
+						class="h-28 w-28 rounded shadow-md shadow-black/5" />
+					<div class="space-y-1">
+						<div
+							class="cq-name truncate overflow-ellipsis whitespace-nowrap text-lg dark:text-white">
+							{$currentQueueItem.name}
+						</div>
+						{#if $currentQueueItem.artists}
+							<div class="text-base text-stone-500 dark:text-stone-400">
+								{$currentQueueItem.artists}
+							</div>
+						{/if}
+					</div>
+				</div>
+			{/if}
+			<div class="h-1.5 w-full rounded-full bg-stone-200 dark:bg-stone-700">
+				<div
+					class="cq-progress-bar h-1.5 rounded-full bg-transparent"
+					style:background={$accentColor}
+					style:width={percent + '%'} />
+			</div>
 		</div>
 	{/if}
 
@@ -267,5 +275,9 @@
 
 	.cq-name {
 		max-width: calc(480px - 10rem);
+	}
+
+	.cq-title {
+		max-width: 480px;
 	}
 </style>
