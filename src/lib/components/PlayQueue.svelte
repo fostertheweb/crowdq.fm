@@ -99,7 +99,7 @@
 				</p>
 				<button
 					disabled
-					class="leading mx-auto flex w-auto items-center justify-center gap-2 rounded-full bg-[#1cd760] px-16 py-3 text-center font-readex-pro text-base font-medium text-black shadow-md shadow-[#1cd760]/30 filter transition ease-linear hover:brightness-105 dark:shadow-[#1cd760]/20">
+					class="flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 disabled:pointer-events-none disabled:opacity-60 disabled:grayscale dark:text-white">
 					<IconListMusic />
 					<span>Save Playlist</span>
 				</button>
