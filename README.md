@@ -16,7 +16,7 @@ What started as a hackathon project in college with friends has kept me busy ove
 
 <!-- video of app in action -->
 
-Embed https://youtu.be/WQ2SSRiAmZw
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WQ2SSRiAmZw?si=o87FzOgLMmAH0sKB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 _For more information, visit the application [homepage](https://crowdq.fm)_
 
