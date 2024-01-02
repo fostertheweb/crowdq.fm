@@ -2,7 +2,7 @@
 
 ## About the Project
 
-What started as a hackathon project in college with friends has kept me busy over the years. It has seen many major rewrite, being the playground for my interest in various techology. The core functionality has always been the same.
+What started as a hackathon project in college with friends has kept me busy over the years. It has seen many major rewrites, being the playground for my interest in various technology. The goal has always been the same: create a shared play queue with friends.
 
 ### Built With
 
@@ -12,45 +12,11 @@ What started as a hackathon project in college with friends has kept me busy ove
 - [Melt UI](https://melt-ui.com)
 - [TailwindCSS](https://tailwindcss.com)
 
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<!-- DEMO -->
-
 ## Demo
 
 <!-- video of app in action -->
+
+Embed https://youtu.be/WQ2SSRiAmZw
 
 _For more information, visit the application [homepage](https://crowdq.fm)_
 
@@ -58,36 +24,40 @@ _For more information, visit the application [homepage](https://crowdq.fm)_
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-  - [ ] Chinese
-  - [ ] Spanish
+- [ ] Save play queue as playlist in Spotify
+- [ ] Save songs to Spotify library
+- [ ] Vote to skip current song
+- [ ] Add room settings
+- [ ] UI enhancements
+- [ ] Dynamic OG images for room links
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/fostertheweb/crowdq.fm/issues) to see what’s the progress.
+
+<!-- GETTING STARTED -->
+
+## Development
+
+You can get this running locally with node.js installed and a few credentials.
+
+### Prerequisites
+
+- node v18+
+- pnpm
+- Spotify API client id & secret (see .env.example)
+- YouTube API key
+- PartyKit host
 
 <!-- CONTRIBUTING -->
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+I encourage you to submit an issue if you encounter a problem using crowdq.fm or you are having trouble running this project locally.
 
 <!-- LICENSE -->
 
 ### License
 
-Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
+Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
 <!-- MAINTAINERS -->
 
@@ -95,8 +65,3 @@ Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
 
 - [@fostertheweb](https://github.com/fostertheweb)
 
-<!-- ACKNOWLEDGMENTS -->
-
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
