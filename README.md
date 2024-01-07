@@ -2,7 +2,7 @@
 
 ## About the Project
 
-What started as a hackathon project in college with friends has kept me busy over the years. It has seen many major rewrites, being the playground for my interest in various technology. The goal has always been the same: create a shared play queue with friends.
+What started as a hackathon project in college with friends has kept me busy over the years. It has seen many major rewrites, being the playground for my interest in various technologies. The goal has always been the same: create a shared play queue with friends.
 
 ### Built With
 
@@ -43,8 +43,9 @@ You can get this running locally with node.js installed and a few credentials.
 
 - node v18+
 - pnpm
-- Spotify API client id & secret (see .env.example)
-- YouTube API key
+- API Credentials (see [.env.example](https://github.com/fostertheweb/crowdq.fm/blob/main/.env.example))
+  - Spotify API client id & secret
+  - YouTube API key
 - PartyKit host
 
 <!-- CONTRIBUTING -->
