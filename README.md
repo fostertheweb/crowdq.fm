@@ -31,7 +31,7 @@ _For more information, visit the application [homepage](https://crowdq.fm)_
 - [ ] UI enhancements
 - [ ] Dynamic OG images for room links
 
-See the [open issues](https://github.com/fostertheweb/crowdq.fm/issues) to see what’s the progress.
+See the [open issues](https://github.com/fostertheweb/crowdq.fm/issues) to check on my progress.
 
 <!-- GETTING STARTED -->
 
