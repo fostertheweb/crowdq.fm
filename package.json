@@ -41,7 +41,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
-		"@fostertheweb/spotify-web-sdk": "^1.2.2",
+		"@fostertheweb/spotify-web-sdk": "^1.2.3",
 		"@melt-ui/svelte": "^0.66.2",
 		"@tanstack/svelte-query": "^5.0.0",
 		"@types/youtube": "^0.0.49",

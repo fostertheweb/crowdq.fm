@@ -30,7 +30,8 @@ export async function play(item: QueueItem, position: number) {
 	const youtube = get(YouTubePlayer);
 
 	const spotifyPlaybackState = await SpotifyApiClient.player.getPlaybackState();
-	const isSpotifyPlaying = spotifyPlaybackState?.is_playing;
+	const isSpotifyPlaying =
+		spotifyPlaybackState?.is_playing && device === spotifyPlaybackState.device.id;
 	const isYouTubePlaying = youtube?.getPlayerState() === 1;
 
 	if (item.provider === 'spotify') {

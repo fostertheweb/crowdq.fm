@@ -9,8 +9,8 @@ dependencies:
     specifier: ^5.0.8
     version: 5.0.8
   '@fostertheweb/spotify-web-sdk':
-    specifier: ^1.2.2
-    version: 1.2.2
+    specifier: ^1.2.3
+    version: 1.2.3
   '@melt-ui/svelte':
     specifier: ^0.66.2
     version: 0.66.2(svelte@4.2.0)
@@ -653,8 +653,8 @@ packages:
     resolution: {integrity: sha512-EAL80pZt8y68000NeRO+MibNRk9rbTMelLy2ra2jAZQDOaekRb7zIhkebW1bPIoicncgkRMMowSk1RrDFTMytw==}
     dev: false
 
-  /@fostertheweb/spotify-web-sdk@1.2.2:
-    resolution: {integrity: sha512-C7k4ksMQdOrV30mVE0RYP3CxPUuLHrrNgiK3gwocB1sLVmw+EoKGZ7XrktzEs4jLs/g9ZgH5ubBmw44uCjrb6w==}
+  /@fostertheweb/spotify-web-sdk@1.2.3:
+    resolution: {integrity: sha512-QAZJvzAukUe0G/WHVc2c3Jk9HmVJqrQeJ34mehJLYt4qh6gzw4VMXssjuzHON4VvucRS6LGslr3ACrOOVwsImw==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:

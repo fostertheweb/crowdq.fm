@@ -12,6 +12,6 @@
 <style>
 	svg {
 		width: 20px;
-		heigt: 20px;
+		height: 20px;
 	}
 </style>
