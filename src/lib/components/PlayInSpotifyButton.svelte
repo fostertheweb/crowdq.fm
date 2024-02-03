@@ -11,6 +11,7 @@
 	export let disabled = true;
 	export let devices: Device[] | undefined;
 
+	let tracksAdded = 0;
 	let isAdding = false;
 	let shouldOpenSpotify = false;
 
@@ -27,10 +28,21 @@
 			return Spotify.player.addItemToPlaybackQueue(uri, deviceId);
 		});
 
-		Promise.all(additions).then(() => {
+		chainRequests(additions).then(() => {
 			isAdding = false;
 			shouldOpenSpotify = true;
 		});
+	}
+
+	async function chainRequests(promises: Array<Promise<void>>) {
+		const nextPromise = promises.shift();
+
+		if (nextPromise) {
+			nextPromise.then(() => {
+				tracksAdded += 1;
+				setTimeout(() => chainRequests(promises), 750);
+			});
+		}
 	}
 
 	function cancel() {
@@ -46,7 +58,7 @@
 <button
 	use:melt={$trigger}
 	{disabled}
-	class="flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 text-sm text-white hover:text-white hover:brightness-125 disabled:opacity-60 dark:text-white">
+	class="flex items-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 text-sm text-black disabled:opacity-60 dark:text-white">
 	<IconSpotify />
 	<span class="font-readex-pro font-medium">Play on Spotify</span>
 </button>
@@ -55,7 +67,7 @@
 	{#if $open}
 		<div use:melt={$overlay} class="fixed inset-0 z-50 bg-black/50" />
 		<div
-			class="fixed bottom-0 left-0 z-50 h-fit max-h-[85vh] rounded-t
+			class="fixed bottom-0 left-0 z-50 h-fit max-h-[85vh] w-full rounded-t
             bg-white p-6 pt-2 shadow-lg dark:bg-stone-700 sm:left-[50%] sm:top-[50%] sm:w-[90vw]
             sm:max-w-[450px] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-b"
 			use:melt={$content}>

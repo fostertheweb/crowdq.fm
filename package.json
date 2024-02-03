@@ -46,6 +46,7 @@
 		"@tanstack/svelte-query": "^5.0.0",
 		"@types/youtube": "^0.0.49",
 		"@vercel/kv": "^0.2.3",
+		"clsx": "^2.1.0",
 		"extract-colors": "^4.0.2",
 		"is-mobile": "^4.0.0",
 		"partykit": "0.0.31",

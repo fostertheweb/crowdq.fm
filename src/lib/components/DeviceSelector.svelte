@@ -1,4 +1,5 @@
 <script lang="ts">
+	import IconCheck from '$lib/components/icons/IconCheck.svelte';
 	import IconDevice from '$lib/components/icons/IconDevice.svelte';
 	import IconExternalLink from '$lib/components/icons/IconExternalLink.svelte';
 	import IconPlus from '$lib/components/icons/IconPlus.svelte';
@@ -6,6 +7,7 @@
 	import IconSpinner from '$lib/components/icons/IconSpinner.svelte';
 	import type { Device } from '@fostertheweb/spotify-web-sdk';
 	import { createRadioGroup, melt } from '@melt-ui/svelte';
+	import clsx from 'clsx';
 
 	export let devices: Array<Device> | undefined;
 	export let isAdding = false;
@@ -46,19 +48,26 @@
 				><IconExternalLink />Open Spotify</a>
 		</div>
 	{:else}
-		<div class="flex gap-4">
+		<div class="flex flex-col gap-4">
 			{#each devices as device}
 				{#if device.id}
-					<button
-						use:melt={$item(device.id)}
-						class="flex w-1/3 flex-col items-center justify-center gap-2 rounded border-2 p-2 {$isChecked(
-							device.id
-						)
-							? 'border-jake-500 bg-jake-50 text-jake-900 ring-0 ring-jake-50 dark:bg-jake-400/50 dark:text-jake-200'
-							: 'bg-stone-50 ring-stone-200 dark:border-stone-400 dark:bg-stone-500 dark:text-stone-300'}"
-						id={device.id}>
-						<IconDevice deviceType={device.type} />
-						{device.name}
+					<button class="flex w-full items-center gap-4" use:melt={$item(device.id)} id={device.id}>
+						<div
+							class={clsx(
+								'flex h-4 w-4 items-center justify-center rounded-full border ',
+								!$isChecked(device.id) && 'border-stone-300 bg-stone-200 text-stone-200',
+								$isChecked(device.id) && 'border-jake-500 bg-jake-400 text-white'
+							)}>
+							<IconCheck />
+						</div>
+						<div
+							class={clsx(
+								'flex items-center gap-2 font-readex-pro text-lg text-stone-700',
+								$isChecked(device.id) && 'text-jake-700'
+							)}>
+							<IconDevice deviceType={device.type} />
+							{device.name}
+						</div>
 					</button>
 				{/if}
 			{/each}
@@ -66,27 +75,26 @@
 
 		<div class=" mt-2 flex items-center gap-2 text-stone-400">
 			<IconQuestion />
-			<p class="text-sm">Don't see your device? Open Spotify and come back.</p>
+			<p class="text-sm">Device missing? Open Spotify and come back.</p>
 		</div>
 
-		<div
-			class="mt-2 flex flex-col-reverse justify-end gap-3 font-readex-pro font-medium sm:flex-row">
+		<div class="mt-2 flex justify-end gap-3 font-readex-pro font-medium sm:flex-row">
 			<button
 				on:click={() => cancel()}
-				class="inline-flex items-center justify-center rounded-full
-                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 shadow-sm hover:bg-stone-200/60 dark:border-stone-500/30 dark:bg-stone-600 dark:text-stone-200 dark:hover:bg-stone-500/60">
+				class="inline-flex w-1/2 items-center justify-center rounded-full border
+                    border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 hover:bg-stone-200/60 dark:border-stone-500/30 dark:bg-stone-600 dark:text-stone-200 dark:hover:bg-stone-500/60 sm:w-fit">
 				Cancel
 			</button>
 			{#if shouldOpenSpotify}
 				<a
 					href="spotify://"
-					class="inline-flex items-center justify-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-black"
+					class="inline-flex w-1/2 items-center justify-center gap-2 rounded-full bg-[#1cd760] px-3 py-2 font-readex-pro font-medium text-black sm:w-fit"
 					><IconExternalLink />Open Spotify</a>
 			{:else}
 				<button
 					on:click={() => addToQueue($value)}
-					class="inline-flex items-center justify-center gap-1 rounded-full border border-jake-300/20 bg-jake-200 px-4 py-3 font-medium leading-none
-                    text-jake-950 shadow-sm hover:bg-jake-300/80 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 dark:hover:brightness-105">
+					class="inline-flex w-1/2 items-center justify-center gap-1 rounded-full border border-jake-500/40 bg-jake-400 px-4 py-3 font-semibold leading-none text-white
+                    hover:bg-jake-500 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 dark:hover:brightness-105 sm:w-fit">
 					{#if isAdding}
 						<IconSpinner />
 					{:else}

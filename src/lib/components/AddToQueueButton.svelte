@@ -66,7 +66,7 @@
 					on:change={(e) => (link = e.currentTarget.value)}
 					on:keydown={(e) => e.code === 'Enter' && handleAddSong()}
 					name="link"
-					class="ring-jake-400/20 focus:border-jake-400 inline-flex w-full flex-1 items-center justify-center rounded-lg border-2 border-stone-200 bg-stone-100 px-4 py-3 leading-none text-stone-800 focus:outline-0 focus:ring-4 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300"
+					class="inline-flex w-full flex-1 items-center justify-center rounded-lg border-2 border-stone-200 bg-stone-100 px-4 py-3 leading-none text-stone-800 ring-jake-400/20 focus:border-jake-400 focus:outline-0 focus:ring-4 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-300"
 					id="link"
 					placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQD" />
 			</fieldset>
@@ -82,13 +82,13 @@
 				<button
 					use:melt={$close}
 					class="inline-flex items-center justify-center rounded-full
-                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 shadow-sm hover:bg-stone-200/60 dark:border-stone-500/30 dark:bg-stone-600 dark:text-stone-200 dark:hover:bg-stone-500/60">
+                    border border-stone-200 bg-stone-100 px-4 py-3 font-medium leading-none text-stone-600 hover:bg-stone-200/60 dark:border-stone-500/30 dark:bg-stone-600 dark:text-stone-200 dark:hover:bg-stone-500/60">
 					Cancel
 				</button>
 				<button
 					on:click={handleAddSong}
-					class="border-jake-300/20 bg-jake-200 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 text-jake-950 hover:bg-jake-300/80 inline-flex items-center justify-center gap-1 rounded-full
-                    border px-4 py-3 font-medium leading-none shadow-sm dark:hover:brightness-105">
+					class="inline-flex items-center justify-center gap-1 rounded-full border border-jake-500/40 bg-jake-400 px-4 py-3 font-medium leading-none
+                    text-white hover:bg-jake-500 dark:bg-jake-600 dark:text-jake-50 dark:hover:bg-jake-600 dark:hover:brightness-105">
 					<IconPlus />
 					<span>Add</span>
 				</button>

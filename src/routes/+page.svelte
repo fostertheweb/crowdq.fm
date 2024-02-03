@@ -88,7 +88,7 @@
 	</nav>
 	<header class="mx-auto flex max-w-5xl flex-col justify-center">
 		<div
-			class="flex flex-col-reverse items-center justify-between gap-8 md:flex-row md:items-start md:gap-16 py-16">
+			class="flex flex-col-reverse items-center justify-between gap-8 py-16 md:flex-row md:items-start md:gap-16">
 			<div class="md:max-w-1/2 w-full">
 				<h1 class="font-readex-pro text-4xl font-black text-sienna-950 dark:text-stone-100">
 					Collaborative play queue for <span class="text-sienna-500">now</span>
@@ -137,7 +137,7 @@
 			<div class="cq-feature-row mt-6 flex gap-4 text-stone-600 dark:text-stone-400">
 				<div
 					class="w-1/2 space-y-2 rounded border border-stone-200 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-950/60">
-					<div class="-ml-2 flex h-8 scale-90 items-center gap-1">
+					<div class="h-min-8 -ml-2 flex scale-90 flex-col items-center gap-1 md:flex-row">
 						<img
 							class="opacity-70 invert dark:opacity-90 dark:invert-0"
 							src="/images/spotify-white.png"
