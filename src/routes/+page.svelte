@@ -131,7 +131,7 @@
 			class="w-full text-center font-readex-pro text-2xl font-bold text-stone-700 dark:text-stone-50">
 			Craft the Queue
 		</div>
-		<p class="mt-1 text-center text-sm">Everyone gets to hear their favorite song.</p>
+		<p class="mt-1 text-center text-sm">Everyone gets to hear their favorite song</p>
 		<div class="mt-6">
 			{#each tracks as track}
 				<TrackCard item={track.item} listener={track.listener} />
