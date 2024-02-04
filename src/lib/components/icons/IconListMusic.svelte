@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let lg = false;
+	export let md = false;
 </script>
 
-<svg class:lg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+<svg class:lg class:md xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
 	><g id="play-list-5--player-television-movies-slider-media-tv-players-video-stack-entertainment"
 		><path
 			id="Union"
@@ -17,6 +18,11 @@
 	svg {
 		width: 16px;
 		height: 16px;
+	}
+
+	.md {
+		width: 20px;
+		height: 20px;
 	}
 
 	.lg {

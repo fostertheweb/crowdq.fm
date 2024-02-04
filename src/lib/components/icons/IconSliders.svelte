@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
+<script lang="ts">
+	export let lg = false;
+</script>
+
+<svg class:lg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"
 	><g
 		id="horizontal-toggle-button--toggle-adjustment-adjust-button-off-on-horizontal-settings-controls"
 		><path
@@ -14,5 +18,10 @@
 	svg {
 		width: 16px;
 		height: 16px;
+	}
+
+	.lg {
+		width: 20px;
+		height: 20px;
 	}
 </style>

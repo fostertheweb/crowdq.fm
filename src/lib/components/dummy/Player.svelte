@@ -72,8 +72,8 @@
 	}
 
 	.cq-dummy-pause {
-		color: var(--text-color);
-		background-color: var(--light-bg);
+		color: #2fadd0;
+		background-color: #bce4f0;
 	}
 
 	@media (prefers-color-scheme: dark) {
