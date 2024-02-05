@@ -76,7 +76,7 @@
 	];
 </script>
 
-<nav class="mx-auto flex w-full max-w-5xl items-center justify-between pb-8">
+<nav class="mx-auto flex w-full max-w-7xl items-center justify-between pb-8">
 	<h3 class="font-straker text-3xl font-medium tracking-wide text-stone-700 dark:text-white">
 		crowdq<span class="text-jake-400">.</span>fm
 	</h3>
@@ -164,7 +164,8 @@
 	<div
 		class="rounded border border-stone-500/20 bg-white p-4 shadow-md shadow-black/5 dark:border-stone-700/60 dark:bg-stone-800 xl:col-start-2 xl:row-start-4">
 		<div class="flex h-8 items-center justify-center gap-2 text-xl dark:text-stone-200">
-			<div class="flex h-8 w-8 items-center justify-center rounded-full bg-jake-100 text-jake-600">
+			<div
+				class="flex h-8 w-8 items-center justify-center rounded-full bg-jake-100 text-jake-600 dark:bg-jake-800 dark:text-jake-400">
 				<IconThumbsDown lg />
 			</div>
 		</div>
@@ -199,7 +200,8 @@
 	<div
 		class="rounded border border-stone-500/20 bg-white p-4 shadow-md shadow-black/5 dark:border-stone-700/60 dark:bg-stone-800 xl:col-start-6 xl:row-start-4">
 		<div class="flex h-8 items-center justify-center gap-2 text-xl dark:text-stone-200">
-			<div class="flex h-8 w-8 items-center justify-center rounded-full bg-jake-100 text-jake-600">
+			<div
+				class="flex h-8 w-8 items-center justify-center rounded-full bg-jake-100 text-jake-600 dark:bg-jake-800 dark:text-jake-400">
 				<IconSliders lg />
 			</div>
 		</div>
@@ -238,7 +240,7 @@
 		class="rounded border border-stone-500/20 bg-white p-4 text-sm shadow-md shadow-black/5 dark:border-stone-700/60 dark:bg-stone-800 xl:col-start-5 xl:row-start-4">
 		<div class="flex h-8 items-center justify-center gap-2 text-xl dark:text-stone-200">
 			<div
-				class="flex h-8 w-8 items-center justify-center rounded-full bg-sienna-100 text-sienna-600">
+				class="flex h-8 w-8 items-center justify-center rounded-full bg-sienna-100 text-sienna-600 dark:bg-sienna-800 dark:text-sienna-300">
 				<IconListMusic md />
 			</div>
 		</div>
@@ -267,7 +269,7 @@
 
 <style lang="postcss">
 	:root {
-		@apply bg-gradient-to-br from-jake-50/60 to-sienna-50 p-8 dark:from-stone-950 dark:to-sienna-950;
+		@apply bg-gradient-to-br from-jake-50/60 to-sienna-50 p-8 dark:from-sienna-950 dark:to-jake-950;
 	}
 
 	header {
