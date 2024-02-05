@@ -76,7 +76,7 @@
 	];
 </script>
 
-<nav class="mx-auto flex w-full max-w-7xl items-center justify-between pb-8">
+<nav class="mx-auto flex w-full items-center justify-between pb-8 md:max-w-7xl">
 	<h3 class="font-straker text-3xl font-medium tracking-wide text-stone-700 dark:text-white">
 		crowdq<span class="text-jake-400">.</span>fm
 	</h3>
@@ -86,7 +86,7 @@
 		<a class="hover:underline" href="https://github.com/fostertheweb/crowdq.fm">GitHub</a>
 	</div>
 </nav>
-<header class="mx-auto flex max-w-5xl flex-col items-center justify-center">
+<header class="mx-auto flex flex-col items-center justify-center md:max-w-5xl">
 	<div
 		class="flex flex-col-reverse items-center justify-center gap-8 py-8 md:flex-row md:items-start md:gap-16">
 		<div class="md:max-w-1/2 w-full text-center">
@@ -124,7 +124,7 @@
 
 <div
 	id="features"
-	class="relative mx-auto grid max-w-7xl auto-rows-auto grid-cols-2 gap-4 py-8 text-stone-600 dark:text-stone-100 md:grid-cols-4 xl:grid-cols-6 xl:grid-rows-4">
+	class="relative mx-auto grid auto-rows-auto grid-cols-2 gap-4 overflow-hidden py-8 text-stone-600 dark:text-stone-100 md:max-w-7xl md:grid-cols-4 xl:grid-cols-6 xl:grid-rows-4">
 	<div
 		class="col-span-2 row-span-3 rounded border border-stone-500/20 bg-white p-4 shadow-md shadow-black/5 dark:border-stone-700/60 dark:bg-stone-800">
 		<div
@@ -254,7 +254,7 @@
 </div>
 <footer class="p-8">
 	<div
-		class="mx-auto flex max-w-7xl flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:justify-between">
+		class="mx-auto flex flex-col items-center gap-4 text-center text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:justify-between md:max-w-7xl">
 		<div class="flex items-baseline gap-1">
 			made by <a href="https://fostertheweb.com" class="underline hover:text-stone-700"
 				>fostertheweb</a>
