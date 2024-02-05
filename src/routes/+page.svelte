@@ -87,44 +87,34 @@
 	</div>
 </nav>
 <header class="mx-auto flex flex-col items-center justify-center md:max-w-5xl">
-	<div
-		class="flex flex-col-reverse items-center justify-center gap-8 py-8 md:flex-row md:items-start md:gap-16">
-		<div class="md:max-w-1/2 w-full text-center">
-			<h1
-				class="font-readex-pro text-5xl font-black leading-tight text-sienna-950 dark:text-stone-100">
-				Realtime and collaborative<br />play queue for <span class="text-sienna-500">now</span>
-				or
-				<span class="text-jake-400">later</span>
-			</h1>
-			<p class="mt-8 pr-8 text-xl font-normal text-sienna-950/80 dark:text-stone-200">
-				Create a play queue with friends in realtime,<br /> or share the queue to listen later
-			</p>
+	<div class="md:max-w-3/4 flex w-full flex-col items-center justify-center gap-4 py-8 text-center">
+		<h1
+			class="tagline font-readex-pro font-black leading-tight text-sienna-950 dark:text-stone-100">
+			Realtime and collaborative play queue for <span class="text-sienna-500">now</span>
+			or
+			<span class="text-jake-400">later</span>
+		</h1>
+		<p class="subtitle mt-6 px-8 text-center font-normal text-sienna-950/80 dark:text-stone-200">
+			Create a play queue with friends in realtime, or share the queue to listen later
+		</p>
 
-			<div class="mt-8 flex items-center justify-center gap-6">
-				<a
-					href="/lobby"
-					class="flex items-center gap-2 rounded-full border border-sienna-700/30 bg-sienna-600 px-8 py-2 font-readex-pro font-medium text-white shadow-md shadow-sienna-400/30 transition ease-linear hover:brightness-110 dark:shadow-sienna-500/20">
-					Get Started
-				</a>
-				<a
-					href="#features"
-					class="text-sienna-950 underline hover:text-sienna-800 dark:text-white/80 dark:hover:text-white"
-					>Learn More</a>
-			</div>
-		</div>
-		<div class="relative hidden w-full max-w-[480px]">
-			<!-- <HeroImage /> -->
-			<div
-				class="absolute right-[5%] top-[5%] h-96 w-96 rounded-full bg-sienna-400/20 mix-blend-multiply blur-2xl dark:bg-sienna-700/20 dark:mix-blend-screen" />
-			<div
-				class="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-jake-400/10 mix-blend-multiply blur-2xl dark:bg-jake-400/20 dark:mix-blend-screen" />
+		<div class="mt-8 flex items-center justify-center gap-6">
+			<a
+				href="/lobby"
+				class="flex items-center gap-2 rounded-full border border-sienna-700/30 bg-sienna-600 px-8 py-2 font-readex-pro font-medium text-white shadow-md shadow-sienna-400/30 transition ease-linear hover:brightness-110 dark:shadow-sienna-500/20">
+				Get Started
+			</a>
+			<a
+				href="#features"
+				class="text-sienna-950 underline hover:text-sienna-800 dark:text-white/80 dark:hover:text-white"
+				>Learn More</a>
 		</div>
 	</div>
 </header>
 
 <div
 	id="features"
-	class="relative mx-auto grid auto-rows-auto grid-cols-2 gap-4 overflow-hidden py-8 text-stone-600 dark:text-stone-100 md:max-w-7xl md:grid-cols-4 xl:grid-cols-6 xl:grid-rows-4">
+	class="relative mx-auto grid auto-rows-auto grid-cols-2 gap-4 overflow-hidden py-8 text-stone-600 dark:text-stone-100 md:max-w-7xl md:grid-cols-4 md:overflow-visible xl:grid-cols-6 xl:grid-rows-4">
 	<div
 		class="col-span-2 row-span-3 rounded border border-stone-500/20 bg-white p-4 shadow-md shadow-black/5 dark:border-stone-700/60 dark:bg-stone-800">
 		<div
@@ -279,5 +269,15 @@
 	.cq-blobs {
 		width: 100%;
 		max-width: 480px;
+	}
+
+	.tagline {
+		text-wrap: balance;
+		font-size: clamp(1.25rem, 4.381vw + 1rem, 3.75rem);
+	}
+
+	.subtitle {
+		text-wrap: balance;
+		font-size: clamp(0.5rem, 0.842vw + 0.75rem, 1.25rem);
 	}
 </style>
