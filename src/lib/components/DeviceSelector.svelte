@@ -55,15 +55,18 @@
 						<div
 							class={clsx(
 								'flex h-4 w-4 items-center justify-center rounded-full border ',
-								!$isChecked(device.id) && 'border-stone-300 bg-stone-200 text-stone-200',
-								$isChecked(device.id) && 'border-jake-500 bg-jake-400 text-white'
+								!$isChecked(device.id) &&
+									'border-stone-300 bg-stone-200 text-stone-200 dark:border-stone-500 dark:bg-stone-600 dark:text-stone-600',
+								$isChecked(device.id) &&
+									'border-jake-500 bg-jake-400 text-white dark:border-jake-400 dark:bg-jake-500'
 							)}>
 							<IconCheck />
 						</div>
 						<div
 							class={clsx(
-								'flex items-center gap-2 font-readex-pro text-lg text-stone-700',
-								$isChecked(device.id) && 'text-jake-700'
+								'flex items-center gap-2 font-readex-pro text-lg',
+								$isChecked(device.id) && 'text-jake-700 dark:text-jake-400',
+								$isChecked(device.id) && 'text-stone-700 dark:text-stone-300'
 							)}>
 							<IconDevice deviceType={device.type} />
 							{device.name}
