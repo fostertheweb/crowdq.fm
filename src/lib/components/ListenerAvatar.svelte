@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { cn } from '$lib/utils';
 	import type { Listener } from '$lib/types';
-	import { createAvatar, melt } from '@melt-ui/svelte';
+	import { Avatar } from 'bits-ui';
+
 	import { readableColor } from 'polished';
 	import randomColor from 'randomcolor';
 
@@ -14,32 +16,26 @@
 		sm: 'h-6 w-6'
 	};
 
-	const border = bordered ? 'border border-stone-50 dark:border-stone-600' : '';
-
 	const initials = listener.displayName
 		?.split(' ')
 		.map((s) => s[0])
 		.join('');
 
-	const {
-		elements: { image, fallback }
-	} = createAvatar({
-		src: listener.avatar!
-	});
-
 	const bgColor = randomColor({ seed: listener.displayName });
 </script>
 
-<div
-	class="flex {sizes[
-		size
-	]} {border} z-20 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-500"
-	style:background-color={bgColor}>
-	<img use:melt={$image} alt="Avatar" class="h-full w-full rounded-[inherit]" />
-	<span
-		use:melt={$fallback}
-		class="font-medium text-stone-700"
-		style:color={readableColor(bgColor)}>
+<Avatar.Root
+	class={cn(
+		'z-20 flex items-center justify-center rounded-full bg-stone-100 dark:bg-stone-50',
+		bordered && 'border border-stone-50 dark:border-stone-600',
+		sizes[size],
+		`bg-[${bgColor}]`
+	)}>
+	<Avatar.Image
+		class="h-full w-full rounded-[inherit]"
+		src={listener.avatar}
+		alt={listener.displayName} />
+	<Avatar.Fallback class={`font-medium text-stone-700 text-[${readableColor(bgColor)}]`}>
 		{initials || '?'}
-	</span>
-</div>
+	</Avatar.Fallback>
+</Avatar.Root>

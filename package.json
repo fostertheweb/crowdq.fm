@@ -46,6 +46,7 @@
 		"@tanstack/svelte-query": "^5.0.0",
 		"@types/youtube": "^0.0.49",
 		"@vercel/kv": "^0.2.3",
+		"bits-ui": "^0.18.6",
 		"clsx": "^2.1.0",
 		"extract-colors": "^4.0.2",
 		"is-mobile": "^4.0.0",
@@ -54,6 +55,7 @@
 		"polished": "^4.2.2",
 		"randomcolor": "^0.6.2",
 		"short-unique-id": "^4.4.4",
+		"tailwind-merge": "^2.2.1",
 		"tinybase": "^4.3.15"
 	}
 }
