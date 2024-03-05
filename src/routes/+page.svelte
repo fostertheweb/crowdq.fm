@@ -259,7 +259,7 @@
 
 <style lang="postcss">
 	:root {
-		@apply bg-gradient-to-br from-jake-50/60 to-sienna-50 p-8 dark:from-sienna-950 dark:to-jake-950;
+		@apply bg-gradient-to-br from-jake-50/60 to-sienna-50 p-8 dark:from-stone-900 dark:to-black;
 	}
 
 	header {
