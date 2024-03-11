@@ -16,7 +16,7 @@ What started as a hackathon project in college with friends has kept me busy ove
 
 <!-- video of app in action -->
 
-[![View Demo](https://img.youtube.com/vi/WQ2SSRiAmZw/hqdefault.jpg)](https://www.youtube.com/embed/WQ2SSRiAmZw)
+[![View Demo](https://img.youtube.com/vi/Q8TzfiWRXso/maxresdefault.jpg)](https://www.youtube.com/embed/Q8TzfiWRXso)
 
 _For more information, visit the application [homepage](https://crowdq.fm)_
 
@@ -65,4 +65,3 @@ Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 ## Maintainers
 
 - [@fostertheweb](https://github.com/fostertheweb)
-
